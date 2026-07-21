@@ -62,3 +62,31 @@ export async function answerPlacement(
   }
   return response.json();
 }
+
+export interface VocabCard {
+  id: number;
+  term: string;
+  translation: string;
+  example_sentence: string;
+  due_date: string;
+}
+
+export async function getDueCards(): Promise<VocabCard[]> {
+  const response = await fetch(`${API_BASE_URL}/api/vocab/due`);
+  if (!response.ok) {
+    throw new Error(`Failed to fetch due cards: ${response.status}`);
+  }
+  return response.json();
+}
+
+export async function answerVocabCard(cardId: number, answer: string): Promise<{ correct: boolean }> {
+  const response = await fetch(`${API_BASE_URL}/api/vocab/answer`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ card_id: cardId, answer }),
+  });
+  if (!response.ok) {
+    throw new Error(`Failed to submit answer: ${response.status}`);
+  }
+  return response.json();
+}
