@@ -90,3 +90,18 @@ export async function answerVocabCard(cardId: number, answer: string): Promise<{
   }
   return response.json();
 }
+
+export interface LearningPlanResponse {
+  topics: string[];
+}
+
+export async function getLearningPlan(): Promise<LearningPlanResponse | null> {
+  const response = await fetch(`${API_BASE_URL}/api/learning-plan`);
+  if (response.status === 404) {
+    return null;
+  }
+  if (!response.ok) {
+    throw new Error(`Failed to fetch learning plan: ${response.status}`);
+  }
+  return response.json();
+}
