@@ -1042,6 +1042,102 @@
           "translit": "désjat'"
         }
       }
+    },
+    {
+      "id": "on",
+      "lemma": "он",
+      "pos": "pron",
+      "gloss_de": "er",
+      "forms": {
+        "nom": {
+          "text": "он",
+          "translit": "on"
+        }
+      }
+    },
+    {
+      "id": "ona",
+      "lemma": "она́",
+      "pos": "pron",
+      "gloss_de": "sie",
+      "forms": {
+        "nom": {
+          "text": "она́",
+          "translit": "oná"
+        }
+      }
+    },
+    {
+      "id": "ono",
+      "lemma": "оно́",
+      "pos": "pron",
+      "gloss_de": "es",
+      "forms": {
+        "nom": {
+          "text": "оно́",
+          "translit": "onó"
+        }
+      }
+    },
+    {
+      "id": "mama",
+      "lemma": "ма́ма",
+      "pos": "noun",
+      "gloss_de": "die Mama",
+      "forms": {
+        "nom.sg": {
+          "text": "ма́ма",
+          "translit": "máma"
+        }
+      }
+    },
+    {
+      "id": "papa",
+      "lemma": "па́па",
+      "pos": "noun",
+      "gloss_de": "der Papa",
+      "forms": {
+        "nom.sg": {
+          "text": "па́па",
+          "translit": "pápa"
+        }
+      }
+    },
+    {
+      "id": "brat",
+      "lemma": "брат",
+      "pos": "noun",
+      "gloss_de": "der Bruder",
+      "forms": {
+        "nom.sg": {
+          "text": "брат",
+          "translit": "brat"
+        }
+      }
+    },
+    {
+      "id": "sestra",
+      "lemma": "сестра́",
+      "pos": "noun",
+      "gloss_de": "die Schwester",
+      "forms": {
+        "nom.sg": {
+          "text": "сестра́",
+          "translit": "sestrá"
+        }
+      }
+    },
+    {
+      "id": "semja",
+      "lemma": "семья́",
+      "pos": "noun",
+      "gloss_de": "die Familie",
+      "forms": {
+        "nom.sg": {
+          "text": "семья́",
+          "translit": "sem'já"
+        }
+      }
     }
   ]
 }

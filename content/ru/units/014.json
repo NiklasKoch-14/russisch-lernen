@@ -1,0 +1,261 @@
+{
+  "id": 14,
+  "stage": 1,
+  "title_de": "Meine Familie",
+  "scenario_de": "Du zeigst ein Foto und sagst, wer darauf zu sehen ist.",
+  "grammar_focus": {
+    "id": "gender-exceptions",
+    "title_de": "Endung verrät das Geschlecht — meistens",
+    "explanation_de": "Meist erkennst du das Geschlecht an der Endung: брат endet auf einen Konsonanten und ist männlich, сестра́ endet auf -а und ist weiblich. Bei Personen gilt aber der Mensch, nicht die Endung: па́па endet auf -а, ist aber selbstverständlich männlich — es heißt мой па́па, nie моя́ па́па."
+  },
+  "new_lexemes": [
+    "mama",
+    "papa",
+    "brat",
+    "sestra",
+    "semja"
+  ],
+  "exercises": [
+    {
+      "id": "14-1",
+      "type": "match_pairs",
+      "prompt_de": "Ordne die Familie zu.",
+      "pairs": [
+        [
+          "mama",
+          "nom.sg"
+        ],
+        [
+          "papa",
+          "nom.sg"
+        ],
+        [
+          "brat",
+          "nom.sg"
+        ]
+      ]
+    },
+    {
+      "id": "14-2",
+      "type": "match_pairs",
+      "prompt_de": "Und diese drei.",
+      "pairs": [
+        [
+          "sestra",
+          "nom.sg"
+        ],
+        [
+          "semja",
+          "nom.sg"
+        ],
+        [
+          "podruga",
+          "nom.sg"
+        ]
+      ]
+    },
+    {
+      "id": "14-3",
+      "type": "build_sentence",
+      "prompt_de": "Das ist meine Mama.",
+      "solution": [
+        [
+          "eto",
+          "base"
+        ],
+        [
+          "moj",
+          "nom.f"
+        ],
+        [
+          "mama",
+          "nom.sg"
+        ]
+      ],
+      "distractors": [
+        [
+          "moj",
+          "nom.m"
+        ],
+        [
+          "papa",
+          "nom.sg"
+        ]
+      ]
+    },
+    {
+      "id": "14-4",
+      "type": "choose_form",
+      "prompt_de": "Das ist mein Papa. — Achtung, па́па ist männlich. Welche Form passt?",
+      "sentence": [
+        [
+          "eto",
+          "base"
+        ],
+        "___",
+        [
+          "papa",
+          "nom.sg"
+        ]
+      ],
+      "answer": [
+        "moj",
+        "nom.m"
+      ],
+      "distractor_forms": [
+        "nom.f",
+        "nom.n"
+      ]
+    },
+    {
+      "id": "14-5",
+      "type": "choose_form",
+      "prompt_de": "Das ist meine Schwester. — Welche Form passt zu сестра́?",
+      "sentence": [
+        [
+          "eto",
+          "base"
+        ],
+        "___",
+        [
+          "sestra",
+          "nom.sg"
+        ]
+      ],
+      "answer": [
+        "moj",
+        "nom.f"
+      ],
+      "distractor_forms": [
+        "nom.m",
+        "nom.n"
+      ]
+    },
+    {
+      "id": "14-6",
+      "type": "choose_form",
+      "prompt_de": "Das ist mein Bruder. — Welche Form passt zu брат?",
+      "sentence": [
+        [
+          "eto",
+          "base"
+        ],
+        "___",
+        [
+          "brat",
+          "nom.sg"
+        ]
+      ],
+      "answer": [
+        "moj",
+        "nom.m"
+      ],
+      "distractor_forms": [
+        "nom.f",
+        "nom.n"
+      ]
+    },
+    {
+      "id": "14-7",
+      "type": "build_sentence",
+      "prompt_de": "Meine Schwester spricht Deutsch.",
+      "solution": [
+        [
+          "moj",
+          "nom.f"
+        ],
+        [
+          "sestra",
+          "nom.sg"
+        ],
+        [
+          "govorit",
+          "prs.3sg"
+        ],
+        [
+          "po_nemetski",
+          "base"
+        ]
+      ],
+      "distractors": [
+        [
+          "moj",
+          "nom.m"
+        ],
+        [
+          "govorit",
+          "prs.1sg"
+        ]
+      ]
+    },
+    {
+      "id": "14-8",
+      "type": "dialog_reply",
+      "prompt_de": "Jemand fragt, wer auf dem Foto ist. Was stimmt?",
+      "tutor_line": [
+        [
+          "kto",
+          "nom"
+        ],
+        [
+          "eto",
+          "base"
+        ]
+      ],
+      "correct_index": 0,
+      "options": [
+        {
+          "tokens": [
+            [
+              "eto",
+              "base"
+            ],
+            [
+              "moj",
+              "nom.f"
+            ],
+            [
+              "sestra",
+              "nom.sg"
+            ]
+          ],
+          "why_de": ""
+        },
+        {
+          "tokens": [
+            [
+              "eto",
+              "base"
+            ],
+            [
+              "moj",
+              "nom.m"
+            ],
+            [
+              "sestra",
+              "nom.sg"
+            ]
+          ],
+          "why_de": "сестра́ ist weiblich: моя́ сестра́."
+        },
+        {
+          "tokens": [
+            [
+              "eto",
+              "base"
+            ],
+            [
+              "moj",
+              "nom.f"
+            ],
+            [
+              "papa",
+              "nom.sg"
+            ]
+          ],
+          "why_de": "па́па endet zwar auf -а, ist aber männlich — es heißt мой па́па."
+        }
+      ]
+    }
+  ]
+}

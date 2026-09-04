@@ -1,0 +1,254 @@
+{
+  "id": 13,
+  "stage": 1,
+  "title_de": "Er, sie, es",
+  "scenario_de": "Du sprichst über jemanden, der nicht dabei ist.",
+  "grammar_focus": {
+    "id": "third-person-gender",
+    "title_de": "Das Pronomen folgt dem Wort, nicht dem Sinn",
+    "explanation_de": "он, она́ und оно́ richten sich nach dem Geschlecht des Wortes, über das du sprichst: друг wird zu он, подру́га zu она́, и́мя zu оно́. Zu allen dreien gehört dieselbe Verbendung: он говори́т, она́ говори́т, оно́ говори́т — die -ит-Form, die du aus Einheit 8 kennst."
+  },
+  "new_lexemes": [
+    "on",
+    "ona",
+    "ono"
+  ],
+  "exercises": [
+    {
+      "id": "13-1",
+      "type": "match_pairs",
+      "prompt_de": "Ordne die Pronomen zu.",
+      "pairs": [
+        [
+          "on",
+          "nom"
+        ],
+        [
+          "ona",
+          "nom"
+        ],
+        [
+          "ono",
+          "nom"
+        ]
+      ]
+    },
+    {
+      "id": "13-2",
+      "type": "build_sentence",
+      "prompt_de": "Er spricht Russisch.",
+      "solution": [
+        [
+          "on",
+          "nom"
+        ],
+        [
+          "govorit",
+          "prs.3sg"
+        ],
+        [
+          "po_russki",
+          "base"
+        ]
+      ],
+      "distractors": [
+        [
+          "govorit",
+          "prs.1sg"
+        ],
+        [
+          "ona",
+          "nom"
+        ]
+      ]
+    },
+    {
+      "id": "13-3",
+      "type": "build_sentence",
+      "prompt_de": "Sie spricht Deutsch.",
+      "solution": [
+        [
+          "ona",
+          "nom"
+        ],
+        [
+          "govorit",
+          "prs.3sg"
+        ],
+        [
+          "po_nemetski",
+          "base"
+        ]
+      ],
+      "distractors": [
+        [
+          "on",
+          "nom"
+        ],
+        [
+          "po_russki",
+          "base"
+        ]
+      ]
+    },
+    {
+      "id": "13-4",
+      "type": "choose_form",
+      "prompt_de": "Er spricht ein bisschen Russisch. — Welche Endung passt zu он?",
+      "sentence": [
+        [
+          "on",
+          "nom"
+        ],
+        [
+          "nemnogo",
+          "base"
+        ],
+        "___",
+        [
+          "po_russki",
+          "base"
+        ]
+      ],
+      "answer": [
+        "govorit",
+        "prs.3sg"
+      ],
+      "distractor_forms": [
+        "prs.1sg",
+        "prs.2sg"
+      ]
+    },
+    {
+      "id": "13-5",
+      "type": "build_sentence",
+      "prompt_de": "Sie kommt aus Russland.",
+      "solution": [
+        [
+          "ona",
+          "nom"
+        ],
+        [
+          "iz",
+          "base"
+        ],
+        [
+          "rossija",
+          "gen.sg"
+        ]
+      ],
+      "distractors": [
+        [
+          "on",
+          "nom"
+        ],
+        [
+          "rossija",
+          "nom.sg"
+        ]
+      ]
+    },
+    {
+      "id": "13-6",
+      "type": "build_sentence",
+      "prompt_de": "Er kommt aus Deutschland.",
+      "solution": [
+        [
+          "on",
+          "nom"
+        ],
+        [
+          "iz",
+          "base"
+        ],
+        [
+          "germanija",
+          "gen.sg"
+        ]
+      ],
+      "distractors": [
+        [
+          "ona",
+          "nom"
+        ],
+        [
+          "germanija",
+          "nom.sg"
+        ]
+      ]
+    },
+    {
+      "id": "13-7",
+      "type": "dialog_reply",
+      "prompt_de": "Deine Bekannte wurde gerade vorgestellt. Wie sprichst du über sie weiter?",
+      "tutor_line": [
+        [
+          "eto",
+          "base"
+        ],
+        [
+          "moj",
+          "nom.f"
+        ],
+        [
+          "podruga",
+          "nom.sg"
+        ]
+      ],
+      "correct_index": 0,
+      "options": [
+        {
+          "tokens": [
+            [
+              "ona",
+              "nom"
+            ],
+            [
+              "govorit",
+              "prs.3sg"
+            ],
+            [
+              "po_russki",
+              "base"
+            ]
+          ],
+          "why_de": ""
+        },
+        {
+          "tokens": [
+            [
+              "on",
+              "nom"
+            ],
+            [
+              "govorit",
+              "prs.3sg"
+            ],
+            [
+              "po_russki",
+              "base"
+            ]
+          ],
+          "why_de": "подру́га ist weiblich — dazu gehört она́."
+        },
+        {
+          "tokens": [
+            [
+              "ona",
+              "nom"
+            ],
+            [
+              "govorit",
+              "prs.1sg"
+            ],
+            [
+              "po_russki",
+              "base"
+            ]
+          ],
+          "why_de": "говорю́ gehört zu я. Zu она́ passt говори́т."
+        }
+      ]
+    }
+  ]
+}
