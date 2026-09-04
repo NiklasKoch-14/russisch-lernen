@@ -605,6 +605,203 @@
           "translit": "Níka"
         }
       }
+    },
+    {
+      "id": "otkuda",
+      "lemma": "отку́да",
+      "pos": "adv",
+      "gloss_de": "woher",
+      "forms": {
+        "base": {
+          "text": "отку́да",
+          "translit": "otkúda"
+        }
+      }
+    },
+    {
+      "id": "iz",
+      "lemma": "из",
+      "pos": "prep",
+      "gloss_de": "aus",
+      "forms": {
+        "base": {
+          "text": "из",
+          "translit": "iz"
+        }
+      }
+    },
+    {
+      "id": "germanija",
+      "lemma": "Герма́ния",
+      "pos": "noun",
+      "gloss_de": "Deutschland",
+      "forms": {
+        "nom.sg": {
+          "text": "Герма́ния",
+          "translit": "Germánija"
+        },
+        "gen.sg": {
+          "text": "Герма́нии",
+          "translit": "Germánii"
+        }
+      }
+    },
+    {
+      "id": "rossija",
+      "lemma": "Росси́я",
+      "pos": "noun",
+      "gloss_de": "Russland",
+      "forms": {
+        "nom.sg": {
+          "text": "Росси́я",
+          "translit": "Rossíja"
+        },
+        "gen.sg": {
+          "text": "Росси́и",
+          "translit": "Rossíi"
+        }
+      }
+    },
+    {
+      "id": "avstrija",
+      "lemma": "А́встрия",
+      "pos": "noun",
+      "gloss_de": "Österreich",
+      "forms": {
+        "nom.sg": {
+          "text": "А́встрия",
+          "translit": "Ávstrija"
+        },
+        "gen.sg": {
+          "text": "А́встрии",
+          "translit": "Ávstrii"
+        }
+      }
+    },
+    {
+      "id": "govorit",
+      "lemma": "говори́ть",
+      "pos": "verb",
+      "gloss_de": "sprechen",
+      "aspect": "impf",
+      "forms": {
+        "inf": {
+          "text": "говори́ть",
+          "translit": "govorít'"
+        },
+        "prs.1sg": {
+          "text": "говорю́",
+          "translit": "govorjú"
+        },
+        "prs.2sg": {
+          "text": "говори́шь",
+          "translit": "govoríš'"
+        },
+        "prs.3sg": {
+          "text": "говори́т",
+          "translit": "govorít"
+        },
+        "prs.2pl": {
+          "text": "говори́те",
+          "translit": "govoríte"
+        }
+      }
+    },
+    {
+      "id": "po_russki",
+      "lemma": "по-ру́сски",
+      "pos": "adv",
+      "gloss_de": "russisch (Sprache)",
+      "forms": {
+        "base": {
+          "text": "по-ру́сски",
+          "translit": "po-rússki"
+        }
+      }
+    },
+    {
+      "id": "po_nemetski",
+      "lemma": "по-неме́цки",
+      "pos": "adv",
+      "gloss_de": "deutsch (Sprache)",
+      "forms": {
+        "base": {
+          "text": "по-неме́цки",
+          "translit": "po-nemécki"
+        }
+      }
+    },
+    {
+      "id": "nemnogo",
+      "lemma": "немно́го",
+      "pos": "adv",
+      "gloss_de": "ein bisschen",
+      "forms": {
+        "base": {
+          "text": "немно́го",
+          "translit": "nemnógo"
+        }
+      }
+    },
+    {
+      "id": "ne",
+      "lemma": "не",
+      "pos": "part",
+      "gloss_de": "nicht",
+      "forms": {
+        "base": {
+          "text": "не",
+          "translit": "ne"
+        }
+      }
+    },
+    {
+      "id": "da",
+      "lemma": "да",
+      "pos": "part",
+      "gloss_de": "ja",
+      "forms": {
+        "base": {
+          "text": "да",
+          "translit": "da"
+        }
+      }
+    },
+    {
+      "id": "net",
+      "lemma": "нет",
+      "pos": "part",
+      "gloss_de": "nein",
+      "forms": {
+        "base": {
+          "text": "нет",
+          "translit": "net"
+        }
+      }
+    },
+    {
+      "id": "konechno",
+      "lemma": "коне́чно",
+      "pos": "adv",
+      "gloss_de": "natürlich, klar",
+      "forms": {
+        "base": {
+          "text": "коне́чно",
+          "translit": "konéšno"
+        }
+      }
+    },
+    {
+      "id": "tozhe",
+      "lemma": "то́же",
+      "pos": "adv",
+      "gloss_de": "auch",
+      "forms": {
+        "base": {
+          "text": "то́же",
+          "translit": "tóže"
+        }
+      }
     }
   ]
 }

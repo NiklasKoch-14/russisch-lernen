@@ -111,8 +111,17 @@ def _check_exercise(course: Course, unit: Unit, exercise: Exercise) -> list[str]
         for index, option in enumerate(exercise.options):
             if index != exercise.correct_index and not option.why_de.strip():
                 errors.append(f"{where}: falsche Option {index} hat keine Begründung (why_de)")
-    if isinstance(exercise, MatchPairsExercise) and len(exercise.pairs) < 2:
-        errors.append(f"{where}: braucht mindestens 2 Paare")
+    if isinstance(exercise, MatchPairsExercise):
+        if len(exercise.pairs) < 2:
+            errors.append(f"{where}: braucht mindestens 2 Paare")
+        glosses = [
+            course.gloss(pair) for pair in exercise.pairs if pair[0] in course.lexemes
+        ]
+        if len(set(glosses)) != len(glosses):
+            errors.append(
+                f"{where}: zwei Paare teilen sich dieselbe Bedeutung — "
+                "die Zuordnung wäre nicht eindeutig"
+            )
     return errors
 
 

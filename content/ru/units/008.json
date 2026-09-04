@@ -1,0 +1,279 @@
+{
+  "id": 8,
+  "stage": 1,
+  "title_de": "Sprichst du Russisch?",
+  "scenario_de": "Ihr klärt, in welcher Sprache ihr euch verständigen könnt.",
+  "grammar_focus": {
+    "id": "prs-conj-intro",
+    "title_de": "Die Endung sagt, wer spricht",
+    "explanation_de": "Russische Verben ändern ihre Endung je nach Person — das Pronomen könnte man sogar weglassen. Von говори́ть („sprechen“) heißt es я говорю́, ты говори́шь, он говори́т und вы говори́те. Merke dir das Muster -ю / -ишь / -ит / -ите; es taucht bei vielen Verben genau so wieder auf."
+  },
+  "new_lexemes": [
+    "govorit",
+    "po_russki",
+    "po_nemetski",
+    "nemnogo",
+    "ne"
+  ],
+  "exercises": [
+    {
+      "id": "8-1",
+      "type": "match_pairs",
+      "prompt_de": "Ordne zu.",
+      "pairs": [
+        [
+          "po_russki",
+          "base"
+        ],
+        [
+          "po_nemetski",
+          "base"
+        ],
+        [
+          "nemnogo",
+          "base"
+        ]
+      ]
+    },
+    {
+      "id": "8-2",
+      "type": "build_sentence",
+      "prompt_de": "Ich spreche Deutsch.",
+      "solution": [
+        [
+          "ja",
+          "nom"
+        ],
+        [
+          "govorit",
+          "prs.1sg"
+        ],
+        [
+          "po_nemetski",
+          "base"
+        ]
+      ],
+      "distractors": [
+        [
+          "govorit",
+          "prs.3sg"
+        ],
+        [
+          "po_russki",
+          "base"
+        ]
+      ]
+    },
+    {
+      "id": "8-3",
+      "type": "build_sentence",
+      "prompt_de": "Sprichst du Russisch?",
+      "solution": [
+        [
+          "ty",
+          "nom"
+        ],
+        [
+          "govorit",
+          "prs.2sg"
+        ],
+        [
+          "po_russki",
+          "base"
+        ]
+      ],
+      "distractors": [
+        [
+          "govorit",
+          "prs.1sg"
+        ],
+        [
+          "vy",
+          "nom"
+        ]
+      ]
+    },
+    {
+      "id": "8-4",
+      "type": "choose_form",
+      "prompt_de": "Ich spreche ein bisschen Russisch. — Welche Endung passt zu я?",
+      "sentence": [
+        [
+          "ja",
+          "nom"
+        ],
+        [
+          "nemnogo",
+          "base"
+        ],
+        "___",
+        [
+          "po_russki",
+          "base"
+        ]
+      ],
+      "answer": [
+        "govorit",
+        "prs.1sg"
+      ],
+      "distractor_forms": [
+        "prs.2sg",
+        "prs.3sg"
+      ]
+    },
+    {
+      "id": "8-5",
+      "type": "choose_form",
+      "prompt_de": "Sprechen Sie Deutsch? — Welche Endung passt zu вы?",
+      "sentence": [
+        [
+          "vy",
+          "nom"
+        ],
+        "___",
+        [
+          "po_nemetski",
+          "base"
+        ]
+      ],
+      "answer": [
+        "govorit",
+        "prs.2pl"
+      ],
+      "distractor_forms": [
+        "prs.1sg",
+        "prs.2sg"
+      ]
+    },
+    {
+      "id": "8-6",
+      "type": "build_sentence",
+      "prompt_de": "Ich spreche kein Russisch.",
+      "solution": [
+        [
+          "ja",
+          "nom"
+        ],
+        [
+          "ne",
+          "base"
+        ],
+        [
+          "govorit",
+          "prs.1sg"
+        ],
+        [
+          "po_russki",
+          "base"
+        ]
+      ],
+      "distractors": [
+        [
+          "govorit",
+          "prs.2sg"
+        ]
+      ]
+    },
+    {
+      "id": "8-7",
+      "type": "choose_form",
+      "prompt_de": "Und du? — Welche Endung passt zu ты?",
+      "sentence": [
+        [
+          "ty",
+          "nom"
+        ],
+        "___",
+        [
+          "po_nemetski",
+          "base"
+        ]
+      ],
+      "answer": [
+        "govorit",
+        "prs.2sg"
+      ],
+      "distractor_forms": [
+        "prs.1sg",
+        "prs.2pl"
+      ]
+    },
+    {
+      "id": "8-8",
+      "type": "dialog_reply",
+      "prompt_de": "Eine Verkäuferin fragt dich. Was antwortest du?",
+      "tutor_line": [
+        [
+          "vy",
+          "nom"
+        ],
+        [
+          "govorit",
+          "prs.2pl"
+        ],
+        [
+          "po_russki",
+          "base"
+        ]
+      ],
+      "correct_index": 0,
+      "options": [
+        {
+          "tokens": [
+            [
+              "ja",
+              "nom"
+            ],
+            [
+              "nemnogo",
+              "base"
+            ],
+            [
+              "govorit",
+              "prs.1sg"
+            ],
+            [
+              "po_russki",
+              "base"
+            ]
+          ],
+          "why_de": ""
+        },
+        {
+          "tokens": [
+            [
+              "ja",
+              "nom"
+            ],
+            [
+              "govorit",
+              "prs.2sg"
+            ],
+            [
+              "po_russki",
+              "base"
+            ]
+          ],
+          "why_de": "говори́шь gehört zu ты. Über dich selbst sagst du говорю́."
+        },
+        {
+          "tokens": [
+            [
+              "ja",
+              "nom"
+            ],
+            [
+              "govorit",
+              "prs.2pl"
+            ],
+            [
+              "po_russki",
+              "base"
+            ]
+          ],
+          "why_de": "говори́те gehört zu вы — das wäre die Frage, nicht die Antwort."
+        }
+      ]
+    }
+  ]
+}

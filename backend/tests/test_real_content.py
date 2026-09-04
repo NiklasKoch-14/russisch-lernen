@@ -11,7 +11,7 @@ def test_shipped_content_passes_every_validation_rule():
 
 
 def test_shipped_content_has_the_seed_units():
-    assert sorted(load_course(CONTENT_DIR).units) == [1, 2, 3, 4, 5, 6]
+    assert sorted(load_course(CONTENT_DIR).units) == list(range(1, 10))
 
 
 def test_stage_zero_teaches_letters_only():

@@ -1,0 +1,261 @@
+{
+  "id": 9,
+  "stage": 1,
+  "title_de": "Ja, nein, nicht",
+  "scenario_de": "Du beantwortest Fragen und stimmst zu oder widersprichst.",
+  "grammar_focus": {
+    "id": "negation",
+    "title_de": "нет ist die Antwort, не die Verneinung",
+    "explanation_de": "Russisch trennt zwei Dinge, die im Deutschen beide „nein/nicht“ heißen. нет steht allein als kurze Antwort. Im Satz verneint dagegen не, und zwar direkt vor dem Wort, um das es geht: Я не говорю́ по-ру́сски. Beides zusammen ergibt: Нет, я не говорю́ по-ру́сски."
+  },
+  "new_lexemes": [
+    "da",
+    "net",
+    "konechno",
+    "tozhe"
+  ],
+  "exercises": [
+    {
+      "id": "9-1",
+      "type": "match_pairs",
+      "prompt_de": "Ordne zu.",
+      "pairs": [
+        [
+          "da",
+          "base"
+        ],
+        [
+          "net",
+          "base"
+        ],
+        [
+          "konechno",
+          "base"
+        ]
+      ]
+    },
+    {
+      "id": "9-2",
+      "type": "match_pairs",
+      "prompt_de": "Und diese drei.",
+      "pairs": [
+        [
+          "tozhe",
+          "base"
+        ],
+        [
+          "nemnogo",
+          "base"
+        ],
+        [
+          "ne",
+          "base"
+        ]
+      ]
+    },
+    {
+      "id": "9-3",
+      "type": "build_sentence",
+      "prompt_de": "Ja, natürlich.",
+      "solution": [
+        [
+          "da",
+          "base"
+        ],
+        [
+          "konechno",
+          "base"
+        ]
+      ],
+      "distractors": [
+        [
+          "net",
+          "base"
+        ]
+      ]
+    },
+    {
+      "id": "9-4",
+      "type": "build_sentence",
+      "prompt_de": "Nein, ich spreche kein Russisch.",
+      "solution": [
+        [
+          "net",
+          "base"
+        ],
+        [
+          "ja",
+          "nom"
+        ],
+        [
+          "ne",
+          "base"
+        ],
+        [
+          "govorit",
+          "prs.1sg"
+        ],
+        [
+          "po_russki",
+          "base"
+        ]
+      ],
+      "distractors": [
+        [
+          "da",
+          "base"
+        ],
+        [
+          "govorit",
+          "prs.2sg"
+        ]
+      ]
+    },
+    {
+      "id": "9-5",
+      "type": "build_sentence",
+      "prompt_de": "Ich auch.",
+      "solution": [
+        [
+          "ja",
+          "nom"
+        ],
+        [
+          "tozhe",
+          "base"
+        ]
+      ],
+      "distractors": [
+        [
+          "ty",
+          "nom"
+        ],
+        [
+          "ne",
+          "base"
+        ]
+      ]
+    },
+    {
+      "id": "9-6",
+      "type": "choose_form",
+      "prompt_de": "Du sprichst auch Deutsch. — Welche Endung passt zu ты?",
+      "sentence": [
+        [
+          "ty",
+          "nom"
+        ],
+        [
+          "tozhe",
+          "base"
+        ],
+        "___",
+        [
+          "po_nemetski",
+          "base"
+        ]
+      ],
+      "answer": [
+        "govorit",
+        "prs.2sg"
+      ],
+      "distractor_forms": [
+        "prs.1sg",
+        "prs.2pl"
+      ]
+    },
+    {
+      "id": "9-7",
+      "type": "dialog_reply",
+      "prompt_de": "Du wirst gefragt und musst verneinen. Was stimmt?",
+      "tutor_line": [
+        [
+          "ty",
+          "nom"
+        ],
+        [
+          "govorit",
+          "prs.2sg"
+        ],
+        [
+          "po_russki",
+          "base"
+        ]
+      ],
+      "correct_index": 0,
+      "options": [
+        {
+          "tokens": [
+            [
+              "net",
+              "base"
+            ],
+            [
+              "ja",
+              "nom"
+            ],
+            [
+              "ne",
+              "base"
+            ],
+            [
+              "govorit",
+              "prs.1sg"
+            ],
+            [
+              "po_russki",
+              "base"
+            ]
+          ],
+          "why_de": ""
+        },
+        {
+          "tokens": [
+            [
+              "net",
+              "base"
+            ],
+            [
+              "ja",
+              "nom"
+            ],
+            [
+              "net",
+              "base"
+            ],
+            [
+              "govorit",
+              "prs.1sg"
+            ],
+            [
+              "po_russki",
+              "base"
+            ]
+          ],
+          "why_de": "Im Satz verneint не. нет ist nur die kurze Antwort „nein“."
+        },
+        {
+          "tokens": [
+            [
+              "ja",
+              "nom"
+            ],
+            [
+              "ne",
+              "base"
+            ],
+            [
+              "govorit",
+              "prs.2sg"
+            ],
+            [
+              "po_russki",
+              "base"
+            ]
+          ],
+          "why_de": "говори́шь gehört zu ты — über dich selbst sagst du говорю́."
+        }
+      ]
+    }
+  ]
+}

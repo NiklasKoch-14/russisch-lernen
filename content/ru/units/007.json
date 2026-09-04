@@ -1,0 +1,225 @@
+{
+  "id": 7,
+  "stage": 1,
+  "title_de": "Woher kommst du?",
+  "scenario_de": "Jemand fragt dich, wo du herkommst.",
+  "grammar_focus": {
+    "id": "iz-genitive",
+    "title_de": "из verlangt den Genitiv",
+    "explanation_de": "Nach из („aus“) verändert sich das Land: Герма́ния wird zu из Герма́нии, Росси́я zu из Росси́и. Länder auf -ия enden im Genitiv immer auf -ии. Und ein Wort für „komme“ brauchst du gar nicht — Я из Герма́нии heißt wörtlich nur „ich aus Deutschland“."
+  },
+  "new_lexemes": [
+    "otkuda",
+    "iz",
+    "germanija",
+    "rossija",
+    "avstrija"
+  ],
+  "exercises": [
+    {
+      "id": "7-1",
+      "type": "match_pairs",
+      "prompt_de": "Ordne die Länder zu.",
+      "pairs": [
+        [
+          "germanija",
+          "nom.sg"
+        ],
+        [
+          "rossija",
+          "nom.sg"
+        ],
+        [
+          "avstrija",
+          "nom.sg"
+        ]
+      ]
+    },
+    {
+      "id": "7-2",
+      "type": "build_sentence",
+      "prompt_de": "Woher kommst du?",
+      "solution": [
+        [
+          "otkuda",
+          "base"
+        ],
+        [
+          "ty",
+          "nom"
+        ]
+      ],
+      "distractors": [
+        [
+          "vy",
+          "nom"
+        ],
+        [
+          "ja",
+          "nom"
+        ]
+      ]
+    },
+    {
+      "id": "7-3",
+      "type": "build_sentence",
+      "prompt_de": "Woher kommen Sie?",
+      "solution": [
+        [
+          "otkuda",
+          "base"
+        ],
+        [
+          "vy",
+          "nom"
+        ]
+      ],
+      "distractors": [
+        [
+          "ty",
+          "nom"
+        ]
+      ]
+    },
+    {
+      "id": "7-4",
+      "type": "build_sentence",
+      "prompt_de": "Ich komme aus Deutschland.",
+      "solution": [
+        [
+          "ja",
+          "nom"
+        ],
+        [
+          "iz",
+          "base"
+        ],
+        [
+          "germanija",
+          "gen.sg"
+        ]
+      ],
+      "distractors": [
+        [
+          "germanija",
+          "nom.sg"
+        ],
+        [
+          "rossija",
+          "gen.sg"
+        ]
+      ]
+    },
+    {
+      "id": "7-5",
+      "type": "choose_form",
+      "prompt_de": "Ich komme aus Russland. — Welche Form steht nach из?",
+      "sentence": [
+        [
+          "ja",
+          "nom"
+        ],
+        [
+          "iz",
+          "base"
+        ],
+        "___"
+      ],
+      "answer": [
+        "rossija",
+        "gen.sg"
+      ],
+      "distractor_forms": [
+        "nom.sg"
+      ]
+    },
+    {
+      "id": "7-6",
+      "type": "choose_form",
+      "prompt_de": "Ich komme aus Österreich. — Welche Form passt?",
+      "sentence": [
+        [
+          "ja",
+          "nom"
+        ],
+        [
+          "iz",
+          "base"
+        ],
+        "___"
+      ],
+      "answer": [
+        "avstrija",
+        "gen.sg"
+      ],
+      "distractor_forms": [
+        "nom.sg"
+      ]
+    },
+    {
+      "id": "7-7",
+      "type": "dialog_reply",
+      "prompt_de": "Im Zug fragt dich jemand. Was antwortest du?",
+      "tutor_line": [
+        [
+          "otkuda",
+          "base"
+        ],
+        [
+          "vy",
+          "nom"
+        ]
+      ],
+      "correct_index": 0,
+      "options": [
+        {
+          "tokens": [
+            [
+              "ja",
+              "nom"
+            ],
+            [
+              "iz",
+              "base"
+            ],
+            [
+              "germanija",
+              "gen.sg"
+            ]
+          ],
+          "why_de": ""
+        },
+        {
+          "tokens": [
+            [
+              "otkuda",
+              "base"
+            ],
+            [
+              "vy",
+              "nom"
+            ]
+          ],
+          "why_de": "Das ist dieselbe Frage zurück — jetzt bist du mit der Antwort dran."
+        },
+        {
+          "tokens": [
+            [
+              "ja",
+              "nom"
+            ],
+            [
+              "iz",
+              "base"
+            ],
+            [
+              "germanija",
+              "nom.sg"
+            ]
+          ],
+          "why_de": "Nach из muss der Genitiv stehen: из Герма́нии, nicht из Герма́ния."
+        }
+      ]
+    }
+  ]
+}

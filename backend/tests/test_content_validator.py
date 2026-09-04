@@ -141,3 +141,15 @@ def test_reports_screening_probe_pointing_at_missing_unit(tmp_path):
 def test_stage_ranges_cover_one_to_hundred(tmp_path):
     assert STAGE_RANGES[0] == (1, 4)
     assert STAGE_RANGES[4][1] == 100
+
+
+def test_reports_match_pairs_with_ambiguous_glosses(tmp_path):
+    """Zwei Formen desselben Lexems teilen die Bedeutung — die Aufgabe wäre unlösbar."""
+    unit = copy.deepcopy(GOOD_UNIT)
+    unit["exercises"][2]["pairs"] = [["delat", "prs.1sg"], ["delat", "prs.3sg"]]
+    errors = validate_course(_course(tmp_path, units=[unit]))
+    assert any("Bedeutung" in error for error in errors)
+
+
+def test_match_pairs_with_distinct_glosses_is_fine(tmp_path):
+    assert validate_course(_course(tmp_path)) == []
