@@ -4,6 +4,8 @@ from pydantic import BaseModel
 class ProfileResponse(BaseModel):
     language: str
     cefr_level: str
+    show_transliteration: bool = True
+    placement_unit: int | None = None
 
 
 class PracticeTurnRequest(BaseModel):
@@ -56,3 +58,42 @@ class AnalyzeSessionResponse(BaseModel):
     notable_errors: list[str] = []
     vocab_suggestions: list[dict] = []
     next_topics: list[str] = []
+
+
+class ProfilePatchRequest(BaseModel):
+    show_transliteration: bool | None = None
+    placement_unit: int | None = None
+
+
+class AnswerRequest(BaseModel):
+    exercise_id: str
+    submission: dict
+
+
+class AnswerResponse(BaseModel):
+    correct: bool
+    solution_text: str
+    solution_translit: str
+    explanation_de: str
+    unit_completed: bool
+    correct_count: int
+    total_count: int
+
+
+class ScreeningAnswerRequest(BaseModel):
+    answers: list[int]
+
+
+class ReviewAnswerRequest(BaseModel):
+    pairs: list[list[int]]
+
+
+class ExplainRequest(BaseModel):
+    unit_id: int
+    exercise_id: str
+    chosen_text: str
+
+
+class ExplainResponse(BaseModel):
+    explanation_de: str
+    source: str

@@ -1,0 +1,610 @@
+{
+  "version": 1,
+  "lexemes": [
+    {
+      "id": "bu_r",
+      "lemma": "Р р",
+      "pos": "letter",
+      "gloss_de": "klingt wie ein gerolltes r — nicht wie p",
+      "forms": {
+        "base": {
+          "text": "Р р",
+          "translit": "r"
+        }
+      }
+    },
+    {
+      "id": "bu_n",
+      "lemma": "Н н",
+      "pos": "letter",
+      "gloss_de": "klingt wie n — nicht wie h",
+      "forms": {
+        "base": {
+          "text": "Н н",
+          "translit": "n"
+        }
+      }
+    },
+    {
+      "id": "bu_v",
+      "lemma": "В в",
+      "pos": "letter",
+      "gloss_de": "klingt wie w in Wasser",
+      "forms": {
+        "base": {
+          "text": "В в",
+          "translit": "v"
+        }
+      }
+    },
+    {
+      "id": "bu_s",
+      "lemma": "С с",
+      "pos": "letter",
+      "gloss_de": "klingt wie stimmloses s in Bus",
+      "forms": {
+        "base": {
+          "text": "С с",
+          "translit": "s"
+        }
+      }
+    },
+    {
+      "id": "bu_u",
+      "lemma": "У у",
+      "pos": "letter",
+      "gloss_de": "klingt wie u in Buch",
+      "forms": {
+        "base": {
+          "text": "У у",
+          "translit": "u"
+        }
+      }
+    },
+    {
+      "id": "bu_h",
+      "lemma": "Х х",
+      "pos": "letter",
+      "gloss_de": "klingt wie ch in Bach",
+      "forms": {
+        "base": {
+          "text": "Х х",
+          "translit": "ch"
+        }
+      }
+    },
+    {
+      "id": "bu_zh",
+      "lemma": "Ж ж",
+      "pos": "letter",
+      "gloss_de": "klingt wie j in Journal",
+      "forms": {
+        "base": {
+          "text": "Ж ж",
+          "translit": "ž"
+        }
+      }
+    },
+    {
+      "id": "bu_ts",
+      "lemma": "Ц ц",
+      "pos": "letter",
+      "gloss_de": "klingt wie z in Zahn",
+      "forms": {
+        "base": {
+          "text": "Ц ц",
+          "translit": "c"
+        }
+      }
+    },
+    {
+      "id": "bu_ch",
+      "lemma": "Ч ч",
+      "pos": "letter",
+      "gloss_de": "klingt wie tsch in Tschüss",
+      "forms": {
+        "base": {
+          "text": "Ч ч",
+          "translit": "č"
+        }
+      }
+    },
+    {
+      "id": "bu_sh",
+      "lemma": "Ш ш",
+      "pos": "letter",
+      "gloss_de": "klingt wie sch in Schule",
+      "forms": {
+        "base": {
+          "text": "Ш ш",
+          "translit": "š"
+        }
+      }
+    },
+    {
+      "id": "bu_shch",
+      "lemma": "Щ щ",
+      "pos": "letter",
+      "gloss_de": "ein weiches, langes schsch",
+      "forms": {
+        "base": {
+          "text": "Щ щ",
+          "translit": "šč"
+        }
+      }
+    },
+    {
+      "id": "bu_e",
+      "lemma": "Э э",
+      "pos": "letter",
+      "gloss_de": "klingt wie ä in Bär",
+      "forms": {
+        "base": {
+          "text": "Э э",
+          "translit": "e"
+        }
+      }
+    },
+    {
+      "id": "bu_yu",
+      "lemma": "Ю ю",
+      "pos": "letter",
+      "gloss_de": "klingt wie ju in Jude",
+      "forms": {
+        "base": {
+          "text": "Ю ю",
+          "translit": "ju"
+        }
+      }
+    },
+    {
+      "id": "bu_ya",
+      "lemma": "Я я",
+      "pos": "letter",
+      "gloss_de": "klingt wie ja",
+      "forms": {
+        "base": {
+          "text": "Я я",
+          "translit": "ja"
+        }
+      }
+    },
+    {
+      "id": "bu_b",
+      "lemma": "Б б",
+      "pos": "letter",
+      "gloss_de": "klingt wie b",
+      "forms": {
+        "base": {
+          "text": "Б б",
+          "translit": "b"
+        }
+      }
+    },
+    {
+      "id": "bu_g",
+      "lemma": "Г г",
+      "pos": "letter",
+      "gloss_de": "klingt wie g",
+      "forms": {
+        "base": {
+          "text": "Г г",
+          "translit": "g"
+        }
+      }
+    },
+    {
+      "id": "bu_d",
+      "lemma": "Д д",
+      "pos": "letter",
+      "gloss_de": "klingt wie d",
+      "forms": {
+        "base": {
+          "text": "Д д",
+          "translit": "d"
+        }
+      }
+    },
+    {
+      "id": "bu_z",
+      "lemma": "З з",
+      "pos": "letter",
+      "gloss_de": "klingt wie stimmhaftes s in Rose",
+      "forms": {
+        "base": {
+          "text": "З з",
+          "translit": "z"
+        }
+      }
+    },
+    {
+      "id": "bu_i",
+      "lemma": "И и",
+      "pos": "letter",
+      "gloss_de": "klingt wie i in Liebe",
+      "forms": {
+        "base": {
+          "text": "И и",
+          "translit": "i"
+        }
+      }
+    },
+    {
+      "id": "bu_j",
+      "lemma": "Й й",
+      "pos": "letter",
+      "gloss_de": "kurzes i am Silbenende, wie in Mai",
+      "forms": {
+        "base": {
+          "text": "Й й",
+          "translit": "j"
+        }
+      }
+    },
+    {
+      "id": "bu_l",
+      "lemma": "Л л",
+      "pos": "letter",
+      "gloss_de": "klingt wie l",
+      "forms": {
+        "base": {
+          "text": "Л л",
+          "translit": "l"
+        }
+      }
+    },
+    {
+      "id": "bu_p",
+      "lemma": "П п",
+      "pos": "letter",
+      "gloss_de": "klingt wie p",
+      "forms": {
+        "base": {
+          "text": "П п",
+          "translit": "p"
+        }
+      }
+    },
+    {
+      "id": "bu_f",
+      "lemma": "Ф ф",
+      "pos": "letter",
+      "gloss_de": "klingt wie f",
+      "forms": {
+        "base": {
+          "text": "Ф ф",
+          "translit": "f"
+        }
+      }
+    },
+    {
+      "id": "bu_y",
+      "lemma": "Ы ы",
+      "pos": "letter",
+      "gloss_de": "dumpfes i, zwischen i und ü",
+      "forms": {
+        "base": {
+          "text": "Ы ы",
+          "translit": "y"
+        }
+      }
+    },
+    {
+      "id": "bu_a",
+      "lemma": "А а",
+      "pos": "letter",
+      "gloss_de": "klingt wie a",
+      "forms": {
+        "base": {
+          "text": "А а",
+          "translit": "a"
+        }
+      }
+    },
+    {
+      "id": "bu_o",
+      "lemma": "О о",
+      "pos": "letter",
+      "gloss_de": "betont o, unbetont eher a",
+      "forms": {
+        "base": {
+          "text": "О о",
+          "translit": "o"
+        }
+      }
+    },
+    {
+      "id": "bu_k",
+      "lemma": "К к",
+      "pos": "letter",
+      "gloss_de": "klingt wie k",
+      "forms": {
+        "base": {
+          "text": "К к",
+          "translit": "k"
+        }
+      }
+    },
+    {
+      "id": "bu_m",
+      "lemma": "М м",
+      "pos": "letter",
+      "gloss_de": "klingt wie m",
+      "forms": {
+        "base": {
+          "text": "М м",
+          "translit": "m"
+        }
+      }
+    },
+    {
+      "id": "bu_t",
+      "lemma": "Т т",
+      "pos": "letter",
+      "gloss_de": "klingt wie t",
+      "forms": {
+        "base": {
+          "text": "Т т",
+          "translit": "t"
+        }
+      }
+    },
+    {
+      "id": "bu_yo",
+      "lemma": "Ё ё",
+      "pos": "letter",
+      "gloss_de": "klingt wie jo — trägt immer die Betonung",
+      "forms": {
+        "base": {
+          "text": "Ё ё",
+          "translit": "jo"
+        }
+      }
+    },
+    {
+      "id": "bu_soft",
+      "lemma": "ь",
+      "pos": "letter",
+      "gloss_de": "weiches Zeichen — macht den Buchstaben davor weich",
+      "forms": {
+        "base": {
+          "text": "ь",
+          "translit": "'"
+        }
+      }
+    },
+    {
+      "id": "bu_hard",
+      "lemma": "ъ",
+      "pos": "letter",
+      "gloss_de": "hartes Zeichen — trennt nur, wird nicht gesprochen",
+      "forms": {
+        "base": {
+          "text": "ъ",
+          "translit": "''"
+        }
+      }
+    },
+    {
+      "id": "privet",
+      "lemma": "приве́т",
+      "pos": "interj",
+      "gloss_de": "hallo (locker)",
+      "forms": {
+        "base": {
+          "text": "приве́т",
+          "translit": "privét"
+        }
+      }
+    },
+    {
+      "id": "zdravstvujte",
+      "lemma": "здра́вствуйте",
+      "pos": "interj",
+      "gloss_de": "guten Tag (förmlich)",
+      "forms": {
+        "base": {
+          "text": "здра́вствуйте",
+          "translit": "zdrávstvujte"
+        }
+      }
+    },
+    {
+      "id": "poka",
+      "lemma": "пока́",
+      "pos": "interj",
+      "gloss_de": "tschüss (locker)",
+      "forms": {
+        "base": {
+          "text": "пока́",
+          "translit": "poká"
+        }
+      }
+    },
+    {
+      "id": "do",
+      "lemma": "до",
+      "pos": "prep",
+      "gloss_de": "bis",
+      "forms": {
+        "base": {
+          "text": "до",
+          "translit": "do"
+        }
+      }
+    },
+    {
+      "id": "svidanie",
+      "lemma": "свида́ние",
+      "pos": "noun",
+      "gloss_de": "das Wiedersehen",
+      "forms": {
+        "nom.sg": {
+          "text": "свида́ние",
+          "translit": "svidánije"
+        },
+        "gen.sg": {
+          "text": "свида́ния",
+          "translit": "svidánija"
+        }
+      }
+    },
+    {
+      "id": "spasibo",
+      "lemma": "спаси́бо",
+      "pos": "interj",
+      "gloss_de": "danke",
+      "forms": {
+        "base": {
+          "text": "спаси́бо",
+          "translit": "spasíbo"
+        }
+      }
+    },
+    {
+      "id": "bolshoe",
+      "lemma": "большо́е",
+      "pos": "adj",
+      "gloss_de": "groß",
+      "forms": {
+        "nom.n": {
+          "text": "большо́е",
+          "translit": "bol'šóje"
+        }
+      }
+    },
+    {
+      "id": "pozhalujsta",
+      "lemma": "пожа́луйста",
+      "pos": "part",
+      "gloss_de": "bitte",
+      "forms": {
+        "base": {
+          "text": "пожа́луйста",
+          "translit": "požálujsta"
+        }
+      }
+    },
+    {
+      "id": "ja",
+      "lemma": "я",
+      "pos": "pron",
+      "gloss_de": "ich",
+      "forms": {
+        "nom": {
+          "text": "я",
+          "translit": "ja"
+        },
+        "acc": {
+          "text": "меня́",
+          "translit": "menjá"
+        }
+      }
+    },
+    {
+      "id": "ty",
+      "lemma": "ты",
+      "pos": "pron",
+      "gloss_de": "du",
+      "forms": {
+        "nom": {
+          "text": "ты",
+          "translit": "ty"
+        },
+        "acc": {
+          "text": "тебя́",
+          "translit": "tebjá"
+        },
+        "dat": {
+          "text": "тебе́",
+          "translit": "tebé"
+        }
+      }
+    },
+    {
+      "id": "vy",
+      "lemma": "вы",
+      "pos": "pron",
+      "gloss_de": "Sie (förmlich), ihr",
+      "forms": {
+        "nom": {
+          "text": "вы",
+          "translit": "vy"
+        },
+        "acc": {
+          "text": "вас",
+          "translit": "vas"
+        },
+        "dat": {
+          "text": "вам",
+          "translit": "vam"
+        }
+      }
+    },
+    {
+      "id": "kak",
+      "lemma": "как",
+      "pos": "adv",
+      "gloss_de": "wie",
+      "forms": {
+        "base": {
+          "text": "как",
+          "translit": "kak"
+        }
+      }
+    },
+    {
+      "id": "zvat",
+      "lemma": "звать",
+      "pos": "verb",
+      "gloss_de": "nennen, rufen",
+      "aspect": "impf",
+      "forms": {
+        "inf": {
+          "text": "звать",
+          "translit": "zvat'"
+        },
+        "prs.3pl": {
+          "text": "зову́т",
+          "translit": "zovút"
+        }
+      }
+    },
+    {
+      "id": "ochen",
+      "lemma": "о́чень",
+      "pos": "adv",
+      "gloss_de": "sehr",
+      "forms": {
+        "base": {
+          "text": "о́чень",
+          "translit": "óčen'"
+        }
+      }
+    },
+    {
+      "id": "prijatno",
+      "lemma": "прия́тно",
+      "pos": "adv",
+      "gloss_de": "angenehm",
+      "forms": {
+        "base": {
+          "text": "прия́тно",
+          "translit": "prijátno"
+        }
+      }
+    },
+    {
+      "id": "nika",
+      "lemma": "Ни́ка",
+      "pos": "noun",
+      "gloss_de": "Nika (Vorname)",
+      "forms": {
+        "nom.sg": {
+          "text": "Ни́ка",
+          "translit": "Níka"
+        }
+      }
+    }
+  ]
+}

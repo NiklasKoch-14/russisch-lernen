@@ -1,0 +1,147 @@
+{
+  "id": 3,
+  "stage": 0,
+  "title_de": "Die einfachen Buchstaben",
+  "scenario_de": "Zeichen, die ungefähr klingen, wie sie aussehen.",
+  "grammar_focus": {
+    "id": "easy-letters",
+    "title_de": "Wenig Überraschungen",
+    "explanation_de": "Diese zehn Buchstaben machen am wenigsten Ärger. Б, Г, Д, З, Л, П und Ф klingen ungefähr so, wie sie aussehen. И ist ein langes i, Й dagegen kein eigener Vokal, sondern ein kurzes i am Silbenende wie im deutschen Mai. Nur Ы hat kein deutsches Gegenstück: ein dumpfes i, weit hinten im Mund."
+  },
+  "new_lexemes": [
+    "bu_b",
+    "bu_g",
+    "bu_d",
+    "bu_z",
+    "bu_i",
+    "bu_j",
+    "bu_l",
+    "bu_p",
+    "bu_f",
+    "bu_y"
+  ],
+  "exercises": [
+    {
+      "id": "3-1",
+      "type": "match_pairs",
+      "prompt_de": "Ordne jedem Buchstaben seinen Klang zu.",
+      "pairs": [
+        [
+          "bu_b",
+          "base"
+        ],
+        [
+          "bu_g",
+          "base"
+        ],
+        [
+          "bu_d",
+          "base"
+        ]
+      ]
+    },
+    {
+      "id": "3-2",
+      "type": "match_pairs",
+      "prompt_de": "Welcher Laut gehört wozu?",
+      "pairs": [
+        [
+          "bu_z",
+          "base"
+        ],
+        [
+          "bu_i",
+          "base"
+        ],
+        [
+          "bu_j",
+          "base"
+        ]
+      ]
+    },
+    {
+      "id": "3-3",
+      "type": "match_pairs",
+      "prompt_de": "Nochmal gemischt — ordne zu.",
+      "pairs": [
+        [
+          "bu_l",
+          "base"
+        ],
+        [
+          "bu_p",
+          "base"
+        ],
+        [
+          "bu_f",
+          "base"
+        ]
+      ]
+    },
+    {
+      "id": "3-4",
+      "type": "match_pairs",
+      "prompt_de": "Ordne zu.",
+      "pairs": [
+        [
+          "bu_y",
+          "base"
+        ],
+        [
+          "bu_b",
+          "base"
+        ],
+        [
+          "bu_z",
+          "base"
+        ]
+      ]
+    },
+    {
+      "id": "3-5",
+      "type": "match_pairs",
+      "prompt_de": "Und jetzt diese hier.",
+      "pairs": [
+        [
+          "bu_g",
+          "base"
+        ],
+        [
+          "bu_i",
+          "base"
+        ],
+        [
+          "bu_l",
+          "base"
+        ]
+      ]
+    },
+    {
+      "id": "3-6",
+      "type": "match_pairs",
+      "prompt_de": "Letzte Runde für diese Einheit.",
+      "pairs": [
+        [
+          "bu_d",
+          "base"
+        ],
+        [
+          "bu_j",
+          "base"
+        ],
+        [
+          "bu_p",
+          "base"
+        ],
+        [
+          "bu_f",
+          "base"
+        ],
+        [
+          "bu_y",
+          "base"
+        ]
+      ]
+    }
+  ]
+}

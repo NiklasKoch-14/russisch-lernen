@@ -1,26 +1,38 @@
+import datetime as dt
 from sqlite3 import Connection
 
 from fastapi import APIRouter, Depends, HTTPException
 
 from app.api.schemas import (
     AnalyzeSessionResponse,
+    AnswerRequest,
+    AnswerResponse,
+    ExplainRequest,
+    ExplainResponse,
     LearningPlanResponse,
     PlacementAnswerRequest,
     PlacementAnswerResponse,
     PlacementStartResponse,
     PracticeTurnRequest,
     PracticeTurnResponse,
+    ProfilePatchRequest,
     ProfileResponse,
+    ReviewAnswerRequest,
+    ScreeningAnswerRequest,
     VocabAnswerRequest,
     VocabAnswerResponse,
     VocabCardResponse,
 )
 from app.config import settings
-from app.dependencies import get_db, get_ollama
+from app.content.models import Course
+from app.course import review as review_module
+from app.course import service as course_service
+from app.dependencies import get_course, get_db, get_ollama
 from app.ollama_client import OllamaClient
 from app.repositories import vocab_repo
 from app.repositories.learning_plan_repo import get_latest_plan
-from app.repositories.profile_repo import get_or_create_profile
+from app.repositories.profile_repo import get_or_create_profile, update_profile
+from app.screening import service as screening_service
 from app.srs import vocab_service
 from app.tutor import analysis_service, dialog_service, placement_service
 
@@ -30,7 +42,12 @@ router = APIRouter(prefix="/api")
 @router.get("/profile", response_model=ProfileResponse)
 def read_profile(conn: Connection = Depends(get_db)) -> ProfileResponse:
     profile = get_or_create_profile(conn, default_language=settings.default_language)
-    return ProfileResponse(language=profile.language, cefr_level=profile.cefr_level)
+    return ProfileResponse(
+        language=profile.language,
+        cefr_level=profile.cefr_level,
+        show_transliteration=profile.show_transliteration,
+        placement_unit=profile.placement_unit,
+    )
 
 
 @router.post("/dialog/practice", response_model=PracticeTurnResponse)
@@ -117,3 +134,116 @@ def answer_vocab_card(
         raise HTTPException(status_code=404, detail="Card not found")
     correct = vocab_service.submit_answer(conn, card=card, user_answer=body.answer)
     return VocabAnswerResponse(correct=correct)
+
+
+@router.get("/course")
+def read_course(conn: Connection = Depends(get_db), course: Course = Depends(get_course)) -> dict:
+    return course_service.course_overview(course, conn)
+
+
+@router.get("/units/{unit_id}")
+def read_unit(
+    unit_id: int, conn: Connection = Depends(get_db), course: Course = Depends(get_course)
+) -> dict:
+    if unit_id not in course.units:
+        raise HTTPException(status_code=404, detail=f"Einheit {unit_id} gibt es nicht")
+    return course_service.unit_payload(course, conn, unit_id)
+
+
+@router.post("/units/{unit_id}/answer", response_model=AnswerResponse)
+def answer_unit(
+    unit_id: int,
+    payload: AnswerRequest,
+    conn: Connection = Depends(get_db),
+    course: Course = Depends(get_course),
+) -> AnswerResponse:
+    if unit_id not in course.units:
+        raise HTTPException(status_code=404, detail=f"Einheit {unit_id} gibt es nicht")
+    try:
+        outcome = course_service.submit_answer(
+            conn,
+            course,
+            unit_id=unit_id,
+            exercise_id=payload.exercise_id,
+            submission=payload.submission,
+        )
+    except KeyError as exc:
+        raise HTTPException(status_code=404, detail=str(exc)) from exc
+    return AnswerResponse(**vars(outcome))
+
+
+@router.post("/screening/start")
+def screening_start(course: Course = Depends(get_course)) -> dict:
+    return screening_service.next_step(course, [])
+
+
+@router.post("/screening/answer")
+def screening_answer(
+    payload: ScreeningAnswerRequest,
+    conn: Connection = Depends(get_db),
+    course: Course = Depends(get_course),
+) -> dict:
+    step = screening_service.next_step(course, payload.answers)
+    if step["finished"]:
+        screening_service.finish_screening(conn, course, payload.answers)
+    return step
+
+
+@router.get("/review/due")
+def review_due(conn: Connection = Depends(get_db), course: Course = Depends(get_course)) -> dict:
+    return review_module.build_review_round(conn, course, today=dt.date.today().isoformat())
+
+
+@router.post("/review/answer")
+def review_answer(
+    payload: ReviewAnswerRequest,
+    conn: Connection = Depends(get_db),
+    course: Course = Depends(get_course),
+) -> dict:
+    return review_module.grade_review_round(
+        conn,
+        course,
+        today=dt.date.today().isoformat(),
+        submission={"pairs": payload.pairs},
+    )
+
+
+@router.patch("/profile", response_model=ProfileResponse)
+def patch_profile(
+    payload: ProfilePatchRequest, conn: Connection = Depends(get_db)
+) -> ProfileResponse:
+    profile = update_profile(
+        conn,
+        show_transliteration=payload.show_transliteration,
+        placement_unit=payload.placement_unit,
+    )
+    return ProfileResponse(
+        language=profile.language,
+        cefr_level=profile.cefr_level,
+        show_transliteration=profile.show_transliteration,
+        placement_unit=profile.placement_unit,
+    )
+
+
+@router.post("/explain", response_model=ExplainResponse)
+def explain(
+    payload: ExplainRequest,
+    course: Course = Depends(get_course),
+    ollama: OllamaClient = Depends(get_ollama),
+) -> ExplainResponse:
+    unit = course.units.get(payload.unit_id)
+    if unit is None:
+        raise HTTPException(status_code=404, detail=f"Einheit {payload.unit_id} gibt es nicht")
+    rule = unit.grammar_focus.explanation_de
+    prompt = (
+        "Du bist ein geduldiger Russischlehrer und antwortest auf Deutsch. "
+        f"Die Regel dieser Lektion lautet: {rule} "
+        f"Der Lernende hat geantwortet: {payload.chosen_text!r}. "
+        "Erklaere in hoechstens zwei Saetzen, warum das nicht passt. "
+        "Erfinde keine neuen russischen Woerter."
+    )
+    try:
+        text = ollama.chat([{"role": "user", "content": prompt}]).strip()
+    except Exception:
+        return ExplainResponse(explanation_de=rule, source="rule")
+    return ExplainResponse(explanation_de=text or rule, source="llm" if text else "rule")

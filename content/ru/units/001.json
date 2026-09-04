@@ -1,0 +1,135 @@
+{
+  "id": 1,
+  "stage": 0,
+  "title_de": "Buchstaben, die täuschen",
+  "scenario_de": "Du liest zum ersten Mal echte kyrillische Zeichen.",
+  "grammar_focus": {
+    "id": "false-friends",
+    "title_de": "Vertraute Formen, neuer Klang",
+    "explanation_de": "Sechs russische Buchstaben sehen aus wie lateinische, klingen aber ganz anders. Р ist kein p, sondern ein gerolltes r. Н ist kein h, sondern ein n, und В klingt wie ein deutsches w. Wenn du diese sechs sicher hast, kannst du die meisten Wörter schon halbwegs entziffern."
+  },
+  "new_lexemes": [
+    "bu_r",
+    "bu_n",
+    "bu_v",
+    "bu_s",
+    "bu_u",
+    "bu_h"
+  ],
+  "exercises": [
+    {
+      "id": "1-1",
+      "type": "match_pairs",
+      "prompt_de": "Ordne jedem Buchstaben seinen Klang zu.",
+      "pairs": [
+        [
+          "bu_r",
+          "base"
+        ],
+        [
+          "bu_n",
+          "base"
+        ],
+        [
+          "bu_v",
+          "base"
+        ]
+      ]
+    },
+    {
+      "id": "1-2",
+      "type": "match_pairs",
+      "prompt_de": "Welcher Laut gehört wozu?",
+      "pairs": [
+        [
+          "bu_s",
+          "base"
+        ],
+        [
+          "bu_u",
+          "base"
+        ],
+        [
+          "bu_h",
+          "base"
+        ]
+      ]
+    },
+    {
+      "id": "1-3",
+      "type": "match_pairs",
+      "prompt_de": "Nochmal gemischt — ordne zu.",
+      "pairs": [
+        [
+          "bu_r",
+          "base"
+        ],
+        [
+          "bu_s",
+          "base"
+        ],
+        [
+          "bu_u",
+          "base"
+        ]
+      ]
+    },
+    {
+      "id": "1-4",
+      "type": "match_pairs",
+      "prompt_de": "Ordne zu.",
+      "pairs": [
+        [
+          "bu_n",
+          "base"
+        ],
+        [
+          "bu_h",
+          "base"
+        ],
+        [
+          "bu_v",
+          "base"
+        ]
+      ]
+    },
+    {
+      "id": "1-5",
+      "type": "match_pairs",
+      "prompt_de": "Und jetzt diese hier.",
+      "pairs": [
+        [
+          "bu_r",
+          "base"
+        ],
+        [
+          "bu_v",
+          "base"
+        ],
+        [
+          "bu_h",
+          "base"
+        ]
+      ]
+    },
+    {
+      "id": "1-6",
+      "type": "match_pairs",
+      "prompt_de": "Letzte Runde für diese Einheit.",
+      "pairs": [
+        [
+          "bu_n",
+          "base"
+        ],
+        [
+          "bu_s",
+          "base"
+        ],
+        [
+          "bu_u",
+          "base"
+        ]
+      ]
+    }
+  ]
+}

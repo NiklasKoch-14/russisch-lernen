@@ -1,0 +1,263 @@
+{
+  "id": 6,
+  "stage": 1,
+  "title_de": "Wie heißt du?",
+  "scenario_de": "Du lernst jemanden kennen und fragst nach dem Namen.",
+  "grammar_focus": {
+    "id": "acc-pronouns",
+    "title_de": "Wörtlich: „wie nennen sie dich?“",
+    "explanation_de": "Russisch fragt anders nach dem Namen als Deutsch: Как тебя́ зову́т? heißt wörtlich „wie nennen sie dich?“. Deshalb steht das Pronomen im Akkusativ — меня́ (mich), тебя́ (dich), вас (Sie). Ein eigenes Wort für „heiße“ gibt es nicht, und ein Wort für „ist“ fehlt im Russischen im Präsens ohnehin."
+  },
+  "new_lexemes": [
+    "ja",
+    "ty",
+    "vy",
+    "kak",
+    "zvat",
+    "ochen",
+    "prijatno",
+    "nika"
+  ],
+  "exercises": [
+    {
+      "id": "6-1",
+      "type": "match_pairs",
+      "prompt_de": "Ordne die Pronomen zu.",
+      "pairs": [
+        [
+          "ja",
+          "nom"
+        ],
+        [
+          "ty",
+          "nom"
+        ],
+        [
+          "vy",
+          "nom"
+        ]
+      ]
+    },
+    {
+      "id": "6-2",
+      "type": "build_sentence",
+      "prompt_de": "Wie heißen Sie?",
+      "solution": [
+        [
+          "kak",
+          "base"
+        ],
+        [
+          "vy",
+          "acc"
+        ],
+        [
+          "zvat",
+          "prs.3pl"
+        ]
+      ],
+      "distractors": [
+        [
+          "vy",
+          "nom"
+        ],
+        [
+          "ty",
+          "acc"
+        ]
+      ]
+    },
+    {
+      "id": "6-3",
+      "type": "build_sentence",
+      "prompt_de": "Wie heißt du?",
+      "solution": [
+        [
+          "kak",
+          "base"
+        ],
+        [
+          "ty",
+          "acc"
+        ],
+        [
+          "zvat",
+          "prs.3pl"
+        ]
+      ],
+      "distractors": [
+        [
+          "ty",
+          "nom"
+        ],
+        [
+          "vy",
+          "acc"
+        ]
+      ]
+    },
+    {
+      "id": "6-4",
+      "type": "choose_form",
+      "prompt_de": "Wie heißt du? — Welche Form von ты passt?",
+      "sentence": [
+        [
+          "kak",
+          "base"
+        ],
+        "___",
+        [
+          "zvat",
+          "prs.3pl"
+        ]
+      ],
+      "answer": [
+        "ty",
+        "acc"
+      ],
+      "distractor_forms": [
+        "nom",
+        "dat"
+      ]
+    },
+    {
+      "id": "6-5",
+      "type": "choose_form",
+      "prompt_de": "Wie heißen Sie? — Welche Form von вы passt?",
+      "sentence": [
+        [
+          "kak",
+          "base"
+        ],
+        "___",
+        [
+          "zvat",
+          "prs.3pl"
+        ]
+      ],
+      "answer": [
+        "vy",
+        "acc"
+      ],
+      "distractor_forms": [
+        "nom",
+        "dat"
+      ]
+    },
+    {
+      "id": "6-6",
+      "type": "build_sentence",
+      "prompt_de": "Ich heiße Nika.",
+      "solution": [
+        [
+          "ja",
+          "acc"
+        ],
+        [
+          "zvat",
+          "prs.3pl"
+        ],
+        [
+          "nika",
+          "nom.sg"
+        ]
+      ],
+      "distractors": [
+        [
+          "ja",
+          "nom"
+        ],
+        [
+          "vy",
+          "acc"
+        ]
+      ]
+    },
+    {
+      "id": "6-7",
+      "type": "build_sentence",
+      "prompt_de": "Sehr angenehm!",
+      "solution": [
+        [
+          "ochen",
+          "base"
+        ],
+        [
+          "prijatno",
+          "base"
+        ]
+      ],
+      "distractors": [
+        [
+          "spasibo",
+          "base"
+        ]
+      ]
+    },
+    {
+      "id": "6-8",
+      "type": "dialog_reply",
+      "prompt_de": "Jemand stellt sich dir vor. Was antwortest du?",
+      "tutor_line": [
+        [
+          "ja",
+          "acc"
+        ],
+        [
+          "zvat",
+          "prs.3pl"
+        ],
+        [
+          "nika",
+          "nom.sg"
+        ]
+      ],
+      "correct_index": 0,
+      "options": [
+        {
+          "tokens": [
+            [
+              "ochen",
+              "base"
+            ],
+            [
+              "prijatno",
+              "base"
+            ]
+          ],
+          "why_de": ""
+        },
+        {
+          "tokens": [
+            [
+              "do",
+              "base"
+            ],
+            [
+              "svidanie",
+              "gen.sg"
+            ]
+          ],
+          "why_de": "Das ist ein Abschied — das Gespräch fängt gerade erst an."
+        },
+        {
+          "tokens": [
+            [
+              "kak",
+              "base"
+            ],
+            [
+              "vy",
+              "acc"
+            ],
+            [
+              "zvat",
+              "prs.3pl"
+            ]
+          ],
+          "why_de": "Den Namen hast du gerade gehört; die Frage wäre jetzt seltsam."
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,70 @@
+{
+  "probes": [
+    {
+      "id": "s1",
+      "prompt_de": "Welcher Buchstabe klingt wie ein gerolltes r?",
+      "options": [
+        "Р",
+        "П",
+        "Г"
+      ],
+      "correct_index": 0,
+      "maps_to_unit": 2
+    },
+    {
+      "id": "s2",
+      "prompt_de": "Wie klingt Ж?",
+      "options": [
+        "wie j in Journal",
+        "wie ch in Bach",
+        "wie z in Zahn"
+      ],
+      "correct_index": 0,
+      "maps_to_unit": 3
+    },
+    {
+      "id": "s3",
+      "prompt_de": "Welches Zeichen wird gar nicht gesprochen?",
+      "options": [
+        "ъ",
+        "ы",
+        "ю"
+      ],
+      "correct_index": 0,
+      "maps_to_unit": 5
+    },
+    {
+      "id": "s4",
+      "prompt_de": "Welches Wort heißt „danke“?",
+      "options": [
+        "спаси́бо",
+        "пожа́луйста",
+        "пока́"
+      ],
+      "correct_index": 0,
+      "maps_to_unit": 6
+    },
+    {
+      "id": "s5",
+      "prompt_de": "Was heißt до свида́ния?",
+      "options": [
+        "auf Wiedersehen",
+        "guten Tag",
+        "bitte sehr"
+      ],
+      "correct_index": 0,
+      "maps_to_unit": 6
+    },
+    {
+      "id": "s6",
+      "prompt_de": "Welche Form passt: Как ___ зову́т? (Wie heißt du?)",
+      "options": [
+        "тебя́",
+        "ты",
+        "тебе́"
+      ],
+      "correct_index": 0,
+      "maps_to_unit": 6
+    }
+  ]
+}
