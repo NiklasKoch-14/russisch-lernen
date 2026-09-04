@@ -26,7 +26,12 @@ def client(conn):
 def test_get_profile_creates_default_profile(client):
     response = client.get("/api/profile")
     assert response.status_code == 200
-    assert response.json() == {"language": "english", "cefr_level": "UNPLACED"}
+    assert response.json() == {
+        "language": "russian",
+        "cefr_level": "UNPLACED",
+        "show_transliteration": True,
+        "placement_unit": None,
+    }
 
 
 def test_practice_turn_returns_reply(client):
@@ -58,12 +63,12 @@ def test_learning_plan_returns_404_when_none_exists(client):
 
 def test_vocab_due_and_answer_flow(client, conn):
     card = vocab_repo.create_card(
-        conn, language="english", term="house", translation="Haus", example_sentence="x"
+        conn, language="russian", term="дом", translation="Haus", example_sentence="Это дом."
     )
 
     due_response = client.get("/api/vocab/due")
     assert due_response.status_code == 200
-    assert due_response.json()[0]["term"] == "house"
+    assert due_response.json()[0]["term"] == "дом"
 
     answer_response = client.post("/api/vocab/answer", json={"card_id": card.id, "answer": "Haus"})
     assert answer_response.status_code == 200
