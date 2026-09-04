@@ -10,8 +10,11 @@ def test_shipped_content_passes_every_validation_rule():
     assert validate_course(load_course(CONTENT_DIR)) == []
 
 
-def test_shipped_content_has_the_seed_units():
-    assert sorted(load_course(CONTENT_DIR).units) == list(range(1, 15))
+def test_shipped_content_has_gapless_unit_ids():
+    # Inhalte wachsen blockweise; festgezurrt ist nur, dass keine Einheit fehlt.
+    unit_ids = sorted(load_course(CONTENT_DIR).units)
+    assert unit_ids == list(range(1, len(unit_ids) + 1))
+    assert len(unit_ids) >= 14
 
 
 def test_stage_zero_teaches_letters_only():
