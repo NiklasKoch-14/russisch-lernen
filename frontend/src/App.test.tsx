@@ -1,20 +1,51 @@
-import { fireEvent, render, screen } from "@testing-library/react";
-import { describe, expect, it, vi } from "vitest";
+import { render, screen } from "@testing-library/react";
+import { MemoryRouter } from "react-router-dom";
+import { beforeEach, describe, expect, it, vi } from "vitest";
+
 import App from "./App";
+import * as api from "./courseApi";
 
 vi.mock("./ChatView", () => ({ default: () => <div>ChatView</div> }));
-vi.mock("./VocabView", () => ({ default: () => <div>VocabView</div> }));
 vi.mock("./ProfileView", () => ({ default: () => <div>ProfileView</div> }));
 
 describe("App", () => {
-  it("shows the chat view by default and switches tabs", () => {
-    render(<App />);
-    expect(screen.getByText("ChatView")).toBeInTheDocument();
+  beforeEach(() => {
+    vi.restoreAllMocks();
+    vi.spyOn(api, "getCourse").mockResolvedValue({ stages: [] });
+    vi.spyOn(api, "getProfile").mockResolvedValue({
+      language: "russian",
+      cefr_level: "UNPLACED",
+      show_transliteration: true,
+      placement_unit: null,
+    });
+  });
 
-    fireEvent.click(screen.getByText("Vokabeln"));
-    expect(screen.getByText("VocabView")).toBeInTheDocument();
+  it("zeigt die Hauptnavigation", () => {
+    render(
+      <MemoryRouter initialEntries={["/kurs"]}>
+        <App />
+      </MemoryRouter>,
+    );
+    expect(screen.getByRole("link", { name: "Kurs" })).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: "Wiederholen" })).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: "Profil" })).toBeInTheDocument();
+  });
 
-    fireEvent.click(screen.getByText("Profil"));
+  it("führt das freie Gespräch nicht in der Hauptnavigation", () => {
+    render(
+      <MemoryRouter initialEntries={["/kurs"]}>
+        <App />
+      </MemoryRouter>,
+    );
+    expect(screen.queryByRole("link", { name: /Gespräch/ })).not.toBeInTheDocument();
+  });
+
+  it("öffnet das Profil über seine Route", () => {
+    render(
+      <MemoryRouter initialEntries={["/profil"]}>
+        <App />
+      </MemoryRouter>,
+    );
     expect(screen.getByText("ProfileView")).toBeInTheDocument();
   });
 });
