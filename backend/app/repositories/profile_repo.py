@@ -1,6 +1,8 @@
 import datetime as dt
 from dataclasses import dataclass
-from sqlite3 import Connection
+from sqlite3 import Connection, Row
+
+SELECT_COLUMNS = "language, cefr_level, created_at, show_transliteration, placement_unit"
 
 
 @dataclass
@@ -8,18 +10,29 @@ class Profile:
     language: str
     cefr_level: str
     created_at: str
+    show_transliteration: bool = True
+    placement_unit: int | None = None
+
+
+def _row_to_profile(row: Row) -> Profile:
+    return Profile(
+        language=row["language"],
+        cefr_level=row["cefr_level"],
+        created_at=row["created_at"],
+        show_transliteration=bool(row["show_transliteration"]),
+        placement_unit=row["placement_unit"],
+    )
 
 
 def get_or_create_profile(conn: Connection, default_language: str) -> Profile:
-    row = conn.execute(
-        "SELECT language, cefr_level, created_at FROM profile WHERE id = 1"
-    ).fetchone()
+    row = conn.execute(f"SELECT {SELECT_COLUMNS} FROM profile WHERE id = 1").fetchone()
     if row is not None:
-        return Profile(language=row["language"], cefr_level=row["cefr_level"], created_at=row["created_at"])
+        return _row_to_profile(row)
 
-    created_at = dt.datetime.utcnow().isoformat()
+    created_at = dt.datetime.now(dt.timezone.utc).isoformat()
     conn.execute(
-        "INSERT INTO profile (id, language, cefr_level, created_at) VALUES (1, ?, ?, ?)",
+        "INSERT INTO profile (id, language, cefr_level, created_at, show_transliteration,"
+        " placement_unit) VALUES (1, ?, ?, ?, 1, NULL)",
         (default_language, "UNPLACED", created_at),
     )
     conn.commit()
@@ -27,14 +40,29 @@ def get_or_create_profile(conn: Connection, default_language: str) -> Profile:
 
 
 def update_profile(
-    conn: Connection, *, language: str | None = None, cefr_level: str | None = None
+    conn: Connection,
+    *,
+    language: str | None = None,
+    cefr_level: str | None = None,
+    show_transliteration: bool | None = None,
+    placement_unit: int | None = None,
 ) -> Profile:
-    current = get_or_create_profile(conn, default_language=language or "english")
-    new_language = language if language is not None else current.language
-    new_level = cefr_level if cefr_level is not None else current.cefr_level
+    current = get_or_create_profile(conn, default_language=language or "russian")
+    new = Profile(
+        language=language if language is not None else current.language,
+        cefr_level=cefr_level if cefr_level is not None else current.cefr_level,
+        created_at=current.created_at,
+        show_transliteration=(
+            show_transliteration
+            if show_transliteration is not None
+            else current.show_transliteration
+        ),
+        placement_unit=placement_unit if placement_unit is not None else current.placement_unit,
+    )
     conn.execute(
-        "UPDATE profile SET language = ?, cefr_level = ? WHERE id = 1",
-        (new_language, new_level),
+        "UPDATE profile SET language = ?, cefr_level = ?, show_transliteration = ?,"
+        " placement_unit = ? WHERE id = 1",
+        (new.language, new.cefr_level, int(new.show_transliteration), new.placement_unit),
     )
     conn.commit()
-    return Profile(language=new_language, cefr_level=new_level, created_at=current.created_at)
+    return new

@@ -7,7 +7,9 @@ CREATE TABLE IF NOT EXISTS profile (
     id INTEGER PRIMARY KEY CHECK (id = 1),
     language TEXT NOT NULL,
     cefr_level TEXT NOT NULL,
-    created_at TEXT NOT NULL
+    created_at TEXT NOT NULL,
+    show_transliteration INTEGER NOT NULL DEFAULT 1,
+    placement_unit INTEGER
 );
 
 CREATE TABLE IF NOT EXISTS learning_plans (
@@ -64,7 +66,54 @@ CREATE TABLE IF NOT EXISTS quiz_attempts (
     correct INTEGER NOT NULL,
     created_at TEXT NOT NULL
 );
+
+CREATE TABLE IF NOT EXISTS unit_progress (
+    unit_id       INTEGER PRIMARY KEY,
+    status        TEXT NOT NULL,
+    correct_count INTEGER NOT NULL DEFAULT 0,
+    total_count   INTEGER NOT NULL DEFAULT 0,
+    completed_at  TEXT
+);
+
+CREATE TABLE IF NOT EXISTS exercise_attempts (
+    id          INTEGER PRIMARY KEY AUTOINCREMENT,
+    unit_id     INTEGER NOT NULL,
+    exercise_id TEXT NOT NULL,
+    correct     INTEGER NOT NULL,
+    answer_json TEXT NOT NULL,
+    created_at  TEXT NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS lexeme_srs (
+    lexeme_id     TEXT NOT NULL,
+    form_key      TEXT NOT NULL,
+    interval_days REAL NOT NULL DEFAULT 0,
+    ease_factor   REAL NOT NULL DEFAULT 2.5,
+    repetitions   INTEGER NOT NULL DEFAULT 0,
+    due_date      TEXT NOT NULL,
+    PRIMARY KEY (lexeme_id, form_key)
+);
+
+CREATE TABLE IF NOT EXISTS screening_results (
+    id             INTEGER PRIMARY KEY AUTOINCREMENT,
+    answers_json   TEXT NOT NULL,
+    placement_unit INTEGER NOT NULL,
+    created_at     TEXT NOT NULL
+);
 """
+
+PROFILE_COLUMNS = {
+    "show_transliteration": "INTEGER NOT NULL DEFAULT 1",
+    "placement_unit": "INTEGER",
+}
+
+
+def _ensure_profile_columns(conn: sqlite3.Connection) -> None:
+    """Add columns introduced after the first release to an existing profile table."""
+    existing = {row["name"] for row in conn.execute("PRAGMA table_info(profile)")}
+    for name, definition in PROFILE_COLUMNS.items():
+        if name not in existing:
+            conn.execute(f"ALTER TABLE profile ADD COLUMN {name} {definition}")
 
 
 def get_connection(db_path: str) -> sqlite3.Connection:
@@ -79,6 +128,7 @@ def init_db(db_path: str) -> None:
     conn = get_connection(db_path)
     try:
         conn.executescript(SCHEMA)
+        _ensure_profile_columns(conn)
         conn.commit()
     finally:
         conn.close()
