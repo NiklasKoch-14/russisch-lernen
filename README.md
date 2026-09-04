@@ -10,8 +10,12 @@ stammen aus einem kuratierten, maschinell geprüften Content-Paket statt aus dem
 ## Starten
 
 ```bash
-docker compose up
+make deploy     # baut und startet alle Container im Hintergrund
+make remove     # stoppt und entfernt sie wieder, Lernfortschritt bleibt erhalten
+make help       # alle Ziele
 ```
+
+Ohne `make` geht es genauso mit `docker compose up -d --build` beziehungsweise `docker compose down`.
 
 | Dienst | Port | Zweck |
 |---|---|---|
@@ -58,10 +62,23 @@ Vokabel vor ihrer Einführung benutzt, Ablenker gleich der Lösung und weitere R
 ## Tests
 
 ```bash
-cd backend && .venv/bin/pytest                       # Backend
-cd frontend && npm test                              # Frontend
-BASE=http://localhost:8000 ./scripts/smoke_test.sh   # laufender Stack
+make test        # Unit-Tests: pytest und Vitest
+make test-e2e    # Playwright klickt sich durch die echte Anwendung
+make smoke       # Rauchtest gegen den laufenden Stack
+make validate    # Kursinhalte prüfen
 ```
+
+Die Playwright-Tests unter `frontend/e2e/` starten Backend und Frontend selbst, auf eigenen Ports
+(8001 und 5174) und mit einer frischen Datenbank je Lauf — ein laufender Stack wird also weder
+gebraucht noch verändert. Einmalig braucht es den Browser:
+
+```bash
+cd frontend && npx playwright install chromium
+```
+
+Abgedeckt sind der Kursweg (Einheit öffnen, Regel lesen, Aufgaben lösen, Fortschritt nach Reload),
+die Einstufung (Abbruch nach zwei Fehlern, Einstieg nach hinten, Speicherung im Profil) und das
+Profil (Umschrift-Schalter, gesperrtes Freigespräch).
 
 ## Entwurfsdokumente
 

@@ -8,5 +8,7 @@ export default defineConfig({
   test: {
     environment: "jsdom",
     setupFiles: "./src/setupTests.ts",
+    // Nur Unit-Tests. Die Playwright-Specs unter e2e/ laufen mit ihrem eigenen Runner.
+    include: ["src/**/*.{test,spec}.{ts,tsx}"],
   },
 });

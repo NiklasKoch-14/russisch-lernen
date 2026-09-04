@@ -95,7 +95,10 @@ export default function UnitView() {
         onSubmit={handleSubmit}
       />
       {result ? (
-        <div className={`space-y-2 rounded-2xl p-4 ${result.correct ? "bg-emerald-50" : "bg-rose-50"}`}>
+        <div
+          data-testid="feedback"
+          className={`space-y-2 rounded-2xl p-4 ${result.correct ? "bg-emerald-50" : "bg-rose-50"}`}
+        >
           <p className="font-medium">{result.correct ? "Richtig!" : "Nicht ganz."}</p>
           {!result.correct ? (
             <p>
