@@ -49,7 +49,6 @@ versioniertes **Content-Paket** im Repository, das das Backend read-only lädt.
 ```
 content/ru/
   lexicon.json        Wortform-Lexikon (Paradigmen, Betonung, Transliteration, Bedeutung)
-  alphabet.json       Kompaktes Schrift-Modul (nur Stolpersteine)
   screening.json      Aufgaben der Klick-Einstufung
   units/001.json … units/100.json
 ```
@@ -108,6 +107,11 @@ Erlaubte `form_key`-Werte je Wortart (kontrolliertes Vokabular, vom Validator er
 | `pron` | `{nom,gen,dat,acc,ins,prp}` |
 | `num` | `{nom,gen,dat,acc,ins,prp}` |
 | `adv`, `prep`, `part`, `conj`, `interj` | nur `base` |
+| `letter` | nur `base` |
+
+Die Wortart `letter` trägt die Stufe-0-Inhalte: ein kyrillischer Buchstabe als Lexem, `gloss_de` ist
+sein Lautwert („klingt wie *r*"). Damit braucht das Schrift-Modul kein eigenes Dateiformat und keinen
+eigenen Aufgabentyp — es benutzt `match_pairs` wie alles andere.
 
 Nur tatsächlich im Kurs benutzte Formen müssen vorhanden sein — kein vollständiges Paradigma-Pflichtprogramm.
 
@@ -164,7 +168,7 @@ Jede falsche Option trägt ein `why_de`, das nach dem Klick erscheint.
 
 | Stufe | Einheiten | Alltagsthemen | Grammatik-Fokus |
 |---|---|---|---|
-| 0 Schrift & Klang | 1–4 | Lesen, Betonung | falsche Freunde `Р Н В С У Х`, `ь`, `ё` |
+| 0 Schrift & Klang | 1–4 | Lesen, Betonung | falsche Freunde `Р Н В С У Х`, `ь`, `ё` (als `letter`-Lexeme) |
 | 1 Erste Sätze | 5–24 | Begrüßen, Vorstellen, Herkunft, Zahlen, Höflichkeit | Personalpronomen, Genus, fehlende Kopula |
 | 2 Alltag konkret | 25–52 | Café, Einkauf, Uhrzeit, Wegbeschreibung, Wohnung, Arbeit | **Präsens-Konjugation**, Akkusativ, `в/на` + Präpositiv |
 | 3 Erzählen | 53–78 | Termine, Telefon, Arzt, Reise, Verabreden | **Vergangenheit mit Genus** (`-л/-ла/-ли`), Dativ, Genitiv |
@@ -313,8 +317,8 @@ lokale Testläufe Inhaltsfehler fangen. Geprüfte Regeln:
 1. Jede in einer Einheit referenzierte `(lexeme_id, form_key)`-Kombination existiert im Lexikon.
 2. Jeder `form_key` gehört zum erlaubten Schlüsselsatz der Wortart des Lexems.
 3. Jede kyrillische Form mit mehr als einer Silbe trägt genau ein Betonungszeichen (`U+0301`).
-   Ausnahmen: Einsilber tragen keines, und Formen mit `ё` gelten als betont, da `ё` im Russischen
-   immer die Betonung trägt.
+   Ausnahmen: Einsilber tragen keines, Formen mit `ё` gelten als betont (`ё` trägt im Russischen
+   immer die Betonung), und Lexeme der Wortart `letter` sind ausgenommen.
 4. Jede Form hat eine nichtleere Transliteration; jedes Lexem eine nichtleere deutsche Bedeutung.
 5. Ein Lexem wird frühestens in der Einheit benutzt, in der es (oder eine frühere) es einführt.
 6. `distractors` und `distractor_forms` enthalten nie die richtige Lösung.
