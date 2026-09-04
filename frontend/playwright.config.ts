@@ -15,6 +15,8 @@ export default defineConfig({
     baseURL: `http://localhost:${FRONTEND_PORT}`,
     trace: "retain-on-failure",
     screenshot: "only-on-failure",
+    // SLOW_MO bremst jede Aktion, damit man dem sichtbaren Lauf folgen kann.
+    launchOptions: { slowMo: Number(process.env.SLOW_MO ?? 0) },
   },
   projects: [{ name: "chromium", use: { ...devices["Desktop Chrome"] } }],
   webServer: [

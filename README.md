@@ -62,11 +62,17 @@ Vokabel vor ihrer Einführung benutzt, Ablenker gleich der Lösung und weitere R
 ## Tests
 
 ```bash
-make test        # Unit-Tests: pytest und Vitest
-make test-e2e    # Playwright klickt sich durch die echte Anwendung
-make smoke       # Rauchtest gegen den laufenden Stack
-make validate    # Kursinhalte prüfen
+make test           # Unit-Tests: pytest und Vitest
+make test-e2e       # Playwright headless — der schnelle Standardlauf
+make test-e2e-show  # dasselbe im sichtbaren Browserfenster, zum Zuschauen
+make test-e2e-ui    # Playwright-Oberfläche zum Zurückspulen einzelner Schritte
+make smoke          # Rauchtest gegen den laufenden Stack
+make validate       # Kursinhalte prüfen
 ```
+
+`test-e2e-show` öffnet ein echtes Chromium-Fenster und bremst jede Aktion auf 400 ms, damit man dem
+Testlauf folgen kann. Das Tempo lässt sich anpassen: `make test-e2e-show SLOW_MO=1000`. Unter WSL
+braucht es dafür WSLg, also ein gesetztes `DISPLAY`.
 
 Die Playwright-Tests unter `frontend/e2e/` starten Backend und Frontend selbst, auf eigenen Ports
 (8001 und 5174) und mit einer frischen Datenbank je Lauf — ein laufender Stack wird also weder

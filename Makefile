@@ -2,11 +2,12 @@
 # `make help` listet alle Ziele.
 
 COMPOSE ?= docker compose
+SLOW_MO ?= 400
 BACKEND_URL ?= http://localhost:8000
 FRONTEND_URL ?= http://localhost:3000
 
 .DEFAULT_GOAL := help
-.PHONY: help deploy remove restart purge logs ps smoke validate test test-e2e dev
+.PHONY: help deploy remove restart purge logs ps smoke validate test test-e2e test-e2e-show test-e2e-ui dev
 
 help: ## Diese Übersicht anzeigen
 	@grep -hE '^[a-z0-9-]+:.*?## ' $(MAKEFILE_LIST) \
@@ -51,8 +52,15 @@ test: ## Unit-Tests von Backend und Frontend
 	cd backend && .venv/bin/pytest -q
 	cd frontend && npm test
 
-test-e2e: ## Playwright-Tests: klickt sich durch die echte Anwendung
+test-e2e: ## Playwright-Tests headless — der schnelle Standardlauf
 	cd frontend && npx playwright test
+
+test-e2e-show: ## Playwright-Tests im sichtbaren Browserfenster, verlangsamt zum Zuschauen
+	@echo "Ein Chromium-Fenster geht auf. SLOW_MO=$(SLOW_MO)ms pro Aktion."
+	cd frontend && SLOW_MO=$(SLOW_MO) npx playwright test --headed
+
+test-e2e-ui: ## Playwright-Oberfläche: Tests einzeln starten, Schritte zurückspulen
+	cd frontend && npx playwright test --ui
 
 dev: ## Backend und Frontend lokal ohne Docker starten (zwei Terminals nötig)
 	@echo "Terminal 1:  cd backend  && .venv/bin/uvicorn app.main:app --reload --port 8000"
