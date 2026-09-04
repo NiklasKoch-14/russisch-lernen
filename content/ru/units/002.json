@@ -1,0 +1,137 @@
+{
+  "id": 2,
+  "stage": 0,
+  "title_de": "Neue Zeichen",
+  "scenario_de": "Laute, für die das Deutsche mehrere Buchstaben braucht.",
+  "grammar_focus": {
+    "id": "new-signs",
+    "title_de": "Ein Zeichen, ein ganzer Laut",
+    "explanation_de": "Diese Zeichen gibt es im lateinischen Alphabet nicht als einzelne Buchstaben. Ж, Ч, Ш und Щ decken vier Zischlaute ab, die im Deutschen meist zwei oder drei Buchstaben brauchen. Ю und Я sind sogar ganze Silben: ju und ja. Э ist das offene ä."
+  },
+  "new_lexemes": [
+    "bu_zh",
+    "bu_ts",
+    "bu_ch",
+    "bu_sh",
+    "bu_shch",
+    "bu_e",
+    "bu_yu",
+    "bu_ya"
+  ],
+  "exercises": [
+    {
+      "id": "2-1",
+      "type": "match_pairs",
+      "prompt_de": "Ordne jedem Buchstaben seinen Klang zu.",
+      "pairs": [
+        [
+          "bu_zh",
+          "base"
+        ],
+        [
+          "bu_ts",
+          "base"
+        ],
+        [
+          "bu_ch",
+          "base"
+        ]
+      ]
+    },
+    {
+      "id": "2-2",
+      "type": "match_pairs",
+      "prompt_de": "Welcher Laut gehört wozu?",
+      "pairs": [
+        [
+          "bu_sh",
+          "base"
+        ],
+        [
+          "bu_shch",
+          "base"
+        ],
+        [
+          "bu_e",
+          "base"
+        ]
+      ]
+    },
+    {
+      "id": "2-3",
+      "type": "match_pairs",
+      "prompt_de": "Nochmal gemischt — ordne zu.",
+      "pairs": [
+        [
+          "bu_yu",
+          "base"
+        ],
+        [
+          "bu_ya",
+          "base"
+        ],
+        [
+          "bu_zh",
+          "base"
+        ]
+      ]
+    },
+    {
+      "id": "2-4",
+      "type": "match_pairs",
+      "prompt_de": "Ordne zu.",
+      "pairs": [
+        [
+          "bu_ts",
+          "base"
+        ],
+        [
+          "bu_sh",
+          "base"
+        ],
+        [
+          "bu_yu",
+          "base"
+        ]
+      ]
+    },
+    {
+      "id": "2-5",
+      "type": "match_pairs",
+      "prompt_de": "Und jetzt diese hier.",
+      "pairs": [
+        [
+          "bu_ch",
+          "base"
+        ],
+        [
+          "bu_shch",
+          "base"
+        ],
+        [
+          "bu_ya",
+          "base"
+        ]
+      ]
+    },
+    {
+      "id": "2-6",
+      "type": "match_pairs",
+      "prompt_de": "Letzte Runde für diese Einheit.",
+      "pairs": [
+        [
+          "bu_e",
+          "base"
+        ],
+        [
+          "bu_zh",
+          "base"
+        ],
+        [
+          "bu_sh",
+          "base"
+        ]
+      ]
+    }
+  ]
+}

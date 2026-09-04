@@ -1,0 +1,141 @@
+{
+  "id": 4,
+  "stage": 0,
+  "title_de": "Weich, hart und betont",
+  "scenario_de": "Die letzten Zeichen — und warum Betonung alles ändert.",
+  "grammar_focus": {
+    "id": "signs-and-stress",
+    "title_de": "Zeichen ohne eigenen Laut",
+    "explanation_de": "Zum Schluss die Sonderfälle. Ё trägt im Russischen immer die Betonung — wo ein ё steht, ist die Sache entschieden. Ь und Ъ haben gar keinen eigenen Laut: das weiche Zeichen macht den Buchstaben davor weich, das harte trennt nur. Und О klingt nur betont wie o; unbetont wird daraus fast ein a. Deshalb steht in diesem Kurs über jedem längeren Wort ein Betonungsstrich."
+  },
+  "new_lexemes": [
+    "bu_a",
+    "bu_o",
+    "bu_k",
+    "bu_m",
+    "bu_t",
+    "bu_yo",
+    "bu_soft",
+    "bu_hard"
+  ],
+  "exercises": [
+    {
+      "id": "4-1",
+      "type": "match_pairs",
+      "prompt_de": "Ordne jedem Buchstaben seinen Klang zu.",
+      "pairs": [
+        [
+          "bu_a",
+          "base"
+        ],
+        [
+          "bu_o",
+          "base"
+        ],
+        [
+          "bu_k",
+          "base"
+        ]
+      ]
+    },
+    {
+      "id": "4-2",
+      "type": "match_pairs",
+      "prompt_de": "Welcher Laut gehört wozu?",
+      "pairs": [
+        [
+          "bu_m",
+          "base"
+        ],
+        [
+          "bu_t",
+          "base"
+        ],
+        [
+          "bu_yo",
+          "base"
+        ]
+      ]
+    },
+    {
+      "id": "4-3",
+      "type": "match_pairs",
+      "prompt_de": "Nochmal gemischt — ordne zu.",
+      "pairs": [
+        [
+          "bu_soft",
+          "base"
+        ],
+        [
+          "bu_hard",
+          "base"
+        ],
+        [
+          "bu_a",
+          "base"
+        ]
+      ]
+    },
+    {
+      "id": "4-4",
+      "type": "match_pairs",
+      "prompt_de": "Ordne zu.",
+      "pairs": [
+        [
+          "bu_o",
+          "base"
+        ],
+        [
+          "bu_m",
+          "base"
+        ],
+        [
+          "bu_yo",
+          "base"
+        ]
+      ]
+    },
+    {
+      "id": "4-5",
+      "type": "match_pairs",
+      "prompt_de": "Und jetzt diese hier.",
+      "pairs": [
+        [
+          "bu_k",
+          "base"
+        ],
+        [
+          "bu_t",
+          "base"
+        ],
+        [
+          "bu_soft",
+          "base"
+        ]
+      ]
+    },
+    {
+      "id": "4-6",
+      "type": "match_pairs",
+      "prompt_de": "Letzte Runde für diese Einheit.",
+      "pairs": [
+        [
+          "bu_hard",
+          "base"
+        ],
+        [
+          "bu_a",
+          "base"
+        ],
+        [
+          "bu_o",
+          "base"
+        ],
+        [
+          "bu_m",
+          "base"
+        ]
+      ]
+    }
+  ]
+}

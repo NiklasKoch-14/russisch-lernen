@@ -1,0 +1,199 @@
+{
+  "id": 5,
+  "stage": 1,
+  "title_de": "Hallo und tschüss",
+  "scenario_de": "Du triffst jemanden auf der Straße und verabschiedest dich wieder.",
+  "grammar_focus": {
+    "id": "formal-informal",
+    "title_de": "Locker oder förmlich?",
+    "explanation_de": "Russisch unterscheidet klarer als Deutsch zwischen locker und förmlich. Zu Freunden sagst du приве́т und пока́. Zu Fremden, im Laden oder im Amt sagst du здра́вствуйте und до свида́ния. Wer im Zweifel die förmliche Form nimmt, macht nie etwas falsch."
+  },
+  "new_lexemes": [
+    "privet",
+    "zdravstvujte",
+    "poka",
+    "do",
+    "svidanie",
+    "spasibo",
+    "bolshoe",
+    "pozhalujsta"
+  ],
+  "exercises": [
+    {
+      "id": "5-1",
+      "type": "match_pairs",
+      "prompt_de": "Ordne die Begrüßungen zu.",
+      "pairs": [
+        [
+          "privet",
+          "base"
+        ],
+        [
+          "zdravstvujte",
+          "base"
+        ],
+        [
+          "poka",
+          "base"
+        ]
+      ]
+    },
+    {
+      "id": "5-2",
+      "type": "match_pairs",
+      "prompt_de": "Ordne zu.",
+      "pairs": [
+        [
+          "spasibo",
+          "base"
+        ],
+        [
+          "pozhalujsta",
+          "base"
+        ],
+        [
+          "svidanie",
+          "nom.sg"
+        ]
+      ]
+    },
+    {
+      "id": "5-3",
+      "type": "build_sentence",
+      "prompt_de": "Auf Wiedersehen!",
+      "solution": [
+        [
+          "do",
+          "base"
+        ],
+        [
+          "svidanie",
+          "gen.sg"
+        ]
+      ],
+      "distractors": [
+        [
+          "svidanie",
+          "nom.sg"
+        ],
+        [
+          "poka",
+          "base"
+        ]
+      ]
+    },
+    {
+      "id": "5-4",
+      "type": "build_sentence",
+      "prompt_de": "Vielen Dank!",
+      "solution": [
+        [
+          "spasibo",
+          "base"
+        ],
+        [
+          "bolshoe",
+          "nom.n"
+        ]
+      ],
+      "distractors": [
+        [
+          "pozhalujsta",
+          "base"
+        ]
+      ]
+    },
+    {
+      "id": "5-5",
+      "type": "choose_form",
+      "prompt_de": "Auf Wiedersehen! — Welche Form steht nach до?",
+      "sentence": [
+        [
+          "do",
+          "base"
+        ],
+        "___"
+      ],
+      "answer": [
+        "svidanie",
+        "gen.sg"
+      ],
+      "distractor_forms": [
+        "nom.sg"
+      ]
+    },
+    {
+      "id": "5-6",
+      "type": "dialog_reply",
+      "prompt_de": "Eine ältere Nachbarin grüßt dich. Was antwortest du?",
+      "tutor_line": [
+        [
+          "zdravstvujte",
+          "base"
+        ]
+      ],
+      "correct_index": 0,
+      "options": [
+        {
+          "tokens": [
+            [
+              "zdravstvujte",
+              "base"
+            ]
+          ],
+          "why_de": ""
+        },
+        {
+          "tokens": [
+            [
+              "poka",
+              "base"
+            ]
+          ],
+          "why_de": "пока́ heißt tschüss — das passt nicht als Begrüßung."
+        },
+        {
+          "tokens": [
+            [
+              "spasibo",
+              "base"
+            ]
+          ],
+          "why_de": "спаси́бо heißt danke, hier wird aber gegrüßt."
+        }
+      ]
+    },
+    {
+      "id": "5-7",
+      "type": "dialog_reply",
+      "prompt_de": "Ein Freund sagt beim Gehen пока́. Was sagst du?",
+      "tutor_line": [
+        [
+          "poka",
+          "base"
+        ]
+      ],
+      "correct_index": 0,
+      "options": [
+        {
+          "tokens": [
+            [
+              "poka",
+              "base"
+            ]
+          ],
+          "why_de": ""
+        },
+        {
+          "tokens": [
+            [
+              "privet",
+              "base"
+            ]
+          ],
+          "why_de": "приве́т ist die Begrüßung, nicht der Abschied."
+        }
+      ]
+    }
+  ]
+}
