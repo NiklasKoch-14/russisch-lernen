@@ -1,0 +1,214 @@
+{
+  "id": 10,
+  "stage": 1,
+  "title_de": "Wer ist das?",
+  "scenario_de": "Du zeigst auf jemanden und fragst, wer das ist.",
+  "grammar_focus": {
+    "id": "no-copula",
+    "title_de": "Das Wort für „ist“ fehlt einfach",
+    "explanation_de": "Im Präsens gibt es im Russischen kein Wort für „ist“. Кто э́то? heißt wörtlich „wer das?“ und Э́то друг schlicht „das Freund“. Was im Deutschen selbstverständlich dazugehört, lässt Russisch weg — im Schriftbild steht dafür oft ein Gedankenstrich."
+  },
+  "new_lexemes": [
+    "eto",
+    "kto",
+    "drug",
+    "podruga"
+  ],
+  "exercises": [
+    {
+      "id": "10-1",
+      "type": "match_pairs",
+      "prompt_de": "Ordne zu.",
+      "pairs": [
+        [
+          "eto",
+          "base"
+        ],
+        [
+          "kto",
+          "nom"
+        ],
+        [
+          "drug",
+          "nom.sg"
+        ]
+      ]
+    },
+    {
+      "id": "10-2",
+      "type": "match_pairs",
+      "prompt_de": "Und diese drei.",
+      "pairs": [
+        [
+          "podruga",
+          "nom.sg"
+        ],
+        [
+          "konechno",
+          "base"
+        ],
+        [
+          "tozhe",
+          "base"
+        ]
+      ]
+    },
+    {
+      "id": "10-3",
+      "type": "build_sentence",
+      "prompt_de": "Wer ist das?",
+      "solution": [
+        [
+          "kto",
+          "nom"
+        ],
+        [
+          "eto",
+          "base"
+        ]
+      ],
+      "distractors": [
+        [
+          "drug",
+          "nom.sg"
+        ],
+        [
+          "otkuda",
+          "base"
+        ]
+      ]
+    },
+    {
+      "id": "10-4",
+      "type": "build_sentence",
+      "prompt_de": "Das ist ein Freund.",
+      "solution": [
+        [
+          "eto",
+          "base"
+        ],
+        [
+          "drug",
+          "nom.sg"
+        ]
+      ],
+      "distractors": [
+        [
+          "podruga",
+          "nom.sg"
+        ],
+        [
+          "kto",
+          "nom"
+        ]
+      ]
+    },
+    {
+      "id": "10-5",
+      "type": "build_sentence",
+      "prompt_de": "Das ist eine Freundin.",
+      "solution": [
+        [
+          "eto",
+          "base"
+        ],
+        [
+          "podruga",
+          "nom.sg"
+        ]
+      ],
+      "distractors": [
+        [
+          "drug",
+          "nom.sg"
+        ]
+      ]
+    },
+    {
+      "id": "10-6",
+      "type": "build_sentence",
+      "prompt_de": "Das ist keine Freundin.",
+      "solution": [
+        [
+          "eto",
+          "base"
+        ],
+        [
+          "ne",
+          "base"
+        ],
+        [
+          "podruga",
+          "nom.sg"
+        ]
+      ],
+      "distractors": [
+        [
+          "net",
+          "base"
+        ],
+        [
+          "drug",
+          "nom.sg"
+        ]
+      ]
+    },
+    {
+      "id": "10-7",
+      "type": "dialog_reply",
+      "prompt_de": "Jemand zeigt auf eine Person neben dir. Was antwortest du?",
+      "tutor_line": [
+        [
+          "kto",
+          "nom"
+        ],
+        [
+          "eto",
+          "base"
+        ]
+      ],
+      "correct_index": 0,
+      "options": [
+        {
+          "tokens": [
+            [
+              "eto",
+              "base"
+            ],
+            [
+              "drug",
+              "nom.sg"
+            ]
+          ],
+          "why_de": ""
+        },
+        {
+          "tokens": [
+            [
+              "otkuda",
+              "base"
+            ],
+            [
+              "ty",
+              "nom"
+            ]
+          ],
+          "why_de": "Das fragt nach der Herkunft — gefragt war nach der Person."
+        },
+        {
+          "tokens": [
+            [
+              "eto",
+              "base"
+            ],
+            [
+              "kto",
+              "nom"
+            ]
+          ],
+          "why_de": "кто ist das Fragewort. In der Antwort steht, wer es ist."
+        }
+      ]
+    }
+  ]
+}

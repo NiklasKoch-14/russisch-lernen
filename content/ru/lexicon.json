@@ -802,6 +802,246 @@
           "translit": "tóže"
         }
       }
+    },
+    {
+      "id": "eto",
+      "lemma": "э́то",
+      "pos": "part",
+      "gloss_de": "das (ist)",
+      "forms": {
+        "base": {
+          "text": "э́то",
+          "translit": "éto"
+        }
+      }
+    },
+    {
+      "id": "kto",
+      "lemma": "кто",
+      "pos": "pron",
+      "gloss_de": "wer",
+      "forms": {
+        "nom": {
+          "text": "кто",
+          "translit": "kto"
+        }
+      }
+    },
+    {
+      "id": "drug",
+      "lemma": "друг",
+      "pos": "noun",
+      "gloss_de": "der Freund",
+      "forms": {
+        "nom.sg": {
+          "text": "друг",
+          "translit": "drug"
+        },
+        "gen.sg": {
+          "text": "дру́га",
+          "translit": "drúga"
+        }
+      }
+    },
+    {
+      "id": "podruga",
+      "lemma": "подру́га",
+      "pos": "noun",
+      "gloss_de": "die Freundin",
+      "forms": {
+        "nom.sg": {
+          "text": "подру́га",
+          "translit": "podrúga"
+        },
+        "gen.sg": {
+          "text": "подру́ги",
+          "translit": "podrúgi"
+        }
+      }
+    },
+    {
+      "id": "moj",
+      "lemma": "мой",
+      "pos": "adj",
+      "gloss_de": "mein",
+      "forms": {
+        "nom.m": {
+          "text": "мой",
+          "translit": "moj"
+        },
+        "nom.f": {
+          "text": "моя́",
+          "translit": "mojá"
+        },
+        "nom.n": {
+          "text": "моё",
+          "translit": "mojó"
+        }
+      }
+    },
+    {
+      "id": "tvoj",
+      "lemma": "твой",
+      "pos": "adj",
+      "gloss_de": "dein",
+      "forms": {
+        "nom.m": {
+          "text": "твой",
+          "translit": "tvoj"
+        },
+        "nom.f": {
+          "text": "твоя́",
+          "translit": "tvojá"
+        },
+        "nom.n": {
+          "text": "твоё",
+          "translit": "tvojó"
+        }
+      }
+    },
+    {
+      "id": "imja",
+      "lemma": "и́мя",
+      "pos": "noun",
+      "gloss_de": "der Name",
+      "forms": {
+        "nom.sg": {
+          "text": "и́мя",
+          "translit": "ímja"
+        }
+      }
+    },
+    {
+      "id": "odin",
+      "lemma": "оди́н",
+      "pos": "num",
+      "gloss_de": "eins",
+      "forms": {
+        "nom.m": {
+          "text": "оди́н",
+          "translit": "odín"
+        },
+        "nom.f": {
+          "text": "одна́",
+          "translit": "odná"
+        },
+        "nom.n": {
+          "text": "одно́",
+          "translit": "odnó"
+        }
+      }
+    },
+    {
+      "id": "dva",
+      "lemma": "два",
+      "pos": "num",
+      "gloss_de": "zwei",
+      "forms": {
+        "nom.m": {
+          "text": "два",
+          "translit": "dva"
+        },
+        "nom.f": {
+          "text": "две",
+          "translit": "dve"
+        }
+      }
+    },
+    {
+      "id": "tri",
+      "lemma": "три",
+      "pos": "num",
+      "gloss_de": "drei",
+      "forms": {
+        "nom": {
+          "text": "три",
+          "translit": "tri"
+        }
+      }
+    },
+    {
+      "id": "chetyre",
+      "lemma": "четы́ре",
+      "pos": "num",
+      "gloss_de": "vier",
+      "forms": {
+        "nom": {
+          "text": "четы́ре",
+          "translit": "četýre"
+        }
+      }
+    },
+    {
+      "id": "pjat",
+      "lemma": "пять",
+      "pos": "num",
+      "gloss_de": "fünf",
+      "forms": {
+        "nom": {
+          "text": "пять",
+          "translit": "pjat'"
+        }
+      }
+    },
+    {
+      "id": "shest",
+      "lemma": "шесть",
+      "pos": "num",
+      "gloss_de": "sechs",
+      "forms": {
+        "nom": {
+          "text": "шесть",
+          "translit": "šest'"
+        }
+      }
+    },
+    {
+      "id": "sem",
+      "lemma": "семь",
+      "pos": "num",
+      "gloss_de": "sieben",
+      "forms": {
+        "nom": {
+          "text": "семь",
+          "translit": "sem'"
+        }
+      }
+    },
+    {
+      "id": "vosem",
+      "lemma": "во́семь",
+      "pos": "num",
+      "gloss_de": "acht",
+      "forms": {
+        "nom": {
+          "text": "во́семь",
+          "translit": "vósem'"
+        }
+      }
+    },
+    {
+      "id": "devjat",
+      "lemma": "де́вять",
+      "pos": "num",
+      "gloss_de": "neun",
+      "forms": {
+        "nom": {
+          "text": "де́вять",
+          "translit": "dévjat'"
+        }
+      }
+    },
+    {
+      "id": "desjat",
+      "lemma": "де́сять",
+      "pos": "num",
+      "gloss_de": "zehn",
+      "forms": {
+        "nom": {
+          "text": "де́сять",
+          "translit": "désjat'"
+        }
+      }
     }
   ]
 }

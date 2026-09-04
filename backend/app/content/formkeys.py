@@ -20,7 +20,9 @@ FORM_KEYS: dict[str, frozenset[str]] = {
     "noun": _NOUN,
     "adj": _ADJ,
     "pron": _CASE_ONLY,
-    "num": _CASE_ONLY,
+    # Zahlwoerter: die niedrigen richten sich nach dem Geschlecht (оди́н/одна́, два/две),
+    # die hoeheren nicht — deshalb sind beide Schluesselformen erlaubt.
+    "num": _CASE_ONLY | _ADJ,
     "adv": _BASE,
     "prep": _BASE,
     "part": _BASE,

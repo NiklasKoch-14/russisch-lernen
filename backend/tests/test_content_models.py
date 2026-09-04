@@ -46,3 +46,10 @@ def test_course_form_raises_for_missing_lexeme():
     course = Course(language="russian", lexemes={}, units={}, screening=[])
     with pytest.raises(KeyError):
         course.form(("nope", "base"))
+
+
+def test_numerals_may_carry_gender_forms():
+    """оди́н/одна́/одно́ und два/две richten sich nach dem Geschlecht."""
+    keys = allowed_form_keys("num")
+    assert {"nom.m", "nom.f", "nom.n"} <= keys
+    assert "nom" in keys

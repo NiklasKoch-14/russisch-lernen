@@ -1,0 +1,263 @@
+{
+  "id": 12,
+  "stage": 1,
+  "title_de": "Zahlen von eins bis zehn",
+  "scenario_de": "Du zählst und nennst Mengen.",
+  "grammar_focus": {
+    "id": "numbers-one-to-ten",
+    "title_de": "Nur die Eins richtet sich nach dem Geschlecht",
+    "explanation_de": "Zählen ist unkompliziert: оди́н, два, три, четы́ре, пять und so weiter. Zwei Dinge musst du dir merken. Erstens passt sich die Eins dem Geschlecht an wie мой: оди́н друг, одна́ подру́га, одно́ и́мя — und die Zwei kennt два für männliche und sächliche, две für weibliche Wörter. Zweitens verändert sich nach два, две, три und четы́ре das gezählte Wort selbst: aus друг wird два дру́га, aus подру́га wird две подру́ги. Ab пять ändert es sich wieder anders — das kommt später."
+  },
+  "new_lexemes": [
+    "odin",
+    "dva",
+    "tri",
+    "chetyre",
+    "pjat",
+    "shest",
+    "sem",
+    "vosem",
+    "devjat",
+    "desjat"
+  ],
+  "exercises": [
+    {
+      "id": "12-1",
+      "type": "match_pairs",
+      "prompt_de": "Ordne die Zahlen zu.",
+      "pairs": [
+        [
+          "odin",
+          "nom.m"
+        ],
+        [
+          "dva",
+          "nom.m"
+        ],
+        [
+          "tri",
+          "nom"
+        ]
+      ]
+    },
+    {
+      "id": "12-2",
+      "type": "match_pairs",
+      "prompt_de": "Weiter geht's.",
+      "pairs": [
+        [
+          "chetyre",
+          "nom"
+        ],
+        [
+          "pjat",
+          "nom"
+        ],
+        [
+          "shest",
+          "nom"
+        ]
+      ]
+    },
+    {
+      "id": "12-3",
+      "type": "match_pairs",
+      "prompt_de": "Und bis zehn.",
+      "pairs": [
+        [
+          "sem",
+          "nom"
+        ],
+        [
+          "vosem",
+          "nom"
+        ],
+        [
+          "devjat",
+          "nom"
+        ],
+        [
+          "desjat",
+          "nom"
+        ]
+      ]
+    },
+    {
+      "id": "12-4",
+      "type": "build_sentence",
+      "prompt_de": "eins, zwei, drei",
+      "solution": [
+        [
+          "odin",
+          "nom.m"
+        ],
+        [
+          "dva",
+          "nom.m"
+        ],
+        [
+          "tri",
+          "nom"
+        ]
+      ],
+      "distractors": [
+        [
+          "chetyre",
+          "nom"
+        ]
+      ]
+    },
+    {
+      "id": "12-5",
+      "type": "build_sentence",
+      "prompt_de": "acht, neun, zehn",
+      "solution": [
+        [
+          "vosem",
+          "nom"
+        ],
+        [
+          "devjat",
+          "nom"
+        ],
+        [
+          "desjat",
+          "nom"
+        ]
+      ],
+      "distractors": [
+        [
+          "sem",
+          "nom"
+        ]
+      ]
+    },
+    {
+      "id": "12-6",
+      "type": "choose_form",
+      "prompt_de": "ein Freund — welche Form der Eins passt zu друг?",
+      "sentence": [
+        "___",
+        [
+          "drug",
+          "nom.sg"
+        ]
+      ],
+      "answer": [
+        "odin",
+        "nom.m"
+      ],
+      "distractor_forms": [
+        "nom.f",
+        "nom.n"
+      ]
+    },
+    {
+      "id": "12-7",
+      "type": "choose_form",
+      "prompt_de": "eine Freundin — welche Form passt zu подру́га?",
+      "sentence": [
+        "___",
+        [
+          "podruga",
+          "nom.sg"
+        ]
+      ],
+      "answer": [
+        "odin",
+        "nom.f"
+      ],
+      "distractor_forms": [
+        "nom.m",
+        "nom.n"
+      ]
+    },
+    {
+      "id": "12-8",
+      "type": "choose_form",
+      "prompt_de": "ein Name — и́мя ist sächlich. Welche Form passt?",
+      "sentence": [
+        "___",
+        [
+          "imja",
+          "nom.sg"
+        ]
+      ],
+      "answer": [
+        "odin",
+        "nom.n"
+      ],
+      "distractor_forms": [
+        "nom.m",
+        "nom.f"
+      ]
+    },
+    {
+      "id": "12-9",
+      "type": "choose_form",
+      "prompt_de": "zwei Freundinnen — два oder две?",
+      "sentence": [
+        "___",
+        [
+          "podruga",
+          "gen.sg"
+        ]
+      ],
+      "answer": [
+        "dva",
+        "nom.f"
+      ],
+      "distractor_forms": [
+        "nom.m"
+      ]
+    },
+    {
+      "id": "12-10",
+      "type": "choose_form",
+      "prompt_de": "zwei Freunde — welche Form der Zwei passt zu друг?",
+      "sentence": [
+        "___",
+        [
+          "drug",
+          "gen.sg"
+        ]
+      ],
+      "answer": [
+        "dva",
+        "nom.m"
+      ],
+      "distractor_forms": [
+        "nom.f"
+      ]
+    },
+    {
+      "id": "12-11",
+      "type": "build_sentence",
+      "prompt_de": "Das sind zwei Freunde.",
+      "solution": [
+        [
+          "eto",
+          "base"
+        ],
+        [
+          "dva",
+          "nom.m"
+        ],
+        [
+          "drug",
+          "gen.sg"
+        ]
+      ],
+      "distractors": [
+        [
+          "dva",
+          "nom.f"
+        ],
+        [
+          "drug",
+          "nom.sg"
+        ]
+      ]
+    }
+  ]
+}

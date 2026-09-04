@@ -1,0 +1,236 @@
+{
+  "id": 11,
+  "stage": 1,
+  "title_de": "Mein und dein",
+  "scenario_de": "Du stellst jemanden vor: meine Freundin, mein Freund.",
+  "grammar_focus": {
+    "id": "possessive-gender",
+    "title_de": "мой, моя́ oder моё?",
+    "explanation_de": "„Mein“ richtet sich im Russischen nach dem Geschlecht des Wortes danach: мой друг (männlich), моя́ подру́га (weiblich), моё и́мя (sächlich). Genauso твой, твоя́, твоё für „dein“. Das Geschlecht erkennst du meist an der Endung: Konsonant meist männlich, -а/-я meist weiblich, -о/-е sächlich."
+  },
+  "new_lexemes": [
+    "moj",
+    "tvoj",
+    "imja"
+  ],
+  "exercises": [
+    {
+      "id": "11-1",
+      "type": "match_pairs",
+      "prompt_de": "Ordne zu.",
+      "pairs": [
+        [
+          "moj",
+          "nom.m"
+        ],
+        [
+          "tvoj",
+          "nom.m"
+        ],
+        [
+          "imja",
+          "nom.sg"
+        ]
+      ]
+    },
+    {
+      "id": "11-2",
+      "type": "build_sentence",
+      "prompt_de": "Das ist mein Freund.",
+      "solution": [
+        [
+          "eto",
+          "base"
+        ],
+        [
+          "moj",
+          "nom.m"
+        ],
+        [
+          "drug",
+          "nom.sg"
+        ]
+      ],
+      "distractors": [
+        [
+          "moj",
+          "nom.f"
+        ],
+        [
+          "tvoj",
+          "nom.m"
+        ]
+      ]
+    },
+    {
+      "id": "11-3",
+      "type": "build_sentence",
+      "prompt_de": "Das ist meine Freundin.",
+      "solution": [
+        [
+          "eto",
+          "base"
+        ],
+        [
+          "moj",
+          "nom.f"
+        ],
+        [
+          "podruga",
+          "nom.sg"
+        ]
+      ],
+      "distractors": [
+        [
+          "moj",
+          "nom.m"
+        ],
+        [
+          "moj",
+          "nom.n"
+        ]
+      ]
+    },
+    {
+      "id": "11-4",
+      "type": "choose_form",
+      "prompt_de": "Das ist mein Name. — и́мя ist sächlich. Welche Form passt?",
+      "sentence": [
+        [
+          "eto",
+          "base"
+        ],
+        "___",
+        [
+          "imja",
+          "nom.sg"
+        ]
+      ],
+      "answer": [
+        "moj",
+        "nom.n"
+      ],
+      "distractor_forms": [
+        "nom.m",
+        "nom.f"
+      ]
+    },
+    {
+      "id": "11-5",
+      "type": "choose_form",
+      "prompt_de": "Das ist deine Freundin. — Welche Form passt zu подру́га?",
+      "sentence": [
+        [
+          "eto",
+          "base"
+        ],
+        "___",
+        [
+          "podruga",
+          "nom.sg"
+        ]
+      ],
+      "answer": [
+        "tvoj",
+        "nom.f"
+      ],
+      "distractor_forms": [
+        "nom.m",
+        "nom.n"
+      ]
+    },
+    {
+      "id": "11-6",
+      "type": "choose_form",
+      "prompt_de": "Das ist dein Freund. — Welche Form passt zu друг?",
+      "sentence": [
+        [
+          "eto",
+          "base"
+        ],
+        "___",
+        [
+          "drug",
+          "nom.sg"
+        ]
+      ],
+      "answer": [
+        "tvoj",
+        "nom.m"
+      ],
+      "distractor_forms": [
+        "nom.f",
+        "nom.n"
+      ]
+    },
+    {
+      "id": "11-7",
+      "type": "dialog_reply",
+      "prompt_de": "Du stellst deine Freundin vor. Was ist richtig?",
+      "tutor_line": [
+        [
+          "kto",
+          "nom"
+        ],
+        [
+          "eto",
+          "base"
+        ]
+      ],
+      "correct_index": 0,
+      "options": [
+        {
+          "tokens": [
+            [
+              "eto",
+              "base"
+            ],
+            [
+              "moj",
+              "nom.f"
+            ],
+            [
+              "podruga",
+              "nom.sg"
+            ]
+          ],
+          "why_de": ""
+        },
+        {
+          "tokens": [
+            [
+              "eto",
+              "base"
+            ],
+            [
+              "moj",
+              "nom.m"
+            ],
+            [
+              "podruga",
+              "nom.sg"
+            ]
+          ],
+          "why_de": "подру́га endet auf -а und ist weiblich — dazu gehört моя́."
+        },
+        {
+          "tokens": [
+            [
+              "eto",
+              "base"
+            ],
+            [
+              "moj",
+              "nom.n"
+            ],
+            [
+              "drug",
+              "nom.sg"
+            ]
+          ],
+          "why_de": "моё gehört zu sächlichen Wörtern wie и́мя, nicht zu друг."
+        }
+      ]
+    }
+  ]
+}
