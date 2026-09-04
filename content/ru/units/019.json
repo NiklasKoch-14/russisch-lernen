@@ -1,0 +1,306 @@
+{
+  "id": 19,
+  "stage": 1,
+  "title_de": "Neu, alt, groß, klein",
+  "scenario_de": "Du beschreibst deine Stadt, dein Haus und deine Sachen.",
+  "grammar_focus": {
+    "id": "adj-agreement",
+    "title_de": "Das Adjektiv übernimmt das Geschlecht des Substantivs",
+    "explanation_de": "Ein Adjektiv trägt die Endung des Wortes, zu dem es gehört. Männlich endet auf -ый, -ий oder betont -о́й: но́вый дом, большо́й го́род. Weiblich endet auf -ая: но́вая кни́га. Sächlich auf -ое: но́вое окно́. Im Plural steht -ые oder -ие für alle drei Geschlechter: на́ши роди́тели ста́рые."
+  },
+  "new_lexemes": [
+    "khoroshij",
+    "novyj",
+    "staryj",
+    "malenkij",
+    "gorod",
+    "dom"
+  ],
+  "exercises": [
+    {
+      "id": "19-1",
+      "type": "match_pairs",
+      "prompt_de": "Wie ist etwas?",
+      "pairs": [
+        [
+          "novyj",
+          "nom.m"
+        ],
+        [
+          "staryj",
+          "nom.m"
+        ],
+        [
+          "malenkij",
+          "nom.m"
+        ]
+      ]
+    },
+    {
+      "id": "19-2",
+      "type": "match_pairs",
+      "prompt_de": "Zwei Eigenschaften und zwei Dinge.",
+      "pairs": [
+        [
+          "khoroshij",
+          "nom.m"
+        ],
+        [
+          "bolshoj",
+          "nom.m"
+        ],
+        [
+          "dom",
+          "nom.sg"
+        ],
+        [
+          "gorod",
+          "nom.sg"
+        ]
+      ]
+    },
+    {
+      "id": "19-3",
+      "type": "build_sentence",
+      "prompt_de": "Das ist ein neues Haus.",
+      "solution": [
+        [
+          "eto",
+          "base"
+        ],
+        [
+          "novyj",
+          "nom.m"
+        ],
+        [
+          "dom",
+          "nom.sg"
+        ]
+      ],
+      "distractors": [
+        [
+          "novyj",
+          "nom.f"
+        ],
+        [
+          "staryj",
+          "nom.m"
+        ]
+      ]
+    },
+    {
+      "id": "19-4",
+      "type": "choose_form",
+      "prompt_de": "Meine Stadt ist klein. — го́род ist männlich.",
+      "sentence": [
+        [
+          "moj",
+          "nom.m"
+        ],
+        [
+          "gorod",
+          "nom.sg"
+        ],
+        "___"
+      ],
+      "answer": [
+        "malenkij",
+        "nom.m"
+      ],
+      "distractor_forms": [
+        "nom.f",
+        "nom.n",
+        "nom.pl"
+      ]
+    },
+    {
+      "id": "19-5",
+      "type": "choose_form",
+      "prompt_de": "Das ist ein gutes Buch.",
+      "sentence": [
+        [
+          "eto",
+          "base"
+        ],
+        "___",
+        [
+          "kniga",
+          "nom.sg"
+        ]
+      ],
+      "answer": [
+        "khoroshij",
+        "nom.f"
+      ],
+      "distractor_forms": [
+        "nom.m",
+        "nom.n",
+        "nom.pl"
+      ]
+    },
+    {
+      "id": "19-6",
+      "type": "choose_form",
+      "prompt_de": "Das Fenster ist groß.",
+      "sentence": [
+        [
+          "okno",
+          "nom.sg"
+        ],
+        "___"
+      ],
+      "answer": [
+        "bolshoj",
+        "nom.n"
+      ],
+      "distractor_forms": [
+        "nom.m",
+        "nom.f",
+        "nom.pl"
+      ]
+    },
+    {
+      "id": "19-7",
+      "type": "build_sentence",
+      "prompt_de": "Unsere Eltern sind alt.",
+      "solution": [
+        [
+          "nash",
+          "nom.pl"
+        ],
+        [
+          "roditeli",
+          "nom.pl"
+        ],
+        [
+          "staryj",
+          "nom.pl"
+        ]
+      ],
+      "distractors": [
+        [
+          "staryj",
+          "nom.m"
+        ],
+        [
+          "nash",
+          "nom.f"
+        ]
+      ]
+    },
+    {
+      "id": "19-8",
+      "type": "build_sentence",
+      "prompt_de": "Das ist eine große Stadt.",
+      "solution": [
+        [
+          "eto",
+          "base"
+        ],
+        [
+          "bolshoj",
+          "nom.m"
+        ],
+        [
+          "gorod",
+          "nom.sg"
+        ]
+      ],
+      "distractors": [
+        [
+          "bolshoj",
+          "nom.f"
+        ],
+        [
+          "malenkij",
+          "nom.m"
+        ]
+      ]
+    },
+    {
+      "id": "19-9",
+      "type": "dialog_reply",
+      "prompt_de": "Jemand fragt, ob deine Stadt groß ist.",
+      "tutor_line": [
+        [
+          "tvoj",
+          "nom.m"
+        ],
+        [
+          "gorod",
+          "nom.sg"
+        ],
+        [
+          "bolshoj",
+          "nom.m"
+        ]
+      ],
+      "correct_index": 0,
+      "options": [
+        {
+          "tokens": [
+            [
+              "net",
+              "base"
+            ],
+            [
+              "moj",
+              "nom.m"
+            ],
+            [
+              "gorod",
+              "nom.sg"
+            ],
+            [
+              "malenkij",
+              "nom.m"
+            ]
+          ],
+          "why_de": ""
+        },
+        {
+          "tokens": [
+            [
+              "net",
+              "base"
+            ],
+            [
+              "moj",
+              "nom.f"
+            ],
+            [
+              "gorod",
+              "nom.sg"
+            ],
+            [
+              "malenkij",
+              "nom.m"
+            ]
+          ],
+          "why_de": "го́род endet auf einen Konsonanten und ist männlich: мой го́род."
+        },
+        {
+          "tokens": [
+            [
+              "net",
+              "base"
+            ],
+            [
+              "moj",
+              "nom.m"
+            ],
+            [
+              "gorod",
+              "nom.sg"
+            ],
+            [
+              "malenkij",
+              "nom.f"
+            ]
+          ],
+          "why_de": "Das Adjektiv richtet sich nach го́род und muss deshalb ebenfalls männlich sein: ма́ленький."
+        }
+      ]
+    }
+  ]
+}

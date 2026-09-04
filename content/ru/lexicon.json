@@ -462,14 +462,26 @@
       }
     },
     {
-      "id": "bolshoe",
-      "lemma": "большо́е",
+      "id": "bolshoj",
+      "lemma": "большо́й",
       "pos": "adj",
       "gloss_de": "groß",
       "forms": {
         "nom.n": {
           "text": "большо́е",
           "translit": "bol'šóje"
+        },
+        "nom.m": {
+          "text": "большо́й",
+          "translit": "bol'šój"
+        },
+        "nom.f": {
+          "text": "больша́я",
+          "translit": "bol'šája"
+        },
+        "nom.pl": {
+          "text": "больши́е",
+          "translit": "bol'šíje"
         }
       }
     },
@@ -702,6 +714,22 @@
           "translit": "govorít"
         },
         "prs.2pl": {
+          "text": "говори́те",
+          "translit": "govoríte"
+        },
+        "prs.1pl": {
+          "text": "говори́м",
+          "translit": "govorím"
+        },
+        "prs.3pl": {
+          "text": "говоря́т",
+          "translit": "govorját"
+        },
+        "imp.sg": {
+          "text": "говори́",
+          "translit": "govorí"
+        },
+        "imp.pl": {
           "text": "говори́те",
           "translit": "govoríte"
         }
@@ -1136,6 +1164,606 @@
         "nom.sg": {
           "text": "семья́",
           "translit": "sem'já"
+        }
+      }
+    },
+    {
+      "id": "dela",
+      "lemma": "де́ло",
+      "pos": "noun",
+      "gloss_de": "das Befinden (wörtlich: die Sachen)",
+      "forms": {
+        "nom.pl": {
+          "text": "дела́",
+          "translit": "delá"
+        }
+      }
+    },
+    {
+      "id": "khorosho",
+      "lemma": "хорошо́",
+      "pos": "adv",
+      "gloss_de": "gut (wie? — gut)",
+      "forms": {
+        "base": {
+          "text": "хорошо́",
+          "translit": "chorošó"
+        }
+      }
+    },
+    {
+      "id": "plokho",
+      "lemma": "пло́хо",
+      "pos": "adv",
+      "gloss_de": "schlecht",
+      "forms": {
+        "base": {
+          "text": "пло́хо",
+          "translit": "plócho"
+        }
+      }
+    },
+    {
+      "id": "normalno",
+      "lemma": "норма́льно",
+      "pos": "adv",
+      "gloss_de": "geht so, in Ordnung",
+      "forms": {
+        "base": {
+          "text": "норма́льно",
+          "translit": "normál'no"
+        }
+      }
+    },
+    {
+      "id": "a",
+      "lemma": "а",
+      "pos": "conj",
+      "gloss_de": "und, aber (im Gegensatz)",
+      "forms": {
+        "base": {
+          "text": "а",
+          "translit": "a"
+        }
+      }
+    },
+    {
+      "id": "vsjo",
+      "lemma": "всё",
+      "pos": "pron",
+      "gloss_de": "alles",
+      "forms": {
+        "nom": {
+          "text": "всё",
+          "translit": "vsjo"
+        }
+      }
+    },
+    {
+      "id": "my",
+      "lemma": "мы",
+      "pos": "pron",
+      "gloss_de": "wir",
+      "forms": {
+        "nom": {
+          "text": "мы",
+          "translit": "my"
+        }
+      }
+    },
+    {
+      "id": "oni",
+      "lemma": "они́",
+      "pos": "pron",
+      "gloss_de": "sie (mehrere)",
+      "forms": {
+        "nom": {
+          "text": "они́",
+          "translit": "oní"
+        }
+      }
+    },
+    {
+      "id": "nash",
+      "lemma": "наш",
+      "pos": "adj",
+      "gloss_de": "unser",
+      "forms": {
+        "nom.m": {
+          "text": "наш",
+          "translit": "naš"
+        },
+        "nom.f": {
+          "text": "на́ша",
+          "translit": "náša"
+        },
+        "nom.n": {
+          "text": "на́ше",
+          "translit": "náše"
+        },
+        "nom.pl": {
+          "text": "на́ши",
+          "translit": "náši"
+        }
+      }
+    },
+    {
+      "id": "vash",
+      "lemma": "ваш",
+      "pos": "adj",
+      "gloss_de": "euer, Ihr",
+      "forms": {
+        "nom.m": {
+          "text": "ваш",
+          "translit": "vaš"
+        },
+        "nom.f": {
+          "text": "ва́ша",
+          "translit": "váša"
+        },
+        "nom.n": {
+          "text": "ва́ше",
+          "translit": "váše"
+        },
+        "nom.pl": {
+          "text": "ва́ши",
+          "translit": "váši"
+        }
+      }
+    },
+    {
+      "id": "roditeli",
+      "lemma": "роди́тели",
+      "pos": "noun",
+      "gloss_de": "die Eltern",
+      "forms": {
+        "nom.pl": {
+          "text": "роди́тели",
+          "translit": "rodíteli"
+        }
+      }
+    },
+    {
+      "id": "deti",
+      "lemma": "де́ти",
+      "pos": "noun",
+      "gloss_de": "die Kinder",
+      "forms": {
+        "nom.pl": {
+          "text": "де́ти",
+          "translit": "déti"
+        }
+      }
+    },
+    {
+      "id": "izvinit",
+      "lemma": "извини́ть",
+      "pos": "verb",
+      "gloss_de": "entschuldigen",
+      "forms": {
+        "inf": {
+          "text": "извини́ть",
+          "translit": "izvinít'"
+        },
+        "imp.sg": {
+          "text": "извини́",
+          "translit": "izviní"
+        },
+        "imp.pl": {
+          "text": "извини́те",
+          "translit": "izviníte"
+        }
+      }
+    },
+    {
+      "id": "povtorit",
+      "lemma": "повтори́ть",
+      "pos": "verb",
+      "gloss_de": "wiederholen",
+      "forms": {
+        "inf": {
+          "text": "повтори́ть",
+          "translit": "povtorít'"
+        },
+        "imp.sg": {
+          "text": "повтори́",
+          "translit": "povtorí"
+        },
+        "imp.pl": {
+          "text": "повтори́те",
+          "translit": "povtoríte"
+        }
+      }
+    },
+    {
+      "id": "ponimat",
+      "lemma": "понима́ть",
+      "pos": "verb",
+      "gloss_de": "verstehen",
+      "forms": {
+        "inf": {
+          "text": "понима́ть",
+          "translit": "ponimát'"
+        },
+        "prs.1sg": {
+          "text": "понима́ю",
+          "translit": "ponimáju"
+        },
+        "prs.2sg": {
+          "text": "понима́ешь",
+          "translit": "ponimáješ'"
+        },
+        "prs.3sg": {
+          "text": "понима́ет",
+          "translit": "ponimájet"
+        },
+        "prs.1pl": {
+          "text": "понима́ем",
+          "translit": "ponimájem"
+        },
+        "prs.2pl": {
+          "text": "понима́ете",
+          "translit": "ponimájete"
+        }
+      }
+    },
+    {
+      "id": "nichego",
+      "lemma": "ничего́",
+      "pos": "adv",
+      "gloss_de": "macht nichts, schon gut",
+      "forms": {
+        "base": {
+          "text": "ничего́",
+          "translit": "ničevó"
+        }
+      }
+    },
+    {
+      "id": "medlenno",
+      "lemma": "ме́дленно",
+      "pos": "adv",
+      "gloss_de": "langsam",
+      "forms": {
+        "base": {
+          "text": "ме́дленно",
+          "translit": "médlenno"
+        }
+      }
+    },
+    {
+      "id": "ladno",
+      "lemma": "ла́дно",
+      "pos": "part",
+      "gloss_de": "okay, einverstanden",
+      "forms": {
+        "base": {
+          "text": "ла́дно",
+          "translit": "ládno"
+        }
+      }
+    },
+    {
+      "id": "chto",
+      "lemma": "что",
+      "pos": "pron",
+      "gloss_de": "was",
+      "forms": {
+        "nom": {
+          "text": "что",
+          "translit": "što"
+        }
+      }
+    },
+    {
+      "id": "stol",
+      "lemma": "стол",
+      "pos": "noun",
+      "gloss_de": "der Tisch",
+      "forms": {
+        "nom.sg": {
+          "text": "стол",
+          "translit": "stol"
+        }
+      }
+    },
+    {
+      "id": "kniga",
+      "lemma": "кни́га",
+      "pos": "noun",
+      "gloss_de": "das Buch",
+      "forms": {
+        "nom.sg": {
+          "text": "кни́га",
+          "translit": "kníga"
+        }
+      }
+    },
+    {
+      "id": "okno",
+      "lemma": "окно́",
+      "pos": "noun",
+      "gloss_de": "das Fenster",
+      "forms": {
+        "nom.sg": {
+          "text": "окно́",
+          "translit": "oknó"
+        }
+      }
+    },
+    {
+      "id": "dver",
+      "lemma": "дверь",
+      "pos": "noun",
+      "gloss_de": "die Tür",
+      "forms": {
+        "nom.sg": {
+          "text": "дверь",
+          "translit": "dver'"
+        }
+      }
+    },
+    {
+      "id": "sumka",
+      "lemma": "су́мка",
+      "pos": "noun",
+      "gloss_de": "die Tasche",
+      "forms": {
+        "nom.sg": {
+          "text": "су́мка",
+          "translit": "súmka"
+        }
+      }
+    },
+    {
+      "id": "telefon",
+      "lemma": "телефо́н",
+      "pos": "noun",
+      "gloss_de": "das Telefon",
+      "forms": {
+        "nom.sg": {
+          "text": "телефо́н",
+          "translit": "telefón"
+        }
+      }
+    },
+    {
+      "id": "khoroshij",
+      "lemma": "хоро́ший",
+      "pos": "adj",
+      "gloss_de": "gut (was für ein? — ein guter)",
+      "forms": {
+        "nom.m": {
+          "text": "хоро́ший",
+          "translit": "choróšij"
+        },
+        "nom.f": {
+          "text": "хоро́шая",
+          "translit": "choróšaja"
+        },
+        "nom.n": {
+          "text": "хоро́шее",
+          "translit": "choróšeje"
+        },
+        "nom.pl": {
+          "text": "хоро́шие",
+          "translit": "choróšije"
+        }
+      }
+    },
+    {
+      "id": "novyj",
+      "lemma": "но́вый",
+      "pos": "adj",
+      "gloss_de": "neu",
+      "forms": {
+        "nom.m": {
+          "text": "но́вый",
+          "translit": "nóvyj"
+        },
+        "nom.f": {
+          "text": "но́вая",
+          "translit": "nóvaja"
+        },
+        "nom.n": {
+          "text": "но́вое",
+          "translit": "nóvoje"
+        },
+        "nom.pl": {
+          "text": "но́вые",
+          "translit": "nóvyje"
+        }
+      }
+    },
+    {
+      "id": "staryj",
+      "lemma": "ста́рый",
+      "pos": "adj",
+      "gloss_de": "alt",
+      "forms": {
+        "nom.m": {
+          "text": "ста́рый",
+          "translit": "stáryj"
+        },
+        "nom.f": {
+          "text": "ста́рая",
+          "translit": "stáraja"
+        },
+        "nom.n": {
+          "text": "ста́рое",
+          "translit": "stároje"
+        },
+        "nom.pl": {
+          "text": "ста́рые",
+          "translit": "stáryje"
+        }
+      }
+    },
+    {
+      "id": "malenkij",
+      "lemma": "ма́ленький",
+      "pos": "adj",
+      "gloss_de": "klein",
+      "forms": {
+        "nom.m": {
+          "text": "ма́ленький",
+          "translit": "málen'kij"
+        },
+        "nom.f": {
+          "text": "ма́ленькая",
+          "translit": "málen'kaja"
+        },
+        "nom.n": {
+          "text": "ма́ленькое",
+          "translit": "málen'koje"
+        },
+        "nom.pl": {
+          "text": "ма́ленькие",
+          "translit": "málen'kije"
+        }
+      }
+    },
+    {
+      "id": "gorod",
+      "lemma": "го́род",
+      "pos": "noun",
+      "gloss_de": "die Stadt",
+      "forms": {
+        "nom.sg": {
+          "text": "го́род",
+          "translit": "górod"
+        }
+      }
+    },
+    {
+      "id": "dom",
+      "lemma": "дом",
+      "pos": "noun",
+      "gloss_de": "das Haus",
+      "forms": {
+        "nom.sg": {
+          "text": "дом",
+          "translit": "dom"
+        }
+      }
+    },
+    {
+      "id": "odinnadtsat",
+      "lemma": "оди́ннадцать",
+      "pos": "num",
+      "gloss_de": "elf",
+      "forms": {
+        "nom": {
+          "text": "оди́ннадцать",
+          "translit": "odínnadcat'"
+        }
+      }
+    },
+    {
+      "id": "dvenadtsat",
+      "lemma": "двена́дцать",
+      "pos": "num",
+      "gloss_de": "zwölf",
+      "forms": {
+        "nom": {
+          "text": "двена́дцать",
+          "translit": "dvenádcat'"
+        }
+      }
+    },
+    {
+      "id": "trinadtsat",
+      "lemma": "трина́дцать",
+      "pos": "num",
+      "gloss_de": "dreizehn",
+      "forms": {
+        "nom": {
+          "text": "трина́дцать",
+          "translit": "trinádcat'"
+        }
+      }
+    },
+    {
+      "id": "chetyrnadtsat",
+      "lemma": "четы́рнадцать",
+      "pos": "num",
+      "gloss_de": "vierzehn",
+      "forms": {
+        "nom": {
+          "text": "четы́рнадцать",
+          "translit": "četýrnadcat'"
+        }
+      }
+    },
+    {
+      "id": "pjatnadtsat",
+      "lemma": "пятна́дцать",
+      "pos": "num",
+      "gloss_de": "fünfzehn",
+      "forms": {
+        "nom": {
+          "text": "пятна́дцать",
+          "translit": "pjatnádcat'"
+        }
+      }
+    },
+    {
+      "id": "shestnadtsat",
+      "lemma": "шестна́дцать",
+      "pos": "num",
+      "gloss_de": "sechzehn",
+      "forms": {
+        "nom": {
+          "text": "шестна́дцать",
+          "translit": "šestnádcat'"
+        }
+      }
+    },
+    {
+      "id": "semnadtsat",
+      "lemma": "семна́дцать",
+      "pos": "num",
+      "gloss_de": "siebzehn",
+      "forms": {
+        "nom": {
+          "text": "семна́дцать",
+          "translit": "semnádcat'"
+        }
+      }
+    },
+    {
+      "id": "vosemnadtsat",
+      "lemma": "восемна́дцать",
+      "pos": "num",
+      "gloss_de": "achtzehn",
+      "forms": {
+        "nom": {
+          "text": "восемна́дцать",
+          "translit": "vosemnádcat'"
+        }
+      }
+    },
+    {
+      "id": "devjatnadtsat",
+      "lemma": "девятна́дцать",
+      "pos": "num",
+      "gloss_de": "neunzehn",
+      "forms": {
+        "nom": {
+          "text": "девятна́дцать",
+          "translit": "devjatnádcat'"
+        }
+      }
+    },
+    {
+      "id": "dvadtsat",
+      "lemma": "два́дцать",
+      "pos": "num",
+      "gloss_de": "zwanzig",
+      "forms": {
+        "nom": {
+          "text": "два́дцать",
+          "translit": "dvádcat'"
         }
       }
     }

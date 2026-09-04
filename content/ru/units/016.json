@@ -1,0 +1,319 @@
+{
+  "id": 16,
+  "stage": 1,
+  "title_de": "Wir, ihr und sie",
+  "scenario_de": "Du sprichst über deine Familie und dein Umfeld — nicht mehr nur über dich.",
+  "grammar_focus": {
+    "id": "prs-plural-endings",
+    "title_de": "Bei мы endet das Verb auf -м, bei они́ auf -ят",
+    "explanation_de": "Die Verbendung sagt, wer handelt — auch in der Mehrzahl. Zu мы gehört -м: мы говори́м. Zu они́ gehört -ят (oder -ут): они́ говоря́т. Verwechselst du говоря́т und говори́м, sagst du über andere, was du über euch sagen wolltest."
+  },
+  "new_lexemes": [
+    "my",
+    "oni",
+    "nash",
+    "vash",
+    "roditeli",
+    "deti"
+  ],
+  "exercises": [
+    {
+      "id": "16-1",
+      "type": "match_pairs",
+      "prompt_de": "Wer ist gemeint?",
+      "pairs": [
+        [
+          "my",
+          "nom"
+        ],
+        [
+          "oni",
+          "nom"
+        ],
+        [
+          "deti",
+          "nom.pl"
+        ],
+        [
+          "roditeli",
+          "nom.pl"
+        ]
+      ]
+    },
+    {
+      "id": "16-2",
+      "type": "build_sentence",
+      "prompt_de": "Wir sprechen Deutsch.",
+      "solution": [
+        [
+          "my",
+          "nom"
+        ],
+        [
+          "govorit",
+          "prs.1pl"
+        ],
+        [
+          "po_nemetski",
+          "base"
+        ]
+      ],
+      "distractors": [
+        [
+          "govorit",
+          "prs.3pl"
+        ],
+        [
+          "po_russki",
+          "base"
+        ]
+      ]
+    },
+    {
+      "id": "16-3",
+      "type": "choose_form",
+      "prompt_de": "Sie sprechen Russisch. — Welche Endung gehört zu они́?",
+      "sentence": [
+        [
+          "oni",
+          "nom"
+        ],
+        "___",
+        [
+          "po_russki",
+          "base"
+        ]
+      ],
+      "answer": [
+        "govorit",
+        "prs.3pl"
+      ],
+      "distractor_forms": [
+        "prs.1sg",
+        "prs.1pl",
+        "prs.3sg"
+      ]
+    },
+    {
+      "id": "16-4",
+      "type": "choose_form",
+      "prompt_de": "Wir sprechen ein bisschen Russisch.",
+      "sentence": [
+        [
+          "my",
+          "nom"
+        ],
+        [
+          "nemnogo",
+          "base"
+        ],
+        "___",
+        [
+          "po_russki",
+          "base"
+        ]
+      ],
+      "answer": [
+        "govorit",
+        "prs.1pl"
+      ],
+      "distractor_forms": [
+        "prs.2sg",
+        "prs.3pl",
+        "prs.1sg"
+      ]
+    },
+    {
+      "id": "16-5",
+      "type": "build_sentence",
+      "prompt_de": "Das sind unsere Kinder.",
+      "solution": [
+        [
+          "eto",
+          "base"
+        ],
+        [
+          "nash",
+          "nom.pl"
+        ],
+        [
+          "deti",
+          "nom.pl"
+        ]
+      ],
+      "distractors": [
+        [
+          "nash",
+          "nom.f"
+        ],
+        [
+          "roditeli",
+          "nom.pl"
+        ]
+      ]
+    },
+    {
+      "id": "16-6",
+      "type": "choose_form",
+      "prompt_de": "Höflich zu einer fremden Person: Das sind Ihre Eltern.",
+      "sentence": [
+        [
+          "eto",
+          "base"
+        ],
+        "___",
+        [
+          "roditeli",
+          "nom.pl"
+        ]
+      ],
+      "answer": [
+        "vash",
+        "nom.pl"
+      ],
+      "distractor_forms": [
+        "nom.m",
+        "nom.f"
+      ]
+    },
+    {
+      "id": "16-7",
+      "type": "build_sentence",
+      "prompt_de": "Das ist unsere Familie.",
+      "solution": [
+        [
+          "eto",
+          "base"
+        ],
+        [
+          "nash",
+          "nom.f"
+        ],
+        [
+          "semja",
+          "nom.sg"
+        ]
+      ],
+      "distractors": [
+        [
+          "nash",
+          "nom.m"
+        ],
+        [
+          "nash",
+          "nom.pl"
+        ]
+      ]
+    },
+    {
+      "id": "16-8",
+      "type": "choose_form",
+      "prompt_de": "Und höflich: Das ist Ihre Familie. — семья́ ist weiblich.",
+      "sentence": [
+        [
+          "eto",
+          "base"
+        ],
+        "___",
+        [
+          "semja",
+          "nom.sg"
+        ]
+      ],
+      "answer": [
+        "vash",
+        "nom.f"
+      ],
+      "distractor_forms": [
+        "nom.m",
+        "nom.n",
+        "nom.pl"
+      ]
+    },
+    {
+      "id": "16-9",
+      "type": "dialog_reply",
+      "prompt_de": "Man fragt euch beide, ob ihr Russisch sprecht.",
+      "tutor_line": [
+        [
+          "vy",
+          "nom"
+        ],
+        [
+          "govorit",
+          "prs.2pl"
+        ],
+        [
+          "po_russki",
+          "base"
+        ]
+      ],
+      "correct_index": 0,
+      "options": [
+        {
+          "tokens": [
+            [
+              "da",
+              "base"
+            ],
+            [
+              "my",
+              "nom"
+            ],
+            [
+              "nemnogo",
+              "base"
+            ],
+            [
+              "govorit",
+              "prs.1pl"
+            ]
+          ],
+          "why_de": ""
+        },
+        {
+          "tokens": [
+            [
+              "da",
+              "base"
+            ],
+            [
+              "my",
+              "nom"
+            ],
+            [
+              "nemnogo",
+              "base"
+            ],
+            [
+              "govorit",
+              "prs.3pl"
+            ]
+          ],
+          "why_de": "говоря́т gehört zu они́. Zu мы gehört говори́м."
+        },
+        {
+          "tokens": [
+            [
+              "da",
+              "base"
+            ],
+            [
+              "my",
+              "nom"
+            ],
+            [
+              "nemnogo",
+              "base"
+            ],
+            [
+              "govorit",
+              "prs.1sg"
+            ]
+          ],
+          "why_de": "говорю́ ist die Ich-Form. Für мы brauchst du говори́м."
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,284 @@
+{
+  "id": 18,
+  "stage": 1,
+  "title_de": "Was ist das?",
+  "scenario_de": "Du zeigst auf Dinge im Zimmer und benennst sie.",
+  "grammar_focus": {
+    "id": "noun-gender",
+    "title_de": "Die Endung verrät das Geschlecht",
+    "explanation_de": "Endet ein Substantiv auf einen Konsonanten, ist es männlich: стол, телефо́н. Endet es auf -а oder -я, ist es weiblich: кни́га, су́мка. Auf -о oder -е heißt sächlich: окно́. Nur bei -ь hilft die Endung nicht weiter — дверь ist weiblich, und solche Wörter musst du dir einzeln merken."
+  },
+  "new_lexemes": [
+    "chto",
+    "stol",
+    "kniga",
+    "okno",
+    "dver",
+    "sumka",
+    "telefon"
+  ],
+  "exercises": [
+    {
+      "id": "18-1",
+      "type": "match_pairs",
+      "prompt_de": "Vier Dinge im Zimmer.",
+      "pairs": [
+        [
+          "stol",
+          "nom.sg"
+        ],
+        [
+          "kniga",
+          "nom.sg"
+        ],
+        [
+          "okno",
+          "nom.sg"
+        ],
+        [
+          "dver",
+          "nom.sg"
+        ]
+      ]
+    },
+    {
+      "id": "18-2",
+      "type": "match_pairs",
+      "prompt_de": "Und diese drei.",
+      "pairs": [
+        [
+          "sumka",
+          "nom.sg"
+        ],
+        [
+          "telefon",
+          "nom.sg"
+        ],
+        [
+          "chto",
+          "nom"
+        ]
+      ]
+    },
+    {
+      "id": "18-3",
+      "type": "build_sentence",
+      "prompt_de": "Was ist das?",
+      "solution": [
+        [
+          "chto",
+          "nom"
+        ],
+        [
+          "eto",
+          "base"
+        ]
+      ],
+      "distractors": [
+        [
+          "kto",
+          "nom"
+        ],
+        [
+          "stol",
+          "nom.sg"
+        ]
+      ]
+    },
+    {
+      "id": "18-4",
+      "type": "choose_form",
+      "prompt_de": "Das ist mein Telefon. — телефо́н endet auf einen Konsonanten.",
+      "sentence": [
+        [
+          "eto",
+          "base"
+        ],
+        "___",
+        [
+          "telefon",
+          "nom.sg"
+        ]
+      ],
+      "answer": [
+        "moj",
+        "nom.m"
+      ],
+      "distractor_forms": [
+        "nom.f",
+        "nom.n"
+      ]
+    },
+    {
+      "id": "18-5",
+      "type": "choose_form",
+      "prompt_de": "Das ist mein Buch. — кни́га endet auf -а.",
+      "sentence": [
+        [
+          "eto",
+          "base"
+        ],
+        "___",
+        [
+          "kniga",
+          "nom.sg"
+        ]
+      ],
+      "answer": [
+        "moj",
+        "nom.f"
+      ],
+      "distractor_forms": [
+        "nom.m",
+        "nom.n"
+      ]
+    },
+    {
+      "id": "18-6",
+      "type": "choose_form",
+      "prompt_de": "Das ist unser Fenster. — окно́ endet auf -о.",
+      "sentence": [
+        [
+          "eto",
+          "base"
+        ],
+        "___",
+        [
+          "okno",
+          "nom.sg"
+        ]
+      ],
+      "answer": [
+        "nash",
+        "nom.n"
+      ],
+      "distractor_forms": [
+        "nom.m",
+        "nom.f",
+        "nom.pl"
+      ]
+    },
+    {
+      "id": "18-7",
+      "type": "choose_form",
+      "prompt_de": "Das ist unsere Tür. — Achtung: дверь endet auf -ь und ist trotzdem weiblich.",
+      "sentence": [
+        [
+          "eto",
+          "base"
+        ],
+        "___",
+        [
+          "dver",
+          "nom.sg"
+        ]
+      ],
+      "answer": [
+        "nash",
+        "nom.f"
+      ],
+      "distractor_forms": [
+        "nom.m",
+        "nom.n"
+      ]
+    },
+    {
+      "id": "18-8",
+      "type": "build_sentence",
+      "prompt_de": "Das ist deine Tasche.",
+      "solution": [
+        [
+          "eto",
+          "base"
+        ],
+        [
+          "tvoj",
+          "nom.f"
+        ],
+        [
+          "sumka",
+          "nom.sg"
+        ]
+      ],
+      "distractors": [
+        [
+          "tvoj",
+          "nom.m"
+        ],
+        [
+          "moj",
+          "nom.f"
+        ]
+      ]
+    },
+    {
+      "id": "18-9",
+      "type": "dialog_reply",
+      "prompt_de": "Jemand zeigt auf deine Tasche und fragt.",
+      "tutor_line": [
+        [
+          "chto",
+          "nom"
+        ],
+        [
+          "eto",
+          "base"
+        ]
+      ],
+      "correct_index": 0,
+      "options": [
+        {
+          "tokens": [
+            [
+              "eto",
+              "base"
+            ],
+            [
+              "moj",
+              "nom.f"
+            ],
+            [
+              "sumka",
+              "nom.sg"
+            ]
+          ],
+          "why_de": ""
+        },
+        {
+          "tokens": [
+            [
+              "eto",
+              "base"
+            ],
+            [
+              "moj",
+              "nom.m"
+            ],
+            [
+              "sumka",
+              "nom.sg"
+            ]
+          ],
+          "why_de": "су́мка endet auf -а und ist weiblich: моя́ су́мка."
+        },
+        {
+          "tokens": [
+            [
+              "eto",
+              "base"
+            ],
+            [
+              "moj",
+              "nom.f"
+            ],
+            [
+              "stol",
+              "nom.sg"
+            ]
+          ],
+          "why_de": "стол ist männlich — dann müsste es мой стол heißen."
+        }
+      ]
+    }
+  ]
+}

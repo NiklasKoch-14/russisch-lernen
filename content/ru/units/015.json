@@ -1,0 +1,264 @@
+{
+  "id": 15,
+  "stage": 1,
+  "title_de": "Wie geht's?",
+  "scenario_de": "Du triffst jemanden, den du kennst, und fragst nach dem Befinden.",
+  "grammar_focus": {
+    "id": "adverb-predicate",
+    "title_de": "Ein Adverb genügt als ganze Antwort",
+    "explanation_de": "Auf «Как дела́?» antwortest du mit einem einzigen Wort auf -о: хорошо́, пло́хо, норма́льно. Ein Verb wie „ist“ oder „geht“ steht nicht dabei — «Всё хорошо́» ist ein vollständiger Satz. Genauso funktioniert «Э́то пло́хо»: э́то, dann direkt das Adverb. Wer hier ein Verb sucht, sucht vergeblich; das Russische braucht an dieser Stelle keins."
+  },
+  "new_lexemes": [
+    "dela",
+    "khorosho",
+    "plokho",
+    "normalno",
+    "a",
+    "vsjo"
+  ],
+  "exercises": [
+    {
+      "id": "15-1",
+      "type": "match_pairs",
+      "prompt_de": "Wie geht es dir? Ordne die drei Antworten zu.",
+      "pairs": [
+        [
+          "khorosho",
+          "base"
+        ],
+        [
+          "plokho",
+          "base"
+        ],
+        [
+          "normalno",
+          "base"
+        ]
+      ]
+    },
+    {
+      "id": "15-2",
+      "type": "match_pairs",
+      "prompt_de": "Diese drei kommen in der Frage und der Antwort vor.",
+      "pairs": [
+        [
+          "dela",
+          "nom.pl"
+        ],
+        [
+          "vsjo",
+          "nom"
+        ],
+        [
+          "ochen",
+          "base"
+        ]
+      ]
+    },
+    {
+      "id": "15-3",
+      "type": "build_sentence",
+      "prompt_de": "Wie geht's?",
+      "solution": [
+        [
+          "kak",
+          "base"
+        ],
+        [
+          "dela",
+          "nom.pl"
+        ]
+      ],
+      "distractors": [
+        [
+          "khorosho",
+          "base"
+        ],
+        [
+          "kto",
+          "nom"
+        ]
+      ]
+    },
+    {
+      "id": "15-4",
+      "type": "build_sentence",
+      "prompt_de": "Alles gut, danke.",
+      "solution": [
+        [
+          "vsjo",
+          "nom"
+        ],
+        [
+          "khorosho",
+          "base"
+        ],
+        [
+          "spasibo",
+          "base"
+        ]
+      ],
+      "distractors": [
+        [
+          "plokho",
+          "base"
+        ],
+        [
+          "normalno",
+          "base"
+        ]
+      ]
+    },
+    {
+      "id": "15-5",
+      "type": "build_sentence",
+      "prompt_de": "Das ist schlecht.",
+      "solution": [
+        [
+          "eto",
+          "base"
+        ],
+        [
+          "plokho",
+          "base"
+        ]
+      ],
+      "distractors": [
+        [
+          "khorosho",
+          "base"
+        ],
+        [
+          "normalno",
+          "base"
+        ]
+      ]
+    },
+    {
+      "id": "15-6",
+      "type": "choose_form",
+      "prompt_de": "Und du? — Ich spreche ein bisschen Russisch.",
+      "sentence": [
+        [
+          "ja",
+          "nom"
+        ],
+        [
+          "nemnogo",
+          "base"
+        ],
+        "___",
+        [
+          "po_russki",
+          "base"
+        ]
+      ],
+      "answer": [
+        "govorit",
+        "prs.1sg"
+      ],
+      "distractor_forms": [
+        "prs.3sg",
+        "prs.2sg"
+      ]
+    },
+    {
+      "id": "15-7",
+      "type": "build_sentence",
+      "prompt_de": "Alles gut — und du?",
+      "solution": [
+        [
+          "vsjo",
+          "nom"
+        ],
+        [
+          "khorosho",
+          "base"
+        ],
+        [
+          "a",
+          "base"
+        ],
+        [
+          "ty",
+          "nom"
+        ]
+      ],
+      "distractors": [
+        [
+          "vy",
+          "nom"
+        ],
+        [
+          "plokho",
+          "base"
+        ]
+      ]
+    },
+    {
+      "id": "15-8",
+      "type": "dialog_reply",
+      "prompt_de": "Jemand fragt dich, wie es dir geht. Was passt?",
+      "tutor_line": [
+        [
+          "kak",
+          "base"
+        ],
+        [
+          "dela",
+          "nom.pl"
+        ]
+      ],
+      "correct_index": 0,
+      "options": [
+        {
+          "tokens": [
+            [
+              "vsjo",
+              "nom"
+            ],
+            [
+              "khorosho",
+              "base"
+            ],
+            [
+              "spasibo",
+              "base"
+            ]
+          ],
+          "why_de": ""
+        },
+        {
+          "tokens": [
+            [
+              "ja",
+              "acc"
+            ],
+            [
+              "zvat",
+              "prs.3pl"
+            ],
+            [
+              "nika",
+              "nom.sg"
+            ]
+          ],
+          "why_de": "Das beantwortet «Как тебя́ зову́т?». Gefragt war nach deinem Befinden."
+        },
+        {
+          "tokens": [
+            [
+              "ochen",
+              "base"
+            ],
+            [
+              "prijatno",
+              "base"
+            ]
+          ],
+          "why_de": "«О́чень прия́тно» sagst du beim Kennenlernen, nicht als Antwort auf «Как дела́?»."
+        }
+      ]
+    }
+  ]
+}

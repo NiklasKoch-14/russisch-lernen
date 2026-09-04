@@ -1,0 +1,287 @@
+{
+  "id": 20,
+  "stage": 1,
+  "title_de": "Zahlen von elf bis zwanzig",
+  "scenario_de": "Du suchst eine Adresse und liest Hausnummern vor.",
+  "grammar_focus": {
+    "id": "numbers-eleven-to-twenty",
+    "title_de": "-надцать heißt „auf zehn“",
+    "explanation_de": "Die Zahlen 11 bis 19 bauen sich immer gleich: Grundzahl plus -надцать. Aus три wird трина́дцать, aus пять пятна́дцать. Zwei Kleinigkeiten fallen aus der Reihe: четы́ре verliert sein -е (четы́рнадцать), und шесть, семь, во́семь verlieren ihr weiches Zeichen (шестна́дцать, семна́дцать, восемна́дцать). Die Betonung sitzt bei allen auf -на́д-, nur оди́ннадцать behält sie vorn."
+  },
+  "new_lexemes": [
+    "odinnadtsat",
+    "dvenadtsat",
+    "trinadtsat",
+    "chetyrnadtsat",
+    "pjatnadtsat",
+    "shestnadtsat",
+    "semnadtsat",
+    "vosemnadtsat",
+    "devjatnadtsat",
+    "dvadtsat"
+  ],
+  "exercises": [
+    {
+      "id": "20-1",
+      "type": "match_pairs",
+      "prompt_de": "Elf bis vierzehn.",
+      "pairs": [
+        [
+          "odinnadtsat",
+          "nom"
+        ],
+        [
+          "dvenadtsat",
+          "nom"
+        ],
+        [
+          "trinadtsat",
+          "nom"
+        ],
+        [
+          "chetyrnadtsat",
+          "nom"
+        ]
+      ]
+    },
+    {
+      "id": "20-2",
+      "type": "match_pairs",
+      "prompt_de": "Fünfzehn bis achtzehn.",
+      "pairs": [
+        [
+          "pjatnadtsat",
+          "nom"
+        ],
+        [
+          "shestnadtsat",
+          "nom"
+        ],
+        [
+          "semnadtsat",
+          "nom"
+        ],
+        [
+          "vosemnadtsat",
+          "nom"
+        ]
+      ]
+    },
+    {
+      "id": "20-3",
+      "type": "match_pairs",
+      "prompt_de": "Und der Rest — zwei alte Bekannte sind dabei.",
+      "pairs": [
+        [
+          "devjatnadtsat",
+          "nom"
+        ],
+        [
+          "dvadtsat",
+          "nom"
+        ],
+        [
+          "desjat",
+          "nom"
+        ],
+        [
+          "pjat",
+          "nom"
+        ]
+      ]
+    },
+    {
+      "id": "20-4",
+      "type": "build_sentence",
+      "prompt_de": "Das ist Haus Nummer zwölf.",
+      "solution": [
+        [
+          "eto",
+          "base"
+        ],
+        [
+          "dom",
+          "nom.sg"
+        ],
+        [
+          "dvenadtsat",
+          "nom"
+        ]
+      ],
+      "distractors": [
+        [
+          "trinadtsat",
+          "nom"
+        ],
+        [
+          "dva",
+          "nom.m"
+        ]
+      ]
+    },
+    {
+      "id": "20-5",
+      "type": "build_sentence",
+      "prompt_de": "Unser Haus ist die Nummer neunzehn.",
+      "solution": [
+        [
+          "nash",
+          "nom.m"
+        ],
+        [
+          "dom",
+          "nom.sg"
+        ],
+        [
+          "devjatnadtsat",
+          "nom"
+        ]
+      ],
+      "distractors": [
+        [
+          "devjat",
+          "nom"
+        ],
+        [
+          "nash",
+          "nom.n"
+        ]
+      ]
+    },
+    {
+      "id": "20-6",
+      "type": "choose_form",
+      "prompt_de": "Unser Haus ist groß.",
+      "sentence": [
+        [
+          "nash",
+          "nom.m"
+        ],
+        [
+          "dom",
+          "nom.sg"
+        ],
+        "___"
+      ],
+      "answer": [
+        "bolshoj",
+        "nom.m"
+      ],
+      "distractor_forms": [
+        "nom.f",
+        "nom.n",
+        "nom.pl"
+      ]
+    },
+    {
+      "id": "20-7",
+      "type": "choose_form",
+      "prompt_de": "Unsere Kinder sind klein.",
+      "sentence": [
+        [
+          "nash",
+          "nom.pl"
+        ],
+        [
+          "deti",
+          "nom.pl"
+        ],
+        "___"
+      ],
+      "answer": [
+        "malenkij",
+        "nom.pl"
+      ],
+      "distractor_forms": [
+        "nom.m",
+        "nom.f",
+        "nom.n"
+      ]
+    },
+    {
+      "id": "20-8",
+      "type": "dialog_reply",
+      "prompt_de": "Ihr sucht eine Adresse. Jemand fragt nach.",
+      "tutor_line": [
+        [
+          "eto",
+          "base"
+        ],
+        [
+          "dom",
+          "nom.sg"
+        ],
+        [
+          "dvenadtsat",
+          "nom"
+        ]
+      ],
+      "correct_index": 0,
+      "options": [
+        {
+          "tokens": [
+            [
+              "net",
+              "base"
+            ],
+            [
+              "eto",
+              "base"
+            ],
+            [
+              "dom",
+              "nom.sg"
+            ],
+            [
+              "trinadtsat",
+              "nom"
+            ]
+          ],
+          "why_de": ""
+        },
+        {
+          "tokens": [
+            [
+              "net",
+              "base"
+            ],
+            [
+              "eto",
+              "base"
+            ],
+            [
+              "dom",
+              "nom.sg"
+            ],
+            [
+              "tri",
+              "nom"
+            ]
+          ],
+          "why_de": "три ist die 3. Die 13 heißt трина́дцать."
+        },
+        {
+          "tokens": [
+            [
+              "da",
+              "base"
+            ],
+            [
+              "eto",
+              "base"
+            ],
+            [
+              "dom",
+              "nom.sg"
+            ],
+            [
+              "trinadtsat",
+              "nom"
+            ]
+          ],
+          "why_de": "Wenn die Nummer eine andere ist, fängt die Antwort mit нет an."
+        }
+      ]
+    }
+  ]
+}

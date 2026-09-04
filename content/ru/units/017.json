@@ -1,0 +1,297 @@
+{
+  "id": 17,
+  "stage": 1,
+  "title_de": "Entschuldigung, ich verstehe nicht",
+  "scenario_de": "Jemand spricht dich auf der Straße an und du kommst nicht mit.",
+  "grammar_focus": {
+    "id": "imperative-ty-vy",
+    "title_de": "Bitten: -и für ты, -ите für вы",
+    "explanation_de": "Wenn du jemanden um etwas bittest, entscheidet die Endung, wen du ansprichst. Zu ты gehört die kurze Form: извини́, повтори́, говори́. Zu вы — und damit zu jeder fremden Person — kommt -те dazu: извини́те, повтори́те, говори́те. Die kurze Form gegenüber einem Fremden klingt schnell schnippisch, deshalb ist -те im Zweifel die sichere Wahl."
+  },
+  "new_lexemes": [
+    "izvinit",
+    "povtorit",
+    "ponimat",
+    "nichego",
+    "medlenno",
+    "ladno"
+  ],
+  "exercises": [
+    {
+      "id": "17-1",
+      "type": "match_pairs",
+      "prompt_de": "Vier Wörter, die dir aus der Klemme helfen.",
+      "pairs": [
+        [
+          "ponimat",
+          "inf"
+        ],
+        [
+          "nichego",
+          "base"
+        ],
+        [
+          "medlenno",
+          "base"
+        ],
+        [
+          "ladno",
+          "base"
+        ]
+      ]
+    },
+    {
+      "id": "17-2",
+      "type": "build_sentence",
+      "prompt_de": "Entschuldigung, ich verstehe nicht. (zu einer fremden Person)",
+      "solution": [
+        [
+          "izvinit",
+          "imp.pl"
+        ],
+        [
+          "ja",
+          "nom"
+        ],
+        [
+          "ne",
+          "base"
+        ],
+        [
+          "ponimat",
+          "prs.1sg"
+        ]
+      ],
+      "distractors": [
+        [
+          "izvinit",
+          "imp.sg"
+        ],
+        [
+          "ponimat",
+          "prs.3sg"
+        ]
+      ]
+    },
+    {
+      "id": "17-3",
+      "type": "choose_form",
+      "prompt_de": "Dasselbe zu einer Freundin — welche Form der Bitte passt zu ты?",
+      "sentence": [
+        "___",
+        [
+          "ja",
+          "nom"
+        ],
+        [
+          "ne",
+          "base"
+        ],
+        [
+          "ponimat",
+          "prs.1sg"
+        ]
+      ],
+      "answer": [
+        "izvinit",
+        "imp.sg"
+      ],
+      "distractor_forms": [
+        "imp.pl",
+        "inf"
+      ]
+    },
+    {
+      "id": "17-4",
+      "type": "choose_form",
+      "prompt_de": "Zu einer fremden Person: Wiederholen Sie bitte.",
+      "sentence": [
+        "___",
+        [
+          "pozhalujsta",
+          "base"
+        ]
+      ],
+      "answer": [
+        "povtorit",
+        "imp.pl"
+      ],
+      "distractor_forms": [
+        "imp.sg",
+        "inf"
+      ]
+    },
+    {
+      "id": "17-5",
+      "type": "build_sentence",
+      "prompt_de": "Sprich bitte langsam. (zu einem Freund)",
+      "solution": [
+        [
+          "govorit",
+          "imp.sg"
+        ],
+        [
+          "medlenno",
+          "base"
+        ],
+        [
+          "pozhalujsta",
+          "base"
+        ]
+      ],
+      "distractors": [
+        [
+          "govorit",
+          "imp.pl"
+        ],
+        [
+          "govorit",
+          "prs.3sg"
+        ]
+      ]
+    },
+    {
+      "id": "17-6",
+      "type": "choose_form",
+      "prompt_de": "Und höflich zu einer Fremden: Sprechen Sie bitte langsam.",
+      "sentence": [
+        "___",
+        [
+          "medlenno",
+          "base"
+        ],
+        [
+          "pozhalujsta",
+          "base"
+        ]
+      ],
+      "answer": [
+        "govorit",
+        "imp.pl"
+      ],
+      "distractor_forms": [
+        "imp.sg",
+        "inf",
+        "prs.3sg"
+      ]
+    },
+    {
+      "id": "17-7",
+      "type": "build_sentence",
+      "prompt_de": "Alles klar, ich verstehe.",
+      "solution": [
+        [
+          "ladno",
+          "base"
+        ],
+        [
+          "ja",
+          "nom"
+        ],
+        [
+          "ponimat",
+          "prs.1sg"
+        ]
+      ],
+      "distractors": [
+        [
+          "ne",
+          "base"
+        ],
+        [
+          "ponimat",
+          "prs.2sg"
+        ]
+      ]
+    },
+    {
+      "id": "17-8",
+      "type": "dialog_reply",
+      "prompt_de": "Du hast gerade gesagt, dass du nichts verstehst. Was antwortet dein Gegenüber?",
+      "tutor_line": [
+        [
+          "izvinit",
+          "imp.pl"
+        ],
+        [
+          "ja",
+          "nom"
+        ],
+        [
+          "ne",
+          "base"
+        ],
+        [
+          "ponimat",
+          "prs.1sg"
+        ]
+      ],
+      "correct_index": 0,
+      "options": [
+        {
+          "tokens": [
+            [
+              "nichego",
+              "base"
+            ],
+            [
+              "ja",
+              "nom"
+            ],
+            [
+              "govorit",
+              "prs.1sg"
+            ],
+            [
+              "medlenno",
+              "base"
+            ]
+          ],
+          "why_de": ""
+        },
+        {
+          "tokens": [
+            [
+              "nichego",
+              "base"
+            ],
+            [
+              "ja",
+              "nom"
+            ],
+            [
+              "govorit",
+              "prs.2sg"
+            ],
+            [
+              "medlenno",
+              "base"
+            ]
+          ],
+          "why_de": "говори́шь gehört zu ты. Über sich selbst sagt man говорю́."
+        },
+        {
+          "tokens": [
+            [
+              "nichego",
+              "base"
+            ],
+            [
+              "ty",
+              "nom"
+            ],
+            [
+              "govorit",
+              "prs.1sg"
+            ],
+            [
+              "medlenno",
+              "base"
+            ]
+          ],
+          "why_de": "Zu ты passt говорю́ nicht — Pronomen und Endung müssen zusammengehören."
+        }
+      ]
+    }
+  ]
+}
