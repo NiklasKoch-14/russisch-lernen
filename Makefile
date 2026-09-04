@@ -11,7 +11,7 @@ FRONTEND_URL ?= http://localhost:3000
 
 help: ## Diese Übersicht anzeigen
 	@grep -hE '^[a-z0-9-]+:.*?## ' $(MAKEFILE_LIST) \
-		| awk 'BEGIN {FS = ":.*?## "}; {printf "  \033[36m%-12s\033[0m %s\n", $$1, $$2}'
+		| awk 'BEGIN {FS = ":.*?## "}; {printf "  \033[36m%-15s\033[0m %s\n", $$1, $$2}'
 
 deploy: ## Alle Container bauen und im Hintergrund starten
 	$(COMPOSE) up -d --build
