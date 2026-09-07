@@ -1,0 +1,304 @@
+{
+  "id": 22,
+  "stage": 1,
+  "title_de": "Wie alt bist du?",
+  "scenario_de": "Du erzählst, wie alt du bist und wer zu deiner Familie gehört.",
+  "grammar_focus": {
+    "id": "dative-age",
+    "title_de": "Alter steht im Dativ: мне два́дцать лет",
+    "explanation_de": "Im Russischen ist man nicht alt, sondern *einem* ist ein Alter. Die Person steht deshalb im Dativ: я → мне, ты → тебе́, он → ему́, она́ → ей. Danach kommt die Zahl und das Wort für Jahr — und dessen Form hängt an der Zahl: nach 1 год, nach 2, 3 und 4 го́да, ab 5 лет. Gefragt wird mit ско́лько: Ско́лько тебе́ лет?"
+  },
+  "new_lexemes": [
+    "skolko",
+    "god",
+    "uzhe",
+    "syn",
+    "doch",
+    "zhena",
+    "muzh"
+  ],
+  "exercises": [
+    {
+      "id": "22-1",
+      "type": "match_pairs",
+      "prompt_de": "Vier Menschen in einer Familie.",
+      "pairs": [
+        [
+          "syn",
+          "nom.sg"
+        ],
+        [
+          "doch",
+          "nom.sg"
+        ],
+        [
+          "zhena",
+          "nom.sg"
+        ],
+        [
+          "muzh",
+          "nom.sg"
+        ]
+      ]
+    },
+    {
+      "id": "22-2",
+      "type": "match_pairs",
+      "prompt_de": "Vier kleine Wörter.",
+      "pairs": [
+        [
+          "skolko",
+          "base"
+        ],
+        [
+          "god",
+          "nom.sg"
+        ],
+        [
+          "uzhe",
+          "base"
+        ],
+        [
+          "tozhe",
+          "base"
+        ]
+      ]
+    },
+    {
+      "id": "22-3",
+      "type": "build_sentence",
+      "prompt_de": "Ich bin zwanzig Jahre alt.",
+      "solution": [
+        [
+          "ja",
+          "dat"
+        ],
+        [
+          "dvadtsat",
+          "nom"
+        ],
+        [
+          "god",
+          "gen.pl"
+        ]
+      ],
+      "distractors": [
+        [
+          "ja",
+          "nom"
+        ],
+        [
+          "god",
+          "nom.sg"
+        ]
+      ]
+    },
+    {
+      "id": "22-4",
+      "type": "build_sentence",
+      "prompt_de": "Wie alt bist du?",
+      "solution": [
+        [
+          "skolko",
+          "base"
+        ],
+        [
+          "ty",
+          "dat"
+        ],
+        [
+          "god",
+          "gen.pl"
+        ]
+      ],
+      "distractors": [
+        [
+          "ty",
+          "nom"
+        ],
+        [
+          "god",
+          "nom.sg"
+        ]
+      ]
+    },
+    {
+      "id": "22-5",
+      "type": "choose_form",
+      "prompt_de": "Mein Sohn ist zwei. — Ему́ два …",
+      "sentence": [
+        [
+          "on",
+          "dat"
+        ],
+        [
+          "dva",
+          "nom.m"
+        ],
+        "___"
+      ],
+      "answer": [
+        "god",
+        "gen.sg"
+      ],
+      "distractor_forms": [
+        "nom.sg",
+        "gen.pl"
+      ]
+    },
+    {
+      "id": "22-6",
+      "type": "choose_form",
+      "prompt_de": "Meine Tochter ist fünf.",
+      "sentence": [
+        [
+          "ona",
+          "dat"
+        ],
+        [
+          "pjat",
+          "nom"
+        ],
+        "___"
+      ],
+      "answer": [
+        "god",
+        "gen.pl"
+      ],
+      "distractor_forms": [
+        "nom.sg",
+        "gen.sg"
+      ]
+    },
+    {
+      "id": "22-7",
+      "type": "choose_form",
+      "prompt_de": "Sie ist ein Jahr alt.",
+      "sentence": [
+        [
+          "ona",
+          "dat"
+        ],
+        [
+          "odin",
+          "nom.m"
+        ],
+        "___"
+      ],
+      "answer": [
+        "god",
+        "nom.sg"
+      ],
+      "distractor_forms": [
+        "gen.sg",
+        "gen.pl"
+      ]
+    },
+    {
+      "id": "22-8",
+      "type": "build_sentence",
+      "prompt_de": "Meine Frau ist schon dreißig.",
+      "solution": [
+        [
+          "moj",
+          "nom.f"
+        ],
+        [
+          "zhena",
+          "nom.sg"
+        ],
+        [
+          "uzhe",
+          "base"
+        ],
+        [
+          "tridtsat",
+          "nom"
+        ]
+      ],
+      "distractors": [
+        [
+          "moj",
+          "nom.m"
+        ],
+        [
+          "tri",
+          "nom"
+        ]
+      ]
+    },
+    {
+      "id": "22-9",
+      "type": "dialog_reply",
+      "prompt_de": "Jemand fragt nach deinem Alter. Du bist dreißig.",
+      "tutor_line": [
+        [
+          "skolko",
+          "base"
+        ],
+        [
+          "ty",
+          "dat"
+        ],
+        [
+          "god",
+          "gen.pl"
+        ]
+      ],
+      "correct_index": 0,
+      "options": [
+        {
+          "tokens": [
+            [
+              "ja",
+              "dat"
+            ],
+            [
+              "tridtsat",
+              "nom"
+            ],
+            [
+              "god",
+              "gen.pl"
+            ]
+          ],
+          "why_de": ""
+        },
+        {
+          "tokens": [
+            [
+              "ja",
+              "dat"
+            ],
+            [
+              "tridtsat",
+              "nom"
+            ],
+            [
+              "god",
+              "nom.sg"
+            ]
+          ],
+          "why_de": "год steht nur nach der 1. Nach три́дцать heißt es лет."
+        },
+        {
+          "tokens": [
+            [
+              "ja",
+              "nom"
+            ],
+            [
+              "tridtsat",
+              "nom"
+            ],
+            [
+              "god",
+              "gen.pl"
+            ]
+          ],
+          "why_de": "Beim Alter steht die Person im Dativ: мне, nicht я."
+        }
+      ]
+    }
+  ]
+}

@@ -510,6 +510,14 @@
         "acc": {
           "text": "меня́",
           "translit": "menjá"
+        },
+        "dat": {
+          "text": "мне",
+          "translit": "mne"
+        },
+        "gen": {
+          "text": "меня́",
+          "translit": "menjá"
         }
       }
     },
@@ -530,6 +538,10 @@
         "dat": {
           "text": "тебе́",
           "translit": "tebé"
+        },
+        "gen": {
+          "text": "тебя́",
+          "translit": "tebjá"
         }
       }
     },
@@ -550,6 +562,10 @@
         "dat": {
           "text": "вам",
           "translit": "vam"
+        },
+        "gen": {
+          "text": "вас",
+          "translit": "vas"
         }
       }
     },
@@ -1080,6 +1096,10 @@
         "nom": {
           "text": "он",
           "translit": "on"
+        },
+        "dat": {
+          "text": "ему́",
+          "translit": "jemú"
         }
       }
     },
@@ -1092,6 +1112,10 @@
         "nom": {
           "text": "она́",
           "translit": "oná"
+        },
+        "dat": {
+          "text": "ей",
+          "translit": "jej"
         }
       }
     },
@@ -1248,6 +1272,10 @@
         "nom": {
           "text": "мы",
           "translit": "my"
+        },
+        "gen": {
+          "text": "нас",
+          "translit": "nas"
         }
       }
     },
@@ -1764,6 +1792,375 @@
         "nom": {
           "text": "два́дцать",
           "translit": "dvádcat'"
+        }
+      }
+    },
+    {
+      "id": "tridtsat",
+      "lemma": "три́дцать",
+      "pos": "num",
+      "gloss_de": "dreißig",
+      "forms": {
+        "nom": {
+          "text": "три́дцать",
+          "translit": "trídcat'"
+        }
+      }
+    },
+    {
+      "id": "sorok",
+      "lemma": "со́рок",
+      "pos": "num",
+      "gloss_de": "vierzig",
+      "forms": {
+        "nom": {
+          "text": "со́рок",
+          "translit": "sórok"
+        }
+      }
+    },
+    {
+      "id": "pjatdesjat",
+      "lemma": "пятьдеся́т",
+      "pos": "num",
+      "gloss_de": "fünfzig",
+      "forms": {
+        "nom": {
+          "text": "пятьдеся́т",
+          "translit": "pjat'desját"
+        }
+      }
+    },
+    {
+      "id": "shestdesjat",
+      "lemma": "шестьдеся́т",
+      "pos": "num",
+      "gloss_de": "sechzig",
+      "forms": {
+        "nom": {
+          "text": "шестьдеся́т",
+          "translit": "šest'desját"
+        }
+      }
+    },
+    {
+      "id": "semdesjat",
+      "lemma": "се́мьдесят",
+      "pos": "num",
+      "gloss_de": "siebzig",
+      "forms": {
+        "nom": {
+          "text": "се́мьдесят",
+          "translit": "sém'desjat"
+        }
+      }
+    },
+    {
+      "id": "vosemdesjat",
+      "lemma": "во́семьдесят",
+      "pos": "num",
+      "gloss_de": "achtzig",
+      "forms": {
+        "nom": {
+          "text": "во́семьдесят",
+          "translit": "vósem'desjat"
+        }
+      }
+    },
+    {
+      "id": "devjanosto",
+      "lemma": "девяно́сто",
+      "pos": "num",
+      "gloss_de": "neunzig",
+      "forms": {
+        "nom": {
+          "text": "девяно́сто",
+          "translit": "devjanósto"
+        }
+      }
+    },
+    {
+      "id": "sto",
+      "lemma": "сто",
+      "pos": "num",
+      "gloss_de": "hundert",
+      "forms": {
+        "nom": {
+          "text": "сто",
+          "translit": "sto"
+        }
+      }
+    },
+    {
+      "id": "skolko",
+      "lemma": "ско́лько",
+      "pos": "adv",
+      "gloss_de": "wie viel",
+      "forms": {
+        "base": {
+          "text": "ско́лько",
+          "translit": "skól'ko"
+        }
+      }
+    },
+    {
+      "id": "god",
+      "lemma": "год",
+      "pos": "noun",
+      "gloss_de": "das Jahr",
+      "forms": {
+        "nom.sg": {
+          "text": "год",
+          "translit": "god"
+        },
+        "gen.sg": {
+          "text": "го́да",
+          "translit": "góda"
+        },
+        "gen.pl": {
+          "text": "лет",
+          "translit": "let"
+        }
+      }
+    },
+    {
+      "id": "uzhe",
+      "lemma": "уже́",
+      "pos": "adv",
+      "gloss_de": "schon",
+      "forms": {
+        "base": {
+          "text": "уже́",
+          "translit": "užé"
+        }
+      }
+    },
+    {
+      "id": "syn",
+      "lemma": "сын",
+      "pos": "noun",
+      "gloss_de": "der Sohn",
+      "forms": {
+        "nom.sg": {
+          "text": "сын",
+          "translit": "syn"
+        }
+      }
+    },
+    {
+      "id": "doch",
+      "lemma": "дочь",
+      "pos": "noun",
+      "gloss_de": "die Tochter",
+      "forms": {
+        "nom.sg": {
+          "text": "дочь",
+          "translit": "doč'"
+        }
+      }
+    },
+    {
+      "id": "zhena",
+      "lemma": "жена́",
+      "pos": "noun",
+      "gloss_de": "die Ehefrau",
+      "forms": {
+        "nom.sg": {
+          "text": "жена́",
+          "translit": "žená"
+        }
+      }
+    },
+    {
+      "id": "muzh",
+      "lemma": "муж",
+      "pos": "noun",
+      "gloss_de": "der Ehemann",
+      "forms": {
+        "nom.sg": {
+          "text": "муж",
+          "translit": "muž"
+        }
+      }
+    },
+    {
+      "id": "u",
+      "lemma": "у",
+      "pos": "prep",
+      "gloss_de": "bei",
+      "forms": {
+        "base": {
+          "text": "у",
+          "translit": "u"
+        }
+      }
+    },
+    {
+      "id": "est",
+      "lemma": "есть",
+      "pos": "verb",
+      "gloss_de": "es gibt, ist da",
+      "forms": {
+        "prs.3sg": {
+          "text": "есть",
+          "translit": "jest'"
+        }
+      }
+    },
+    {
+      "id": "mashina",
+      "lemma": "маши́на",
+      "pos": "noun",
+      "gloss_de": "das Auto",
+      "forms": {
+        "nom.sg": {
+          "text": "маши́на",
+          "translit": "mašína"
+        }
+      }
+    },
+    {
+      "id": "sobaka",
+      "lemma": "соба́ка",
+      "pos": "noun",
+      "gloss_de": "der Hund",
+      "forms": {
+        "nom.sg": {
+          "text": "соба́ка",
+          "translit": "sobáka"
+        }
+      }
+    },
+    {
+      "id": "koshka",
+      "lemma": "ко́шка",
+      "pos": "noun",
+      "gloss_de": "die Katze",
+      "forms": {
+        "nom.sg": {
+          "text": "ко́шка",
+          "translit": "kóška"
+        }
+      }
+    },
+    {
+      "id": "vopros",
+      "lemma": "вопро́с",
+      "pos": "noun",
+      "gloss_de": "die Frage",
+      "forms": {
+        "nom.sg": {
+          "text": "вопро́с",
+          "translit": "voprós"
+        }
+      }
+    },
+    {
+      "id": "zhit",
+      "lemma": "жить",
+      "pos": "verb",
+      "gloss_de": "wohnen, leben",
+      "aspect": "impf",
+      "forms": {
+        "inf": {
+          "text": "жить",
+          "translit": "žit'"
+        },
+        "prs.1sg": {
+          "text": "живу́",
+          "translit": "živú"
+        },
+        "prs.2sg": {
+          "text": "живёшь",
+          "translit": "živjoš'"
+        },
+        "prs.3sg": {
+          "text": "живёт",
+          "translit": "živjot"
+        },
+        "prs.1pl": {
+          "text": "живём",
+          "translit": "živjom"
+        },
+        "prs.2pl": {
+          "text": "живёте",
+          "translit": "živjote"
+        },
+        "prs.3pl": {
+          "text": "живу́т",
+          "translit": "živút"
+        }
+      }
+    },
+    {
+      "id": "gde",
+      "lemma": "где",
+      "pos": "adv",
+      "gloss_de": "wo",
+      "forms": {
+        "base": {
+          "text": "где",
+          "translit": "gde"
+        }
+      }
+    },
+    {
+      "id": "zdes",
+      "lemma": "здесь",
+      "pos": "adv",
+      "gloss_de": "hier",
+      "forms": {
+        "base": {
+          "text": "здесь",
+          "translit": "zdes'"
+        }
+      }
+    },
+    {
+      "id": "tam",
+      "lemma": "там",
+      "pos": "adv",
+      "gloss_de": "dort",
+      "forms": {
+        "base": {
+          "text": "там",
+          "translit": "tam"
+        }
+      }
+    },
+    {
+      "id": "sosed",
+      "lemma": "сосе́д",
+      "pos": "noun",
+      "gloss_de": "der Nachbar",
+      "forms": {
+        "nom.sg": {
+          "text": "сосе́д",
+          "translit": "soséd"
+        }
+      }
+    },
+    {
+      "id": "sosedka",
+      "lemma": "сосе́дка",
+      "pos": "noun",
+      "gloss_de": "die Nachbarin",
+      "forms": {
+        "nom.sg": {
+          "text": "сосе́дка",
+          "translit": "sosédka"
+        }
+      }
+    },
+    {
+      "id": "ulitsa",
+      "lemma": "у́лица",
+      "pos": "noun",
+      "gloss_de": "die Straße",
+      "forms": {
+        "nom.sg": {
+          "text": "у́лица",
+          "translit": "úlica"
         }
       }
     }

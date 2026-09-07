@@ -1,0 +1,281 @@
+{
+  "id": 21,
+  "stage": 1,
+  "title_de": "Die Zehner bis hundert",
+  "scenario_de": "Du liest Hausnummern und Zimmernummern vor.",
+  "grammar_focus": {
+    "id": "numbers-tens",
+    "title_de": "Die Zehner: -дцать, -десят und zwei Ausreißer",
+    "explanation_de": "Три́дцать endet wie два́дцать auf -дцать. Ab fünfzig steht stattdessen -десят: пятьдеся́т, шестьдеся́т, се́мьдесят, во́семьдесят. Achte auf die Betonung: bei 50 und 60 sitzt sie hinten, bei 70 und 80 vorn. Zwei Zahlen fallen ganz aus der Reihe — со́рок (40) und девяно́сто (90) — und hundert ist einfach сто."
+  },
+  "new_lexemes": [
+    "tridtsat",
+    "sorok",
+    "pjatdesjat",
+    "shestdesjat",
+    "semdesjat",
+    "vosemdesjat",
+    "devjanosto",
+    "sto"
+  ],
+  "exercises": [
+    {
+      "id": "21-1",
+      "type": "match_pairs",
+      "prompt_de": "Dreißig bis sechzig.",
+      "pairs": [
+        [
+          "tridtsat",
+          "nom"
+        ],
+        [
+          "sorok",
+          "nom"
+        ],
+        [
+          "pjatdesjat",
+          "nom"
+        ],
+        [
+          "shestdesjat",
+          "nom"
+        ]
+      ]
+    },
+    {
+      "id": "21-2",
+      "type": "match_pairs",
+      "prompt_de": "Siebzig bis hundert.",
+      "pairs": [
+        [
+          "semdesjat",
+          "nom"
+        ],
+        [
+          "vosemdesjat",
+          "nom"
+        ],
+        [
+          "devjanosto",
+          "nom"
+        ],
+        [
+          "sto",
+          "nom"
+        ]
+      ]
+    },
+    {
+      "id": "21-3",
+      "type": "match_pairs",
+      "prompt_de": "Vier Zahlen, die leicht zu verwechseln sind.",
+      "pairs": [
+        [
+          "dvenadtsat",
+          "nom"
+        ],
+        [
+          "dvadtsat",
+          "nom"
+        ],
+        [
+          "devjatnadtsat",
+          "nom"
+        ],
+        [
+          "devjanosto",
+          "nom"
+        ]
+      ]
+    },
+    {
+      "id": "21-4",
+      "type": "build_sentence",
+      "prompt_de": "Das ist Haus Nummer vierzig.",
+      "solution": [
+        [
+          "eto",
+          "base"
+        ],
+        [
+          "dom",
+          "nom.sg"
+        ],
+        [
+          "sorok",
+          "nom"
+        ]
+      ],
+      "distractors": [
+        [
+          "chetyre",
+          "nom"
+        ],
+        [
+          "sto",
+          "nom"
+        ]
+      ]
+    },
+    {
+      "id": "21-5",
+      "type": "build_sentence",
+      "prompt_de": "Unser Haus ist die Nummer fünfzig.",
+      "solution": [
+        [
+          "nash",
+          "nom.m"
+        ],
+        [
+          "dom",
+          "nom.sg"
+        ],
+        [
+          "pjatdesjat",
+          "nom"
+        ]
+      ],
+      "distractors": [
+        [
+          "pjat",
+          "nom"
+        ],
+        [
+          "nash",
+          "nom.f"
+        ]
+      ]
+    },
+    {
+      "id": "21-6",
+      "type": "choose_form",
+      "prompt_de": "Das ist ein großes Haus.",
+      "sentence": [
+        [
+          "eto",
+          "base"
+        ],
+        "___",
+        [
+          "dom",
+          "nom.sg"
+        ]
+      ],
+      "answer": [
+        "bolshoj",
+        "nom.m"
+      ],
+      "distractor_forms": [
+        "nom.f",
+        "nom.n",
+        "nom.pl"
+      ]
+    },
+    {
+      "id": "21-7",
+      "type": "choose_form",
+      "prompt_de": "Das Fenster ist klein.",
+      "sentence": [
+        [
+          "okno",
+          "nom.sg"
+        ],
+        "___"
+      ],
+      "answer": [
+        "malenkij",
+        "nom.n"
+      ],
+      "distractor_forms": [
+        "nom.m",
+        "nom.f",
+        "nom.pl"
+      ]
+    },
+    {
+      "id": "21-8",
+      "type": "dialog_reply",
+      "prompt_de": "Ihr steht vor Haus Nummer 50. Jemand fragt, ob das die 40 ist.",
+      "tutor_line": [
+        [
+          "eto",
+          "base"
+        ],
+        [
+          "dom",
+          "nom.sg"
+        ],
+        [
+          "sorok",
+          "nom"
+        ]
+      ],
+      "correct_index": 0,
+      "options": [
+        {
+          "tokens": [
+            [
+              "net",
+              "base"
+            ],
+            [
+              "eto",
+              "base"
+            ],
+            [
+              "dom",
+              "nom.sg"
+            ],
+            [
+              "pjatdesjat",
+              "nom"
+            ]
+          ],
+          "why_de": ""
+        },
+        {
+          "tokens": [
+            [
+              "net",
+              "base"
+            ],
+            [
+              "eto",
+              "base"
+            ],
+            [
+              "dom",
+              "nom.sg"
+            ],
+            [
+              "pjat",
+              "nom"
+            ]
+          ],
+          "why_de": "пять ist die 5. Die 50 heißt пятьдеся́т — mit -десят hinten dran."
+        },
+        {
+          "tokens": [
+            [
+              "da",
+              "base"
+            ],
+            [
+              "eto",
+              "base"
+            ],
+            [
+              "dom",
+              "nom.sg"
+            ],
+            [
+              "pjatdesjat",
+              "nom"
+            ]
+          ],
+          "why_de": "Wenn die Nummer eine andere ist, fängt die Antwort mit нет an."
+        }
+      ]
+    }
+  ]
+}

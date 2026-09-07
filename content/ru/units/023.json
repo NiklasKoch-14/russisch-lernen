@@ -1,0 +1,348 @@
+{
+  "id": 23,
+  "stage": 1,
+  "title_de": "Ich habe ein Auto",
+  "scenario_de": "Du erzählst einem Bekannten, was du hast und was nicht.",
+  "grammar_focus": {
+    "id": "u-menja-est",
+    "title_de": "Besitz heißt „bei mir ist“: у меня́ есть",
+    "explanation_de": "Russisch sagt nicht „ich habe“, sondern „bei mir ist“: у меня́ есть маши́на. Nach у steht die Person in einer eigenen Form — я → меня́, ты → тебя́, мы → нас, вы → вас. есть bleibt dabei immer gleich, egal wer besitzt. Das Ding selbst steht ganz normal in der Grundform: маши́на, соба́ка, вопро́с. Für он und она́ heißt es у него́ und у неё — das kommt später dran."
+  },
+  "new_lexemes": [
+    "u",
+    "est",
+    "mashina",
+    "sobaka",
+    "koshka",
+    "vopros"
+  ],
+  "exercises": [
+    {
+      "id": "23-1",
+      "type": "match_pairs",
+      "prompt_de": "Vier Dinge, die man haben kann.",
+      "pairs": [
+        [
+          "mashina",
+          "nom.sg"
+        ],
+        [
+          "sobaka",
+          "nom.sg"
+        ],
+        [
+          "koshka",
+          "nom.sg"
+        ],
+        [
+          "vopros",
+          "nom.sg"
+        ]
+      ]
+    },
+    {
+      "id": "23-2",
+      "type": "match_pairs",
+      "prompt_de": "Zwei neue Wörter und zwei alte.",
+      "pairs": [
+        [
+          "u",
+          "base"
+        ],
+        [
+          "est",
+          "prs.3sg"
+        ],
+        [
+          "drug",
+          "nom.sg"
+        ],
+        [
+          "telefon",
+          "nom.sg"
+        ]
+      ]
+    },
+    {
+      "id": "23-3",
+      "type": "build_sentence",
+      "prompt_de": "Ich habe ein Auto.",
+      "solution": [
+        [
+          "u",
+          "base"
+        ],
+        [
+          "ja",
+          "gen"
+        ],
+        [
+          "est",
+          "prs.3sg"
+        ],
+        [
+          "mashina",
+          "nom.sg"
+        ]
+      ],
+      "distractors": [
+        [
+          "ja",
+          "nom"
+        ],
+        [
+          "sobaka",
+          "nom.sg"
+        ]
+      ]
+    },
+    {
+      "id": "23-4",
+      "type": "build_sentence",
+      "prompt_de": "Ich habe eine Frage.",
+      "solution": [
+        [
+          "u",
+          "base"
+        ],
+        [
+          "ja",
+          "gen"
+        ],
+        [
+          "est",
+          "prs.3sg"
+        ],
+        [
+          "vopros",
+          "nom.sg"
+        ]
+      ],
+      "distractors": [
+        [
+          "ty",
+          "gen"
+        ],
+        [
+          "telefon",
+          "nom.sg"
+        ]
+      ]
+    },
+    {
+      "id": "23-5",
+      "type": "build_sentence",
+      "prompt_de": "Hast du ein Telefon?",
+      "solution": [
+        [
+          "u",
+          "base"
+        ],
+        [
+          "ty",
+          "gen"
+        ],
+        [
+          "est",
+          "prs.3sg"
+        ],
+        [
+          "telefon",
+          "nom.sg"
+        ]
+      ],
+      "distractors": [
+        [
+          "ty",
+          "nom"
+        ],
+        [
+          "ja",
+          "gen"
+        ]
+      ]
+    },
+    {
+      "id": "23-6",
+      "type": "choose_form",
+      "prompt_de": "Hast du einen Hund?",
+      "sentence": [
+        [
+          "u",
+          "base"
+        ],
+        "___",
+        [
+          "est",
+          "prs.3sg"
+        ],
+        [
+          "sobaka",
+          "nom.sg"
+        ]
+      ],
+      "answer": [
+        "ty",
+        "gen"
+      ],
+      "distractor_forms": [
+        "nom",
+        "dat"
+      ]
+    },
+    {
+      "id": "23-7",
+      "type": "choose_form",
+      "prompt_de": "Ich habe eine Katze.",
+      "sentence": [
+        [
+          "u",
+          "base"
+        ],
+        "___",
+        [
+          "est",
+          "prs.3sg"
+        ],
+        [
+          "koshka",
+          "nom.sg"
+        ]
+      ],
+      "answer": [
+        "ja",
+        "gen"
+      ],
+      "distractor_forms": [
+        "nom",
+        "dat"
+      ]
+    },
+    {
+      "id": "23-8",
+      "type": "choose_form",
+      "prompt_de": "Das ist ein neues Auto. — маши́на ist weiblich.",
+      "sentence": [
+        [
+          "eto",
+          "base"
+        ],
+        "___",
+        [
+          "mashina",
+          "nom.sg"
+        ]
+      ],
+      "answer": [
+        "novyj",
+        "nom.f"
+      ],
+      "distractor_forms": [
+        "nom.m",
+        "nom.n",
+        "nom.pl"
+      ]
+    },
+    {
+      "id": "23-9",
+      "type": "dialog_reply",
+      "prompt_de": "Jemand fragt, ob du einen Hund hast. Du hast eine Katze.",
+      "tutor_line": [
+        [
+          "u",
+          "base"
+        ],
+        [
+          "ty",
+          "gen"
+        ],
+        [
+          "est",
+          "prs.3sg"
+        ],
+        [
+          "sobaka",
+          "nom.sg"
+        ]
+      ],
+      "correct_index": 0,
+      "options": [
+        {
+          "tokens": [
+            [
+              "net",
+              "base"
+            ],
+            [
+              "u",
+              "base"
+            ],
+            [
+              "ja",
+              "gen"
+            ],
+            [
+              "est",
+              "prs.3sg"
+            ],
+            [
+              "koshka",
+              "nom.sg"
+            ]
+          ],
+          "why_de": ""
+        },
+        {
+          "tokens": [
+            [
+              "net",
+              "base"
+            ],
+            [
+              "u",
+              "base"
+            ],
+            [
+              "ja",
+              "nom"
+            ],
+            [
+              "est",
+              "prs.3sg"
+            ],
+            [
+              "koshka",
+              "nom.sg"
+            ]
+          ],
+          "why_de": "Nach у heißt es меня́, nie я."
+        },
+        {
+          "tokens": [
+            [
+              "da",
+              "base"
+            ],
+            [
+              "u",
+              "base"
+            ],
+            [
+              "ja",
+              "gen"
+            ],
+            [
+              "est",
+              "prs.3sg"
+            ],
+            [
+              "koshka",
+              "nom.sg"
+            ]
+          ],
+          "why_de": "Gefragt war nach dem Hund. Weil du keinen hast, fängt die Antwort mit нет an."
+        }
+      ]
+    }
+  ]
+}

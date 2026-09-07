@@ -1,0 +1,319 @@
+{
+  "id": 24,
+  "stage": 1,
+  "title_de": "Wo wohnst du?",
+  "scenario_de": "Eine neue Nachbarin spricht dich im Treppenhaus an.",
+  "grammar_focus": {
+    "id": "zhit-conjugation",
+    "title_de": "жить: die Betonung sitzt auf der Endung",
+    "explanation_de": "жить verliert im Präsens sein -ть und bekommt einen Stamm auf -в-: я живу́, ты живёшь, он живёт, мы живём, вы живёте, они́ живу́т. Die Betonung liegt immer auf der Endung — deshalb steht dort ё statt е, denn ё ist im Russischen immer betont. Gefragt wird mit где, geantwortet mit здесь oder там; beide Wörter ändern sich nie."
+  },
+  "new_lexemes": [
+    "zhit",
+    "gde",
+    "zdes",
+    "tam",
+    "sosed",
+    "sosedka",
+    "ulitsa"
+  ],
+  "exercises": [
+    {
+      "id": "24-1",
+      "type": "match_pairs",
+      "prompt_de": "Wo denn?",
+      "pairs": [
+        [
+          "gde",
+          "base"
+        ],
+        [
+          "zdes",
+          "base"
+        ],
+        [
+          "tam",
+          "base"
+        ],
+        [
+          "ulitsa",
+          "nom.sg"
+        ]
+      ]
+    },
+    {
+      "id": "24-2",
+      "type": "match_pairs",
+      "prompt_de": "Zwei Nachbarn und zwei Orte.",
+      "pairs": [
+        [
+          "sosed",
+          "nom.sg"
+        ],
+        [
+          "sosedka",
+          "nom.sg"
+        ],
+        [
+          "dom",
+          "nom.sg"
+        ],
+        [
+          "gorod",
+          "nom.sg"
+        ]
+      ]
+    },
+    {
+      "id": "24-3",
+      "type": "choose_form",
+      "prompt_de": "Ich wohne hier.",
+      "sentence": [
+        [
+          "ja",
+          "nom"
+        ],
+        "___",
+        [
+          "zdes",
+          "base"
+        ]
+      ],
+      "answer": [
+        "zhit",
+        "prs.1sg"
+      ],
+      "distractor_forms": [
+        "prs.2sg",
+        "prs.3sg",
+        "inf"
+      ]
+    },
+    {
+      "id": "24-4",
+      "type": "choose_form",
+      "prompt_de": "Wo wohnst du?",
+      "sentence": [
+        [
+          "gde",
+          "base"
+        ],
+        [
+          "ty",
+          "nom"
+        ],
+        "___"
+      ],
+      "answer": [
+        "zhit",
+        "prs.2sg"
+      ],
+      "distractor_forms": [
+        "prs.1sg",
+        "prs.3sg",
+        "prs.3pl"
+      ]
+    },
+    {
+      "id": "24-5",
+      "type": "choose_form",
+      "prompt_de": "Unsere Eltern wohnen dort.",
+      "sentence": [
+        [
+          "nash",
+          "nom.pl"
+        ],
+        [
+          "roditeli",
+          "nom.pl"
+        ],
+        "___",
+        [
+          "tam",
+          "base"
+        ]
+      ],
+      "answer": [
+        "zhit",
+        "prs.3pl"
+      ],
+      "distractor_forms": [
+        "prs.3sg",
+        "prs.1pl",
+        "prs.2pl"
+      ]
+    },
+    {
+      "id": "24-6",
+      "type": "build_sentence",
+      "prompt_de": "Wir wohnen auch hier.",
+      "solution": [
+        [
+          "my",
+          "nom"
+        ],
+        [
+          "tozhe",
+          "base"
+        ],
+        [
+          "zhit",
+          "prs.1pl"
+        ],
+        [
+          "zdes",
+          "base"
+        ]
+      ],
+      "distractors": [
+        [
+          "zhit",
+          "prs.3pl"
+        ],
+        [
+          "tam",
+          "base"
+        ]
+      ]
+    },
+    {
+      "id": "24-7",
+      "type": "build_sentence",
+      "prompt_de": "Das ist unsere Nachbarin.",
+      "solution": [
+        [
+          "eto",
+          "base"
+        ],
+        [
+          "nash",
+          "nom.f"
+        ],
+        [
+          "sosedka",
+          "nom.sg"
+        ]
+      ],
+      "distractors": [
+        [
+          "nash",
+          "nom.m"
+        ],
+        [
+          "sosed",
+          "nom.sg"
+        ]
+      ]
+    },
+    {
+      "id": "24-8",
+      "type": "build_sentence",
+      "prompt_de": "Meine Frau wohnt auch hier.",
+      "solution": [
+        [
+          "moj",
+          "nom.f"
+        ],
+        [
+          "zhena",
+          "nom.sg"
+        ],
+        [
+          "tozhe",
+          "base"
+        ],
+        [
+          "zhit",
+          "prs.3sg"
+        ],
+        [
+          "zdes",
+          "base"
+        ]
+      ],
+      "distractors": [
+        [
+          "zhit",
+          "prs.1sg"
+        ],
+        [
+          "moj",
+          "nom.m"
+        ]
+      ]
+    },
+    {
+      "id": "24-9",
+      "type": "dialog_reply",
+      "prompt_de": "Deine neue Nachbarin fragt, wo du wohnst.",
+      "tutor_line": [
+        [
+          "gde",
+          "base"
+        ],
+        [
+          "ty",
+          "nom"
+        ],
+        [
+          "zhit",
+          "prs.2sg"
+        ]
+      ],
+      "correct_index": 0,
+      "options": [
+        {
+          "tokens": [
+            [
+              "ja",
+              "nom"
+            ],
+            [
+              "zhit",
+              "prs.1sg"
+            ],
+            [
+              "zdes",
+              "base"
+            ]
+          ],
+          "why_de": ""
+        },
+        {
+          "tokens": [
+            [
+              "ja",
+              "nom"
+            ],
+            [
+              "zhit",
+              "prs.3sg"
+            ],
+            [
+              "zdes",
+              "base"
+            ]
+          ],
+          "why_de": "живёт gehört zu он und она́. Zu я gehört живу́."
+        },
+        {
+          "tokens": [
+            [
+              "ja",
+              "nom"
+            ],
+            [
+              "zhit",
+              "prs.1sg"
+            ],
+            [
+              "gde",
+              "base"
+            ]
+          ],
+          "why_de": "где ist das Fragewort. Die Antwort heißt здесь oder там."
+        }
+      ]
+    }
+  ]
+}
