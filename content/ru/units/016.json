@@ -92,7 +92,8 @@
         "prs.1sg",
         "prs.1pl",
         "prs.3sg"
-      ]
+      ],
+      "audio_prompt": true
     },
     {
       "id": "16-4",
@@ -313,6 +314,31 @@
           ],
           "why_de": "говорю́ ist die Ich-Form. Für мы brauchst du говори́м."
         }
+      ]
+    },
+    {
+      "id": "16-10",
+      "type": "listen_meaning",
+      "prompt_de": "Hör zu. Was wird gesagt?",
+      "sentence": [
+        [
+          "my",
+          "nom"
+        ],
+        [
+          "govorit",
+          "prs.1pl"
+        ],
+        [
+          "po_nemetski",
+          "base"
+        ]
+      ],
+      "correct_index": 0,
+      "options_de": [
+        "Wir sprechen Deutsch.",
+        "Sie sprechen Deutsch.",
+        "Wir sprechen Russisch."
       ]
     }
   ]

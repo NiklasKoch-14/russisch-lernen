@@ -112,7 +112,8 @@
         "prs.1sg",
         "prs.3sg",
         "prs.3pl"
-      ]
+      ],
+      "audio_prompt": true
     },
     {
       "id": "24-5",
@@ -313,6 +314,35 @@
           ],
           "why_de": "где ist das Fragewort. Die Antwort heißt здесь oder там."
         }
+      ]
+    },
+    {
+      "id": "24-10",
+      "type": "listen_meaning",
+      "prompt_de": "Hör zu. Was wird gesagt?",
+      "sentence": [
+        [
+          "my",
+          "nom"
+        ],
+        [
+          "tozhe",
+          "base"
+        ],
+        [
+          "zhit",
+          "prs.1pl"
+        ],
+        [
+          "zdes",
+          "base"
+        ]
+      ],
+      "correct_index": 0,
+      "options_de": [
+        "Wir wohnen auch hier.",
+        "Sie wohnen auch hier.",
+        "Wir wohnen auch dort."
       ]
     }
   ]

@@ -111,7 +111,8 @@
         "nom.f",
         "nom.n",
         "nom.pl"
-      ]
+      ],
+      "audio_prompt": true
     },
     {
       "id": "19-5",
@@ -300,6 +301,31 @@
           ],
           "why_de": "Das Adjektiv richtet sich nach го́род und muss deshalb ebenfalls männlich sein: ма́ленький."
         }
+      ]
+    },
+    {
+      "id": "19-10",
+      "type": "listen_meaning",
+      "prompt_de": "Hör zu. Was wird gesagt?",
+      "sentence": [
+        [
+          "eto",
+          "base"
+        ],
+        [
+          "novyj",
+          "nom.m"
+        ],
+        [
+          "dom",
+          "nom.sg"
+        ]
+      ],
+      "correct_index": 0,
+      "options_de": [
+        "Das ist ein neues Haus.",
+        "Das ist ein altes Haus.",
+        "Das ist eine neue Stadt."
       ]
     }
   ]

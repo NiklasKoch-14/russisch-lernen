@@ -119,7 +119,8 @@
       "distractor_forms": [
         "prs.2sg",
         "prs.3sg"
-      ]
+      ],
+      "audio_prompt": true
     },
     {
       "id": "8-5",
@@ -273,6 +274,31 @@
           ],
           "why_de": "говори́те gehört zu вы — das wäre die Frage, nicht die Antwort."
         }
+      ]
+    },
+    {
+      "id": "8-9",
+      "type": "listen_meaning",
+      "prompt_de": "Hör zu. Was wird gesagt?",
+      "sentence": [
+        [
+          "ja",
+          "nom"
+        ],
+        [
+          "govorit",
+          "prs.1sg"
+        ],
+        [
+          "po_nemetski",
+          "base"
+        ]
+      ],
+      "correct_index": 0,
+      "options_de": [
+        "Ich spreche Deutsch.",
+        "Du sprichst Deutsch.",
+        "Ich spreche Russisch."
       ]
     }
   ]

@@ -27,7 +27,13 @@ def test_stage_zero_teaches_letters_only():
 def test_every_exercise_type_appears_in_the_seed_content():
     course = load_course(CONTENT_DIR)
     types = {exercise.type for unit in course.units.values() for exercise in unit.exercises}
-    assert types == {"build_sentence", "choose_form", "match_pairs", "dialog_reply"}
+    assert types == {
+        "build_sentence",
+        "choose_form",
+        "match_pairs",
+        "dialog_reply",
+        "listen_meaning",
+    }
 
 
 def test_screening_probes_are_ordered_by_the_unit_they_unlock():
@@ -53,3 +59,19 @@ def test_every_letter_has_an_example_word_to_hear_its_sound_in():
         if lexeme.pos == "letter" and not (lexeme.forms["base"].speak_as or "").strip()
     )
     assert missing == [], f"Buchstaben ohne speak_as: {missing}"
+
+
+def test_every_language_unit_has_at_least_one_listening_exercise():
+    # Stufe 0 sind die Buchstaben-Einheiten; dort gibt es nur Zuordnungen,
+    # der Ton kommt über speak_as in der Aufloesung.
+    course = load_course(CONTENT_DIR)
+    missing = [
+        unit.id
+        for unit in course.ordered_units()
+        if unit.stage > 0
+        and not any(
+            getattr(exercise, "audio_prompt", False) or exercise.type == "listen_meaning"
+            for exercise in unit.exercises
+        )
+    ]
+    assert missing == [], f"Einheiten ohne Hör-Aufgabe: {missing}"

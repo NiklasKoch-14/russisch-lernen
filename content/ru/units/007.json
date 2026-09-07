@@ -131,7 +131,8 @@
       ],
       "distractor_forms": [
         "nom.sg"
-      ]
+      ],
+      "audio_prompt": true
     },
     {
       "id": "7-6",

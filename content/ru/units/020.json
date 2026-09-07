@@ -117,7 +117,8 @@
           "dva",
           "nom.m"
         ]
-      ]
+      ],
+      "audio_prompt": true
     },
     {
       "id": "20-5",

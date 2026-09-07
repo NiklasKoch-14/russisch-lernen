@@ -109,7 +109,8 @@
           "govorit",
           "prs.2sg"
         ]
-      ]
+      ],
+      "audio_prompt": true
     },
     {
       "id": "9-5",

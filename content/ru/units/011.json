@@ -137,7 +137,8 @@
       "distractor_forms": [
         "nom.m",
         "nom.n"
-      ]
+      ],
+      "audio_prompt": true
     },
     {
       "id": "11-6",

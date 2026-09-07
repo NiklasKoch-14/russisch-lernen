@@ -99,7 +99,8 @@
       "distractor_forms": [
         "imp.pl",
         "inf"
-      ]
+      ],
+      "audio_prompt": true
     },
     {
       "id": "17-4",

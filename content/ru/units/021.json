@@ -115,7 +115,8 @@
           "sto",
           "nom"
         ]
-      ]
+      ],
+      "audio_prompt": true
     },
     {
       "id": "21-5",

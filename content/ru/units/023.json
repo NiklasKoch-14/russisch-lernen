@@ -94,7 +94,8 @@
           "sobaka",
           "nom.sg"
         ]
-      ]
+      ],
+      "audio_prompt": true
     },
     {
       "id": "23-4",

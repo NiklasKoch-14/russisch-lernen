@@ -117,7 +117,8 @@
       "distractor_forms": [
         "prs.1sg",
         "prs.2sg"
-      ]
+      ],
+      "audio_prompt": true
     },
     {
       "id": "13-5",
@@ -248,6 +249,31 @@
           ],
           "why_de": "говорю́ gehört zu я. Zu она́ passt говори́т."
         }
+      ]
+    },
+    {
+      "id": "13-8",
+      "type": "listen_meaning",
+      "prompt_de": "Hör zu. Was wird gesagt?",
+      "sentence": [
+        [
+          "on",
+          "nom"
+        ],
+        [
+          "govorit",
+          "prs.3sg"
+        ],
+        [
+          "po_russki",
+          "base"
+        ]
+      ],
+      "correct_index": 0,
+      "options_de": [
+        "Er spricht Russisch.",
+        "Sie spricht Russisch.",
+        "Er spricht Deutsch."
       ]
     }
   ]

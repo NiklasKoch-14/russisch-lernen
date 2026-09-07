@@ -168,7 +168,8 @@
       "distractor_forms": [
         "nom.sg",
         "gen.sg"
-      ]
+      ],
+      "audio_prompt": true
     },
     {
       "id": "22-7",
@@ -298,6 +299,31 @@
           ],
           "why_de": "Beim Alter steht die Person im Dativ: мне, nicht я."
         }
+      ]
+    },
+    {
+      "id": "22-10",
+      "type": "listen_meaning",
+      "prompt_de": "Hör zu. Was wird gesagt?",
+      "sentence": [
+        [
+          "ja",
+          "dat"
+        ],
+        [
+          "dvadtsat",
+          "nom"
+        ],
+        [
+          "god",
+          "gen.pl"
+        ]
+      ],
+      "correct_index": 0,
+      "options_de": [
+        "Ich bin zwanzig Jahre alt.",
+        "Er ist zwanzig Jahre alt.",
+        "Ich bin dreißig Jahre alt."
       ]
     }
   ]

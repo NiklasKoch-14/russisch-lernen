@@ -80,7 +80,8 @@
           "poka",
           "base"
         ]
-      ]
+      ],
+      "audio_prompt": true
     },
     {
       "id": "5-4",
