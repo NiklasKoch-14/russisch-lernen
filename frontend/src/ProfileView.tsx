@@ -61,8 +61,9 @@ export default function ProfileView() {
           <h2 className="text-lg font-semibold">Die Sprachausgabe hat gemeldet: {lastError}</h2>
           <p className="mt-1">
             Bei <code className="mx-1">network</code> oder{" "}
-            <code className="mx-1">synthesis-failed</code> liegt es meist an einer Online-Stimme.
-            Eine lokal installierte russische Stimme setzt sofort ein und stockt nicht.
+            <code className="mx-1">synthesis-failed</code> liegt es an der Online-Stimme, die
+            Speaker bevorzugt — sie klingt besser als die lokalen Windows-Stimmen, braucht dafür
+            aber eine Internetverbindung.
           </p>
         </section>
       ) : null}

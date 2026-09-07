@@ -18,18 +18,22 @@ export function stripStress(text: string): string {
 const isRussian = (voice: SpeechSynthesisVoice) => voice.lang.toLowerCase().startsWith("ru");
 
 /**
- * Lokale Stimmen zuerst. Online-Stimmen wie „Microsoft Dmitry Online (Natural)"
- * schicken den Text an einen Server: sie setzen verzoegert ein und stocken
- * mitten im Satz. Erst danach zaehlt die genauere Sprachkennung.
+ * Klang vor Tempo — eine bewusste Abwaegung, keine technische Notwendigkeit.
+ *
+ * Die lokalen Windows-Stimmen (`Microsoft Irina Desktop`) sind sofort da, aber
+ * leise und blechern, und sie verschlucken den Anlaut kurzer Woerter. Die
+ * Natural-Stimmen (`Microsoft Dmitry Online`) klingen deutlich besser, holen
+ * jeden Satz aber aus dem Netz und setzen dadurch spuerbar spaeter ein.
+ *
+ * Nach `localService` zu sortieren statt nach dem Namen haelt das unabhaengig
+ * von der Reihenfolge, in der der Browser seine Stimmen meldet.
  */
 export function pickRussianVoice(voices: SpeechSynthesisVoice[]): SpeechSynthesisVoice | null {
   const russian = voices.filter(isRussian);
-  const local = russian.filter((voice) => voice.localService);
-  // Lokal schlaegt die genauere Sprachkennung: eine lokale ru-Stimme ist besser
-  // als eine ru-RU-Stimme, die jeden Satz erst aus dem Netz holt.
+  const natural = russian.filter((voice) => !voice.localService);
   const best = (candidates: SpeechSynthesisVoice[]) =>
     candidates.find((voice) => voice.lang === "ru-RU") ?? candidates[0];
-  return best(local) ?? best(russian) ?? null;
+  return best(natural) ?? best(russian) ?? null;
 }
 
 /** getVoices() ist beim ersten Aufruf oft leer; die Liste kommt erst mit voiceschanged. */

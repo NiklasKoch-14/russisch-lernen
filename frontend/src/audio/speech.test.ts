@@ -46,22 +46,29 @@ describe("pickRussianVoice", () => {
     expect(pickRussianVoice([voice("de-DE"), voice("en-US")])).toBeNull();
   });
 
-  it("zieht die lokale Stimme der Online-Stimme vor", () => {
-    // Online-Stimmen gehen ueber das Netz: sie starten verzoegert und stocken.
-    const online = voice("ru-RU", false, "Dmitry Online");
-    const local = voice("ru-RU", true, "Irina Desktop");
-    expect(pickRussianVoice([online, local])?.name).toBe("Irina Desktop");
+  it("zieht die natürlich klingende Stimme der lokalen vor", () => {
+    // Die lokalen Windows-Desktop-Stimmen sind leise und verschlucken kurze
+    // Woerter; die Natural-Stimmen klingen besser, kommen aber aus dem Netz.
+    const natural = voice("ru-RU", false, "Dmitry Online");
+    const desktop = voice("ru-RU", true, "Irina Desktop");
+    expect(pickRussianVoice([desktop, natural])?.name).toBe("Dmitry Online");
   });
 
-  it("nimmt eine lokale ru-Stimme vor einer Online-ru-RU-Stimme", () => {
-    const online = voice("ru-RU", false, "Dmitry Online");
-    const local = voice("ru", true, "Lokal");
-    expect(pickRussianVoice([online, local])?.name).toBe("Lokal");
+  it("findet die natürliche Stimme unabhängig von der Listenreihenfolge", () => {
+    const natural = voice("ru-RU", false, "Dmitry Online");
+    const desktop = voice("ru-RU", true, "Irina Desktop");
+    expect(pickRussianVoice([natural, desktop])?.name).toBe("Dmitry Online");
   });
 
-  it("nimmt die Online-Stimme, wenn es keine lokale gibt", () => {
-    const online = voice("ru-RU", false, "Dmitry Online");
-    expect(pickRussianVoice([voice("de-DE"), online])?.name).toBe("Dmitry Online");
+  it("nimmt die lokale Stimme, wenn es keine natürliche gibt", () => {
+    const desktop = voice("ru-RU", true, "Irina Desktop");
+    expect(pickRussianVoice([voice("de-DE"), desktop])?.name).toBe("Irina Desktop");
+  });
+
+  it("bevorzugt innerhalb einer Gruppe die genauere Sprachkennung", () => {
+    const broad = voice("ru", false, "Breit Online");
+    const exact = voice("ru-RU", false, "Genau Online");
+    expect(pickRussianVoice([broad, exact])?.name).toBe("Genau Online");
   });
 });
 
