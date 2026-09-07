@@ -41,3 +41,15 @@ def test_every_stage_one_unit_reuses_or_introduces_vocabulary_consistently():
     for unit in course.ordered_units():
         introduced.update(unit.new_lexemes)
     assert "nika" in introduced and "zvat" in introduced
+
+
+def test_every_letter_has_an_example_word_to_hear_its_sound_in():
+    # Vorgelesen nennt ein Buchstabe seinen Namen ("эр"), nicht seinen Laut.
+    # speak_as haelt deshalb ein Wort bereit, in dem man den Laut wirklich hoert.
+    course = load_course(CONTENT_DIR)
+    missing = sorted(
+        lexeme.id
+        for lexeme in course.lexemes.values()
+        if lexeme.pos == "letter" and not (lexeme.forms["base"].speak_as or "").strip()
+    )
+    assert missing == [], f"Buchstaben ohne speak_as: {missing}"

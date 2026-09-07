@@ -9,7 +9,8 @@
       "forms": {
         "base": {
           "text": "Р р",
-          "translit": "r"
+          "translit": "r",
+          "speak_as": "ры́ба"
         }
       }
     },
@@ -21,7 +22,8 @@
       "forms": {
         "base": {
           "text": "Н н",
-          "translit": "n"
+          "translit": "n",
+          "speak_as": "но́мер"
         }
       }
     },
@@ -33,7 +35,8 @@
       "forms": {
         "base": {
           "text": "В в",
-          "translit": "v"
+          "translit": "v",
+          "speak_as": "вода́"
         }
       }
     },
@@ -45,7 +48,8 @@
       "forms": {
         "base": {
           "text": "С с",
-          "translit": "s"
+          "translit": "s",
+          "speak_as": "суп"
         }
       }
     },
@@ -57,7 +61,8 @@
       "forms": {
         "base": {
           "text": "У у",
-          "translit": "u"
+          "translit": "u",
+          "speak_as": "у́тро"
         }
       }
     },
@@ -69,7 +74,8 @@
       "forms": {
         "base": {
           "text": "Х х",
-          "translit": "ch"
+          "translit": "ch",
+          "speak_as": "хорошо́"
         }
       }
     },
@@ -81,7 +87,8 @@
       "forms": {
         "base": {
           "text": "Ж ж",
-          "translit": "ž"
+          "translit": "ž",
+          "speak_as": "журна́л"
         }
       }
     },
@@ -93,7 +100,8 @@
       "forms": {
         "base": {
           "text": "Ц ц",
-          "translit": "c"
+          "translit": "c",
+          "speak_as": "центр"
         }
       }
     },
@@ -105,7 +113,8 @@
       "forms": {
         "base": {
           "text": "Ч ч",
-          "translit": "č"
+          "translit": "č",
+          "speak_as": "чай"
         }
       }
     },
@@ -117,7 +126,8 @@
       "forms": {
         "base": {
           "text": "Ш ш",
-          "translit": "š"
+          "translit": "š",
+          "speak_as": "шко́ла"
         }
       }
     },
@@ -129,7 +139,8 @@
       "forms": {
         "base": {
           "text": "Щ щ",
-          "translit": "šč"
+          "translit": "šč",
+          "speak_as": "борщ"
         }
       }
     },
@@ -141,7 +152,8 @@
       "forms": {
         "base": {
           "text": "Э э",
-          "translit": "e"
+          "translit": "e",
+          "speak_as": "э́то"
         }
       }
     },
@@ -153,7 +165,8 @@
       "forms": {
         "base": {
           "text": "Ю ю",
-          "translit": "ju"
+          "translit": "ju",
+          "speak_as": "юг"
         }
       }
     },
@@ -165,7 +178,8 @@
       "forms": {
         "base": {
           "text": "Я я",
-          "translit": "ja"
+          "translit": "ja",
+          "speak_as": "я́блоко"
         }
       }
     },
@@ -177,7 +191,8 @@
       "forms": {
         "base": {
           "text": "Б б",
-          "translit": "b"
+          "translit": "b",
+          "speak_as": "банк"
         }
       }
     },
@@ -189,7 +204,8 @@
       "forms": {
         "base": {
           "text": "Г г",
-          "translit": "g"
+          "translit": "g",
+          "speak_as": "го́род"
         }
       }
     },
@@ -201,7 +217,8 @@
       "forms": {
         "base": {
           "text": "Д д",
-          "translit": "d"
+          "translit": "d",
+          "speak_as": "дом"
         }
       }
     },
@@ -213,7 +230,8 @@
       "forms": {
         "base": {
           "text": "З з",
-          "translit": "z"
+          "translit": "z",
+          "speak_as": "за́втра"
         }
       }
     },
@@ -225,7 +243,8 @@
       "forms": {
         "base": {
           "text": "И и",
-          "translit": "i"
+          "translit": "i",
+          "speak_as": "и́мя"
         }
       }
     },
@@ -237,7 +256,8 @@
       "forms": {
         "base": {
           "text": "Й й",
-          "translit": "j"
+          "translit": "j",
+          "speak_as": "май"
         }
       }
     },
@@ -249,7 +269,8 @@
       "forms": {
         "base": {
           "text": "Л л",
-          "translit": "l"
+          "translit": "l",
+          "speak_as": "ла́мпа"
         }
       }
     },
@@ -261,7 +282,8 @@
       "forms": {
         "base": {
           "text": "П п",
-          "translit": "p"
+          "translit": "p",
+          "speak_as": "парк"
         }
       }
     },
@@ -273,7 +295,8 @@
       "forms": {
         "base": {
           "text": "Ф ф",
-          "translit": "f"
+          "translit": "f",
+          "speak_as": "фи́льм"
         }
       }
     },
@@ -285,7 +308,8 @@
       "forms": {
         "base": {
           "text": "Ы ы",
-          "translit": "y"
+          "translit": "y",
+          "speak_as": "сын"
         }
       }
     },
@@ -297,7 +321,8 @@
       "forms": {
         "base": {
           "text": "А а",
-          "translit": "a"
+          "translit": "a",
+          "speak_as": "а́дрес"
         }
       }
     },
@@ -309,7 +334,8 @@
       "forms": {
         "base": {
           "text": "О о",
-          "translit": "o"
+          "translit": "o",
+          "speak_as": "о́чень"
         }
       }
     },
@@ -321,7 +347,8 @@
       "forms": {
         "base": {
           "text": "К к",
-          "translit": "k"
+          "translit": "k",
+          "speak_as": "кот"
         }
       }
     },
@@ -333,7 +360,8 @@
       "forms": {
         "base": {
           "text": "М м",
-          "translit": "m"
+          "translit": "m",
+          "speak_as": "ма́ма"
         }
       }
     },
@@ -345,7 +373,8 @@
       "forms": {
         "base": {
           "text": "Т т",
-          "translit": "t"
+          "translit": "t",
+          "speak_as": "торт"
         }
       }
     },
@@ -357,7 +386,8 @@
       "forms": {
         "base": {
           "text": "Ё ё",
-          "translit": "jo"
+          "translit": "jo",
+          "speak_as": "ёлка"
         }
       }
     },
@@ -369,7 +399,8 @@
       "forms": {
         "base": {
           "text": "ь",
-          "translit": "'"
+          "translit": "'",
+          "speak_as": "мать"
         }
       }
     },
@@ -381,7 +412,8 @@
       "forms": {
         "base": {
           "text": "ъ",
-          "translit": "''"
+          "translit": "''",
+          "speak_as": "подъе́зд"
         }
       }
     },
