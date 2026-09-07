@@ -23,6 +23,7 @@ const mockSpeech = (available: boolean) =>
     setAutoplay: vi.fn(),
     say: vi.fn(),
     lastError: null,
+    activeVoice: null,
   });
 
 afterEach(() => vi.restoreAllMocks());

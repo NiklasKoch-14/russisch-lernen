@@ -236,3 +236,61 @@ describe("Abbrechen ist kein Fehler", () => {
     );
   });
 });
+
+describe("Welche Stimme ist aktiv", () => {
+  function Probe2() {
+    const { activeVoice } = useSpeech();
+    return (
+      <span data-testid="stimme">
+        {activeVoice ? `${activeVoice.name}|${activeVoice.local ? "lokal" : "online"}` : "keine"}
+      </span>
+    );
+  }
+
+  const withVoices = (list: { lang: string; name: string; localService: boolean }[]) => {
+    vi.stubGlobal("speechSynthesis", {
+      getVoices: () => list,
+      addEventListener: () => {},
+      removeEventListener: () => {},
+      cancel: () => {},
+      speak: () => {},
+    });
+  };
+
+  it("nennt die gewählte Stimme und ob sie aus dem Netz kommt", async () => {
+    withVoices([
+      { lang: "ru-RU", name: "Irina Desktop", localService: true },
+      { lang: "ru-RU", name: "Dmitry Online", localService: false },
+    ]);
+    render(
+      <SpeechProvider>
+        <Probe2 />
+      </SpeechProvider>,
+    );
+    await waitFor(() =>
+      expect(screen.getByTestId("stimme")).toHaveTextContent("Dmitry Online|online"),
+    );
+  });
+
+  it("meldet die lokale Stimme, wenn es keine andere gibt", async () => {
+    withVoices([{ lang: "ru-RU", name: "Irina Desktop", localService: true }]);
+    render(
+      <SpeechProvider>
+        <Probe2 />
+      </SpeechProvider>,
+    );
+    await waitFor(() =>
+      expect(screen.getByTestId("stimme")).toHaveTextContent("Irina Desktop|lokal"),
+    );
+  });
+
+  it("meldet keine Stimme, wenn keine russische da ist", async () => {
+    withVoices([{ lang: "de-DE", name: "Katja", localService: true }]);
+    render(
+      <SpeechProvider>
+        <Probe2 />
+      </SpeechProvider>,
+    );
+    await waitFor(() => expect(screen.getByTestId("stimme")).toHaveTextContent("keine"));
+  });
+});

@@ -20,7 +20,7 @@ function chatUnlocked(overview: CourseOverview | null): boolean {
 
 export default function ProfileView() {
   const { show, setShow } = useTransliteration();
-  const { available, lastError } = useSpeech();
+  const { available, lastError, activeVoice } = useSpeech();
   const [profile, setProfile] = useState<Profile | null>(null);
   const [topics, setTopics] = useState<string[]>([]);
   const [overview, setOverview] = useState<CourseOverview | null>(null);
@@ -55,6 +55,20 @@ export default function ProfileView() {
           Umschrift anzeigen
         </label>
       </section>
+
+      {activeVoice ? (
+        <section>
+          <h2 className="text-lg font-semibold">Sprachausgabe</h2>
+          <p className="text-slate-600">
+            Aktive Stimme: <b>{activeVoice.name}</b> ({activeVoice.lang}) —{" "}
+            {activeVoice.local ? (
+              <span>lokal installiert, setzt sofort ein</span>
+            ) : (
+              <span>online, klingt besser, setzt dafür verzögert ein</span>
+            )}
+          </p>
+        </section>
+      ) : null}
 
       {lastError ? (
         <section className="rounded-2xl border-2 border-rose-200 bg-rose-50 p-4">

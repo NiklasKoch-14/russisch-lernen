@@ -12,6 +12,8 @@ interface SpeechValue {
   say: (text: string, options?: { slow?: boolean }) => void;
   /** Fehlercode der letzten Sprachausgabe, sonst null. */
   lastError: string | null;
+  /** Welche Stimme tatsaechlich spricht — `local: false` heisst: aus dem Netz. */
+  activeVoice: { name: string; lang: string; local: boolean } | null;
 }
 
 const SpeechContext = createContext<SpeechValue>({
@@ -20,6 +22,7 @@ const SpeechContext = createContext<SpeechValue>({
   setAutoplay: () => {},
   say: () => {},
   lastError: null,
+  activeVoice: null,
 });
 
 export function useSpeech(): SpeechValue {
@@ -67,9 +70,14 @@ export function SpeechProvider({ children }: { children: ReactNode }) {
     [voice],
   );
 
+  const activeVoice = useMemo(
+    () => (voice ? { name: voice.name, lang: voice.lang, local: voice.localService } : null),
+    [voice],
+  );
+
   const value = useMemo(
-    () => ({ available, autoplay, setAutoplay, say, lastError }),
-    [available, autoplay, setAutoplay, say, lastError],
+    () => ({ available, autoplay, setAutoplay, say, lastError, activeVoice }),
+    [available, autoplay, setAutoplay, say, lastError, activeVoice],
   );
 
   return <SpeechContext.Provider value={value}>{children}</SpeechContext.Provider>;

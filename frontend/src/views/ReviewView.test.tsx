@@ -57,6 +57,7 @@ describe("ReviewView mit Ton", () => {
       setAutoplay: vi.fn(),
       say: vi.fn(),
     lastError: null,
+    activeVoice: null,
     });
   });
 

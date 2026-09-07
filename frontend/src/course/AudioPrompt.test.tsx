@@ -12,6 +12,7 @@ const mockSpeech = (available: boolean | null, autoplay = true) => {
     setAutoplay: vi.fn(),
     say,
     lastError: null,
+    activeVoice: null,
   });
   return say;
 };

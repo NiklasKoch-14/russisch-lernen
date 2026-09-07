@@ -116,6 +116,7 @@ describe("ProfileView ohne russische Stimme", () => {
       setAutoplay: vi.fn(),
       say: vi.fn(),
     lastError: null,
+    activeVoice: null,
     });
     render(
       <MemoryRouter>
@@ -132,6 +133,7 @@ describe("ProfileView ohne russische Stimme", () => {
       setAutoplay: vi.fn(),
       say: vi.fn(),
     lastError: null,
+    activeVoice: null,
     });
     render(
       <MemoryRouter>
@@ -156,6 +158,7 @@ describe("ProfileView bei einem Sprachausgabe-Fehler", () => {
       setAutoplay: vi.fn(),
       say: vi.fn(),
       lastError: "synthesis-failed",
+    activeVoice: null,
     });
     render(
       <MemoryRouter>
@@ -174,6 +177,7 @@ describe("ProfileView bei einem Sprachausgabe-Fehler", () => {
       setAutoplay: vi.fn(),
       say: vi.fn(),
       lastError: null,
+    activeVoice: null,
     });
     render(
       <MemoryRouter>
@@ -183,5 +187,44 @@ describe("ProfileView bei einem Sprachausgabe-Fehler", () => {
     await waitFor(() =>
       expect(screen.queryByText(/Die Sprachausgabe hat gemeldet/)).toBeNull(),
     );
+  });
+});
+
+describe("ProfileView zeigt die aktive Stimme", () => {
+  beforeEach(() => {
+    vi.spyOn(api, "getProfile").mockResolvedValue(profile);
+    vi.spyOn(api, "getCourse").mockResolvedValue({ stages: [] });
+    vi.spyOn(legacyApi, "getLearningPlan").mockResolvedValue(null);
+  });
+
+  const withVoice = (name: string, local: boolean) =>
+    vi.spyOn(speech, "useSpeech").mockReturnValue({
+      available: true,
+      autoplay: true,
+      setAutoplay: vi.fn(),
+      say: vi.fn(),
+      lastError: null,
+      activeVoice: { name, lang: "ru-RU", local },
+    });
+
+  it("nennt Namen und dass die Stimme aus dem Netz kommt", async () => {
+    withVoice("Microsoft Dmitry Online", false);
+    render(
+      <MemoryRouter>
+        <ProfileView />
+      </MemoryRouter>,
+    );
+    expect(await screen.findByText(/Microsoft Dmitry Online/)).toBeInTheDocument();
+    expect(screen.getByText(/online, klingt besser/)).toBeInTheDocument();
+  });
+
+  it("nennt eine lokale Stimme als lokal", async () => {
+    withVoice("Microsoft Irina Desktop", true);
+    render(
+      <MemoryRouter>
+        <ProfileView />
+      </MemoryRouter>,
+    );
+    expect(await screen.findByText(/lokal installiert/)).toBeInTheDocument();
   });
 });
