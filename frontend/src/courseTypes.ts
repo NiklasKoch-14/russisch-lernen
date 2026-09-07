@@ -115,4 +115,5 @@ export interface Profile {
   cefr_level: string;
   show_transliteration: boolean;
   placement_unit: number | null;
+  audio_autoplay: boolean;
 }

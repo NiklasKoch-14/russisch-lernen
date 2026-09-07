@@ -57,19 +57,19 @@ describe("loadVoices", () => {
   });
 
   it("wartet auf voiceschanged, wenn die Liste zuerst leer ist", async () => {
-    let handler: (() => void) | null = null;
+    const handlers: (() => void)[] = [];
     let voices: SpeechSynthesisVoice[] = [];
     vi.stubGlobal("speechSynthesis", {
       getVoices: () => voices,
       addEventListener: (_: string, callback: () => void) => {
-        handler = callback;
+        handlers.push(callback);
       },
       removeEventListener: () => {},
     });
 
     const pending = loadVoices();
     voices = [voice("ru-RU")];
-    handler?.();
+    handlers.forEach((fire) => fire());
 
     expect((await pending).map((item) => item.lang)).toEqual(["ru-RU"]);
   });

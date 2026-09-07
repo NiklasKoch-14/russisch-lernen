@@ -49,5 +49,7 @@ export const submitReviewRound = (pairs: number[][]) =>
 
 export const getProfile = () => request<Profile>("/profile");
 
-export const patchProfile = (patch: Partial<Pick<Profile, "show_transliteration">>) =>
+export const patchProfile = (
+  patch: Partial<Pick<Profile, "show_transliteration" | "audio_autoplay">>,
+) =>
   request<Profile>("/profile", { method: "PATCH", body: JSON.stringify(patch) });

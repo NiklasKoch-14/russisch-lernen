@@ -5,14 +5,14 @@
  */
 
 /** Kombinierendes Akut. Steht im Content zur Betonung, verwirrt aber manche Stimmen. */
-const COMBINING_ACUTE = "́";
+const COMBINING_ACUTE = /\u0301/g;
 
 /** Etwas langsamer als normal — bei russischer Vokalreduktion hört man sonst zu wenig. */
 export const NORMAL_RATE = 0.85;
 export const SLOW_RATE = 0.6;
 
 export function stripStress(text: string): string {
-  return text.replaceAll(COMBINING_ACUTE, "");
+  return text.replace(COMBINING_ACUTE, "");
 }
 
 export function pickRussianVoice(voices: SpeechSynthesisVoice[]): SpeechSynthesisVoice | null {

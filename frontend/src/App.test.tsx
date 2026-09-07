@@ -16,6 +16,7 @@ describe("App", () => {
       language: "russian",
       cefr_level: "UNPLACED",
       show_transliteration: true,
+      audio_autoplay: true,
       placement_unit: null,
     });
   });
