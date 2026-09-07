@@ -6,6 +6,7 @@ from app.content.models import (
     Course,
     DialogReplyExercise,
     Exercise,
+    ListenMeaningExercise,
     MatchPairsExercise,
     TokenRef,
 )
@@ -13,6 +14,7 @@ from app.course.presenter import (
     build_sentence_tiles,
     choose_form_options,
     dialog_reply_options,
+    listen_meaning_options,
     match_pairs_sides,
 )
 
@@ -121,6 +123,25 @@ def _check_dialog_reply(
     )
 
 
+def _check_listen_meaning(
+    course: Course, exercise: ListenMeaningExercise, submission: dict
+) -> CheckResult:
+    order = listen_meaning_options(course, exercise)
+    index = submission.get("option_index")
+    original = order[index] if isinstance(index, int) and 0 <= index < len(order) else None
+    text, translit = _render(course, list(exercise.sentence))
+    correct = original == exercise.correct_index
+    return CheckResult(
+        correct=correct,
+        solution_text=text,
+        solution_translit=translit,
+        explanation_de=(
+            "" if correct else f"Gesagt wurde: {exercise.options_de[exercise.correct_index]}"
+        ),
+        trained_forms=list(exercise.sentence),
+    )
+
+
 def check_answer(course: Course, exercise: Exercise, submission: dict) -> CheckResult:
     """Grade a submission. Malformed input counts as a wrong answer, never an error."""
     if isinstance(exercise, BuildSentenceExercise):
@@ -131,4 +152,6 @@ def check_answer(course: Course, exercise: Exercise, submission: dict) -> CheckR
         return _check_match_pairs(course, exercise, submission)
     if isinstance(exercise, DialogReplyExercise):
         return _check_dialog_reply(course, exercise, submission)
+    if isinstance(exercise, ListenMeaningExercise):
+        return _check_listen_meaning(course, exercise, submission)
     raise ValueError(f"Unbekannter Aufgabentyp: {exercise!r}")

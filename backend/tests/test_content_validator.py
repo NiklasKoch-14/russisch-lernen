@@ -160,3 +160,60 @@ def test_reports_empty_speak_as(tmp_path):
     lexicon["lexemes"][0]["forms"]["nom"]["speak_as"] = "   "
     errors = validate_course(_course(tmp_path, lexicon=lexicon))
     assert any("speak_as" in error for error in errors)
+
+
+def _unit_with_listen_meaning(**overrides):
+    exercise = {
+        "id": "1-8",
+        "type": "listen_meaning",
+        "prompt_de": "Hör zu.",
+        "sentence": [["ja", "nom"], ["delat", "prs.1sg"]],
+        "correct_index": 0,
+        "options_de": ["Ich mache das.", "Er macht das.", "Du machst das."],
+    }
+    exercise.update(overrides)
+    unit = copy.deepcopy(GOOD_UNIT)
+    unit["exercises"] = unit["exercises"] + [exercise]
+    return unit
+
+
+def test_listen_meaning_is_valid_by_default(tmp_path):
+    assert validate_course(_course(tmp_path, units=[_unit_with_listen_meaning()])) == []
+
+
+def test_reports_too_few_options(tmp_path):
+    unit = _unit_with_listen_meaning(options_de=["Ich mache das.", "Er macht das."])
+    errors = validate_course(_course(tmp_path, units=[unit]))
+    assert any("mindestens 3" in error for error in errors)
+
+
+def test_reports_correct_index_out_of_range(tmp_path):
+    unit = _unit_with_listen_meaning(correct_index=5)
+    errors = validate_course(_course(tmp_path, units=[unit]))
+    assert any("correct_index" in error for error in errors)
+
+
+def test_reports_duplicate_options(tmp_path):
+    unit = _unit_with_listen_meaning(
+        options_de=["Ich mache das.", "Ich mache das.", "Er macht das."]
+    )
+    errors = validate_course(_course(tmp_path, units=[unit]))
+    assert any("doppelt" in error for error in errors)
+
+
+def test_reports_empty_option(tmp_path):
+    unit = _unit_with_listen_meaning(options_de=["Ich mache das.", "  ", "Er macht das."])
+    errors = validate_course(_course(tmp_path, units=[unit]))
+    assert any("leer" in error for error in errors)
+
+
+def test_reports_empty_sentence(tmp_path):
+    unit = _unit_with_listen_meaning(sentence=[])
+    errors = validate_course(_course(tmp_path, units=[unit]))
+    assert any("sentence" in error for error in errors)
+
+
+def test_listen_meaning_tokens_take_part_in_the_vocabulary_order_check(tmp_path):
+    unit = _unit_with_listen_meaning(sentence=[["nope", "nom"]])
+    errors = validate_course(_course(tmp_path, units=[unit]))
+    assert any("nope" in error for error in errors)

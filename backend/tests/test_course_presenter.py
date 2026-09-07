@@ -95,3 +95,23 @@ def test_choose_form_audio_text_fills_the_blank(tmp_path):
     course = load_course(write_course(tmp_path, units=[unit]))
     payload = present_exercise(course, course.units[1].exercises[1])
     assert payload["audio_text"] == "я де́лаю"
+
+
+def test_listen_meaning_shuffles_options_and_hides_the_answer(tmp_path):
+    unit = copy.deepcopy(MINIMAL_UNIT)
+    unit["exercises"].append(
+        {
+            "id": "1-5",
+            "type": "listen_meaning",
+            "prompt_de": "Hör zu.",
+            "sentence": [["ja", "nom"], ["delat", "prs.1sg"]],
+            "correct_index": 0,
+            "options_de": ["Ich mache das.", "Er macht das.", "Du machst das."],
+        }
+    )
+    course = load_course(write_course(tmp_path, units=[unit]))
+    payload = present_exercise(course, course.units[1].exercises[4])
+    assert sorted(payload["options_de"]) == ["Du machst das.", "Er macht das.", "Ich mache das."]
+    assert "correct_index" not in payload
+    assert payload["audio_text"] == "я де́лаю"
+    assert [word["text"] for word in payload["sentence"]] == ["я", "де́лаю"]

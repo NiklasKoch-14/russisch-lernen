@@ -75,8 +75,24 @@ class DialogReplyExercise:
     type: str = "dialog_reply"
 
 
+@dataclass(frozen=True)
+class ListenMeaningExercise:
+    """Hear a sentence, pick its German meaning from near-miss options."""
+
+    id: str
+    prompt_de: str
+    sentence: list[TokenRef]
+    options_de: list[str]
+    correct_index: int
+    type: str = "listen_meaning"
+
+
 Exercise = (
-    BuildSentenceExercise | ChooseFormExercise | MatchPairsExercise | DialogReplyExercise
+    BuildSentenceExercise
+    | ChooseFormExercise
+    | MatchPairsExercise
+    | DialogReplyExercise
+    | ListenMeaningExercise
 )
 
 

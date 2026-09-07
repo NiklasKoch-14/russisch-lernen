@@ -5,6 +5,7 @@ from app.content.models import (
     Course,
     DialogReplyExercise,
     Exercise,
+    ListenMeaningExercise,
     MatchPairsExercise,
     TokenRef,
     Unit,
@@ -71,6 +72,8 @@ def _exercise_tokens(exercise: Exercise) -> list[TokenRef]:
         for option in exercise.options:
             tokens.extend(option.tokens)
         return tokens
+    if isinstance(exercise, ListenMeaningExercise):
+        return list(exercise.sentence)
     return []
 
 
@@ -115,6 +118,20 @@ def _check_exercise(course: Course, unit: Unit, exercise: Exercise) -> list[str]
         for index, option in enumerate(exercise.options):
             if index != exercise.correct_index and not option.why_de.strip():
                 errors.append(f"{where}: falsche Option {index} hat keine Begründung (why_de)")
+    if isinstance(exercise, ListenMeaningExercise):
+        if len(exercise.options_de) < 3:
+            errors.append(f"{where}: braucht mindestens 3 Optionen in options_de")
+        if not 0 <= exercise.correct_index < len(exercise.options_de):
+            errors.append(
+                f"{where}: correct_index {exercise.correct_index} liegt außerhalb der Optionen"
+            )
+        cleaned = [option.strip() for option in exercise.options_de]
+        if any(not option for option in cleaned):
+            errors.append(f"{where}: eine Option in options_de ist leer")
+        if len(set(cleaned)) != len(cleaned):
+            errors.append(f"{where}: zwei Optionen in options_de sind doppelt")
+        if not exercise.sentence:
+            errors.append(f"{where}: sentence ist leer")
     if isinstance(exercise, MatchPairsExercise):
         if len(exercise.pairs) < 2:
             errors.append(f"{where}: braucht mindestens 2 Paare")

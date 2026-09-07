@@ -10,6 +10,7 @@ from app.content.models import (
     Form,
     GrammarFocus,
     Lexeme,
+    ListenMeaningExercise,
     MatchPairsExercise,
     ReplyOption,
     ScreeningProbe,
@@ -102,6 +103,14 @@ def _exercise(raw: dict, unit_id: int) -> Exercise:
                 id=raw["id"],
                 prompt_de=raw["prompt_de"],
                 pairs=_tokens(raw["pairs"], where),
+            )
+        if kind == "listen_meaning":
+            return ListenMeaningExercise(
+                id=raw["id"],
+                prompt_de=raw["prompt_de"],
+                sentence=_tokens(raw["sentence"], where),
+                options_de=[str(option) for option in raw["options_de"]],
+                correct_index=int(raw["correct_index"]),
             )
         if kind == "dialog_reply":
             options = [

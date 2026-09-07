@@ -1,12 +1,15 @@
+import copy
+
 from app.content.loader import load_course
 from app.course.checker import check_answer
 from app.course.presenter import (
     build_sentence_tiles,
     choose_form_options,
     dialog_reply_options,
+    listen_meaning_options,
     match_pairs_sides,
 )
-from tests.content_factory import write_course
+from tests.content_factory import MINIMAL_UNIT, write_course
 
 
 def _course(tmp_path):
@@ -110,3 +113,45 @@ def test_out_of_range_index_is_wrong_not_an_error(tmp_path):
 def test_missing_submission_key_is_wrong_not_an_error(tmp_path):
     course = _course(tmp_path)
     assert check_answer(course, course.units[1].exercises[0], {}).correct is False
+
+
+LISTEN_MEANING = {
+    "id": "1-5",
+    "type": "listen_meaning",
+    "prompt_de": "Hör zu. Was wird gesagt?",
+    "sentence": [["ja", "nom"], ["delat", "prs.1sg"]],
+    "correct_index": 0,
+    "options_de": ["Ich mache das.", "Er macht das.", "Du machst das."],
+}
+
+
+def _listen_course(tmp_path):
+    unit = copy.deepcopy(MINIMAL_UNIT)
+    unit["exercises"].append(LISTEN_MEANING)
+    return load_course(write_course(tmp_path, units=[unit]))
+
+
+def test_listen_meaning_accepts_the_right_option(tmp_path):
+    course = _listen_course(tmp_path)
+    exercise = course.units[1].exercises[4]
+    order = listen_meaning_options(course, exercise)
+    result = check_answer(course, exercise, {"option_index": order.index(0)})
+    assert result.correct is True
+    assert result.trained_forms == [("ja", "nom"), ("delat", "prs.1sg")]
+    assert result.solution_text == "я де́лаю"
+
+
+def test_listen_meaning_rejects_a_wrong_option(tmp_path):
+    course = _listen_course(tmp_path)
+    exercise = course.units[1].exercises[4]
+    order = listen_meaning_options(course, exercise)
+    result = check_answer(course, exercise, {"option_index": order.index(2)})
+    assert result.correct is False
+    assert "Ich mache das." in result.explanation_de
+
+
+def test_listen_meaning_treats_garbage_as_wrong(tmp_path):
+    course = _listen_course(tmp_path)
+    exercise = course.units[1].exercises[4]
+    assert check_answer(course, exercise, {"option_index": 99}).correct is False
+    assert check_answer(course, exercise, {}).correct is False

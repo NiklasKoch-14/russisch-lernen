@@ -4,6 +4,7 @@ from app.content.models import (
     Course,
     DialogReplyExercise,
     Exercise,
+    ListenMeaningExercise,
     MatchPairsExercise,
     TokenRef,
 )
@@ -52,6 +53,11 @@ def dialog_reply_options(course: Course, exercise: DialogReplyExercise) -> list[
     return shuffled_order(exercise.id, len(exercise.options))
 
 
+def listen_meaning_options(course: Course, exercise: ListenMeaningExercise) -> list[int]:
+    """Original option indices in display order."""
+    return shuffled_order(exercise.id, len(exercise.options_de))
+
+
 def present_exercise(course: Course, exercise: Exercise) -> dict:
     """Render an exercise for the client. Never includes the solution."""
     base = {"id": exercise.id, "type": exercise.type, "prompt_de": exercise.prompt_de}
@@ -78,6 +84,14 @@ def present_exercise(course: Course, exercise: Exercise) -> dict:
         if exercise.audio_prompt:
             payload["audio_text"] = spoken_text(course, filled_sentence(exercise))
         return payload
+
+    if isinstance(exercise, ListenMeaningExercise):
+        order = listen_meaning_options(course, exercise)
+        return base | {
+            "audio_text": spoken_text(course, list(exercise.sentence)),
+            "sentence": [_word(course, ref) for ref in exercise.sentence],
+            "options_de": [exercise.options_de[original] for original in order],
+        }
 
     if isinstance(exercise, MatchPairsExercise):
         left, right = match_pairs_sides(course, exercise)
