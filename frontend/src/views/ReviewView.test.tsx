@@ -58,6 +58,7 @@ describe("ReviewView mit Ton", () => {
       say: vi.fn(),
     lastError: null,
     activeVoice: null,
+      source: "browser",
     });
   });
 

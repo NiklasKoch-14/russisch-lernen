@@ -1,6 +1,7 @@
 import { render, screen, waitFor } from "@testing-library/react";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
+import * as server from "./serverSpeech";
 import { SpeechProvider, useSpeech } from "./SpeechContext";
 
 const { getProfile, patchProfile } = vi.hoisted(() => ({
@@ -56,11 +57,15 @@ beforeEach(() => {
   spoken.length = 0;
   getProfile.mockResolvedValue(profile(true));
   patchProfile.mockResolvedValue(undefined);
+  // Ohne das fetcht der Provider gegen das echte Backend — die Tests haengen
+  // dann davon ab, ob gerade ein Stack laeuft. Die Serverstufe wird dort
+  // geprueft, wo sie hingehoert (siehe "Drei Stufen").
+  vi.spyOn(server, "serverAudioAvailable").mockResolvedValue(false);
 });
 
 afterEach(() => {
   vi.unstubAllGlobals();
-  vi.clearAllMocks();
+  vi.restoreAllMocks();
 });
 
 describe("SpeechProvider", () => {
@@ -292,5 +297,95 @@ describe("Welche Stimme ist aktiv", () => {
       </SpeechProvider>,
     );
     await waitFor(() => expect(screen.getByTestId("stimme")).toHaveTextContent("keine"));
+  });
+});
+
+describe("Drei Stufen", () => {
+  function Stufe() {
+    const { source, available, say } = useSpeech();
+    return (
+      <>
+        <span data-testid="quelle">{source}</span>
+        <span data-testid="ton">{String(available)}</span>
+        <button type="button" onClick={() => void say("дом")}>
+          sprechen
+        </button>
+      </>
+    );
+  }
+
+  const renderStufe = () =>
+    render(
+      <SpeechProvider>
+        <Stufe />
+      </SpeechProvider>,
+    );
+
+  it("nimmt den Server, wenn er antwortet", async () => {
+    vi.spyOn(server, "serverAudioAvailable").mockResolvedValue(true);
+    const play = vi.spyOn(server, "playAudio").mockResolvedValue();
+    stubVoices([]);
+    renderStufe();
+
+    await waitFor(() => expect(screen.getByTestId("quelle")).toHaveTextContent("server"));
+    screen.getByRole("button", { name: "sprechen" }).click();
+    await waitFor(() => expect(play).toHaveBeenCalledWith("дом", { slow: false }));
+  });
+
+  it("nimmt die Browserstimme, wenn der Server schweigt", async () => {
+    vi.spyOn(server, "serverAudioAvailable").mockResolvedValue(false);
+    stubVoices(["ru-RU"]);
+    renderStufe();
+
+    await waitFor(() => expect(screen.getByTestId("quelle")).toHaveTextContent("browser"));
+    screen.getByRole("button", { name: "sprechen" }).click();
+    await waitFor(() => expect(spoken).toEqual(["дом"]));
+  });
+
+  it("meldet keinen Ton, wenn beides fehlt", async () => {
+    vi.spyOn(server, "serverAudioAvailable").mockResolvedValue(false);
+    stubVoices(["de-DE"]);
+    renderStufe();
+
+    await waitFor(() => expect(screen.getByTestId("quelle")).toHaveTextContent("none"));
+    expect(screen.getByTestId("ton")).toHaveTextContent("false");
+  });
+
+  it("meldet Ton, sobald eine der beiden Quellen da ist", async () => {
+    vi.spyOn(server, "serverAudioAvailable").mockResolvedValue(true);
+    vi.spyOn(server, "playAudio").mockResolvedValue();
+    stubVoices(["de-DE"]);
+    renderStufe();
+
+    await waitFor(() => expect(screen.getByTestId("ton")).toHaveTextContent("true"));
+  });
+
+  it("fällt auf den Browser zurück, wenn das Abspielen scheitert", async () => {
+    vi.spyOn(server, "serverAudioAvailable").mockResolvedValue(true);
+    vi.spyOn(server, "playAudio").mockRejectedValue(new Error("blockiert"));
+    stubVoices(["ru-RU"]);
+    renderStufe();
+
+    await waitFor(() => expect(screen.getByTestId("quelle")).toHaveTextContent("server"));
+    screen.getByRole("button", { name: "sprechen" }).click();
+
+    await waitFor(() => expect(spoken).toEqual(["дом"]));
+    await waitFor(() => expect(screen.getByTestId("quelle")).toHaveTextContent("browser"));
+  });
+
+  it("probiert den toten Dienst nicht bei jedem Klick erneut", async () => {
+    vi.spyOn(server, "serverAudioAvailable").mockResolvedValue(true);
+    const play = vi.spyOn(server, "playAudio").mockRejectedValue(new Error("blockiert"));
+    stubVoices(["ru-RU"]);
+    renderStufe();
+
+    await waitFor(() => expect(screen.getByTestId("quelle")).toHaveTextContent("server"));
+    const knopf = screen.getByRole("button", { name: "sprechen" });
+    knopf.click();
+    await waitFor(() => expect(screen.getByTestId("quelle")).toHaveTextContent("browser"));
+    knopf.click();
+    await waitFor(() => expect(spoken).toEqual(["дом", "дом"]));
+
+    expect(play).toHaveBeenCalledTimes(1);
   });
 });

@@ -8,6 +8,7 @@ const useSpeechAs = (available: boolean | null) => {
   const say = vi.fn();
   vi.spyOn(context, "useSpeech").mockReturnValue({
     available,
+    source: available ? "browser" : "none",
     autoplay: true,
     setAutoplay: vi.fn(),
     say,

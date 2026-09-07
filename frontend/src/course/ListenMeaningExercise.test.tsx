@@ -19,6 +19,7 @@ const exercise = {
 const mockSpeech = (available: boolean) =>
   vi.spyOn(context, "useSpeech").mockReturnValue({
     available,
+    source: available ? "browser" : "none",
     autoplay: false,
     setAutoplay: vi.fn(),
     say: vi.fn(),

@@ -131,6 +131,7 @@ describe("DialogReplyExercise", () => {
 const mockSpeech = (available: boolean) =>
   vi.spyOn(speech, "useSpeech").mockReturnValue({
     available,
+    source: available ? "browser" : "none",
     autoplay: false,
     setAutoplay: vi.fn(),
     say: vi.fn(),

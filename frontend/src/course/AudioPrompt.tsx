@@ -2,14 +2,21 @@ import { useEffect, useRef } from "react";
 
 import SpeakerButton from "../audio/SpeakerButton";
 import { useSpeech } from "../audio/SpeechContext";
+import { prefetchAudio } from "../audio/serverSpeech";
 
 /**
  * Die Aufgabenstellung als Ton. Ohne russische Stimme fällt sie auf den
  * deutschen Prompt zurück — die Aufgabe bleibt dann die gewöhnliche Aufgabe.
  */
 export default function AudioPrompt({ text, promptDe }: { text: string; promptDe: string }) {
-  const { available, autoplay, say } = useSpeech();
+  const { available, autoplay, say, source } = useSpeech();
   const played = useRef(false);
+
+  useEffect(() => {
+    // Beim Betreten schon holen, damit der spaetere Klick sofort spielt. Der
+    // Browser legt die Datei wegen `immutable` selbst ab.
+    if (source === "server") void prefetchAudio(text);
+  }, [source, text]);
 
   useEffect(() => {
     // Einmal beim Betreten vorspielen. Browser blockieren das vor der ersten

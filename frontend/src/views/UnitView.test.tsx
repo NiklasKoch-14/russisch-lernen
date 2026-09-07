@@ -110,6 +110,7 @@ describe("UnitView mit Ton", () => {
       say: vi.fn(),
     lastError: null,
     activeVoice: null,
+      source: "browser",
     });
   });
 

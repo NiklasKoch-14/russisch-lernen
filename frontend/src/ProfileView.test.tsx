@@ -117,6 +117,7 @@ describe("ProfileView ohne russische Stimme", () => {
       say: vi.fn(),
     lastError: null,
     activeVoice: null,
+      source: "none",
     });
     render(
       <MemoryRouter>
@@ -134,6 +135,7 @@ describe("ProfileView ohne russische Stimme", () => {
       say: vi.fn(),
     lastError: null,
     activeVoice: null,
+      source: "browser",
     });
     render(
       <MemoryRouter>
@@ -159,6 +161,7 @@ describe("ProfileView bei einem Sprachausgabe-Fehler", () => {
       say: vi.fn(),
       lastError: "synthesis-failed",
     activeVoice: null,
+      source: "browser",
     });
     render(
       <MemoryRouter>
@@ -178,6 +181,7 @@ describe("ProfileView bei einem Sprachausgabe-Fehler", () => {
       say: vi.fn(),
       lastError: null,
     activeVoice: null,
+      source: "browser",
     });
     render(
       <MemoryRouter>
@@ -205,6 +209,7 @@ describe("ProfileView zeigt die aktive Stimme", () => {
       say: vi.fn(),
       lastError: null,
       activeVoice: { name, lang: "ru-RU", local },
+      source: "browser",
     });
 
   it("nennt Namen und dass die Stimme aus dem Netz kommt", async () => {
@@ -215,7 +220,7 @@ describe("ProfileView zeigt die aktive Stimme", () => {
       </MemoryRouter>,
     );
     expect(await screen.findByText(/Microsoft Dmitry Online/)).toBeInTheDocument();
-    expect(screen.getByText(/online, klingt besser/)).toBeInTheDocument();
+    expect(screen.getByText(/online — klingt besser/)).toBeInTheDocument();
   });
 
   it("nennt eine lokale Stimme als lokal", async () => {
@@ -226,5 +231,32 @@ describe("ProfileView zeigt die aktive Stimme", () => {
       </MemoryRouter>,
     );
     expect(await screen.findByText(/lokal installiert/)).toBeInTheDocument();
+  });
+});
+
+describe("ProfileView beim Ton vom Server", () => {
+  beforeEach(() => {
+    vi.spyOn(api, "getProfile").mockResolvedValue(profile);
+    vi.spyOn(api, "getCourse").mockResolvedValue({ stages: [] });
+    vi.spyOn(legacyApi, "getLearningPlan").mockResolvedValue(null);
+  });
+
+  it("nennt den eigenen Sprachdienst statt einer Browserstimme", async () => {
+    vi.spyOn(speech, "useSpeech").mockReturnValue({
+      available: true,
+      source: "server",
+      autoplay: true,
+      setAutoplay: vi.fn(),
+      say: vi.fn(),
+      lastError: null,
+      activeVoice: { name: "Piper", lang: "ru-RU", local: true },
+    });
+    render(
+      <MemoryRouter>
+        <ProfileView />
+      </MemoryRouter>,
+    );
+    expect(await screen.findByText(/Piper/)).toBeInTheDocument();
+    expect(screen.getByText(/eigener Sprachdienst/)).toBeInTheDocument();
   });
 });
