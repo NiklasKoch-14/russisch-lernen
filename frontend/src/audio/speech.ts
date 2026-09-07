@@ -48,6 +48,12 @@ export function loadVoices(): Promise<SpeechSynthesisVoice[]> {
   });
 }
 
+/**
+ * Folgen eines cancel(), nicht Fehler: Wir brechen jede laufende Ausgabe
+ * absichtlich ab, bevor wir die naechste starten.
+ */
+const HARMLESS_ERRORS = new Set(["interrupted", "canceled", "cancelled"]);
+
 export function speak(
   text: string,
   voice: SpeechSynthesisVoice,
@@ -59,6 +65,10 @@ export function speak(
   utterance.voice = voice;
   utterance.lang = voice.lang;
   utterance.rate = rate;
-  utterance.onerror = (event) => onError?.(event.error ?? "unbekannt");
+  utterance.onerror = (event) => {
+    const code = event.error ?? "unbekannt";
+    if (HARMLESS_ERRORS.has(code)) return;
+    onError?.(code);
+  };
   speechSynthesis.speak(utterance);
 }

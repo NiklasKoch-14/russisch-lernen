@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useCallback, useContext, useEffect, useMemo, useState } from "react";
 import type { ReactNode } from "react";
 
 import { getProfile, patchProfile } from "../courseApi";
@@ -51,20 +51,26 @@ export function SpeechProvider({ children }: { children: ReactNode }) {
       .catch(() => setAutoplayState(true));
   }, []);
 
-  const setAutoplay = (value: boolean) => {
+  const setAutoplay = useCallback((value: boolean) => {
     setAutoplayState(value);
     patchProfile({ audio_autoplay: value }).catch(() => {});
-  };
+  }, []);
 
-  const say = (text: string, options?: { slow?: boolean }) => {
-    if (!voice) return;
-    setLastError(null);
-    speak(text, voice, options?.slow ? SLOW_RATE : NORMAL_RATE, setLastError);
-  };
-
-  return (
-    <SpeechContext.Provider value={{ available, autoplay, setAutoplay, say, lastError }}>
-      {children}
-    </SpeechContext.Provider>
+  const say = useCallback(
+    (text: string, options?: { slow?: boolean }) => {
+      if (!voice) return;
+      // Nur zuruecksetzen, wenn wirklich ein Fehler steht — sonst rendert
+      // jeder Lautsprecherklick die ganze App neu.
+      setLastError((previous) => (previous === null ? previous : null));
+      speak(text, voice, options?.slow ? SLOW_RATE : NORMAL_RATE, setLastError);
+    },
+    [voice],
   );
+
+  const value = useMemo(
+    () => ({ available, autoplay, setAutoplay, say, lastError }),
+    [available, autoplay, setAutoplay, say, lastError],
+  );
+
+  return <SpeechContext.Provider value={value}>{children}</SpeechContext.Provider>;
 }

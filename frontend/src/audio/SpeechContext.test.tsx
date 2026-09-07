@@ -119,3 +119,120 @@ describe("SpeechProvider", () => {
     expect(spoken).toEqual(["делаю"]);
   });
 });
+
+describe("SpeechProvider rendert nicht die halbe App neu", () => {
+  let renders = 0;
+
+  function Counter() {
+    renders += 1;
+    const { say } = useSpeech();
+    return (
+      <button onClick={() => say("дом")} type="button">
+        sprechen
+      </button>
+    );
+  }
+
+  it("löst beim Sprechen kein erneutes Rendern aus", async () => {
+    stubVoices(["ru-RU"]);
+    renders = 0;
+    render(
+      <SpeechProvider>
+        <Counter />
+      </SpeechProvider>,
+    );
+    // Erst die Stimmen- und Profilabfrage abwarten, dann zählen.
+    await waitFor(() => expect(spoken).toEqual([]));
+    await waitFor(() => expect(renders).toBeGreaterThan(0));
+    await new Promise((resolve) => setTimeout(resolve, 20));
+
+    const before = renders;
+    screen.getByRole("button", { name: "sprechen" }).click();
+    await new Promise((resolve) => setTimeout(resolve, 20));
+
+    expect(spoken).toEqual(["дом"]);
+    expect(renders).toBe(before);
+  });
+});
+
+describe("Abbrechen ist kein Fehler", () => {
+  let renders = 0;
+  const utterances: { onerror?: (e: { error: string }) => void }[] = [];
+
+  function Counter() {
+    renders += 1;
+    const { say, lastError } = useSpeech();
+    return (
+      <>
+        <button onClick={() => say("дом")} type="button">
+          sprechen
+        </button>
+        <span data-testid="fehler">{lastError ?? "keiner"}</span>
+      </>
+    );
+  }
+
+  const stubRecording = () => {
+    utterances.length = 0;
+    vi.stubGlobal("speechSynthesis", {
+      getVoices: () => [{ lang: "ru-RU", name: "ru-RU", localService: true }],
+      addEventListener: () => {},
+      removeEventListener: () => {},
+      cancel: () => {},
+      speak: (u: (typeof utterances)[number]) => utterances.push(u),
+    });
+    vi.stubGlobal(
+      "SpeechSynthesisUtterance",
+      class {
+        text: string;
+        lang = "";
+        rate = 1;
+        voice: SpeechSynthesisVoice | null = null;
+        onerror: ((e: { error: string }) => void) | null = null;
+        constructor(text: string) {
+          this.text = text;
+        }
+      },
+    );
+  };
+
+  it("meldet ein abgebrochenes Vorlesen nicht als Fehler", async () => {
+    stubRecording();
+    renders = 0;
+    render(
+      <SpeechProvider>
+        <Counter />
+      </SpeechProvider>,
+    );
+    await waitFor(() => expect(renders).toBeGreaterThan(0));
+    await new Promise((resolve) => setTimeout(resolve, 20));
+
+    screen.getByRole("button", { name: "sprechen" }).click();
+    await new Promise((resolve) => setTimeout(resolve, 20));
+    const before = renders;
+
+    // Der Nutzer klickt erneut: cancel() bricht die laufende Ausgabe ab.
+    utterances[0].onerror!({ error: "interrupted" });
+    await new Promise((resolve) => setTimeout(resolve, 20));
+
+    expect(screen.getByTestId("fehler")).toHaveTextContent("keiner");
+    expect(renders).toBe(before);
+  });
+
+  it("meldet einen echten Synthesefehler weiterhin", async () => {
+    stubRecording();
+    render(
+      <SpeechProvider>
+        <Counter />
+      </SpeechProvider>,
+    );
+    await new Promise((resolve) => setTimeout(resolve, 20));
+    screen.getByRole("button", { name: "sprechen" }).click();
+    await new Promise((resolve) => setTimeout(resolve, 20));
+
+    utterances[0].onerror!({ error: "synthesis-failed" });
+    await waitFor(() =>
+      expect(screen.getByTestId("fehler")).toHaveTextContent("synthesis-failed"),
+    );
+  });
+});
