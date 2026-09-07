@@ -1,5 +1,7 @@
 import type { Word } from "../courseTypes";
+import RevealRing from "./RevealRing";
 import RussianText from "./RussianText";
+import { useRevealOnHover } from "./useRevealOnHover";
 
 export type TileState = "idle" | "selected" | "correct" | "wrong";
 
@@ -23,15 +25,21 @@ export default function Tile({
   disabled?: boolean;
   className?: string;
 }) {
+  // Das Aufdecken haengt an der ganzen Karte, nicht am winzigen Text darin.
+  const { hovering, revealed, bind } = useRevealOnHover();
+  const showsRing = hovering && !revealed && Boolean(word.translit);
+
   return (
     <button
       type="button"
       aria-pressed={state === "selected"}
       disabled={disabled}
       onClick={onClick}
-      className={`rounded-xl border-2 px-4 py-2 text-lg transition disabled:opacity-60 ${STYLES[state]} ${className}`}
+      {...bind}
+      className={`relative rounded-xl border-2 px-4 py-2 text-lg transition disabled:opacity-60 ${STYLES[state]} ${className}`}
     >
-      <RussianText word={word} />
+      <RussianText word={word} revealed={revealed} />
+      {showsRing ? <RevealRing /> : null}
     </button>
   );
 }

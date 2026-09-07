@@ -1,1 +1,12 @@
 @import "tailwindcss";
+
+/* Der Ladekreis auf den Wortkarten: fuellt sich in der Zeit, die das Aufdecken
+   der Aussprache braucht. Der Umfang ist 2*pi*6.75 ~ 42.4. */
+@keyframes speaker-reveal-ring {
+  from {
+    stroke-dashoffset: 42.4;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}

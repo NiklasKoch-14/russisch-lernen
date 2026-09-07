@@ -2,8 +2,12 @@ import { expect, test } from "./fixtures";
 
 test.describe("Profil", () => {
   test("schaltet die Umschrift ab und wieder an", async ({ page }) => {
-    // Die Umschrift steht auf den Wortkacheln, nicht auf dem Regel-Bildschirm.
+    // Die Umschrift steht auf den Wortkacheln, nicht auf dem Regel-Bildschirm,
+    // und sie zeigt sich erst nach einer Sekunde Verweilen auf der Karte.
     await openExercises(page);
+    const karte = page.locator("main button").filter({ hasText: "по-ру́сски" }).first();
+    await expect(page.getByText("po-rússki")).toBeHidden();
+    await karte.hover();
     await expect(page.getByText("po-rússki")).toBeVisible();
 
     await page.goto("/profil");
@@ -13,11 +17,14 @@ test.describe("Profil", () => {
 
     await openExercises(page);
     await expect(page.getByText("по-ру́сски")).toBeVisible();
+    // Abgeschaltet heisst: gar nicht erst im Baum, auch nicht zum Aufdecken.
+    await page.locator("main button").filter({ hasText: "по-ру́сски" }).first().hover();
     await expect(page.getByText("po-rússki")).toHaveCount(0);
 
     await page.goto("/profil");
     await page.getByLabel("Umschrift anzeigen").check();
     await openExercises(page);
+    await page.locator("main button").filter({ hasText: "по-ру́сски" }).first().hover();
     await expect(page.getByText("po-rússki")).toBeVisible();
   });
 
