@@ -1,5 +1,6 @@
 import { NavLink, Route, Routes } from "react-router-dom";
 
+import AutoplayToggle from "./audio/AutoplayToggle";
 import { SpeechProvider } from "./audio/SpeechContext";
 import ChatView from "./ChatView";
 import { TransliterationProvider } from "./course/TransliterationContext";
@@ -36,6 +37,9 @@ export default function App() {
                   </NavLink>
                 ))}
               </nav>
+              <div className="ml-auto">
+                <AutoplayToggle />
+              </div>
             </div>
           </header>
           <main className="mx-auto max-w-3xl px-4 py-6">
