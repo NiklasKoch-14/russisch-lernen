@@ -36,10 +36,31 @@ describe("Tile — Aufdecken der Aussprache", () => {
     expect(screen.queryByText("délaju")).not.toBeVisible();
   });
 
-  it("zeigt beim Hovern den Ladekreis", () => {
+  it("zeigt den Ladekreis nicht sofort", () => {
+    // Beim blossen Vorbeifahren soll nichts aufblitzen.
     renderTile();
     fireEvent.mouseEnter(screen.getByRole("button"));
+    expect(screen.queryByTestId("reveal-ring")).toBeNull();
+
+    act(() => vi.advanceTimersByTime(332));
+    expect(screen.queryByTestId("reveal-ring")).toBeNull();
+  });
+
+  it("zeigt den Ladekreis nach einem Drittel der Wartezeit", () => {
+    renderTile();
+    fireEvent.mouseEnter(screen.getByRole("button"));
+    act(() => vi.advanceTimersByTime(334));
     expect(screen.getByTestId("reveal-ring")).toBeInTheDocument();
+  });
+
+  it("lässt den Ladekreis bei einem Drittel einsetzen, nicht bei null", () => {
+    // Sonst liefe er dem Aufdecken hinterher und log ueber die Restzeit.
+    renderTile();
+    fireEvent.mouseEnter(screen.getByRole("button"));
+    act(() => vi.advanceTimersByTime(334));
+
+    const ring = screen.getByTestId("reveal-ring").querySelector("[style]") as HTMLElement;
+    expect(ring.style.animation).toContain("-333");
   });
 
   it("nimmt den Ladekreis weg, sobald aufgedeckt ist", () => {
@@ -56,6 +77,7 @@ describe("Tile — Aufdecken der Aussprache", () => {
     const button = screen.getByRole("button");
     fireEvent.mouseEnter(button);
     act(() => vi.advanceTimersByTime(400));
+    expect(screen.getByTestId("reveal-ring")).toBeInTheDocument();
     fireEvent.mouseLeave(button);
 
     expect(screen.queryByTestId("reveal-ring")).toBeNull();
@@ -65,6 +87,7 @@ describe("Tile — Aufdecken der Aussprache", () => {
   it("zeigt ohne Umschrift auch keinen Ladekreis", () => {
     render(<Tile word={{ text: "и", translit: "" }} state="idle" onClick={vi.fn()} />);
     fireEvent.mouseEnter(screen.getByRole("button"));
+    act(() => vi.advanceTimersByTime(500));
     expect(screen.queryByTestId("reveal-ring")).toBeNull();
   });
 });

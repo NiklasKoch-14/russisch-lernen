@@ -26,8 +26,8 @@ export default function Tile({
   className?: string;
 }) {
   // Das Aufdecken haengt an der ganzen Karte, nicht am winzigen Text darin.
-  const { hovering, revealed, bind } = useRevealOnHover();
-  const showsRing = hovering && !revealed && Boolean(word.translit);
+  const { revealed, pendingReveal, bind } = useRevealOnHover();
+  const showsRing = pendingReveal && Boolean(word.translit);
 
   return (
     <button

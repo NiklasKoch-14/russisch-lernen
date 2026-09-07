@@ -4,6 +4,13 @@ import { useCallback, useEffect, useRef, useState } from "react";
 export const REVEAL_DELAY_MS = 1000;
 
 /**
+ * Erst nach diesem Anteil der Wartezeit taucht der Ladekreis auf. Beim blossen
+ * Vorbeifahren soll nichts aufblitzen.
+ */
+export const RING_START_FRACTION = 1 / 3;
+export const RING_DELAY_MS = Math.round(REVEAL_DELAY_MS * RING_START_FRACTION);
+
+/**
  * Deckt etwas nach kurzem Verweilen auf und verbirgt es beim Verlassen wieder.
  *
  * Das Verzoegern ist Absicht: erst selbst lesen, dann nachsehen. Ohne die Pause
@@ -13,12 +20,17 @@ export const REVEAL_DELAY_MS = 1000;
 export function useRevealOnHover(delayMs: number = REVEAL_DELAY_MS) {
   const [hovering, setHovering] = useState(false);
   const [revealed, setRevealed] = useState(false);
+  /** Wartet schon lange genug, dass der Ladekreis sich lohnt. */
+  const [pendingReveal, setPendingReveal] = useState(false);
   const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const ringTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const clear = useCallback(() => {
-    if (timer.current !== null) {
-      clearTimeout(timer.current);
-      timer.current = null;
+    for (const handle of [timer, ringTimer]) {
+      if (handle.current !== null) {
+        clearTimeout(handle.current);
+        handle.current = null;
+      }
     }
   }, []);
 
@@ -27,14 +39,22 @@ export function useRevealOnHover(delayMs: number = REVEAL_DELAY_MS) {
   const onMouseEnter = useCallback(() => {
     setHovering(true);
     clear();
-    timer.current = setTimeout(() => setRevealed(true), delayMs);
+    ringTimer.current = setTimeout(
+      () => setPendingReveal(true),
+      Math.round(delayMs * RING_START_FRACTION),
+    );
+    timer.current = setTimeout(() => {
+      setRevealed(true);
+      setPendingReveal(false);
+    }, delayMs);
   }, [clear, delayMs]);
 
   const onMouseLeave = useCallback(() => {
     clear();
     setHovering(false);
     setRevealed(false);
+    setPendingReveal(false);
   }, [clear]);
 
-  return { hovering, revealed, bind: { onMouseEnter, onMouseLeave } };
+  return { hovering, revealed, pendingReveal, bind: { onMouseEnter, onMouseLeave } };
 }
