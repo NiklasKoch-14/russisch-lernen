@@ -324,7 +324,31 @@ wird deshalb überall gefälscht; geprüft wird, **was** gesprochen werden sollt
   gesprochenen Texte prüft
 - ein Lauf ohne russische Stimme, der den Textrückfall durchspielt
 
-## 8. Bewusst nicht enthalten
+## 8. Abweichungen aus der Umsetzung
+
+Drei Dinge kamen beim Bauen heraus, die beim Entwurf nicht sichtbar waren. Sie sind so umgesetzt und
+gelten gegenüber den Abschnitten oben:
+
+1. **Kein Lautsprecher in der Vokabelliste.** Abschnitt 5.3 nennt sie als vierten Ort. `VocabView.tsx`
+   ist aber toter Code aus Phase 1 — nirgends importiert, keine Route, fragt getippte englische
+   Übersetzungen ab. Ein Lautsprecher dort wäre unerreichbar; eine neue Vokabelliste anzulegen wäre
+   eine andere Aufgabe. Stattdessen liefert die Auflösung bei `match_pairs` **einen Lautsprecher je
+   Wort** — womit auch die Buchstaben-Einheiten 1–4 versorgt sind.
+
+2. **Die Auflösung erscheint jetzt auch nach richtigen Antworten.** `UnitView` zeigte die Lösung nur
+   nach Fehlern; ein Lautsprecher „an der aufgelösten Lösung" wäre also nur nach Fehlern erreichbar
+   gewesen — genau verkehrt fürs Hörtraining. Ein Block bedient beide Fälle, damit der Satz nie
+   doppelt dasteht.
+
+3. **Der Kopfzeilen-Schalter ist ein `role="switch"`, nicht `aria-pressed`.** Mit `aria-pressed` kollidierte
+   er mit den Wortkacheln: die e2e-Helfer finden Kacheln über genau dieses Attribut und klickten den
+   Schalter statt einer Antwort. Für einen An/Aus-Schalter ist `switch` ohnehin die richtige Rolle.
+
+Dazu eine Festlegung, die der Entwurf offen ließ: die **gesamte e2e-Suite** stubt `speechSynthesis`
+und läuft standardmäßig **ohne** russische Stimme. Sonst hängt jeder Testlauf davon ab, welche Stimmen
+auf der Maschine zufällig installiert sind — drei bestehende Tests fielen genau daran um.
+
+## 9. Bewusst nicht enthalten
 
 - **Aussprachebewertung per Mikrofon.** Bräuchte lokales ASR (whisper.cpp) und ist ein eigenes Projekt.
 - **Gesprochener Tutor-Chat.** Der Chat ab Stufe 3 bleibt Text.
