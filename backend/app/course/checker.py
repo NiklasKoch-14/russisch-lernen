@@ -14,8 +14,10 @@ from app.course.presenter import (
     build_sentence_tiles,
     choose_form_options,
     dialog_reply_options,
+    filled_sentence,
     listen_meaning_options,
     match_pairs_sides,
+    spoken_text,
 )
 
 
@@ -26,6 +28,8 @@ class CheckResult:
     solution_translit: str
     explanation_de: str
     trained_forms: list[TokenRef]
+    solution_audio: list[str]
+    """Die Loesung zum Anhoeren — ein Eintrag je Satz, bei match_pairs je Wort."""
 
 
 def _render(course: Course, refs: list[TokenRef]) -> tuple[str, str]:
@@ -53,6 +57,7 @@ def _check_build_sentence(
         solution_translit=translit,
         explanation_de="" if correct else f"Richtig ist: {text}",
         trained_forms=list(exercise.solution),
+        solution_audio=[spoken_text(course, list(exercise.solution))],
     )
 
 
@@ -70,6 +75,7 @@ def _check_choose_form(
         solution_translit=translit,
         explanation_de="" if correct else f"Hier passt die Form {text}.",
         trained_forms=[exercise.answer],
+        solution_audio=[spoken_text(course, filled_sentence(exercise))],
     )
 
 
@@ -97,6 +103,7 @@ def _check_match_pairs(
         solution_translit=translit,
         explanation_de="" if correct else "Nicht alle Paare stimmen.",
         trained_forms=list(exercise.pairs),
+        solution_audio=[spoken_text(course, [pair]) for pair in exercise.pairs],
     )
 
 
@@ -120,6 +127,7 @@ def _check_dialog_reply(
         solution_translit=translit,
         explanation_de=explanation,
         trained_forms=list(correct_option.tokens),
+        solution_audio=[spoken_text(course, list(correct_option.tokens))],
     )
 
 
@@ -139,6 +147,7 @@ def _check_listen_meaning(
             "" if correct else f"Gesagt wurde: {exercise.options_de[exercise.correct_index]}"
         ),
         trained_forms=list(exercise.sentence),
+        solution_audio=[spoken_text(course, list(exercise.sentence))],
     )
 
 

@@ -2,6 +2,7 @@ import { fireEvent, render, screen } from "@testing-library/react";
 import { MemoryRouter, Route, Routes } from "react-router-dom";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 
+import * as speech from "../audio/SpeechContext";
 import * as api from "../courseApi";
 import UnitView from "./UnitView";
 
@@ -64,6 +65,7 @@ describe("UnitView", () => {
       correct: false,
       solution_text: "до свида́ния",
       solution_translit: "do svidánija",
+      solution_audio: ["до свида́ния"],
       explanation_de: "Richtig ist: до свида́ния",
       unit_completed: false,
       correct_count: 0,
@@ -83,6 +85,7 @@ describe("UnitView", () => {
       correct: true,
       solution_text: "спаси́бо",
       solution_translit: "spasíbo",
+      solution_audio: ["спаси́бо"],
       explanation_de: "",
       unit_completed: true,
       correct_count: 1,
@@ -94,5 +97,55 @@ describe("UnitView", () => {
     fireEvent.click(screen.getByRole("button", { name: "Prüfen" }));
     fireEvent.click(await screen.findByRole("button", { name: "Weiter" }));
     expect(await screen.findByText("Einheit geschafft!")).toBeInTheDocument();
+  });
+});
+
+describe("UnitView mit Ton", () => {
+  beforeEach(() => {
+    vi.restoreAllMocks();
+    vi.spyOn(speech, "useSpeech").mockReturnValue({
+      available: true,
+      autoplay: false,
+      setAutoplay: vi.fn(),
+      say: vi.fn(),
+    });
+  });
+
+  it("bietet die Lösung auch nach einer richtigen Antwort zum Anhören an", async () => {
+    vi.spyOn(api, "getUnit").mockResolvedValue({ ...unit, exercises: [unit.exercises[1]] });
+    vi.spyOn(api, "submitAnswer").mockResolvedValue({
+      correct: true,
+      solution_text: "спаси́бо",
+      solution_translit: "spasíbo",
+      solution_audio: ["спаси́бо"],
+      explanation_de: "",
+      unit_completed: false,
+      correct_count: 1,
+      total_count: 1,
+    });
+    renderUnit();
+    fireEvent.click(await screen.findByRole("button", { name: "Los geht's" }));
+    fireEvent.click(await screen.findByRole("button", { name: /спаси́бо/ }));
+    fireEvent.click(screen.getByRole("button", { name: "Prüfen" }));
+    expect(await screen.findByRole("button", { name: "Anhören" })).toBeInTheDocument();
+  });
+
+  it("gibt bei einer Zuordnungsaufgabe jedes Wort einzeln zum Anhören", async () => {
+    vi.spyOn(api, "getUnit").mockResolvedValue({ ...unit, exercises: [unit.exercises[1]] });
+    vi.spyOn(api, "submitAnswer").mockResolvedValue({
+      correct: true,
+      solution_text: "я де́лаю",
+      solution_translit: "ja délaju",
+      solution_audio: ["я", "де́лаю"],
+      explanation_de: "",
+      unit_completed: false,
+      correct_count: 1,
+      total_count: 1,
+    });
+    renderUnit();
+    fireEvent.click(await screen.findByRole("button", { name: "Los geht's" }));
+    fireEvent.click(await screen.findByRole("button", { name: /спаси́бо/ }));
+    fireEvent.click(screen.getByRole("button", { name: "Prüfen" }));
+    expect(await screen.findAllByRole("button", { name: "Anhören" })).toHaveLength(2);
   });
 });

@@ -16,6 +16,7 @@ class AnswerOutcome:
     correct: bool
     solution_text: str
     solution_translit: str
+    solution_audio: list[str]
     explanation_de: str
     unit_completed: bool
     correct_count: int
@@ -87,6 +88,7 @@ def submit_answer(
         correct=result.correct,
         solution_text=result.solution_text,
         solution_translit=result.solution_translit,
+        solution_audio=result.solution_audio,
         explanation_de=result.explanation_de,
         unit_completed=completed,
         correct_count=progress.correct_count,

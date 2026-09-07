@@ -95,6 +95,7 @@ export interface AnswerResult {
   correct: boolean;
   solution_text: string;
   solution_translit: string;
+  solution_audio: string[];
   explanation_de: string;
   unit_completed: boolean;
   correct_count: number;

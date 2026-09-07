@@ -9,7 +9,7 @@ from app.course.presenter import (
     listen_meaning_options,
     match_pairs_sides,
 )
-from tests.content_factory import MINIMAL_UNIT, write_course
+from tests.content_factory import MINIMAL_LEXICON, MINIMAL_UNIT, write_course
 
 
 def _course(tmp_path):
@@ -155,3 +155,36 @@ def test_listen_meaning_treats_garbage_as_wrong(tmp_path):
     exercise = course.units[1].exercises[4]
     assert check_answer(course, exercise, {"option_index": 99}).correct is False
     assert check_answer(course, exercise, {}).correct is False
+
+
+def test_sentence_exercise_yields_one_audio_part(tmp_path):
+    course = _course(tmp_path)
+    exercise = course.units[1].exercises[0]
+    result = check_answer(course, exercise, {"tile_indices": []})
+    assert result.solution_audio == ["я де́лаю"]
+
+
+def test_match_pairs_yields_one_audio_part_per_word(tmp_path):
+    course = _course(tmp_path)
+    exercise = course.units[1].exercises[2]
+    result = check_answer(course, exercise, {"pairs": []})
+    assert result.solution_audio == ["я", "де́лаю"]
+
+
+def test_solution_audio_uses_speak_as(tmp_path):
+    lexicon = copy.deepcopy(MINIMAL_LEXICON)
+    lexicon["lexemes"].append(
+        {
+            "id": "bu_r",
+            "lemma": "Р р",
+            "pos": "letter",
+            "gloss_de": "gerolltes r",
+            "forms": {"base": {"text": "Р р", "translit": "r", "speak_as": "ры́ба"}},
+        }
+    )
+    unit = copy.deepcopy(MINIMAL_UNIT)
+    unit["new_lexemes"] = unit["new_lexemes"] + ["bu_r"]
+    unit["exercises"][2]["pairs"] = [["ja", "nom"], ["bu_r", "base"]]
+    course = load_course(write_course(tmp_path, lexicon=lexicon, units=[unit]))
+    result = check_answer(course, course.units[1].exercises[2], {"pairs": []})
+    assert result.solution_audio == ["я", "ры́ба"]

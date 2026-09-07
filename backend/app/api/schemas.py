@@ -76,6 +76,7 @@ class AnswerResponse(BaseModel):
     correct: bool
     solution_text: str
     solution_translit: str
+    solution_audio: list[str] = []
     explanation_de: str
     unit_completed: bool
     correct_count: int

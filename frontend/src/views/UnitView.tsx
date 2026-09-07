@@ -3,6 +3,7 @@ import { Link, useParams } from "react-router-dom";
 
 import ExerciseRunner from "../course/ExerciseRunner";
 import { getUnit, submitAnswer } from "../courseApi";
+import SpeakerButton from "../audio/SpeakerButton";
 import type { AnswerResult, Submission, UnitDetail } from "../courseTypes";
 
 type Phase = "rule" | "exercises" | "done";
@@ -100,12 +101,20 @@ export default function UnitView() {
           className={`space-y-2 rounded-2xl p-4 ${result.correct ? "bg-emerald-50" : "bg-rose-50"}`}
         >
           <p className="font-medium">{result.correct ? "Richtig!" : "Nicht ganz."}</p>
-          {!result.correct ? (
-            <p>
-              Richtig ist: <span lang="ru">{result.solution_text}</span>
-            </p>
-          ) : null}
           {extraExplanation ? <p>{extraExplanation}</p> : null}
+          {/* Ein Block fuer beide Faelle: nach einem Fehler nennt er die Loesung,
+              nach einer richtigen Antwort bietet er sie nur zum Nachhoeren an. */}
+          {result.solution_audio.length > 0 ? (
+            <div className="flex flex-wrap items-center gap-3">
+              {result.correct ? null : <span>Richtig ist:</span>}
+              {result.solution_audio.map((part) => (
+                <span key={part} className="flex items-center gap-1">
+                  <span lang="ru">{part}</span>
+                  <SpeakerButton text={part} />
+                </span>
+              ))}
+            </div>
+          ) : null}
           <button
             type="button"
             onClick={advance}
