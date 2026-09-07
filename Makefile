@@ -7,7 +7,7 @@ BACKEND_URL ?= http://localhost:8000
 FRONTEND_URL ?= http://localhost:3000
 
 .DEFAULT_GOAL := help
-.PHONY: help deploy remove restart purge logs ps smoke validate test test-e2e test-e2e-show test-e2e-ui dev
+.PHONY: help deploy remove restart purge logs ps smoke validate typecheck test test-e2e test-e2e-show test-e2e-ui dev
 
 help: ## Diese Übersicht anzeigen
 	@grep -hE '^[a-z0-9-]+:.*?## ' $(MAKEFILE_LIST) \
@@ -48,7 +48,11 @@ smoke: ## Rauchtest gegen den laufenden Stack
 validate: ## Kursinhalte prüfen
 	cd backend && .venv/bin/python -m scripts.validate_content
 
-test: ## Unit-Tests von Backend und Frontend
+typecheck: ## TypeScript des Frontends prüfen
+	cd frontend && npx tsc --noEmit -p tsconfig.json
+
+test: ## Typprüfung und Unit-Tests von Backend und Frontend
+	$(MAKE) typecheck
 	cd backend && .venv/bin/pytest -q
 	cd frontend && npm test
 
