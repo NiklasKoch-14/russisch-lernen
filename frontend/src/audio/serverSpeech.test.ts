@@ -31,6 +31,13 @@ class FakeAudio {
     (this.handlers.ended ?? []).forEach((handler) => handler());
   }
 
+  paused = false;
+  currentTime = 1.2;
+
+  pause() {
+    this.paused = true;
+  }
+
   play(): Promise<void> {
     return FakeAudio.shouldFail ? Promise.reject(new Error("blockiert")) : Promise.resolve();
   }
@@ -165,5 +172,21 @@ describe("ein Abruf statt zwei", () => {
     vi.stubGlobal("fetch", vi.fn(() => Promise.reject(new Error("weg"))));
     vi.stubGlobal("Audio", FakeAudio);
     await expect(playAudio("дом")).rejects.toThrow();
+  });
+});
+
+describe("nur eine Wiedergabe zur Zeit", () => {
+  it("stoppt die laufende Ausgabe, bevor die nächste startet", async () => {
+    stubBlobPlayback();
+    await playAudio("дом");
+    const erste = FakeAudio.lastInstance!;
+
+    await playAudio("дом");
+
+    // Ohne das ueberlagern sich Autoplay und Lautsprecherklick — das klingt
+    // wie Stocken mitten im Satz.
+    expect(erste.paused).toBe(true);
+    expect(erste.currentTime).toBe(0);
+    expect(FakeAudio.lastInstance).not.toBe(erste);
   });
 });

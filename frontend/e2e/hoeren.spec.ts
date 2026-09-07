@@ -13,12 +13,13 @@ async function answerCurrentExercise(page: Page) {
   }
   const grid = page.locator("main .grid");
   if (await grid.isVisible().catch(() => false)) {
-    const left = grid.locator("> div").first().locator("button");
-    const right = grid.locator("> div").last().locator("button");
-    const count = await left.count();
+    // Ein Raster, spaltenweise gefuellt: erst alle linken Karten, dann alle rechten.
+    const cards = grid.locator("> button");
+    const total = await cards.count();
+    const count = total / 2;
     for (let index = 0; index < count; index += 1) {
-      await left.nth(index).click();
-      await right.nth(index).click();
+      await cards.nth(index).click();
+      await cards.nth(count + index).click();
     }
     return;
   }

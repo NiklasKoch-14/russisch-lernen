@@ -19,12 +19,23 @@ const MAX_CACHED = 40;
  *  denselben Satz zweimal holen — genau das verursachte das Abschneiden. */
 const pending = new Map<string, Promise<Blob>>();
 
+/** Was gerade spielt. Ohne das ueberlagern sich Autoplay und Lautsprecherklick. */
+let playing: HTMLAudioElement | null = null;
+
 /**
  * Wirft die geladenen Toene weg. Gebraucht in Tests, und wenn sich die Stimme
  * serverseitig aendert: die URL bleibt dann gleich, der Inhalt nicht.
  */
 export function clearAudioCache(): void {
   pending.clear();
+}
+
+/** Bricht eine laufende Ausgabe ab — Gegenstueck zu speechSynthesis.cancel(). */
+export function stopAudio(): void {
+  if (!playing) return;
+  playing.pause();
+  playing.currentTime = 0;
+  playing = null;
 }
 
 export function audioUrl(text: string): string {
@@ -61,6 +72,9 @@ export async function prefetchAudio(text: string): Promise<void> {
 }
 
 export async function playAudio(text: string, options?: { slow?: boolean }): Promise<void> {
+  // Vor dem Laden abbrechen: sonst laeuft die alte Ausgabe waehrend des
+  // Abrufs weiter und die neue setzt sich darueber.
+  stopAudio();
   const blob = await loadAudio(text);
   const objectUrl = URL.createObjectURL(blob);
 
@@ -69,9 +83,15 @@ export async function playAudio(text: string, options?: { slow?: boolean }): Pro
   audio.preservesPitch = true;
   audio.playbackRate = options?.slow ? SLOW_PLAYBACK_RATE : 1;
 
-  const release = () => URL.revokeObjectURL(objectUrl);
+  const release = () => {
+    URL.revokeObjectURL(objectUrl);
+    if (playing === audio) playing = null;
+  };
   audio.addEventListener("ended", release);
   audio.addEventListener("error", release);
+
+  stopAudio();
+  playing = audio;
 
   try {
     await audio.play();

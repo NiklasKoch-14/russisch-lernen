@@ -15,11 +15,13 @@ export default function Tile({
   state,
   onClick,
   disabled = false,
+  className = "",
 }: {
   word: Word;
   state: TileState;
   onClick: () => void;
   disabled?: boolean;
+  className?: string;
 }) {
   return (
     <button
@@ -27,7 +29,7 @@ export default function Tile({
       aria-pressed={state === "selected"}
       disabled={disabled}
       onClick={onClick}
-      className={`rounded-xl border-2 px-4 py-2 text-lg transition disabled:opacity-60 ${STYLES[state]}`}
+      className={`rounded-xl border-2 px-4 py-2 text-lg transition disabled:opacity-60 ${STYLES[state]} ${className}`}
     >
       <RussianText word={word} />
     </button>

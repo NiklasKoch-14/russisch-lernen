@@ -73,12 +73,13 @@ async function answerCurrentExercise(page: import("@playwright/test").Page) {
   // Zuordnen: linke Spalte mit rechter Spalte der Reihe nach verbinden.
   const grid = page.locator("main .grid");
   if (await grid.isVisible().catch(() => false)) {
-    const left = grid.locator("> div").first().locator("button");
-    const right = grid.locator("> div").last().locator("button");
-    const count = await left.count();
+    // Ein Raster, spaltenweise gefuellt: erst alle linken Karten, dann alle rechten.
+    const cards = grid.locator("> button");
+    const total = await cards.count();
+    const count = total / 2;
     for (let i = 0; i < count; i += 1) {
-      await left.nth(i).click();
-      await right.nth(i).click();
+      await cards.nth(i).click();
+      await cards.nth(count + i).click();
     }
     return;
   }
