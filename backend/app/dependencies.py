@@ -7,6 +7,7 @@ from app.content.loader import load_course
 from app.content.models import Course
 from app.db import get_connection
 from app.ollama_client import OllamaClient
+from app.tts_client import TtsClient
 
 
 def get_db() -> Iterator[Connection]:
@@ -19,6 +20,10 @@ def get_db() -> Iterator[Connection]:
 
 def get_ollama() -> OllamaClient:
     return OllamaClient(host=settings.ollama_host, model=settings.ollama_model)
+
+
+def get_tts() -> TtsClient:
+    return TtsClient(host=settings.tts_host)
 
 
 @lru_cache(maxsize=1)
