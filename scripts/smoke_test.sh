@@ -4,6 +4,16 @@ set -euo pipefail
 
 BASE="${BASE:-http://localhost:8000}"
 
+# Direkt nach `make deploy` faehrt das Backend noch hoch — kurz warten, statt
+# den Nutzer einen fehlgeschlagenen Rauchtest sehen zu lassen.
+printf 'Warte auf das Backend '
+for _ in $(seq 1 60); do
+  if curl -sf "$BASE/api/health" >/dev/null 2>&1; then break; fi
+  printf '.'
+  sleep 1
+done
+echo
+
 echo "1/7 Health"
 curl -sf "$BASE/api/health" | grep -q '"status":"ok"'
 
