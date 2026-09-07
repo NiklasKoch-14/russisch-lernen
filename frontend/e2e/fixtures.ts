@@ -46,6 +46,25 @@ export function spokenTexts(page: Page): Promise<string[]> {
   return page.evaluate(() => (window as unknown as { __spoken: string[] }).__spoken ?? []);
 }
 
+/** Eine gueltige, sehr kurze WAV-Datei — 44 Byte Kopf, keine Samples. */
+const TINY_WAV = Buffer.from(
+  "UklGRiQAAABXQVZFZm10IBAAAAABAAEAIlYAAESsAAACABAAZGF0YQAAAAA=",
+  "base64",
+);
+
+/**
+ * Faengt den Audio-Endpunkt ab. Der tts-Container laeuft in e2e-Laeufen nicht;
+ * ohne das ginge jeder Tonabruf ins Leere.
+ */
+export async function stubServerAudio(page: Page, available: boolean): Promise<void> {
+  await page.route("**/api/audio/health", (route) => route.fulfill({ json: { available } }));
+  await page.route("**/api/audio?*", (route) =>
+    available
+      ? route.fulfill({ body: TINY_WAV, contentType: "audio/wav" })
+      : route.fulfill({ status: 503, json: { detail: "Sprachdienst nicht erreichbar" } }),
+  );
+}
+
 /**
  * Standard für die ganze Suite: keine russische Stimme. Damit sind alle Tests,
  * die nichts mit Ton zu tun haben, vom Klang der Maschine unabhaengig und sehen
@@ -53,6 +72,9 @@ export function spokenTexts(page: Page): Promise<string[]> {
  */
 export const test = base.extend({
   page: async ({ page }, use) => {
+    // Standard: kein Serverton, keine russische Browserstimme. Damit bleiben
+    // alle Laeufe, die nichts mit Ton zu tun haben, auf der Textfassung.
+    await stubServerAudio(page, false);
     await stubSpeech(page, ["de-DE"]);
     await use(page);
   },

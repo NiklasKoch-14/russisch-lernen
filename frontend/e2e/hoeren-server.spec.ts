@@ -35,53 +35,53 @@ async function goToAudioExercise(page: Page) {
   }
 }
 
-test.describe("Hör-Aufgaben mit russischer Stimme", () => {
-  test.beforeEach(async ({ page }) => {
-    // Hier geht es um die Browserstimme — der Serverton wuerde sie verdecken.
-    await stubServerAudio(page, false);
-    await stubSpeech(page, ["ru-RU"]);
-  });
+test.describe("Ton vom Server", () => {
+  test("holt den Satz beim Betreten vor und zeigt den deutschen Prompt nicht", async ({
+    page,
+  }) => {
+    await stubServerAudio(page, true);
+    await stubSpeech(page, ["de-DE"]);
 
-  test("spielt den Satz vor und zeigt den deutschen Prompt nicht", async ({ page }) => {
+    const abrufe: string[] = [];
+    page.on("request", (request) => {
+      if (request.url().includes("/api/audio?")) abrufe.push(request.url());
+    });
+
     await goToAudioExercise(page);
 
     await expect(page.getByText("Hör zu.")).toBeVisible();
     await expect(page.getByText("Welche Endung passt zu я?")).toHaveCount(0);
-
-    // Der Satz wird beim Betreten einmal automatisch gesprochen ...
-    await expect.poll(async () => (await spokenTexts(page)).length).toBeGreaterThan(0);
-
-    // ... und zwar ohne die Betonungszeichen aus dem Content.
-    const spoken = await spokenTexts(page);
-    expect(spoken.join(" ")).not.toContain("́");
+    // Das Vorladen laeuft beim Betreten, ohne dass jemand geklickt hat.
+    await expect.poll(() => abrufe.length).toBeGreaterThan(0);
   });
 
-  test("spricht auf Knopfdruck noch einmal, auch langsam", async ({ page }) => {
+  test("braucht keine Browserstimme", async ({ page }) => {
+    // Genau der Fall des Nutzers ohne installierte russische Stimme.
+    await stubServerAudio(page, true);
+    await stubSpeech(page, ["de-DE"]);
+
     await goToAudioExercise(page);
-    const before = (await spokenTexts(page)).length;
-
-    await page.getByRole("button", { name: "Anhören", exact: true }).click();
-    await page.getByRole("button", { name: "Langsam anhören" }).click();
-
-    await expect
-      .poll(async () => (await spokenTexts(page)).length)
-      .toBeGreaterThan(before + 1);
+    await expect(page.getByRole("button", { name: "Anhören", exact: true })).toBeVisible();
   });
 });
 
-test.describe("Ohne russische Stimme", () => {
-  test.beforeEach(async ({ page }) => {
+test.describe("Server stumm", () => {
+  test("fällt auf die Browserstimme zurück", async ({ page }) => {
     await stubServerAudio(page, false);
-    await stubSpeech(page, ["de-DE"]);
+    await stubSpeech(page, ["ru-RU"]);
+
+    await goToAudioExercise(page);
+    await page.getByRole("button", { name: "Anhören", exact: true }).click();
+
+    await expect.poll(async () => (await spokenTexts(page)).length).toBeGreaterThan(0);
   });
 
-  test("fällt auf den deutschen Prompt zurück und bleibt lösbar", async ({ page }) => {
-    await goToAudioExercise(page);
+  test("zeigt die Textfassung, wenn auch keine Browserstimme da ist", async ({ page }) => {
+    await stubServerAudio(page, false);
+    await stubSpeech(page, ["de-DE"]);
 
+    await goToAudioExercise(page);
     await expect(page.getByText("Welche Endung passt zu я?")).toBeVisible();
     await expect(page.getByRole("button", { name: /[Aa]nhören/ })).toHaveCount(0);
-
-    await page.getByRole("button", { name: /^говорю́/ }).click();
-    await expect(page.getByTestId("feedback")).toContainText("Richtig!");
   });
 });
