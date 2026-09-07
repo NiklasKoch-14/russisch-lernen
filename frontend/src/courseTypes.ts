@@ -120,9 +120,23 @@ export type ScreeningStep =
   | { finished: false; probe: ScreeningProbe }
   | { finished: true; placement_unit: number };
 
-export interface ReviewRound {
+export interface ReviewPairsItem {
+  kind: "pairs";
   left: (Tile & { ref: string })[];
   right: GlossOption[];
+}
+
+export type ReviewExerciseItem = {
+  kind: "exercise";
+  unit_id: number;
+  exercise_id: string;
+  ref: string;
+} & Exercise;
+
+export type ReviewItem = ReviewExerciseItem | ReviewPairsItem;
+
+export interface ReviewRound {
+  items: ReviewItem[];
 }
 
 export interface ReviewResult {

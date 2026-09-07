@@ -62,6 +62,26 @@ test.describe("Kurs", () => {
     await expect(page.getByText(/Aufgabe 1 von/)).toBeVisible();
   });
 
+  test("bringt eine falsch beantwortete Aufgabe wieder", async ({ page }) => {
+    await page.goto("/kurs/8");
+    await startExercises(page);
+    await expect(page.getByText("Aufgabe 1 von 9")).toBeVisible();
+
+    // Erste Aufgabe ist eine Zuordnung: absichtlich falsch verbinden.
+    const cards = page.locator("main .grid > button");
+    const count = (await cards.count()) / 2;
+    for (let index = 0; index < count; index += 1) {
+      await cards.nth(index).click();
+      await cards.nth(count + ((index + 1) % count)).click();
+    }
+
+    await expect(page.getByTestId("feedback")).toContainText("Nicht ganz.");
+    await page.getByRole("button", { name: "Weiter" }).click();
+
+    // Nicht weitergekommen — der Zaehler steht still.
+    await expect(page.getByText("Aufgabe 1 von 9")).toBeVisible();
+  });
+
   test("merkt sich den Fortschritt nach dem Neuladen", async ({ page }) => {
     await page.goto("/kurs/5");
     await startExercises(page);

@@ -14,13 +14,19 @@ export default function UnitView() {
   const id = Number(unitId);
   const [unit, setUnit] = useState<UnitDetail | null>(null);
   const [phase, setPhase] = useState<Phase>("rule");
-  const [position, setPosition] = useState(0);
+  /** Was noch drankommt. Falsch Beantwortetes wandert ans Ende statt zu verschwinden. */
+  const [queue, setQueue] = useState<string[] | null>(null);
+  const [solved, setSolved] = useState<Set<string>>(new Set());
+  const [missed, setMissed] = useState<Set<string>>(new Set());
   const [result, setResult] = useState<AnswerResult | null>(null);
   const [error, setError] = useState(false);
 
   useEffect(() => {
     getUnit(id)
-      .then(setUnit)
+      .then((loaded) => {
+        setUnit(loaded);
+        setQueue(loaded.exercises.map((item) => item.id));
+      })
       .catch(() => setError(true));
   }, [id]);
 
@@ -71,11 +77,16 @@ export default function UnitView() {
     );
   }
 
-  const exercise = unit.exercises[position];
+  const currentId = queue?.[0];
+  const exercise = unit.exercises.find((item) => item.id === currentId) ?? unit.exercises[0];
+  const isRepeat = missed.has(exercise.id);
 
   const handleSubmit = (submission: Submission) => {
     submitAnswer(id, exercise.id, submission)
-      .then(setResult)
+      .then((answer) => {
+        setResult(answer);
+        if (!answer.correct) setMissed((current) => new Set(current).add(exercise.id));
+      })
       .catch(() => setError(true));
   };
 
@@ -87,19 +98,30 @@ export default function UnitView() {
       : "";
 
   const advance = () => {
+    const wasCorrect = result?.correct === true;
     setResult(null);
-    if (position + 1 >= unit.exercises.length) {
-      setPhase("done");
-    } else {
-      setPosition(position + 1);
-    }
+    if (wasCorrect) setSolved((current) => new Set(current).add(exercise.id));
+
+    const [head, ...rest] = queue ?? [];
+    // Richtig: raus aus der Schlange. Falsch: ans Ende, damit sie wiederkommt.
+    const next = wasCorrect ? rest : [...rest, head];
+    setQueue(next);
+    if (next.length === 0) setPhase("done");
   };
 
   return (
     <div className="space-y-6">
+      {/* Geloeste statt Position: sonst zaehlte der Zaehler bei Wiederholungen
+          ueber die Gesamtzahl hinaus. Er bleibt stehen, wenn es nicht stimmte —
+          was ehrlich ist, man ist ja nicht weitergekommen. */}
       <p className="text-sm text-slate-500">
-        Aufgabe {position + 1} von {unit.exercises.length}
+        Aufgabe {solved.size + 1} von {unit.exercises.length}
       </p>
+      {isRepeat ? (
+        <p className="text-sm text-amber-700">
+          Noch einmal — beim letzten Mal hat es nicht gestimmt.
+        </p>
+      ) : null}
       <ExerciseRunner
         key={exercise.id}
         exercise={exercise}

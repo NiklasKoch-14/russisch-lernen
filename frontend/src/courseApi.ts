@@ -47,6 +47,17 @@ export const submitReviewRound = (pairs: number[][]) =>
     body: JSON.stringify({ pairs }),
   });
 
+/** Eine echte Kursaufgabe in der Wiederholung — ohne Wirkung auf den Einheiten-Fortschritt. */
+export const submitReviewExercise = (
+  unitId: number,
+  exerciseId: string,
+  submission: Submission,
+) =>
+  request<AnswerResult>("/review/exercise", {
+    method: "POST",
+    body: JSON.stringify({ unit_id: unitId, exercise_id: exerciseId, submission }),
+  });
+
 export const getProfile = () => request<Profile>("/profile");
 
 export const patchProfile = (
