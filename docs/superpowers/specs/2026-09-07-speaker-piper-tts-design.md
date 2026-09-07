@@ -61,7 +61,7 @@ Neues Verzeichnis `tts/` mit `Dockerfile`, `requirements.txt` und `app.py`.
 
 ```
 POST /synthesize   {"text": "я говорю по-русски"}  →  audio/wav
-GET  /health       →  {"status": "ok", "voice": "ru_RU-ruslan-medium"}
+GET  /health       →  {"status": "ok", "voice": "ru_RU-dmitri-medium"}
 ```
 
 Aufbau des Abbilds: `python:3.11-slim`, `pip install piper-tts`, dann **beim Bauen**
@@ -87,12 +87,14 @@ Umgebungsvariablen:
 
 | Variable | Vorgabe | Zweck |
 |---|---|---|
-| `PIPER_VOICE` | `ru_RU-ruslan-medium` | Stimme; Alternativen `denis`, `dmitri`, `irina` |
+| `PIPER_VOICE` | `ru_RU-dmitri-medium` | Stimme; Alternativen `ruslan`, `denis`, `irina` |
 | `PIPER_LENGTH_SCALE` | `1.0` | Tempo, größer heißt langsamer |
 | `PIPER_VOLUME` | `1.0` | Lautstärke |
 
-Die Vorgabe ist eine Männerstimme, weil der Nutzer die weibliche als zu leise empfand. Welche der drei
-am besten klingt, entscheidet er nach einem Hörvergleich (siehe Abschnitt 7).
+Die Vorgabe ist eine Männerstimme, weil der Nutzer die weibliche als zu leise empfand. `dmitri`
+wurde gewählt, weil ihm die gleichnamige Microsoft-Stimme am besten gefiel — ein anderer Klang, aber
+dieselbe Stimmlage. Gefällt sie nicht, kostet der Wechsel eine Umgebungsvariable und einen Neustart
+des Containers.
 
 ### 3.2 Der Endpunkt im Backend
 
@@ -200,16 +202,11 @@ die Browserstimme zurückfällt. Die bestehende `speechSynthesis`-Attrappe aus `
 **`make smoke`:** eine Prüfung, dass `/api/audio` am laufenden Stack echten Ton liefert. Das ist die
 einzige Stelle, an der echtes Piper mitspielt.
 
-## 7. Stimmenvergleich
-
-Im Implementierungsplan steht ein eigener Schritt: denselben Kurssatz mit `ruslan`, `denis` und
-`dmitri` rendern und die drei Dateien dem Nutzer zum Hören geben. Erst danach wird die Vorgabe für
-`PIPER_VOICE` endgültig festgelegt. Eine Stimme nach Aktenlage zu wählen wäre bei einem
-Sprachlernprogramm die falsche Reihenfolge.
-
-## 8. Bewusst nicht enthalten
+## 7. Bewusst nicht enthalten
 
 - **Betonung aus dem Content.** Bräuchte die espeak-Abspaltung, siehe Abschnitt 2.
+- **Ein Hörvergleich aller vier Stimmen.** `dmitri` ist gesetzt; ein Wechsel ist eine Zeile in
+  `docker-compose.yml`, also wird nicht auf Vorrat verglichen.
 - **Komprimierte Formate** (Opus, MP3). Bräuchte ffmpeg im Abbild; im lokalen Netz ist WAV schnell
   genug, und der Deckel begrenzt den Platzbedarf ohnehin.
 - **Stimmenwahl zur Laufzeit.** `PIPER_VOICE` ist eine Umgebungsvariable, kein Bedienelement. Ein
