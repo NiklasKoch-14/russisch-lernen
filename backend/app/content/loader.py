@@ -71,6 +71,11 @@ def _lexeme(raw: dict) -> Lexeme:
 def _exercise(raw: dict, unit_id: int) -> Exercise:
     kind = raw.get("type")
     where = f"Einheit {unit_id}, Aufgabe {raw.get('id')}"
+    if "audio_prompt" in raw and kind not in ("build_sentence", "choose_form"):
+        raise ContentError(
+            f"{where}: audio_prompt gibt es nur bei build_sentence und choose_form,"
+            f" nicht bei {kind!r}"
+        )
     try:
         if kind == "build_sentence":
             return BuildSentenceExercise(
@@ -78,6 +83,7 @@ def _exercise(raw: dict, unit_id: int) -> Exercise:
                 prompt_de=raw["prompt_de"],
                 solution=_tokens(raw["solution"], where),
                 distractors=_tokens(raw.get("distractors", []), where),
+                audio_prompt=bool(raw.get("audio_prompt", False)),
             )
         if kind == "choose_form":
             sentence: list[TokenRef | None] = [
@@ -89,6 +95,7 @@ def _exercise(raw: dict, unit_id: int) -> Exercise:
                 sentence=sentence,
                 answer=_token(raw["answer"], where),
                 distractor_forms=list(raw["distractor_forms"]),
+                audio_prompt=bool(raw.get("audio_prompt", False)),
             )
         if kind == "match_pairs":
             return MatchPairsExercise(

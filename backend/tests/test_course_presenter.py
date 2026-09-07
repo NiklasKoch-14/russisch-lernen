@@ -1,7 +1,9 @@
+import copy
+
 from app.content.loader import load_course
-from app.course.presenter import present_exercise
+from app.course.presenter import present_exercise, spoken_text
 from app.course.shuffle import shuffled_order
-from tests.content_factory import write_course
+from tests.content_factory import MINIMAL_LEXICON, MINIMAL_UNIT, write_course
 
 
 def _course(tmp_path):
@@ -53,3 +55,43 @@ def test_dialog_reply_payload_hides_correct_index(tmp_path):
     assert len(payload["options"]) == 2
     assert "correct_index" not in payload
     assert all("why_de" not in option for option in payload["options"])
+
+
+def test_spoken_text_prefers_speak_as(tmp_path):
+    lexicon = copy.deepcopy(MINIMAL_LEXICON)
+    lexicon["lexemes"].append(
+        {
+            "id": "bu_r",
+            "lemma": "Р р",
+            "pos": "letter",
+            "gloss_de": "gerolltes r",
+            "forms": {"base": {"text": "Р р", "translit": "r", "speak_as": "ры́ба"}},
+        }
+    )
+    course = load_course(write_course(tmp_path, lexicon=lexicon))
+    assert spoken_text(course, [("bu_r", "base")]) == "ры́ба"
+    assert spoken_text(course, [("ja", "nom")]) == "я"
+
+
+def test_build_sentence_with_audio_prompt_speaks_the_solution(tmp_path):
+    unit = copy.deepcopy(MINIMAL_UNIT)
+    unit["exercises"][0]["audio_prompt"] = True
+    course = load_course(write_course(tmp_path, units=[unit]))
+    payload = present_exercise(course, course.units[1].exercises[0])
+    assert payload["audio_prompt"] is True
+    assert payload["audio_text"] == "я де́лаю"
+
+
+def test_without_audio_prompt_there_is_no_audio_text(tmp_path):
+    course = _course(tmp_path)
+    payload = present_exercise(course, course.units[1].exercises[0])
+    assert payload["audio_prompt"] is False
+    assert "audio_text" not in payload
+
+
+def test_choose_form_audio_text_fills_the_blank(tmp_path):
+    unit = copy.deepcopy(MINIMAL_UNIT)
+    unit["exercises"][1]["audio_prompt"] = True
+    course = load_course(write_course(tmp_path, units=[unit]))
+    payload = present_exercise(course, course.units[1].exercises[1])
+    assert payload["audio_text"] == "я де́лаю"

@@ -36,6 +36,7 @@ class BuildSentenceExercise:
     prompt_de: str
     solution: list[TokenRef]
     distractors: list[TokenRef]
+    audio_prompt: bool = False
     type: str = "build_sentence"
 
 
@@ -46,6 +47,7 @@ class ChooseFormExercise:
     sentence: list[TokenRef | None]
     answer: TokenRef
     distractor_forms: list[str]
+    audio_prompt: bool = False
     type: str = "choose_form"
 
 

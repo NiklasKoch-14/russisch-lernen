@@ -15,6 +15,16 @@ def _word(course: Course, ref: TokenRef) -> dict:
     return {"text": form.text, "translit": form.translit}
 
 
+def spoken_text(course: Course, refs: list[TokenRef]) -> str:
+    """The sentence as it should be read aloud — speak_as wins over the written form."""
+    return " ".join((course.form(ref).speak_as or course.form(ref).text) for ref in refs)
+
+
+def filled_sentence(exercise: ChooseFormExercise) -> list[TokenRef]:
+    """The choose_form sentence with the answer put into the blank."""
+    return [exercise.answer if ref is None else ref for ref in exercise.sentence]
+
+
 def build_sentence_tiles(course: Course, exercise: BuildSentenceExercise) -> list[TokenRef]:
     """The tile pool in the exact order the client will see it."""
     pool = list(exercise.solution) + list(exercise.distractors)
@@ -48,18 +58,26 @@ def present_exercise(course: Course, exercise: Exercise) -> dict:
 
     if isinstance(exercise, BuildSentenceExercise):
         tiles = build_sentence_tiles(course, exercise)
-        return base | {
-            "tiles": [{"index": index, **_word(course, ref)} for index, ref in enumerate(tiles)]
+        payload = base | {
+            "tiles": [{"index": index, **_word(course, ref)} for index, ref in enumerate(tiles)],
+            "audio_prompt": exercise.audio_prompt,
         }
+        if exercise.audio_prompt:
+            payload["audio_text"] = spoken_text(course, list(exercise.solution))
+        return payload
 
     if isinstance(exercise, ChooseFormExercise):
         options = choose_form_options(course, exercise)
-        return base | {
+        payload = base | {
             "sentence": [None if ref is None else _word(course, ref) for ref in exercise.sentence],
             "options": [
                 {"index": index, **_word(course, ref)} for index, ref in enumerate(options)
             ],
+            "audio_prompt": exercise.audio_prompt,
         }
+        if exercise.audio_prompt:
+            payload["audio_text"] = spoken_text(course, filled_sentence(exercise))
+        return payload
 
     if isinstance(exercise, MatchPairsExercise):
         left, right = match_pairs_sides(course, exercise)

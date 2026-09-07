@@ -104,3 +104,15 @@ def test_loads_speak_as_when_present(tmp_path):
 def test_speak_as_is_optional(tmp_path):
     course = load_course(write_course(tmp_path))
     assert course.lexemes["ja"].forms["nom"].speak_as is None
+
+
+def test_audio_prompt_is_rejected_on_other_exercise_types(tmp_path):
+    unit = copy.deepcopy(MINIMAL_UNIT)
+    unit["exercises"][2]["audio_prompt"] = True
+    with pytest.raises(ContentError, match="audio_prompt"):
+        load_course(write_course(tmp_path, units=[unit]))
+
+
+def test_audio_prompt_defaults_to_false(tmp_path):
+    exercise = load_course(write_course(tmp_path)).units[1].exercises[0]
+    assert exercise.audio_prompt is False
