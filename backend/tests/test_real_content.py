@@ -103,3 +103,38 @@ def test_die_nennform_traegt_die_bedeutung_des_lemmas():
         if ref and course.form(ref).text != lexeme.lemma:
             abweichend.append(lexeme.id)
     assert abweichend == ["dela"], f"unerwartete Abweichungen: {abweichend}"
+
+
+def test_der_index_findet_fuer_die_meisten_wortformen_eine_kontext_aufgabe():
+    # Ohne diesen Test koennte eine Content-Aenderung die Kontext-Wiederholung
+    # still aushebeln. Buchstaben zaehlen nicht mit: sie stehen in keinem Satz.
+    from app.content.validator import _exercise_tokens
+    from app.course.review_index import build_index
+
+    course = load_course(CONTENT_DIR)
+    index = build_index(course)
+
+    formen = {
+        ref
+        for unit in course.ordered_units()
+        for exercise in unit.exercises
+        for ref in _exercise_tokens(exercise)
+        if course.lexemes[ref[0]].pos != "letter"
+    }
+    mit_kontext = {ref for ref in formen if ref in index.exact or ref in index.broad}
+    anteil = len(mit_kontext) / len(formen)
+    assert anteil >= 0.6, f"nur {anteil:.0%} der Wortformen haben eine Kontext-Aufgabe"
+
+
+def test_buchstaben_haben_keine_kontext_aufgabe():
+    # Sie sollen auch keine haben: fuer sie ist die Zuordnung die richtige Form.
+    from app.course.review_index import build_index
+
+    course = load_course(CONTENT_DIR)
+    index = build_index(course)
+    buchstaben = {
+        ref
+        for ref in set(index.exact) | set(index.broad)
+        if course.lexemes[ref[0]].pos == "letter"
+    }
+    assert buchstaben == set()

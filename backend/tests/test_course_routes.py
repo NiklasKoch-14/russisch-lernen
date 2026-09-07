@@ -80,7 +80,35 @@ def test_screening_answer_finishes_and_persists_placement(client):
 
 
 def test_review_due_is_empty_initially(client):
-    assert client.get("/api/review/due").json()["left"] == []
+    assert client.get("/api/review/due").json()["items"] == []
+
+
+def test_review_exercise_grades_without_touching_unit_progress(client):
+    # Erst die Einheit anfassen, damit es einen Fortschritt gibt, den man
+    # kaputtmachen koennte.
+    unit = client.get("/api/units/1").json()
+    exercise = next(item for item in unit["exercises"] if item["type"] == "choose_form")
+    client.post(
+        "/api/units/1/answer",
+        json={"exercise_id": exercise["id"], "submission": {"option_index": 0}},
+    )
+    vorher = client.get("/api/course").json()
+
+    antwort = client.post(
+        "/api/review/exercise",
+        json={"unit_id": 1, "exercise_id": exercise["id"], "submission": {"option_index": 99}},
+    )
+    assert antwort.status_code == 200
+    assert antwort.json()["correct"] is False
+    assert client.get("/api/course").json() == vorher, "der Kursfortschritt darf sich nicht ändern"
+
+
+def test_review_exercise_rejects_an_unknown_exercise(client):
+    antwort = client.post(
+        "/api/review/exercise",
+        json={"unit_id": 1, "exercise_id": "gibtesnicht", "submission": {}},
+    )
+    assert antwort.status_code == 404
 
 
 def test_profile_patch_toggles_transliteration(client):

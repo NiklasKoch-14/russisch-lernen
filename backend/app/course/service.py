@@ -120,6 +120,43 @@ def new_words(course: Course, unit) -> list[dict]:
     return words
 
 
+def submit_review_exercise(
+    conn: Connection,
+    course: Course,
+    *,
+    unit_id: int,
+    exercise_id: str,
+    submission: dict,
+    today: str | None = None,
+) -> AnswerOutcome:
+    """Eine Kursaufgabe in der Wiederholung bewerten.
+
+    Bewusst ohne `bump_progress` und `record_attempt`: beide haengen an der
+    Einheit, und eine falsch beantwortete Wiederholung darf eine laengst
+    abgeschlossene Einheit nicht wieder aufreissen.
+    """
+    unit = course.units[unit_id]
+    exercise = next((item for item in unit.exercises if item.id == exercise_id), None)
+    if exercise is None:
+        raise KeyError(f"Aufgabe {exercise_id!r} gehört nicht zu Einheit {unit_id}")
+
+    result = check_answer(course, exercise, submission)
+    day = _today(today)
+    for ref in result.trained_forms:
+        schedule_form(conn, ref, correct=result.correct, today=day)
+
+    return AnswerOutcome(
+        correct=result.correct,
+        solution_text=result.solution_text,
+        solution_translit=result.solution_translit,
+        solution_audio=result.solution_audio,
+        explanation_de=result.explanation_de,
+        unit_completed=False,
+        correct_count=0,
+        total_count=0,
+    )
+
+
 def unit_payload(course: Course, conn: Connection, unit_id: int) -> dict:
     unit = course.units[unit_id]
     solved = progress_repo.correct_exercise_ids(conn, unit_id)

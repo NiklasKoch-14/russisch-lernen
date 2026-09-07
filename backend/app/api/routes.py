@@ -18,6 +18,7 @@ from app.api.schemas import (
     ProfilePatchRequest,
     ProfileResponse,
     ReviewAnswerRequest,
+    ReviewExerciseRequest,
     ScreeningAnswerRequest,
     VocabAnswerRequest,
     VocabAnswerResponse,
@@ -28,7 +29,15 @@ from app.config import settings
 from app.content.models import Course
 from app.course import review as review_module
 from app.course import service as course_service
-from app.dependencies import get_audio_cache, get_course, get_db, get_ollama, get_tts
+from app.course.review_index import ReviewIndex
+from app.dependencies import (
+    get_audio_cache,
+    get_course,
+    get_db,
+    get_ollama,
+    get_review_index,
+    get_tts,
+)
 from app.ollama_client import OllamaClient
 from app.tts_client import TtsClient, TtsUnavailable
 from app.repositories import vocab_repo
@@ -193,8 +202,14 @@ def screening_answer(
 
 
 @router.get("/review/due")
-def review_due(conn: Connection = Depends(get_db), course: Course = Depends(get_course)) -> dict:
-    return review_module.build_review_round(conn, course, today=dt.date.today().isoformat())
+def review_due(
+    conn: Connection = Depends(get_db),
+    course: Course = Depends(get_course),
+    index: ReviewIndex = Depends(get_review_index),
+) -> dict:
+    return review_module.build_review_round(
+        conn, course, index, today=dt.date.today().isoformat()
+    )
 
 
 @router.post("/review/answer")
@@ -202,13 +217,35 @@ def review_answer(
     payload: ReviewAnswerRequest,
     conn: Connection = Depends(get_db),
     course: Course = Depends(get_course),
+    index: ReviewIndex = Depends(get_review_index),
 ) -> dict:
     return review_module.grade_review_round(
         conn,
         course,
+        index,
         today=dt.date.today().isoformat(),
         submission={"pairs": payload.pairs},
     )
+
+
+@router.post("/review/exercise", response_model=AnswerResponse)
+def review_exercise(
+    payload: ReviewExerciseRequest,
+    conn: Connection = Depends(get_db),
+    course: Course = Depends(get_course),
+) -> AnswerResponse:
+    """Eine Kursaufgabe in der Wiederholung — ohne Wirkung auf den Einheiten-Fortschritt."""
+    try:
+        outcome = course_service.submit_review_exercise(
+            conn,
+            course,
+            unit_id=payload.unit_id,
+            exercise_id=payload.exercise_id,
+            submission=payload.submission,
+        )
+    except KeyError as exc:
+        raise HTTPException(status_code=404, detail=str(exc)) from exc
+    return AnswerResponse(**vars(outcome))
 
 
 @router.patch("/profile", response_model=ProfileResponse)

@@ -91,6 +91,12 @@ class ReviewAnswerRequest(BaseModel):
     pairs: list[list[int]]
 
 
+class ReviewExerciseRequest(BaseModel):
+    unit_id: int
+    exercise_id: str
+    submission: dict
+
+
 class ExplainRequest(BaseModel):
     unit_id: int
     exercise_id: str

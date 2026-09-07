@@ -1,9 +1,11 @@
 from sqlite3 import Connection
 
 from app.content.models import Course, TokenRef
+from app.course.presenter import present_exercise
+from app.course.review_index import Location, ReviewIndex
 from app.course.service import schedule_form
 from app.course.shuffle import shuffled_order
-from app.repositories import lexeme_srs_repo
+from app.repositories import lexeme_srs_repo, progress_repo
 
 
 def _due_refs(conn: Connection, course: Course, *, today: str, size: int) -> list[TokenRef]:
@@ -19,34 +21,107 @@ def _due_refs(conn: Connection, course: Course, *, today: str, size: int) -> lis
     return refs
 
 
-def build_review_round(conn: Connection, course: Course, *, today: str, size: int = 5) -> dict:
-    """One matching round over the forms that are due today."""
-    refs = _due_refs(conn, course, today=today, size=size)
-    if not refs:
-        return {"left": [], "right": []}
+def _split_refs(
+    conn: Connection,
+    course: Course,
+    index: ReviewIndex,
+    *,
+    today: str,
+    size: int,
+) -> tuple[list[tuple[TokenRef, Location]], list[TokenRef]]:
+    """Faellige Formen aufteilen: mit Kontext-Aufgabe und ohne.
 
+    Runde und Bewertung muessen dieselbe Aufteilung sehen — sonst benotet die
+    Bewertung andere Formen, als die Runde gestellt hat. Deshalb liegt sie hier
+    an einer Stelle und wird von beiden benutzt.
+    """
+    allowed = set(progress_repo.all_progress(conn))
+    seed = f"review:{today}"
+
+    with_context: list[tuple[TokenRef, Location]] = []
+    leftovers: list[TokenRef] = []
+    for ref in _due_refs(conn, course, today=today, size=size):
+        location = index.pick(ref, allowed_units=allowed, seed=seed)
+        if location is None:
+            leftovers.append(ref)
+        else:
+            with_context.append((ref, location))
+
+    # Eine Zuordnung mit einem Paar ist keine Aufgabe: dann kommt eine weitere
+    # faellige Form dazu, auch wenn sie eine Kontext-Aufgabe haette.
+    if len(leftovers) == 1 and with_context:
+        borrowed, _ = with_context.pop()
+        leftovers.append(borrowed)
+
+    if len(leftovers) < 2:
+        leftovers = []
+
+    return with_context, leftovers
+
+
+def _pairs_item(course: Course, refs: list[TokenRef], *, today: str) -> dict:
     right_order = shuffled_order(f"review:{today}", len(refs))
-    left = [
-        {
-            "index": index,
-            "ref": f"{ref[0]}:{ref[1]}",
-            "text": course.form(ref).text,
-            "translit": course.form(ref).translit,
-        }
-        for index, ref in enumerate(refs)
-    ]
-    right = [
-        {"index": index, "gloss_de": course.gloss(refs[position])}
-        for index, position in enumerate(right_order)
-    ]
-    return {"left": left, "right": right}
+    return {
+        "kind": "pairs",
+        "left": [
+            {
+                "index": index,
+                "ref": f"{ref[0]}:{ref[1]}",
+                "text": course.form(ref).text,
+                "translit": course.form(ref).translit,
+            }
+            for index, ref in enumerate(refs)
+        ],
+        "right": [
+            {"index": index, "gloss_de": course.gloss(refs[position])}
+            for index, position in enumerate(right_order)
+        ],
+    }
+
+
+def build_review_round(
+    conn: Connection,
+    course: Course,
+    index: ReviewIndex,
+    *,
+    today: str,
+    size: int = 5,
+) -> dict:
+    """Faellige Formen, wo moeglich in einer echten Kursaufgabe."""
+    with_context, leftovers = _split_refs(conn, course, index, today=today, size=size)
+
+    items: list[dict] = []
+    for ref, (unit_id, exercise_id) in with_context:
+        exercise = next(
+            item for item in course.units[unit_id].exercises if item.id == exercise_id
+        )
+        items.append(
+            {
+                "kind": "exercise",
+                "unit_id": unit_id,
+                "exercise_id": exercise_id,
+                "ref": f"{ref[0]}:{ref[1]}",
+                **present_exercise(course, exercise),
+            }
+        )
+
+    if leftovers:
+        items.append(_pairs_item(course, leftovers, today=today))
+
+    return {"items": items}
 
 
 def grade_review_round(
-    conn: Connection, course: Course, *, today: str, submission: dict, size: int = 5
+    conn: Connection,
+    course: Course,
+    index: ReviewIndex,
+    *,
+    today: str,
+    submission: dict,
+    size: int = 5,
 ) -> dict:
-    """Grade a round rebuilt from the same due query, then reschedule each form."""
-    refs = _due_refs(conn, course, today=today, size=size)
+    """Die Zuordnung bewerten — aus derselben Aufteilung wie die Runde."""
+    _, refs = _split_refs(conn, course, index, today=today, size=size)
     right_order = shuffled_order(f"review:{today}", len(refs))
     chosen: dict[int, int] = {}
     for pair in submission.get("pairs", []):

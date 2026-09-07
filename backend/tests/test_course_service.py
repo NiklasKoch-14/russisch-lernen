@@ -161,3 +161,54 @@ def test_unbekanntes_lexem_in_new_lexemes_wird_uebersprungen(conn, tmp_path):
     course = load_course(write_course(tmp_path, units=[unit]))
     ids = [w["id"] for w in unit_payload(course, conn, 1)["new_words"]]
     assert "gibtesnicht" not in ids
+
+
+def test_wiederholung_bewertet_und_plant_fort(conn, tmp_path):
+    course = load_course(write_course(tmp_path))
+    exercise = course.units[1].exercises[1]
+    options = choose_form_options(course, exercise)
+    richtige = options.index(exercise.answer)
+
+    outcome = service.submit_review_exercise(
+        conn,
+        course,
+        unit_id=1,
+        exercise_id="1-2",
+        submission={"option_index": richtige},
+        today="2026-01-02",
+    )
+    assert outcome.correct is True
+    assert lexeme_srs_repo.get_state(conn, lexeme_id="delat", form_key="prs.1sg") is not None
+
+
+def test_wiederholung_ruehrt_den_einheiten_fortschritt_nicht_an(conn, tmp_path):
+    # Die wichtigste Zusage: eine falsche Wiederholung darf eine abgeschlossene
+    # Einheit nicht wieder aufreissen und ihre Statistik nicht verfaelschen.
+    course = load_course(write_course(tmp_path))
+    progress_repo.bump_progress(conn, unit_id=1, correct=True)
+    vorher = progress_repo.get_progress(conn, 1)
+
+    service.submit_review_exercise(
+        conn,
+        course,
+        unit_id=1,
+        exercise_id="1-2",
+        submission={"option_index": 99},
+        today="2026-01-02",
+    )
+
+    nachher = progress_repo.get_progress(conn, 1)
+    assert (nachher.correct_count, nachher.total_count, nachher.status) == (
+        vorher.correct_count,
+        vorher.total_count,
+        vorher.status,
+    )
+    assert progress_repo.attempt_count(conn, 1) == 0, "kein Versuch darf protokolliert werden"
+
+
+def test_wiederholung_lehnt_eine_fremde_aufgabe_ab(conn, tmp_path):
+    course = load_course(write_course(tmp_path))
+    with pytest.raises(KeyError):
+        service.submit_review_exercise(
+            conn, course, unit_id=1, exercise_id="gibtesnicht", submission={}
+        )

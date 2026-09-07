@@ -7,6 +7,7 @@ from app.config import settings
 from app.content.loader import load_course
 from app.content.models import Course
 from app.db import get_connection
+from app.course.review_index import ReviewIndex, build_index
 from app.ollama_client import OllamaClient
 from app.tts_client import TtsClient
 
@@ -44,3 +45,12 @@ def _load_course() -> Course:
 def get_course() -> Course:
     """The content package, loaded once per process."""
     return _load_course()
+
+
+@lru_cache(maxsize=1)
+def _review_index() -> ReviewIndex:
+    return build_index(_load_course())
+
+
+def get_review_index() -> ReviewIndex:
+    return _review_index()
