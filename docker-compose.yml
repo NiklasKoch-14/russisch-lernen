@@ -6,6 +6,18 @@ services:
     ports:
       - "11434:11434"
 
+  # Kein ports-Eintrag: der Dienst ist nur im Docker-Netz erreichbar, das
+  # Frontend spricht ausschliesslich das Backend an.
+  tts:
+    build:
+      context: ./tts
+      args:
+        PIPER_VOICE: ${PIPER_VOICE:-ru_RU-dmitri-medium}
+    environment:
+      - PIPER_VOICE=${PIPER_VOICE:-ru_RU-dmitri-medium}
+      - PIPER_LENGTH_SCALE=${PIPER_LENGTH_SCALE:-1.0}
+      - PIPER_VOLUME=${PIPER_VOLUME:-1.0}
+
   backend:
     build:
       context: .
@@ -16,12 +28,20 @@ services:
       - DB_PATH=/data/speaker.db
       - DEFAULT_LANGUAGE=russian
       - CONTENT_DIR=/app/content/ru
+      - TTS_HOST=http://tts:5001
+      # Muss mit der Stimme des tts-Dienstes uebereinstimmen: der Wert geht in
+      # den Zwischenspeicher-Schluessel ein.
+      - PIPER_VOICE=${PIPER_VOICE:-ru_RU-dmitri-medium}
+      - PIPER_LENGTH_SCALE=${PIPER_LENGTH_SCALE:-1.0}
+      - AUDIO_CACHE_DIR=/data/audio
+      - AUDIO_CACHE_MAX_MB=${AUDIO_CACHE_MAX_MB:-50}
     volumes:
       - backend_data:/data
     ports:
       - "8000:8000"
     depends_on:
       - ollama
+      - tts
 
   frontend:
     build: ./frontend

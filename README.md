@@ -22,8 +22,30 @@ Ohne `make` geht es genauso mit `docker compose up -d --build` beziehungsweise `
 | frontend | 3000 | React-Oberfläche (nginx) |
 | backend | 8000 | FastAPI + SQLite |
 | ollama | 11434 | lokales Sprachmodell, Default `llama3.2:3b` |
+| tts | — | Piper-Sprachausgabe, nur intern erreichbar |
 
 Der erste Start dauert länger, weil das Modell heruntergeladen wird. Ein API-Key wird nie benötigt.
+
+## Ton
+
+Gesprochen wird über einen eigenen Piper-Container. Er hat keinen Port nach außen — das Frontend holt
+den Ton beim Backend, das ihn intern erzeugen lässt und zwischenspeichert. Gemessen: rund 100 ms beim
+ersten Mal, 2 ms aus dem Zwischenspeicher.
+
+```bash
+PIPER_VOICE=ru_RU-denis-medium make deploy   # andere Stimme
+```
+
+Zur Auswahl stehen `ru_RU-dmitri-medium` (Vorgabe), `ru_RU-ruslan-medium`, `ru_RU-denis-medium` und
+`ru_RU-irina-medium`. Ein Wechsel entwertet den Zwischenspeicher, weil die Stimme in den Schlüssel
+eingeht — die Dateien werden dann neu erzeugt, die alten fallen mit der Zeit aus dem Deckel.
+
+`AUDIO_CACHE_MAX_MB` (Vorgabe 50) begrenzt den Platzbedarf. Verdrängt wird, was am längsten nicht
+gebraucht wurde, nicht das Älteste — sonst flögen die Sätze aus Einheit 1 zuerst, obwohl die
+Wiederholung sie am häufigsten braucht.
+
+Antwortet der Piper-Container nicht, spricht die Stimme des Browsers; fehlt auch die, zeigen
+Hör-Aufgaben ihre Textfassung. Keine Einheit wird dadurch unlösbar.
 
 ## Lernablauf
 
