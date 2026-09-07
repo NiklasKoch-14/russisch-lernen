@@ -2,7 +2,9 @@ import datetime as dt
 from dataclasses import dataclass
 from sqlite3 import Connection, Row
 
-SELECT_COLUMNS = "language, cefr_level, created_at, show_transliteration, placement_unit"
+SELECT_COLUMNS = (
+    "language, cefr_level, created_at, show_transliteration, placement_unit, audio_autoplay"
+)
 
 
 @dataclass
@@ -12,6 +14,7 @@ class Profile:
     created_at: str
     show_transliteration: bool = True
     placement_unit: int | None = None
+    audio_autoplay: bool = True
 
 
 def _row_to_profile(row: Row) -> Profile:
@@ -21,6 +24,7 @@ def _row_to_profile(row: Row) -> Profile:
         created_at=row["created_at"],
         show_transliteration=bool(row["show_transliteration"]),
         placement_unit=row["placement_unit"],
+        audio_autoplay=bool(row["audio_autoplay"]),
     )
 
 
@@ -32,7 +36,7 @@ def get_or_create_profile(conn: Connection, default_language: str) -> Profile:
     created_at = dt.datetime.now(dt.timezone.utc).isoformat()
     conn.execute(
         "INSERT INTO profile (id, language, cefr_level, created_at, show_transliteration,"
-        " placement_unit) VALUES (1, ?, ?, ?, 1, NULL)",
+        " placement_unit, audio_autoplay) VALUES (1, ?, ?, ?, 1, NULL, 1)",
         (default_language, "UNPLACED", created_at),
     )
     conn.commit()
@@ -46,6 +50,7 @@ def update_profile(
     cefr_level: str | None = None,
     show_transliteration: bool | None = None,
     placement_unit: int | None = None,
+    audio_autoplay: bool | None = None,
 ) -> Profile:
     current = get_or_create_profile(conn, default_language=language or "russian")
     new = Profile(
@@ -58,11 +63,20 @@ def update_profile(
             else current.show_transliteration
         ),
         placement_unit=placement_unit if placement_unit is not None else current.placement_unit,
+        audio_autoplay=(
+            audio_autoplay if audio_autoplay is not None else current.audio_autoplay
+        ),
     )
     conn.execute(
         "UPDATE profile SET language = ?, cefr_level = ?, show_transliteration = ?,"
-        " placement_unit = ? WHERE id = 1",
-        (new.language, new.cefr_level, int(new.show_transliteration), new.placement_unit),
+        " placement_unit = ?, audio_autoplay = ? WHERE id = 1",
+        (
+            new.language,
+            new.cefr_level,
+            int(new.show_transliteration),
+            new.placement_unit,
+            int(new.audio_autoplay),
+        ),
     )
     conn.commit()
     return new

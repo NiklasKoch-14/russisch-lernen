@@ -9,6 +9,7 @@ CREATE TABLE IF NOT EXISTS profile (
     cefr_level TEXT NOT NULL,
     created_at TEXT NOT NULL,
     show_transliteration INTEGER NOT NULL DEFAULT 1,
+    audio_autoplay INTEGER NOT NULL DEFAULT 1,
     placement_unit INTEGER
 );
 
@@ -105,6 +106,7 @@ CREATE TABLE IF NOT EXISTS screening_results (
 PROFILE_COLUMNS = {
     "show_transliteration": "INTEGER NOT NULL DEFAULT 1",
     "placement_unit": "INTEGER",
+    "audio_autoplay": "INTEGER NOT NULL DEFAULT 1",
 }
 
 

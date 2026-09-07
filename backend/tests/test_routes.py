@@ -31,6 +31,7 @@ def test_get_profile_creates_default_profile(client):
         "cefr_level": "UNPLACED",
         "show_transliteration": True,
         "placement_unit": None,
+        "audio_autoplay": True,
     }
 
 

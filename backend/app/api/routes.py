@@ -47,6 +47,7 @@ def read_profile(conn: Connection = Depends(get_db)) -> ProfileResponse:
         cefr_level=profile.cefr_level,
         show_transliteration=profile.show_transliteration,
         placement_unit=profile.placement_unit,
+        audio_autoplay=profile.audio_autoplay,
     )
 
 
@@ -216,12 +217,14 @@ def patch_profile(
         conn,
         show_transliteration=payload.show_transliteration,
         placement_unit=payload.placement_unit,
+        audio_autoplay=payload.audio_autoplay,
     )
     return ProfileResponse(
         language=profile.language,
         cefr_level=profile.cefr_level,
         show_transliteration=profile.show_transliteration,
         placement_unit=profile.placement_unit,
+        audio_autoplay=profile.audio_autoplay,
     )
 
 

@@ -39,11 +39,14 @@ def test_init_db_adds_missing_profile_columns_to_old_database(tmp_path):
     init_db(path)
 
     conn = get_connection(path)
-    assert {"show_transliteration", "placement_unit"} <= _columns(conn, "profile")
+    assert {"show_transliteration", "placement_unit", "audio_autoplay"} <= _columns(
+        conn, "profile"
+    )
     row = conn.execute("SELECT * FROM profile WHERE id = 1").fetchone()
     assert row["cefr_level"] == "A2"
     assert row["show_transliteration"] == 1
     assert row["placement_unit"] is None
+    assert row["audio_autoplay"] == 1
     conn.close()
 
 
@@ -52,5 +55,5 @@ def test_init_db_is_idempotent(tmp_path):
     init_db(path)
     init_db(path)
     conn = get_connection(path)
-    assert len(_columns(conn, "profile")) == 6
+    assert len(_columns(conn, "profile")) == 7
     conn.close()

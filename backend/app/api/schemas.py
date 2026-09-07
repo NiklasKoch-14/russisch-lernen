@@ -6,6 +6,7 @@ class ProfileResponse(BaseModel):
     cefr_level: str
     show_transliteration: bool = True
     placement_unit: int | None = None
+    audio_autoplay: bool = True
 
 
 class PracticeTurnRequest(BaseModel):
@@ -63,6 +64,7 @@ class AnalyzeSessionResponse(BaseModel):
 class ProfilePatchRequest(BaseModel):
     show_transliteration: bool | None = None
     placement_unit: int | None = None
+    audio_autoplay: bool | None = None
 
 
 class AnswerRequest(BaseModel):

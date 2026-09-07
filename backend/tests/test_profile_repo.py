@@ -37,3 +37,22 @@ def test_update_profile_toggles_transliteration(conn):
 def test_update_profile_stores_placement_unit(conn):
     profile_repo.get_or_create_profile(conn, default_language="russian")
     assert profile_repo.update_profile(conn, placement_unit=7).placement_unit == 7
+
+
+def test_autoplay_is_on_by_default(conn):
+    profile = get_or_create_profile(conn, default_language="russian")
+    assert profile.audio_autoplay is True
+
+
+def test_autoplay_can_be_switched_off(conn):
+    get_or_create_profile(conn, default_language="russian")
+    updated = update_profile(conn, audio_autoplay=False)
+    assert updated.audio_autoplay is False
+    assert get_or_create_profile(conn, default_language="russian").audio_autoplay is False
+
+
+def test_autoplay_survives_unrelated_updates(conn):
+    get_or_create_profile(conn, default_language="russian")
+    update_profile(conn, audio_autoplay=False)
+    update_profile(conn, show_transliteration=False)
+    assert get_or_create_profile(conn, default_language="russian").audio_autoplay is False
