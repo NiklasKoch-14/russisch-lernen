@@ -18,6 +18,7 @@ MINIMAL_LEXICON = {
             "gloss_de": "machen, tun",
             "aspect": "impf",
             "forms": {
+                "inf": {"text": "де́лать", "translit": "délat'"},
                 "prs.1sg": {"text": "де́лаю", "translit": "délaju"},
                 "prs.2sg": {"text": "де́лаешь", "translit": "délaješ'"},
                 "prs.3sg": {"text": "де́лает", "translit": "délajet"},

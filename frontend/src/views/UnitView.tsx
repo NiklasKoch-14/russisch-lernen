@@ -2,11 +2,12 @@ import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 
 import ExerciseRunner from "../course/ExerciseRunner";
+import NewWords from "../course/NewWords";
 import { getUnit, submitAnswer } from "../courseApi";
 import SpeakerButton from "../audio/SpeakerButton";
 import type { AnswerResult, Submission, UnitDetail } from "../courseTypes";
 
-type Phase = "rule" | "exercises" | "done";
+type Phase = "rule" | "words" | "exercises" | "done";
 
 export default function UnitView() {
   const { unitId } = useParams();
@@ -26,6 +27,16 @@ export default function UnitView() {
   if (error) return <p>Die Einheit konnte nicht geladen werden.</p>;
   if (!unit) return <p>Einheit wird geladen …</p>;
 
+  // Wer die Einheit schon geschafft hat, braucht die Woerter nicht noch einmal
+  // vorgestellt zu bekommen — der Fortschritt sagt das bereits.
+  const completed = unit.solved_exercise_ids.length >= unit.exercises.length;
+  const introducesWords = unit.new_words.length > 0 && !completed;
+  const afterRule = () => setPhase(introducesWords ? "words" : "exercises");
+
+  if (phase === "words") {
+    return <NewWords words={unit.new_words} onContinue={() => setPhase("exercises")} />;
+  }
+
   if (phase === "rule") {
     return (
       <article className="space-y-4">
@@ -37,7 +48,7 @@ export default function UnitView() {
         </section>
         <button
           type="button"
-          onClick={() => setPhase("exercises")}
+          onClick={afterRule}
           className="rounded-xl bg-sky-600 px-5 py-2 font-medium text-white"
         >
           Los geht's

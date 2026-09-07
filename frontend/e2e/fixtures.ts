@@ -41,6 +41,19 @@ export async function stubSpeech(page: Page, langs: string[]): Promise<void> {
   }, langs);
 }
 
+/**
+ * Vom Regel-Bildschirm bis zur ersten Aufgabe.
+ *
+ * Dazwischen liegt seit Neuestem der Wortschatz-Bildschirm — aber nur, solange
+ * die Einheit nicht geschafft ist. Deshalb wird er uebersprungen, wenn er da
+ * ist, statt ihn vorauszusetzen.
+ */
+export async function startExercises(page: Page): Promise<void> {
+  await page.getByRole("button", { name: "Los geht's" }).click();
+  const weiter = page.getByRole("button", { name: "Weiter zu den Aufgaben" });
+  if (await weiter.isVisible().catch(() => false)) await weiter.click();
+}
+
 /** Was die Seite bisher zu sprechen versucht hat. */
 export function spokenTexts(page: Page): Promise<string[]> {
   return page.evaluate(() => (window as unknown as { __spoken: string[] }).__spoken ?? []);

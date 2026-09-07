@@ -1,3 +1,5 @@
+import copy
+
 import pytest
 
 from app.content.loader import load_course
@@ -8,8 +10,9 @@ from app.course.presenter import (
     dialog_reply_options,
     match_pairs_sides,
 )
+from app.course.service import unit_payload
 from app.repositories import lexeme_srs_repo, progress_repo
-from tests.content_factory import write_course
+from tests.content_factory import MINIMAL_UNIT, write_course
 
 
 @pytest.fixture
@@ -130,3 +133,31 @@ def test_course_overview_reflects_progress(conn, course):
     service.submit_answer(conn, course, unit_id=1, exercise_id=exercise_id, submission=submission)
     overview = service.course_overview(course, conn)
     assert overview["stages"][0]["units"][0]["status"] == "in_progress"
+
+
+def test_unit_payload_stellt_die_neuen_woerter_vor(conn, tmp_path):
+    course = load_course(write_course(tmp_path))
+    payload = unit_payload(course, conn, 1)
+    woerter = payload["new_words"]
+
+    # Reihenfolge wie in new_lexemes, damit der Autor sie steuern kann.
+    assert [w["id"] for w in woerter] == ["ja", "delat"]
+    assert woerter[0]["gloss_de"] == "ich"
+    assert woerter[1]["gloss_de"] == "machen, tun"
+
+
+def test_neue_woerter_zeigen_die_nennform(conn, tmp_path):
+    # Ein Verb wird im Woerterbuch als Infinitiv gefuehrt, nicht als „ich mache".
+    course = load_course(write_course(tmp_path))
+    woerter = {w["id"]: w for w in unit_payload(course, conn, 1)["new_words"]}
+    assert woerter["delat"]["text"] == "де́лать"
+    assert woerter["delat"]["translit"] == "délat'"
+    assert woerter["ja"]["text"] == "я"
+
+
+def test_unbekanntes_lexem_in_new_lexemes_wird_uebersprungen(conn, tmp_path):
+    unit = copy.deepcopy(MINIMAL_UNIT)
+    unit["new_lexemes"] = unit["new_lexemes"] + ["gibtesnicht"]
+    course = load_course(write_course(tmp_path, units=[unit]))
+    ids = [w["id"] for w in unit_payload(course, conn, 1)["new_words"]]
+    assert "gibtesnicht" not in ids

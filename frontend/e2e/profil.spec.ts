@@ -1,4 +1,4 @@
-import { expect, test } from "./fixtures";
+import { expect, startExercises, test } from "./fixtures";
 
 test.describe("Profil", () => {
   test("schaltet die Umschrift ab und wieder an", async ({ page }) => {
@@ -45,5 +45,5 @@ test.describe("Profil", () => {
 /** Oeffnet Einheit 8 und ueberspringt den Regel-Bildschirm. */
 async function openExercises(page: import("@playwright/test").Page) {
   await page.goto("/kurs/8");
-  await page.getByRole("button", { name: "Los geht's" }).click();
+  await startExercises(page);
 }

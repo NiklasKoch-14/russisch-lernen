@@ -1,4 +1,4 @@
-import { expect, test } from "./fixtures";
+import { expect, startExercises, test } from "./fixtures";
 
 test.describe("Kurs", () => {
   test("zeigt die Stufen mit ihren Einheiten", async ({ page }) => {
@@ -20,13 +20,13 @@ test.describe("Kurs", () => {
     await expect(page.getByText("Die Endung sagt, wer spricht")).toBeVisible();
     await expect(page.getByText(/говорю́/)).toBeVisible();
 
-    await page.getByRole("button", { name: "Los geht's" }).click();
+    await startExercises(page);
     await expect(page.getByText(/Aufgabe 1 von \d+/)).toBeVisible();
   });
 
   test("löst eine Wortformaufgabe richtig und meldet Erfolg", async ({ page }) => {
     await page.goto("/kurs/8");
-    await page.getByRole("button", { name: "Los geht's" }).click();
+    await startExercises(page);
 
     // Bis zur ersten Formauswahl vorspulen (Aufgabe 8-4).
     await solveThroughTo(page, "Welche Endung passt zu я?");
@@ -38,7 +38,7 @@ test.describe("Kurs", () => {
 
   test("erklärt eine falsche Wortform statt sie nur abzulehnen", async ({ page }) => {
     await page.goto("/kurs/8");
-    await page.getByRole("button", { name: "Los geht's" }).click();
+    await startExercises(page);
     await solveThroughTo(page, "Welche Endung passt zu я?");
 
     await page.getByRole("button", { name: /^говори́т/ }).first().click();
@@ -49,9 +49,22 @@ test.describe("Kurs", () => {
     await expect(feedback).toContainText("говорю́");
   });
 
+  test("stellt die neuen Wörter mit ihrer Bedeutung vor", async ({ page }) => {
+    await page.goto("/kurs/8");
+    await page.getByRole("button", { name: "Los geht's" }).click();
+
+    // говори́ть traegt die ganze Einheit und wurde vorher nirgends erklaert.
+    await expect(page.getByText("5 neue Wörter in dieser Einheit")).toBeVisible();
+    await expect(page.getByText("говори́ть")).toBeVisible();
+    await expect(page.getByText("sprechen")).toBeVisible();
+
+    await page.getByRole("button", { name: "Weiter zu den Aufgaben" }).click();
+    await expect(page.getByText(/Aufgabe 1 von/)).toBeVisible();
+  });
+
   test("merkt sich den Fortschritt nach dem Neuladen", async ({ page }) => {
     await page.goto("/kurs/5");
-    await page.getByRole("button", { name: "Los geht's" }).click();
+    await startExercises(page);
     await answerCurrentExercise(page);
     await page.getByRole("button", { name: "Weiter" }).click();
 

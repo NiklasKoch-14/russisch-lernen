@@ -68,12 +68,18 @@ export type Submission =
   | { option_index: number }
   | { pairs: number[][] };
 
+export interface NewWord extends Word {
+  id: string;
+  gloss_de: string;
+}
+
 export interface UnitDetail {
   id: number;
   stage: number;
   title_de: string;
   scenario_de: string;
   grammar_focus: { id: string; title_de: string; explanation_de: string };
+  new_words: NewWord[];
   solved_exercise_ids: string[];
   exercises: Exercise[];
 }

@@ -16,6 +16,7 @@ const unit = {
     title_de: "Locker oder förmlich?",
     explanation_de: "Zu Fremden sagst du здра́вствуйте.",
   },
+  new_words: [],
   solved_exercise_ids: [],
   exercises: [
     {
@@ -150,5 +151,47 @@ describe("UnitView mit Ton", () => {
     fireEvent.click(await screen.findByRole("button", { name: /спаси́бо/ }));
     fireEvent.click(screen.getByRole("button", { name: "Prüfen" }));
     expect(await screen.findAllByRole("button", { name: "Anhören" })).toHaveLength(2);
+  });
+});
+
+describe("UnitView stellt neue Wörter vor", () => {
+  const mitWoertern = {
+    ...unit,
+    new_words: [
+      { id: "govorit", text: "говори́ть", translit: "govorít'", gloss_de: "sprechen" },
+    ],
+  };
+
+  beforeEach(() => vi.restoreAllMocks());
+
+  it("zeigt die neuen Wörter zwischen Regel und Aufgaben", async () => {
+    vi.spyOn(api, "getUnit").mockResolvedValue(mitWoertern);
+    renderUnit();
+
+    fireEvent.click(await screen.findByRole("button", { name: "Los geht's" }));
+    expect(await screen.findByText("sprechen")).toBeInTheDocument();
+
+    fireEvent.click(screen.getByRole("button", { name: /Aufgaben/ }));
+    expect(await screen.findByText("Auf Wiedersehen!")).toBeInTheDocument();
+  });
+
+  it("überspringt sie, wenn die Einheit schon geschafft ist", async () => {
+    vi.spyOn(api, "getUnit").mockResolvedValue({
+      ...mitWoertern,
+      solved_exercise_ids: mitWoertern.exercises.map((exercise) => exercise.id),
+    });
+    renderUnit();
+
+    fireEvent.click(await screen.findByRole("button", { name: "Los geht's" }));
+    expect(await screen.findByText("Auf Wiedersehen!")).toBeInTheDocument();
+    expect(screen.queryByText("sprechen")).toBeNull();
+  });
+
+  it("überspringt sie, wenn die Einheit keine neuen Wörter hat", async () => {
+    vi.spyOn(api, "getUnit").mockResolvedValue(unit);
+    renderUnit();
+
+    fireEvent.click(await screen.findByRole("button", { name: "Los geht's" }));
+    expect(await screen.findByText("Auf Wiedersehen!")).toBeInTheDocument();
   });
 });

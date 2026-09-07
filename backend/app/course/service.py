@@ -5,7 +5,7 @@ from sqlite3 import Connection
 
 from app.content.models import Course, TokenRef
 from app.course.checker import check_answer
-from app.course.presenter import present_exercise
+from app.course.presenter import citation_form, present_exercise
 from app.repositories import lexeme_srs_repo, progress_repo
 from app.repositories.lexeme_srs_repo import SrsState
 from app.srs.sm2 import sm2_update
@@ -96,6 +96,30 @@ def submit_answer(
     )
 
 
+def new_words(course: Course, unit) -> list[dict]:
+    """Die neuen Woerter der Einheit mit ihrer Bedeutung.
+
+    Reihenfolge wie in `new_lexemes`, damit der Autor sie steuern kann.
+    Unbekannte Kennungen werden uebersprungen statt zu sprengen — der Validator
+    meldet sie ohnehin.
+    """
+    words = []
+    for lexeme_id in unit.new_lexemes:
+        ref = citation_form(course, lexeme_id)
+        if ref is None:
+            continue
+        form = course.form(ref)
+        words.append(
+            {
+                "id": lexeme_id,
+                "text": form.text,
+                "translit": form.translit,
+                "gloss_de": course.gloss(ref),
+            }
+        )
+    return words
+
+
 def unit_payload(course: Course, conn: Connection, unit_id: int) -> dict:
     unit = course.units[unit_id]
     solved = progress_repo.correct_exercise_ids(conn, unit_id)
@@ -109,6 +133,7 @@ def unit_payload(course: Course, conn: Connection, unit_id: int) -> dict:
             "title_de": unit.grammar_focus.title_de,
             "explanation_de": unit.grammar_focus.explanation_de,
         },
+        "new_words": new_words(course, unit),
         "solved_exercise_ids": sorted(solved),
         "exercises": [present_exercise(course, exercise) for exercise in unit.exercises],
     }

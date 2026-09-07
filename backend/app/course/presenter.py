@@ -16,6 +16,29 @@ def _word(course: Course, ref: TokenRef) -> dict:
     return {"text": form.text, "translit": form.translit}
 
 
+# Wie ein Woerterbuch ein Wort auffuehrt. Die Reihenfolge ist die Suchreihenfolge;
+# was fehlt, faellt auf die erste vorhandene Form zurueck — `де́ти` etwa gibt es
+# nur im Plural, `есть` nur in der dritten Person.
+CITATION_FORMS: dict[str, tuple[str, ...]] = {
+    "verb": ("inf", "prs.3sg"),
+    "noun": ("nom.sg", "nom.pl"),
+    "adj": ("nom.m",),
+    "pron": ("nom",),
+    "num": ("nom", "nom.m"),
+}
+
+
+def citation_form(course: Course, lexeme_id: str) -> TokenRef | None:
+    """Die Form, unter der ein Wort im Woerterbuch stuende."""
+    lexeme = course.lexemes.get(lexeme_id)
+    if lexeme is None or not lexeme.forms:
+        return None
+    for key in CITATION_FORMS.get(lexeme.pos, ("base",)):
+        if key in lexeme.forms:
+            return (lexeme_id, key)
+    return (lexeme_id, sorted(lexeme.forms)[0])
+
+
 def spoken_text(course: Course, refs: list[TokenRef]) -> str:
     """The sentence as it should be read aloud — speak_as wins over the written form."""
     return " ".join((course.form(ref).speak_as or course.form(ref).text) for ref in refs)

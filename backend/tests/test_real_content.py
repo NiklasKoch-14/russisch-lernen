@@ -75,3 +75,31 @@ def test_every_language_unit_has_at_least_one_listening_exercise():
         )
     ]
     assert missing == [], f"Einheiten ohne Hör-Aufgabe: {missing}"
+
+
+def test_jedes_neue_wort_hat_eine_nennform_zum_vorstellen():
+    # Ohne sie stuende der Lernende beim ersten Kontakt ohne Bedeutung da.
+    from app.course.presenter import citation_form
+
+    course = load_course(CONTENT_DIR)
+    ohne = [
+        lexeme_id
+        for unit in course.ordered_units()
+        for lexeme_id in unit.new_lexemes
+        if citation_form(course, lexeme_id) is None
+    ]
+    assert ohne == [], f"Neue Wörter ohne Nennform: {ohne}"
+
+
+def test_die_nennform_traegt_die_bedeutung_des_lemmas():
+    # Bei genau einem Wort weicht die Nennform vom Lemma ab: `дела́` kommt im
+    # Kurs nur im Plural vor. Ueberall sonst muessen sie uebereinstimmen.
+    from app.course.presenter import citation_form
+
+    course = load_course(CONTENT_DIR)
+    abweichend = []
+    for lexeme in course.lexemes.values():
+        ref = citation_form(course, lexeme.id)
+        if ref and course.form(ref).text != lexeme.lemma:
+            abweichend.append(lexeme.id)
+    assert abweichend == ["dela"], f"unerwartete Abweichungen: {abweichend}"

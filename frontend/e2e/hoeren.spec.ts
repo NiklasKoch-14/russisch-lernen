@@ -1,7 +1,7 @@
 import { expect, test } from "@playwright/test";
 import type { Page } from "@playwright/test";
 
-import { spokenTexts, stubServerAudio, stubSpeech } from "./fixtures";
+import { spokenTexts, startExercises, stubServerAudio, stubSpeech } from "./fixtures";
 
 /** Beantwortet die aktuelle Aufgabe irgendwie, damit der Test weiterkommt. */
 async function answerCurrentExercise(page: Page) {
@@ -29,7 +29,7 @@ async function answerCurrentExercise(page: Page) {
 /** Spult bis zu der Aufgabe, die in Einheit 8 den Ton traegt (8-4). */
 async function goToAudioExercise(page: Page) {
   await page.goto("/kurs/8");
-  await page.getByRole("button", { name: "Los geht's" }).click();
+  await startExercises(page);
   for (let step = 0; step < 3; step += 1) {
     await answerCurrentExercise(page);
     await page.getByRole("button", { name: "Weiter" }).click();
