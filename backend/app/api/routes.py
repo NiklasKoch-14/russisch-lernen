@@ -1,7 +1,7 @@
 import datetime as dt
 from sqlite3 import Connection
 
-from fastapi import APIRouter, Depends, HTTPException
+from fastapi import APIRouter, Depends, HTTPException, Query, Response
 
 from app.api.schemas import (
     AnalyzeSessionResponse,
@@ -23,12 +23,14 @@ from app.api.schemas import (
     VocabAnswerResponse,
     VocabCardResponse,
 )
+from app.audio.cache import AudioCache, audio_key, strip_stress
 from app.config import settings
 from app.content.models import Course
 from app.course import review as review_module
 from app.course import service as course_service
-from app.dependencies import get_course, get_db, get_ollama
+from app.dependencies import get_audio_cache, get_course, get_db, get_ollama, get_tts
 from app.ollama_client import OllamaClient
+from app.tts_client import TtsClient, TtsUnavailable
 from app.repositories import vocab_repo
 from app.repositories.learning_plan_repo import get_latest_plan
 from app.repositories.profile_repo import get_or_create_profile, update_profile
@@ -250,3 +252,54 @@ def explain(
     except Exception:
         return ExplainResponse(explanation_de=rule, source="rule")
     return ExplainResponse(explanation_de=text or rule, source="llm" if text else "rule")
+
+
+AUDIO_MAX_CHARS = 300
+AUDIO_CACHE_HEADER = "public, max-age=31536000, immutable"
+
+
+@router.get("/audio/health")
+def audio_health(tts: TtsClient = Depends(get_tts)) -> dict:
+    """Sagt dem Frontend, ob es Stufe 1 (Server) benutzen kann."""
+    return {"available": tts.healthy()}
+
+
+@router.get("/audio")
+def audio(
+    text: str = Query(...),
+    tts: TtsClient = Depends(get_tts),
+    cache: AudioCache = Depends(get_audio_cache),
+) -> Response:
+    cleaned = text.strip()
+    if not cleaned:
+        raise HTTPException(status_code=400, detail="Text ist leer")
+    if len(cleaned) > AUDIO_MAX_CHARS:
+        raise HTTPException(
+            status_code=400, detail=f"Text länger als {AUDIO_MAX_CHARS} Zeichen"
+        )
+
+    # Gemessen: derselbe Satz mit U+0301 ergibt bei Piper eine andere, laengere
+    # Ausgabe. Entfernen macht ausserdem den Schluessel unabhaengig davon, ob der
+    # Client die Zeichen mitschickt.
+    cleaned = strip_stress(cleaned)
+
+    key = audio_key(
+        cleaned,
+        voice=settings.piper_voice,
+        length_scale=settings.piper_length_scale,
+    )
+    data = cache.get(key)
+    if data is None:
+        try:
+            data = tts.synthesize(cleaned)
+        except TtsUnavailable as exc:
+            raise HTTPException(
+                status_code=503, detail="Sprachdienst nicht erreichbar"
+            ) from exc
+        cache.put(key, data)
+
+    return Response(
+        content=data,
+        media_type="audio/wav",
+        headers={"Cache-Control": AUDIO_CACHE_HEADER},
+    )

@@ -2,6 +2,7 @@ from collections.abc import Iterator
 from functools import lru_cache
 from sqlite3 import Connection
 
+from app.audio.cache import AudioCache
 from app.config import settings
 from app.content.loader import load_course
 from app.content.models import Course
@@ -24,6 +25,15 @@ def get_ollama() -> OllamaClient:
 
 def get_tts() -> TtsClient:
     return TtsClient(host=settings.tts_host)
+
+
+@lru_cache(maxsize=1)
+def _audio_cache() -> AudioCache:
+    return AudioCache(settings.audio_cache_dir, max_mb=settings.audio_cache_max_mb)
+
+
+def get_audio_cache() -> AudioCache:
+    return _audio_cache()
 
 
 @lru_cache(maxsize=1)
