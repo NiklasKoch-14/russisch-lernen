@@ -2,6 +2,7 @@ import type { Exercise, Submission } from "../courseTypes";
 import BuildSentenceExercise from "./BuildSentenceExercise";
 import ChooseFormExercise from "./ChooseFormExercise";
 import DialogReplyExercise from "./DialogReplyExercise";
+import ListenMeaningExercise from "./ListenMeaningExercise";
 import MatchPairsExercise from "./MatchPairsExercise";
 
 export default function ExerciseRunner({
@@ -23,5 +24,7 @@ export default function ExerciseRunner({
       return <MatchPairsExercise exercise={exercise} {...props} />;
     case "dialog_reply":
       return <DialogReplyExercise exercise={exercise} {...props} />;
+    case "listen_meaning":
+      return <ListenMeaningExercise exercise={exercise} {...props} />;
   }
 }

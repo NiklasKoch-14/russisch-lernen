@@ -47,11 +47,21 @@ export interface DialogReplyExercise {
   options: Tile[];
 }
 
+export interface ListenMeaningExercise {
+  id: string;
+  type: "listen_meaning";
+  prompt_de: string;
+  audio_text: string;
+  sentence: Word[];
+  options_de: string[];
+}
+
 export type Exercise =
   | BuildSentenceExercise
   | ChooseFormExercise
   | MatchPairsExercise
-  | DialogReplyExercise;
+  | DialogReplyExercise
+  | ListenMeaningExercise;
 
 export type Submission =
   | { tile_indices: number[] }
