@@ -1,6 +1,7 @@
 import { useState } from "react";
 
 import type { BuildSentenceExercise as Model, Submission } from "../courseTypes";
+import AudioPrompt from "./AudioPrompt";
 import Tile from "./Tile";
 
 export default function BuildSentenceExercise({
@@ -21,7 +22,11 @@ export default function BuildSentenceExercise({
 
   return (
     <div className="space-y-4">
-      <p className="text-lg">{exercise.prompt_de}</p>
+      {exercise.audio_prompt && exercise.audio_text ? (
+        <AudioPrompt text={exercise.audio_text} promptDe={exercise.prompt_de} />
+      ) : (
+        <p className="text-lg">{exercise.prompt_de}</p>
+      )}
       <div className="min-h-16 rounded-xl border-2 border-dashed border-slate-300 p-3">
         <div className="flex flex-wrap gap-2">
           {chosen.map((index) => (

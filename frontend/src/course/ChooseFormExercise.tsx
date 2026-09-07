@@ -1,4 +1,5 @@
 import type { ChooseFormExercise as Model, Submission } from "../courseTypes";
+import AudioPrompt from "./AudioPrompt";
 import RussianText from "./RussianText";
 import Tile from "./Tile";
 
@@ -13,7 +14,11 @@ export default function ChooseFormExercise({
 }) {
   return (
     <div className="space-y-4">
-      <p className="text-lg">{exercise.prompt_de}</p>
+      {exercise.audio_prompt && exercise.audio_text ? (
+        <AudioPrompt text={exercise.audio_text} promptDe={exercise.prompt_de} />
+      ) : (
+        <p className="text-lg">{exercise.prompt_de}</p>
+      )}
       <div className="flex flex-wrap items-end gap-3 text-xl">
         {exercise.sentence.map((word, position) =>
           word === null ? (

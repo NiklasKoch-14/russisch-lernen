@@ -20,6 +20,7 @@ const unit = {
     {
       id: "5-3",
       type: "build_sentence" as const,
+      audio_prompt: false,
       prompt_de: "Auf Wiedersehen!",
       tiles: [
         { index: 0, text: "свида́ния", translit: "svidánija" },
@@ -29,6 +30,7 @@ const unit = {
     {
       id: "5-4",
       type: "build_sentence" as const,
+      audio_prompt: false,
       prompt_de: "Vielen Dank!",
       tiles: [{ index: 0, text: "спаси́бо", translit: "spasíbo" }],
     },

@@ -1,5 +1,7 @@
 import { fireEvent, render, screen } from "@testing-library/react";
-import { describe, expect, it, vi } from "vitest";
+import { afterEach, describe, expect, it, vi } from "vitest";
+
+import * as speech from "../audio/SpeechContext";
 
 import BuildSentenceExercise from "./BuildSentenceExercise";
 import ChooseFormExercise from "./ChooseFormExercise";
@@ -9,6 +11,7 @@ import MatchPairsExercise from "./MatchPairsExercise";
 const build = {
   id: "6-2",
   type: "build_sentence" as const,
+  audio_prompt: false,
   prompt_de: "Wie heißen Sie?",
   tiles: [
     { index: 0, text: "зову́т", translit: "zovút" },
@@ -47,6 +50,7 @@ describe("BuildSentenceExercise", () => {
 const choose = {
   id: "6-4",
   type: "choose_form" as const,
+  audio_prompt: false,
   prompt_de: "Welche Form von ты passt?",
   sentence: [{ text: "как", translit: "kak" }, null, { text: "зову́т", translit: "zovút" }],
   options: [
@@ -121,5 +125,65 @@ describe("DialogReplyExercise", () => {
     expect(screen.getByTestId("tutor-line")).toHaveTextContent("здра́вствуйте");
     fireEvent.click(screen.getAllByRole("button", { name: /пока́/ })[0]);
     expect(onSubmit).toHaveBeenCalledWith({ option_index: 0 });
+  });
+});
+
+const mockSpeech = (available: boolean) =>
+  vi.spyOn(speech, "useSpeech").mockReturnValue({
+    available,
+    autoplay: false,
+    setAutoplay: vi.fn(),
+    say: vi.fn(),
+  });
+
+afterEach(() => vi.restoreAllMocks());
+
+describe("Hör-Prompt", () => {
+  it("ersetzt bei build_sentence den deutschen Prompt durch den Abspielknopf", () => {
+    mockSpeech(true);
+    render(
+      <BuildSentenceExercise
+        exercise={{ ...build, audio_prompt: true, audio_text: "как вас зову́т" }}
+        onSubmit={vi.fn()}
+      />,
+    );
+    expect(screen.queryByText("Wie heißen Sie?")).toBeNull();
+    expect(screen.getByRole("button", { name: "Anhören" })).toBeInTheDocument();
+  });
+
+  it("fällt bei build_sentence ohne Stimme auf den deutschen Prompt zurück", () => {
+    mockSpeech(false);
+    render(
+      <BuildSentenceExercise
+        exercise={{ ...build, audio_prompt: true, audio_text: "как вас зову́т" }}
+        onSubmit={vi.fn()}
+      />,
+    );
+    expect(screen.getByText("Wie heißen Sie?")).toBeInTheDocument();
+  });
+
+  it("bleibt bei build_sentence ohne Stimme lösbar", () => {
+    mockSpeech(false);
+    const onSubmit = vi.fn();
+    render(
+      <BuildSentenceExercise
+        exercise={{ ...build, audio_prompt: true, audio_text: "как вас зову́т" }}
+        onSubmit={onSubmit}
+      />,
+    );
+    fireEvent.click(screen.getByRole("button", { name: /как/ }));
+    fireEvent.click(screen.getByRole("button", { name: "Prüfen" }));
+    expect(onSubmit).toHaveBeenCalledWith({ tile_indices: [1] });
+  });
+
+  it("ersetzt bei choose_form den deutschen Prompt durch den Abspielknopf", () => {
+    mockSpeech(true);
+    render(
+      <ChooseFormExercise
+        exercise={{ ...choose, audio_prompt: true, audio_text: "я де́лаю" }}
+        onSubmit={vi.fn()}
+      />,
+    );
+    expect(screen.getByRole("button", { name: "Anhören" })).toBeInTheDocument();
   });
 });

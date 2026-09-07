@@ -17,6 +17,8 @@ export interface BuildSentenceExercise {
   type: "build_sentence";
   prompt_de: string;
   tiles: Tile[];
+  audio_prompt: boolean;
+  audio_text?: string;
 }
 
 export interface ChooseFormExercise {
@@ -25,6 +27,8 @@ export interface ChooseFormExercise {
   prompt_de: string;
   sentence: (Word | null)[];
   options: Tile[];
+  audio_prompt: boolean;
+  audio_text?: string;
 }
 
 export interface MatchPairsExercise {
