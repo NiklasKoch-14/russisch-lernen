@@ -3,6 +3,7 @@ import { afterEach, describe, expect, it, vi } from "vitest";
 import {
   SLOW_PLAYBACK_RATE,
   audioUrl,
+  clearAudioCache,
   playAudio,
   prefetchAudio,
   serverAudioAvailable,
@@ -20,6 +21,16 @@ class FakeAudio {
     FakeAudio.lastInstance = this;
   }
 
+  private handlers: Record<string, (() => void)[]> = {};
+
+  addEventListener(type: string, handler: () => void) {
+    (this.handlers[type] ??= []).push(handler);
+  }
+
+  fireEnded() {
+    (this.handlers.ended ?? []).forEach((handler) => handler());
+  }
+
   play(): Promise<void> {
     return FakeAudio.shouldFail ? Promise.reject(new Error("blockiert")) : Promise.resolve();
   }
@@ -29,7 +40,18 @@ afterEach(() => {
   vi.unstubAllGlobals();
   FakeAudio.shouldFail = false;
   FakeAudio.lastInstance = null;
+  // Die Ablage liegt auf Modulebene und wuerde sonst in den naechsten Test lecken.
+  clearAudioCache();
 });
+
+/** fetch + URL so stubben, dass playAudio aus einem fertigen Blob spielt. */
+const stubBlobPlayback = (objectUrl = "blob:x") => {
+  const fetchMock = vi.fn(() => Promise.resolve(new Response(new Blob(["x"]))));
+  vi.stubGlobal("fetch", fetchMock);
+  vi.stubGlobal("Audio", FakeAudio);
+  vi.stubGlobal("URL", { createObjectURL: () => objectUrl, revokeObjectURL: vi.fn() });
+  return fetchMock;
+};
 
 describe("audioUrl", () => {
   it("kodiert den Text", () => {
@@ -61,21 +83,20 @@ describe("prefetchAudio", () => {
 
 describe("playAudio", () => {
   it("spielt die Datei in normalem Tempo ab", async () => {
-    vi.stubGlobal("Audio", FakeAudio);
+    stubBlobPlayback();
     await playAudio("дом");
-    expect(FakeAudio.lastInstance?.src).toContain("text=%D0%B4%D0%BE%D0%BC");
     expect(FakeAudio.lastInstance?.playbackRate).toBe(1);
   });
 
   it("spielt langsam, ohne die Stimme zu vertiefen", async () => {
-    vi.stubGlobal("Audio", FakeAudio);
+    stubBlobPlayback();
     await playAudio("дом", { slow: true });
     expect(FakeAudio.lastInstance?.playbackRate).toBe(SLOW_PLAYBACK_RATE);
     expect(FakeAudio.lastInstance?.preservesPitch).toBe(true);
   });
 
   it("wirft, wenn das Abspielen scheitert — der Aufrufer muss zurückfallen können", async () => {
-    vi.stubGlobal("Audio", FakeAudio);
+    stubBlobPlayback();
     FakeAudio.shouldFail = true;
     await expect(playAudio("дом")).rejects.toThrow();
   });
@@ -100,5 +121,49 @@ describe("serverAudioAvailable", () => {
   it("meldet false bei einem Fehlerstatus", async () => {
     vi.stubGlobal("fetch", vi.fn(() => Promise.resolve(new Response("", { status: 503 }))));
     await expect(serverAudioAvailable()).resolves.toBe(false);
+  });
+});
+
+describe("ein Abruf statt zwei", () => {
+  it("teilt sich den Abruf zwischen Vorladen und Abspielen", async () => {
+    const fetchMock = vi.fn(() => Promise.resolve(new Response(new Blob(["x"]))));
+    vi.stubGlobal("fetch", fetchMock);
+    vi.stubGlobal("Audio", FakeAudio);
+    vi.stubGlobal("URL", { createObjectURL: () => "blob:x", revokeObjectURL: vi.fn() });
+
+    await prefetchAudio("дом");
+    await playAudio("дом");
+
+    // Zwei parallele Anfragen liessen das Audio-Element streamen — und genau
+    // dabei wird das erste Wort abgeschnitten.
+    expect(fetchMock).toHaveBeenCalledTimes(1);
+  });
+
+  it("spielt aus dem fertig geladenen Blob, nicht von der URL", async () => {
+    vi.stubGlobal("fetch", vi.fn(() => Promise.resolve(new Response(new Blob(["x"])))));
+    vi.stubGlobal("Audio", FakeAudio);
+    vi.stubGlobal("URL", { createObjectURL: () => "blob:fertig", revokeObjectURL: vi.fn() });
+
+    await playAudio("дом");
+
+    expect(FakeAudio.lastInstance?.src).toBe("blob:fertig");
+  });
+
+  it("gibt die Blob-URL nach dem Abspielen wieder frei", async () => {
+    const revoke = vi.fn();
+    vi.stubGlobal("fetch", vi.fn(() => Promise.resolve(new Response(new Blob(["x"])))));
+    vi.stubGlobal("Audio", FakeAudio);
+    vi.stubGlobal("URL", { createObjectURL: () => "blob:x", revokeObjectURL: revoke });
+
+    await playAudio("дом");
+    FakeAudio.lastInstance?.fireEnded();
+
+    expect(revoke).toHaveBeenCalledWith("blob:x");
+  });
+
+  it("wirft weiter, wenn der Abruf scheitert — der Rückfall muss greifen", async () => {
+    vi.stubGlobal("fetch", vi.fn(() => Promise.reject(new Error("weg"))));
+    vi.stubGlobal("Audio", FakeAudio);
+    await expect(playAudio("дом")).rejects.toThrow();
   });
 });

@@ -15,9 +15,9 @@ import wave
 from fastapi import FastAPI, HTTPException, Response
 from pydantic import BaseModel
 
-VOICE = os.environ.get("PIPER_VOICE", "ru_RU-dmitri-medium")
+VOICE = os.environ.get("PIPER_VOICE", "ru_RU-denis-medium")
 MODEL_PATH = os.environ.get("PIPER_MODEL_PATH", f"/models/{VOICE}.onnx")
-LENGTH_SCALE = float(os.environ.get("PIPER_LENGTH_SCALE", "1.0"))
+LENGTH_SCALE = float(os.environ.get("PIPER_LENGTH_SCALE", "1.15"))
 VOLUME = float(os.environ.get("PIPER_VOLUME", "1.0"))
 MAX_CHARS = 300
 

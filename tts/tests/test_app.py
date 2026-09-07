@@ -30,7 +30,7 @@ def client(monkeypatch):
 def test_health_nennt_die_stimme(client):
     body = client.get("/health").json()
     assert body["status"] == "ok"
-    assert body["voice"] == "ru_RU-dmitri-medium"
+    assert body["voice"] == "ru_RU-denis-medium"
 
 
 def test_synthesize_liefert_wav(client):

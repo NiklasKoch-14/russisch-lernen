@@ -1,6 +1,6 @@
 FROM python:3.11-slim
 
-ARG PIPER_VOICE=ru_RU-dmitri-medium
+ARG PIPER_VOICE=ru_RU-denis-medium
 ENV PIPER_VOICE=${PIPER_VOICE}
 ENV PIPER_MODEL_PATH=/models/${PIPER_VOICE}.onnx
 

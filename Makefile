@@ -51,9 +51,12 @@ validate: ## Kursinhalte prüfen
 typecheck: ## TypeScript des Frontends prüfen
 	cd frontend && npx tsc --noEmit -p tsconfig.json
 
-test: ## Typprüfung und Unit-Tests von Backend und Frontend
+test: ## Typprüfung und Unit-Tests von Backend, Sprachdienst und Frontend
 	$(MAKE) typecheck
 	cd backend && .venv/bin/pytest -q
+	# Der Sprachdienst braucht keine eigene Umgebung: seine Tests ersetzen Piper
+	# durch eine Attrappe, ein 200-MB-Paket dafuer lokal waere Verschwendung.
+	cd tts && PYTHONPATH=. ../backend/.venv/bin/python -m pytest tests -q
 	cd frontend && npm test
 
 test-e2e: ## Playwright-Tests headless — der schnelle Standardlauf

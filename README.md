@@ -33,11 +33,12 @@ den Ton beim Backend, das ihn intern erzeugen lässt und zwischenspeichert. Geme
 ersten Mal, 2 ms aus dem Zwischenspeicher.
 
 ```bash
-PIPER_VOICE=ru_RU-denis-medium make deploy   # andere Stimme
+PIPER_VOICE=ru_RU-dmitri-medium make deploy   # andere Stimme
 ```
 
-Zur Auswahl stehen `ru_RU-dmitri-medium` (Vorgabe), `ru_RU-ruslan-medium`, `ru_RU-denis-medium` und
-`ru_RU-irina-medium`. Ein Wechsel entwertet den Zwischenspeicher, weil die Stimme in den Schlüssel
+Zur Auswahl stehen `ru_RU-denis-medium` (Vorgabe), `ru_RU-dmitri-medium`, `ru_RU-ruslan-medium` und `ru_RU-irina-medium`.
+Tempo und Lautstärke stellen `PIPER_LENGTH_SCALE` (Vorgabe 1.15, größer heißt langsamer) und
+`PIPER_VOLUME`. Ein Wechsel der Stimme entwertet den Zwischenspeicher, weil die Stimme in den Schlüssel
 eingeht — die Dateien werden dann neu erzeugt, die alten fallen mit der Zeit aus dem Deckel.
 
 `AUDIO_CACHE_MAX_MB` (Vorgabe 50) begrenzt den Platzbedarf. Verdrängt wird, was am längsten nicht

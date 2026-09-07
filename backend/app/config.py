@@ -17,8 +17,8 @@ class Settings:
     audio_cache_max_mb: int = int(os.environ.get("AUDIO_CACHE_MAX_MB", "50"))
     # Gehen in den Zwischenspeicher-Schluessel ein und muessen deshalb mit den
     # Werten des tts-Dienstes uebereinstimmen.
-    piper_voice: str = os.environ.get("PIPER_VOICE", "ru_RU-dmitri-medium")
-    piper_length_scale: float = float(os.environ.get("PIPER_LENGTH_SCALE", "1.0"))
+    piper_voice: str = os.environ.get("PIPER_VOICE", "ru_RU-denis-medium")
+    piper_length_scale: float = float(os.environ.get("PIPER_LENGTH_SCALE", "1.15"))
 
 
 settings = Settings()
