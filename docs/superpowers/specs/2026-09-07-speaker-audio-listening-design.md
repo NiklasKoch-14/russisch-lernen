@@ -11,8 +11,9 @@ dort schwer, wo man es nicht sieht: unbetontes `о` klingt wie [a] (`молок�
 [i], Endungen verschleifen. Wer nur klickt und liest, baut sich eine falsche innere Aussprache auf,
 die später kaum noch zu korrigieren ist.
 
-Diese Ausbaustufe gibt dem Kurs Ton — an jeder Kachel, an jeder aufgelösten Lösung, in der
-Vokabelliste — und prüft Hörverstehen in drei neuen Aufgabenformen. Der Grundsatz „nie kyrillisch
+Diese Ausbaustufe gibt dem Kurs Ton — am Hör-Prompt, an jeder aufgelösten Lösung, in der
+Vokabelliste, jeweils über ein sichtbares Lautsprecher-Symbol — und prüft Hörverstehen in drei neuen
+Aufgabenformen. Der Grundsatz „nie kyrillisch
 tippen" bleibt unangetastet: alle Hör-Aufgaben sind per Klick lösbar.
 
 Nicht Teil dieser Stufe: Aussprachebewertung per Mikrofon, gesprochener Tutor-Chat.
@@ -136,7 +137,7 @@ stiller Fehler, der sonst erst im Lernbetrieb auffiele.
 | `course/presenter.py` | `audio_text` liefern; `listen_meaning` darstellen |
 | `course/checker.py` | `_check_listen_meaning` |
 | `content/validator.py` | Regeln aus 3.4; `_exercise_tokens` erweitern |
-| `db.py`, `repositories/profile_repo.py`, `api/schemas.py` | Profilspalte `audio_enabled` |
+| `db.py`, `repositories/profile_repo.py`, `api/schemas.py` | Profilspalte `audio_autoplay` |
 
 ### 4.1 Presenter
 
@@ -174,32 +175,45 @@ vollständig gelöste Einheiten bleiben unverändert.
 
 ### 4.4 Profil
 
-Spalte `audio_enabled INTEGER NOT NULL DEFAULT 1`, aufgenommen in die Migrationsliste in `db.py`
+Spalte `audio_autoplay INTEGER NOT NULL DEFAULT 1`, aufgenommen in die Migrationsliste in `db.py`
 analog zu `show_transliteration`, durchgereicht über `profile_repo`, `schemas.py` und `PATCH /api/profile`.
 
-Steht der Schalter auf `false`, verhält sich die App **exakt so wie bei fehlender Stimme** (4.3):
-nichts spricht, weder automatisch noch beim Klick auf eine Kachel, und alle Hör-Aufgaben fallen auf
-ihre Textform zurück. Es gibt bewusst keinen dritten Zustand „Ton aus, aber Hör-Aufgaben an" — der
-wäre unlösbar. Im Frontend ist das eine einzige abgeleitete Größe: `soundOn = available && enabled`.
+Zwei Größen, die streng getrennt bleiben und **nie** miteinander verrechnet werden:
+
+| Größe | Herkunft | Wirkt auf |
+|---|---|---|
+| `available` | ob eine russische Stimme existiert | den Textrückfall (4.3) |
+| `audio_autoplay` | Schalter in der Kopfzeile (5.4) | ausschließlich das automatische Abspielen |
+
+Steht `audio_autoplay` auf `false`, bleibt eine Hör-Aufgabe eine Hör-Aufgabe — es wird nur nichts von
+allein abgespielt, der Lautsprecher am Prompt funktioniert weiter. Der Textrückfall greift **allein**
+bei fehlender Stimme, nie wegen des Schalters. Wer die Automatik abschaltet, will Ruhe, nicht weniger
+Hörtraining.
 
 ## 5. Frontend
 
 **Neu**
 
 - `audio/speech.ts` — Betonungszeichen entfernen, Stimme wählen, sprechen
-- `audio/SpeechContext.tsx` — Provider mit `available`, `enabled`, `speak`, `speakSlow`
+- `audio/SpeechContext.tsx` — Provider mit `available`, `autoplay`, `speak`, `speakSlow`
+- `audio/SpeakerButton.tsx` — das eine Lautsprecher-Symbol, überall wiederverwendet
+- `audio/AutoplayToggle.tsx` — der Schalter in der Kopfzeile
 - `course/AudioPrompt.tsx` — Abspiel-Knopf plus „langsam"
 - `course/ListenMeaningExercise.tsx`
 
 **Geändert**
 
-- `course/Tile.tsx` — spricht beim Anklicken mit
+- `App.tsx` — `SpeechProvider` um die App, `AutoplayToggle` in die Kopfzeile
 - `course/ExerciseRunner.tsx` — neuer Fall `listen_meaning`
 - `course/BuildSentenceExercise.tsx`, `course/ChooseFormExercise.tsx` — bei `audio_prompt` den
   Abspiel-Knopf statt des deutschen Prompts
+- `views/UnitView.tsx` — Lautsprecher an der aufgelösten Lösung
+- `views/ReviewView.tsx` — Lautsprecher je Zeile der Auflösung
 - `VocabView.tsx` — Lautsprecher je Eintrag
-- `ProfileView.tsx` — Ton-Schalter, Hinweis bei fehlender Stimme
-- `courseTypes.ts` — `audio_prompt`, `audio_text`, `ListenMeaningExercise`, `audio_enabled`
+- `ProfileView.tsx` — Hinweis bei fehlender Stimme (der Schalter selbst sitzt in der Kopfzeile)
+- `courseTypes.ts` — `audio_prompt`, `audio_text`, `ListenMeaningExercise`, `audio_autoplay`
+
+`course/Tile.tsx` bleibt **unverändert** — siehe 5.3.
 
 ### 5.1 `speech.ts`
 
@@ -219,33 +233,48 @@ mit dem `voiceschanged`-Ereignis. Die Stimmenerkennung muss beides behandeln.
 ### 5.2 `SpeechContext`
 
 Nach dem Muster von `TransliterationContext`: `available` ist `null`, solange geprüft wird, danach
-`true` oder `false`. `enabled` kommt aus dem Profil und wird wie `show_transliteration` per
-`patchProfile` zurückgeschrieben. Ist `available === false`, verschwinden alle Lautsprecher und alle
-Hör-Aufgaben fallen auf Text zurück; im Profil steht dann ein Hinweis, wie man eine russische Stimme
-nachinstalliert.
+`true` oder `false`. `autoplay` kommt aus dem Profil und wird wie `show_transliteration` per
+`patchProfile` zurückgeschrieben.
 
-### 5.3 Kacheln sprechen beim Klick
+Ist `available === false`, verschwinden alle Lautsprecher-Symbole, der Kopfzeilen-Schalter wird
+ausgegraut, und alle Hör-Aufgaben fallen auf Text zurück (4.3). Im Profil steht dann ein Hinweis, wie
+man eine russische Stimme nachinstalliert.
 
-Es gibt **kein** Lautsprecher-Symbol an Kacheln. Stattdessen spricht die Kachel, wenn man sie
-anklickt — man wählt `го́да` und hört `го́да`. Damit wird jeder Klick im gesamten Kurs zu einer
-Hörwiederholung, ohne ein einziges zusätzliches Bedienelement. Einen expliziten Lautsprecher gibt es
-nur dort, wo nicht geklickt wird: an der aufgelösten Lösung und in der Vokabelliste.
+### 5.3 Lautsprecher-Symbole auf Satzebene
 
-Für die Buchstaben-Einheiten 1–4, die ausschließlich aus `match_pairs` bestehen, ist das zusammen mit
-`speak_as` (3.3) die gesamte Tonanbindung — dort gibt es keine Hör-Aufgaben.
+Ton wird **immer** über ein sichtbares Lautsprecher-Symbol ausgelöst, nie als Nebenwirkung eines
+anderen Klicks. `SpeakerButton` ist dafür die einzige Komponente und sitzt an vier Stellen:
 
-Das gilt auch für `ReviewView`: die Wiederholungsrunde benutzt dieselbe `Tile`-Komponente, also
-spricht dort jede angeklickte Form mit, ohne dass an der Wiederholung selbst etwas zu ändern wäre.
+- am Hör-Prompt einer Aufgabe (zusammen mit „langsam", siehe `AudioPrompt`)
+- an der aufgelösten Lösung in `UnitView`, nachdem geantwortet wurde
+- an jeder Zeile der Auflösung in `ReviewView`
+- an jedem Eintrag der Vokabelliste
 
-### 5.4 Automatisches Abspielen
+**`Tile.tsx` bleibt unverändert.** Eine Kachel ist ein `<button>`; ein Lautsprecher-Knopf darin wäre
+ein Button im Button und damit ungültiges HTML. Kacheln kommen an fünf Stellen vor, teils acht
+nebeneinander — je ein zusätzliches Symbol würde sie schmaler und die Tippziele kleiner machen.
+Einzelne Wörter hört man deshalb dort, wo Ruhe dafür ist: in der Auflösung und in der Vokabelliste.
 
-Beim Betreten einer Hör-Aufgabe spielt der Satz einmal automatisch, danach nur auf Knopfdruck. Ohne
-Autoplay klickt man den Knopf ohnehin sofort; mit Autoplay hört man zuerst und liest dann, was die
-richtige Reihenfolge ist.
+Für die Buchstaben-Einheiten 1–4, die ausschließlich aus `match_pairs` bestehen, ist die Vokabelliste
+zusammen mit `speak_as` (3.3) die gesamte Tonanbindung — dort gibt es keine Hör-Aufgaben.
+
+Bewusst hingenommen: **während** einer Zuordnungsrunde in `ReviewView` gibt es keinen Ton, weil dort
+nur Kacheln stehen. Er kommt in der Auflösung danach, wo jede Form einzeln nachhörbar ist.
+
+### 5.4 Kopfzeilen-Schalter und automatisches Abspielen
+
+In die Kopfzeile von `App.tsx` kommt neben die drei Reiter ein `AutoplayToggle` — ein Icon, das
+zwischen „Automatik an" und „Automatik aus" umschaltet und den Zustand über `patchProfile` sichert.
+Er gehört in die Kopfzeile und nicht ins Profil, weil man ihn situativ braucht: im Zug still lernen,
+zu Hause mit Ton.
+
+Steht die Automatik auf **an**, spielt beim Betreten einer Hör-Aufgabe der Satz einmal von allein.
+Steht sie auf **aus**, passiert nichts von selbst; der Lautsprecher am Prompt bleibt bedienbar und die
+Aufgabe bleibt eine Hör-Aufgabe (4.4).
 
 Browser blockieren Sprachausgabe, bevor der Nutzer auf der Seite irgendetwas angeklickt hat. Auf der
-ersten Aufgabe direkt nach dem Laden kann es deshalb stumm bleiben — der Abspiel-Knopf fängt das ab.
-Das ist bekannt und akzeptiert, keine Fehlerbehandlung nötig.
+ersten Aufgabe direkt nach dem Laden kann das automatische Abspielen deshalb stumm bleiben — der
+Lautsprecher fängt das ab. Das ist bekannt und akzeptiert, keine Fehlerbehandlung nötig.
 
 ## 6. Inhalte
 
@@ -272,7 +301,9 @@ wird deshalb überall gefälscht; geprüft wird, **was** gesprochen werden sollt
 
 - `speech.test.ts`: Betonungszeichen entfernt, `ё` bleibt, `ru-RU` wird bevorzugt, `getVoices()` erst
   leer und dann per `voiceschanged` gefüllt, laufende Ausgabe wird vor neuer abgebrochen
-- Kachel spricht beim Anklicken den richtigen Text, `speak_as` schlägt `text`
+- `SpeakerButton` spricht den richtigen Text; `speak_as` schlägt `text`
+- `AutoplayToggle` schreibt den Zustand zurück; bei `autoplay = false` spielt eine Hör-Aufgabe beim
+  Betreten **nicht** von allein, ist aber weiterhin per Lautsprecher hörbar
 - `ListenMeaningExercise` schickt den angeklickten Anzeige-Index
 - **Der wichtigste Test:** ohne russische Stimme erscheint bei `audio_prompt` wieder der deutsche
   Prompt, und `listen_meaning` zeigt den Satz als Text — die Aufgaben bleiben lösbar
