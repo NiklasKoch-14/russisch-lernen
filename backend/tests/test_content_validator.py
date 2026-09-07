@@ -153,3 +153,10 @@ def test_reports_match_pairs_with_ambiguous_glosses(tmp_path):
 
 def test_match_pairs_with_distinct_glosses_is_fine(tmp_path):
     assert validate_course(_course(tmp_path)) == []
+
+
+def test_reports_empty_speak_as(tmp_path):
+    lexicon = copy.deepcopy(MINIMAL_LEXICON)
+    lexicon["lexemes"][0]["forms"]["nom"]["speak_as"] = "   "
+    errors = validate_course(_course(tmp_path, lexicon=lexicon))
+    assert any("speak_as" in error for error in errors)

@@ -8,6 +8,8 @@ TokenRef = tuple[str, str]
 class Form:
     text: str
     translit: str
+    speak_as: str | None = None
+    """Was statt `text` vorgelesen wird — Buchstaben nennen sonst ihren Namen, nicht ihren Laut."""
 
 
 @dataclass(frozen=True)

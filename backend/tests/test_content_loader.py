@@ -1,3 +1,4 @@
+import copy
 import json
 
 import pytest
@@ -9,7 +10,7 @@ from app.content.models import (
     DialogReplyExercise,
     MatchPairsExercise,
 )
-from tests.content_factory import MINIMAL_UNIT, write_course
+from tests.content_factory import MINIMAL_LEXICON, MINIMAL_UNIT, write_course
 
 
 def test_loads_lexemes_with_forms(tmp_path):
@@ -83,3 +84,23 @@ def test_duplicate_unit_id_raises_content_error(tmp_path):
     (content / "units" / "009.json").write_text(json.dumps(MINIMAL_UNIT), encoding="utf-8")
     with pytest.raises(ContentError, match="doppelt"):
         load_course(content)
+
+
+def test_loads_speak_as_when_present(tmp_path):
+    lexicon = copy.deepcopy(MINIMAL_LEXICON)
+    lexicon["lexemes"].append(
+        {
+            "id": "bu_r",
+            "lemma": "Р р",
+            "pos": "letter",
+            "gloss_de": "gerolltes r",
+            "forms": {"base": {"text": "Р р", "translit": "r", "speak_as": "ры́ба"}},
+        }
+    )
+    course = load_course(write_course(tmp_path, lexicon=lexicon))
+    assert course.lexemes["bu_r"].forms["base"].speak_as == "ры́ба"
+
+
+def test_speak_as_is_optional(tmp_path):
+    course = load_course(write_course(tmp_path))
+    assert course.lexemes["ja"].forms["nom"].speak_as is None

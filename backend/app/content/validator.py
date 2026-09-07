@@ -44,6 +44,10 @@ def _check_lexicon(course: Course) -> list[str]:
                 )
             if not form.translit.strip():
                 errors.append(f"Lexem {lexeme.id}, Form {key}: translit ist leer")
+            if form.speak_as is not None and not form.speak_as.strip():
+                errors.append(
+                    f"Lexem {lexeme.id}, Form {key}: speak_as ist gesetzt, aber leer"
+                )
             if lexeme.pos == "letter":
                 continue
             if _syllables(form.text) > 1 and STRESS not in form.text and "ё" not in form.text:

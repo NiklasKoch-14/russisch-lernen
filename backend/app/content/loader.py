@@ -48,7 +48,11 @@ def _tokens(raw: object, where: str) -> list[TokenRef]:
 def _lexeme(raw: dict) -> Lexeme:
     try:
         forms = {
-            key: Form(text=value["text"], translit=value["translit"])
+            key: Form(
+                text=value["text"],
+                translit=value["translit"],
+                speak_as=value.get("speak_as"),
+            )
             for key, value in raw["forms"].items()
         }
         return Lexeme(
