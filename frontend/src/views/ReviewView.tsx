@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 
+import SpeakerButton from "../audio/SpeakerButton";
 import MatchPairsExercise from "../course/MatchPairsExercise";
 import { getReviewRound, submitReviewRound } from "../courseApi";
 import type { ReviewResult, ReviewRound } from "../courseTypes";
@@ -26,8 +27,14 @@ export default function ReviewView() {
         </h2>
         <ul className="space-y-1">
           {result.results.map((item) => (
-            <li key={item.ref} className={item.correct ? "text-emerald-700" : "text-rose-700"}>
+            <li
+              key={item.ref}
+              className={`flex items-center gap-2 ${
+                item.correct ? "text-emerald-700" : "text-rose-700"
+              }`}
+            >
               <span lang="ru">{item.text}</span> — {item.gloss_de}
+              <SpeakerButton text={item.text} />
             </li>
           ))}
         </ul>

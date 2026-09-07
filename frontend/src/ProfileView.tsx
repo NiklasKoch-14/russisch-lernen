@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 import { getLearningPlan } from "./api";
+import { useSpeech } from "./audio/SpeechContext";
 import { useTransliteration } from "./course/TransliterationContext";
 import { getCourse, getProfile } from "./courseApi";
 import type { CourseOverview, Profile } from "./courseTypes";
@@ -19,6 +20,7 @@ function chatUnlocked(overview: CourseOverview | null): boolean {
 
 export default function ProfileView() {
   const { show, setShow } = useTransliteration();
+  const { available } = useSpeech();
   const [profile, setProfile] = useState<Profile | null>(null);
   const [topics, setTopics] = useState<string[]>([]);
   const [overview, setOverview] = useState<CourseOverview | null>(null);
@@ -53,6 +55,19 @@ export default function ProfileView() {
           Umschrift anzeigen
         </label>
       </section>
+
+      {available === false ? (
+        <section className="rounded-2xl border-2 border-amber-200 bg-amber-50 p-4">
+          <h2 className="text-lg font-semibold">Kein Ton</h2>
+          <p className="mt-1">
+            Dein Browser findet keine russische Stimme. Hör-Aufgaben werden deshalb als
+            Textaufgaben angezeigt — du verlierst dadurch keine Übung. Unter Windows
+            installierst du eine Stimme über Einstellungen → Zeit und Sprache → Sprache,
+            unter Linux über <code className="mx-1">speech-dispatcher</code> mit russischer
+            Stimme.
+          </p>
+        </section>
+      ) : null}
 
       <section>
         <h2 className="text-lg font-semibold">Freies Gespräch</h2>

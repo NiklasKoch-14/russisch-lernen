@@ -3,6 +3,7 @@ import { MemoryRouter } from "react-router-dom";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 
 import * as legacyApi from "./api";
+import * as speech from "./audio/SpeechContext";
 import * as api from "./courseApi";
 import ProfileView from "./ProfileView";
 
@@ -98,5 +99,43 @@ describe("ProfileView", () => {
     });
     renderProfile();
     expect(await screen.findByRole("link", { name: "Freies Gespräch öffnen" })).toBeInTheDocument();
+  });
+});
+
+describe("ProfileView ohne russische Stimme", () => {
+  beforeEach(() => {
+    vi.spyOn(api, "getProfile").mockResolvedValue(profile);
+    vi.spyOn(api, "getCourse").mockResolvedValue({ stages: [] });
+    vi.spyOn(legacyApi, "getLearningPlan").mockResolvedValue(null);
+  });
+
+  it("erklärt, was zu tun ist, wenn keine russische Stimme da ist", async () => {
+    vi.spyOn(speech, "useSpeech").mockReturnValue({
+      available: false,
+      autoplay: true,
+      setAutoplay: vi.fn(),
+      say: vi.fn(),
+    });
+    render(
+      <MemoryRouter>
+        <ProfileView />
+      </MemoryRouter>,
+    );
+    expect(await screen.findByText(/keine russische Stimme/i)).toBeInTheDocument();
+  });
+
+  it("schweigt, wenn eine Stimme vorhanden ist", async () => {
+    vi.spyOn(speech, "useSpeech").mockReturnValue({
+      available: true,
+      autoplay: true,
+      setAutoplay: vi.fn(),
+      say: vi.fn(),
+    });
+    render(
+      <MemoryRouter>
+        <ProfileView />
+      </MemoryRouter>,
+    );
+    await waitFor(() => expect(screen.queryByText(/keine russische Stimme/i)).toBeNull());
   });
 });
