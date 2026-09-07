@@ -10,6 +10,8 @@ interface SpeechValue {
   autoplay: boolean;
   setAutoplay: (value: boolean) => void;
   say: (text: string, options?: { slow?: boolean }) => void;
+  /** Fehlercode der letzten Sprachausgabe, sonst null. */
+  lastError: string | null;
 }
 
 const SpeechContext = createContext<SpeechValue>({
@@ -17,6 +19,7 @@ const SpeechContext = createContext<SpeechValue>({
   autoplay: true,
   setAutoplay: () => {},
   say: () => {},
+  lastError: null,
 });
 
 export function useSpeech(): SpeechValue {
@@ -27,6 +30,7 @@ export function SpeechProvider({ children }: { children: ReactNode }) {
   const [voice, setVoice] = useState<SpeechSynthesisVoice | null>(null);
   const [available, setAvailable] = useState<boolean | null>(null);
   const [autoplay, setAutoplayState] = useState(true);
+  const [lastError, setLastError] = useState<string | null>(null);
 
   useEffect(() => {
     let cancelled = false;
@@ -54,11 +58,12 @@ export function SpeechProvider({ children }: { children: ReactNode }) {
 
   const say = (text: string, options?: { slow?: boolean }) => {
     if (!voice) return;
-    speak(text, voice, options?.slow ? SLOW_RATE : NORMAL_RATE);
+    setLastError(null);
+    speak(text, voice, options?.slow ? SLOW_RATE : NORMAL_RATE, setLastError);
   };
 
   return (
-    <SpeechContext.Provider value={{ available, autoplay, setAutoplay, say }}>
+    <SpeechContext.Provider value={{ available, autoplay, setAutoplay, say, lastError }}>
       {children}
     </SpeechContext.Provider>
   );

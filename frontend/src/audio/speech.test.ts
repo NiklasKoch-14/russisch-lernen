@@ -2,7 +2,8 @@ import { afterEach, describe, expect, it, vi } from "vitest";
 
 import { NORMAL_RATE, SLOW_RATE, loadVoices, pickRussianVoice, speak, stripStress } from "./speech";
 
-const voice = (lang: string) => ({ lang, name: lang }) as SpeechSynthesisVoice;
+const voice = (lang: string, localService = true, name = lang) =>
+  ({ lang, name, localService }) as SpeechSynthesisVoice;
 
 class FakeUtterance {
   text: string;
@@ -43,6 +44,24 @@ describe("pickRussianVoice", () => {
 
   it("gibt null zurück, wenn keine russische Stimme da ist", () => {
     expect(pickRussianVoice([voice("de-DE"), voice("en-US")])).toBeNull();
+  });
+
+  it("zieht die lokale Stimme der Online-Stimme vor", () => {
+    // Online-Stimmen gehen ueber das Netz: sie starten verzoegert und stocken.
+    const online = voice("ru-RU", false, "Dmitry Online");
+    const local = voice("ru-RU", true, "Irina Desktop");
+    expect(pickRussianVoice([online, local])?.name).toBe("Irina Desktop");
+  });
+
+  it("nimmt eine lokale ru-Stimme vor einer Online-ru-RU-Stimme", () => {
+    const online = voice("ru-RU", false, "Dmitry Online");
+    const local = voice("ru", true, "Lokal");
+    expect(pickRussianVoice([online, local])?.name).toBe("Lokal");
+  });
+
+  it("nimmt die Online-Stimme, wenn es keine lokale gibt", () => {
+    const online = voice("ru-RU", false, "Dmitry Online");
+    expect(pickRussianVoice([voice("de-DE"), online])?.name).toBe("Dmitry Online");
   });
 });
 
@@ -92,6 +111,10 @@ describe("speak", () => {
     });
   });
 
+  it("spricht standardmäßig in normalem Tempo", () => {
+    expect(NORMAL_RATE).toBe(1);
+  });
+
   it("benutzt das normale Tempo als Standard", () => {
     const speakSpy = vi.fn();
     vi.stubGlobal("speechSynthesis", { cancel: vi.fn(), speak: speakSpy, getVoices: () => [] });
@@ -100,5 +123,37 @@ describe("speak", () => {
     speak("дом", voice("ru-RU"));
 
     expect(speakSpy.mock.calls[0][0].rate).toBe(NORMAL_RATE);
+  });
+});
+
+describe("speak meldet Fehler", () => {
+  it("reicht einen Synthesefehler an den Aufrufer weiter", () => {
+    let spoken: { onerror?: (e: { error: string }) => void } | null = null;
+    vi.stubGlobal("speechSynthesis", {
+      cancel: vi.fn(),
+      speak: (u: typeof spoken) => {
+        spoken = u;
+      },
+      getVoices: () => [],
+    });
+    vi.stubGlobal(
+      "SpeechSynthesisUtterance",
+      class {
+        text: string;
+        lang = "";
+        rate = 1;
+        voice: SpeechSynthesisVoice | null = null;
+        onerror: ((e: { error: string }) => void) | null = null;
+        constructor(text: string) {
+          this.text = text;
+        }
+      },
+    );
+
+    const onError = vi.fn();
+    speak("дом", voice("ru-RU"), NORMAL_RATE, onError);
+    spoken!.onerror!({ error: "synthesis-failed" });
+
+    expect(onError).toHaveBeenCalledWith("synthesis-failed");
   });
 });

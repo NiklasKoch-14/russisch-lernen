@@ -20,7 +20,7 @@ function chatUnlocked(overview: CourseOverview | null): boolean {
 
 export default function ProfileView() {
   const { show, setShow } = useTransliteration();
-  const { available } = useSpeech();
+  const { available, lastError } = useSpeech();
   const [profile, setProfile] = useState<Profile | null>(null);
   const [topics, setTopics] = useState<string[]>([]);
   const [overview, setOverview] = useState<CourseOverview | null>(null);
@@ -55,6 +55,17 @@ export default function ProfileView() {
           Umschrift anzeigen
         </label>
       </section>
+
+      {lastError ? (
+        <section className="rounded-2xl border-2 border-rose-200 bg-rose-50 p-4">
+          <h2 className="text-lg font-semibold">Die Sprachausgabe hat gemeldet: {lastError}</h2>
+          <p className="mt-1">
+            Bei <code className="mx-1">network</code> oder{" "}
+            <code className="mx-1">synthesis-failed</code> liegt es meist an einer Online-Stimme.
+            Eine lokal installierte russische Stimme setzt sofort ein und stockt nicht.
+          </p>
+        </section>
+      ) : null}
 
       {available === false ? (
         <section className="rounded-2xl border-2 border-amber-200 bg-amber-50 p-4">

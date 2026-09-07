@@ -115,6 +115,7 @@ describe("ProfileView ohne russische Stimme", () => {
       autoplay: true,
       setAutoplay: vi.fn(),
       say: vi.fn(),
+    lastError: null,
     });
     render(
       <MemoryRouter>
@@ -130,6 +131,7 @@ describe("ProfileView ohne russische Stimme", () => {
       autoplay: true,
       setAutoplay: vi.fn(),
       say: vi.fn(),
+    lastError: null,
     });
     render(
       <MemoryRouter>
@@ -137,5 +139,49 @@ describe("ProfileView ohne russische Stimme", () => {
       </MemoryRouter>,
     );
     await waitFor(() => expect(screen.queryByText(/keine russische Stimme/i)).toBeNull());
+  });
+});
+
+describe("ProfileView bei einem Sprachausgabe-Fehler", () => {
+  beforeEach(() => {
+    vi.spyOn(api, "getProfile").mockResolvedValue(profile);
+    vi.spyOn(api, "getCourse").mockResolvedValue({ stages: [] });
+    vi.spyOn(legacyApi, "getLearningPlan").mockResolvedValue(null);
+  });
+
+  it("nennt den Fehlercode, statt ihn zu verschlucken", async () => {
+    vi.spyOn(speech, "useSpeech").mockReturnValue({
+      available: true,
+      autoplay: true,
+      setAutoplay: vi.fn(),
+      say: vi.fn(),
+      lastError: "synthesis-failed",
+    });
+    render(
+      <MemoryRouter>
+        <ProfileView />
+      </MemoryRouter>,
+    );
+    expect(
+      await screen.findByRole("heading", { name: /gemeldet: synthesis-failed/ }),
+    ).toBeInTheDocument();
+  });
+
+  it("schweigt, solange nichts schiefging", async () => {
+    vi.spyOn(speech, "useSpeech").mockReturnValue({
+      available: true,
+      autoplay: true,
+      setAutoplay: vi.fn(),
+      say: vi.fn(),
+      lastError: null,
+    });
+    render(
+      <MemoryRouter>
+        <ProfileView />
+      </MemoryRouter>,
+    );
+    await waitFor(() =>
+      expect(screen.queryByText(/Die Sprachausgabe hat gemeldet/)).toBeNull(),
+    );
   });
 });

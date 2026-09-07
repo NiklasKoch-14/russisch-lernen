@@ -11,6 +11,7 @@ const useSpeechAs = (available: boolean | null) => {
     autoplay: true,
     setAutoplay: vi.fn(),
     say,
+    lastError: null,
   });
   return say;
 };

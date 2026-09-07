@@ -108,6 +108,7 @@ describe("UnitView mit Ton", () => {
       autoplay: false,
       setAutoplay: vi.fn(),
       say: vi.fn(),
+    lastError: null,
     });
   });
 
