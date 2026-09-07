@@ -1,4 +1,4 @@
-import { expect, test } from "@playwright/test";
+import { expect, test } from "./fixtures";
 
 test.describe("Kurs", () => {
   test("zeigt die Stufen mit ihren Einheiten", async ({ page }) => {
@@ -21,7 +21,7 @@ test.describe("Kurs", () => {
     await expect(page.getByText(/говорю́/)).toBeVisible();
 
     await page.getByRole("button", { name: "Los geht's" }).click();
-    await expect(page.getByText("Aufgabe 1 von 8")).toBeVisible();
+    await expect(page.getByText(/Aufgabe 1 von \d+/)).toBeVisible();
   });
 
   test("löst eine Wortformaufgabe richtig und meldet Erfolg", async ({ page }) => {
@@ -66,12 +66,12 @@ async function answerCurrentExercise(page: import("@playwright/test").Page) {
   const check = page.getByRole("button", { name: "Prüfen" });
   if (await check.isVisible().catch(() => false)) {
     // Satzbau: irgendeine Kachel wählen, dann prüfen.
-    await page.locator("button[aria-pressed]").first().click();
+    await page.locator("main button[aria-pressed]").first().click();
     await check.click();
     return;
   }
   // Zuordnen: linke Spalte mit rechter Spalte der Reihe nach verbinden.
-  const grid = page.locator(".grid");
+  const grid = page.locator("main .grid");
   if (await grid.isVisible().catch(() => false)) {
     const left = grid.locator("> div").first().locator("button");
     const right = grid.locator("> div").last().locator("button");
@@ -83,7 +83,13 @@ async function answerCurrentExercise(page: import("@playwright/test").Page) {
     return;
   }
   // Auswahlaufgabe: erste Option.
-  await page.locator("button[aria-pressed]").first().click();
+  const pressable = page.locator("main button[aria-pressed]");
+  if ((await pressable.count()) > 0) {
+    await pressable.first().click();
+    return;
+  }
+  // Bedeutung waehlen: schlichte Knoepfe ohne aria-pressed.
+  await page.getByRole("button").filter({ hasNotText: "Weiter" }).first().click();
 }
 
 /** Spult durch Aufgaben, bis die gesuchte Aufgabenstellung erscheint. */

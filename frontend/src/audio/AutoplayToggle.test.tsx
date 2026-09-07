@@ -21,20 +21,28 @@ describe("AutoplayToggle", () => {
   it("schaltet die Automatik aus", () => {
     const setAutoplay = mockSpeech(true, true);
     render(<AutoplayToggle />);
-    fireEvent.click(screen.getByRole("button", { name: "Automatisches Vorlesen ausschalten" }));
+    fireEvent.click(screen.getByRole("switch", { name: "Automatisches Vorlesen ausschalten" }));
     expect(setAutoplay).toHaveBeenCalledWith(false);
   });
 
   it("schaltet die Automatik wieder ein", () => {
     const setAutoplay = mockSpeech(true, false);
     render(<AutoplayToggle />);
-    fireEvent.click(screen.getByRole("button", { name: "Automatisches Vorlesen einschalten" }));
+    fireEvent.click(screen.getByRole("switch", { name: "Automatisches Vorlesen einschalten" }));
     expect(setAutoplay).toHaveBeenCalledWith(true);
   });
 
   it("ist ohne Stimme deaktiviert", () => {
     mockSpeech(false, true);
     render(<AutoplayToggle />);
-    expect(screen.getByRole("button")).toBeDisabled();
+    expect(screen.getByRole("switch")).toBeDisabled();
+  });
+});
+
+describe("AutoplayToggle und die Wortkacheln", () => {
+  it("belegt aria-pressed nicht — das gehört den Kacheln", () => {
+    mockSpeech(true, true);
+    const { container } = render(<AutoplayToggle />);
+    expect(container.querySelector("[aria-pressed]")).toBeNull();
   });
 });

@@ -1,4 +1,4 @@
-import { expect, test } from "@playwright/test";
+import { expect, test } from "./fixtures";
 
 test.describe("Profil", () => {
   test("schaltet die Umschrift ab und wieder an", async ({ page }) => {

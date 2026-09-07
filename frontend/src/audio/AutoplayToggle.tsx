@@ -14,8 +14,11 @@ export default function AutoplayToggle() {
   return (
     <button
       type="button"
+      // role=switch statt aria-pressed: es ist ein An/Aus-Schalter, und
+      // aria-pressed gehoert im Kurs den Wortkacheln.
+      role="switch"
       aria-label={label}
-      aria-pressed={autoplay}
+      aria-checked={autoplay}
       title={available ? label : "Keine russische Stimme gefunden"}
       disabled={!available}
       onClick={() => setAutoplay(!autoplay)}
