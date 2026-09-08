@@ -5,7 +5,7 @@ from app.course.checker import check_answer
 from app.course.presenter import present_exercise, spoken_text
 from app.course.service import schedule_form
 from app.game import scenes
-from app.game.models import Village
+from app.game.models import Turn, Village
 from app.repositories import game_repo, progress_repo
 
 NPC_CONFUSED: list[TokenRef] = [("izvinit", "imp.pl")]
@@ -18,6 +18,17 @@ def _line(course: Course, refs: list[TokenRef]) -> dict:
         "translit": " ".join(course.form(ref).translit for ref in refs),
         "audio_text": spoken_text(course, refs),
     }
+
+
+def _turn_at(scene_id: str, turns: list[Turn], index: int) -> Turn:
+    """Den Zug an `index` holen — negative Indizes würden sonst still den
+    letzten Zug liefern (Python-Slicing), mit falscher Kachel-Id und ohne dass
+    `scene_completed` je zutrifft."""
+    if not 0 <= index < len(turns):
+        raise IndexError(
+            f"Szene {scene_id!r} hat keinen Zug mit Index {index} (0..{len(turns) - 1})"
+        )
+    return turns[index]
 
 
 def village_payload(village: Village) -> dict:
@@ -103,7 +114,7 @@ def turn_payload(
 ) -> dict:
     scene = village.scenes[scene_id]
     turns = scenes.scene_turns(course, scene, seed)
-    turn = turns[index]
+    turn = _turn_at(scene_id, turns, index)
     exercise = scenes.turn_exercise(scene, seed, index, turn)
     return {
         "index": index,
@@ -127,7 +138,7 @@ def answer_turn(
 ) -> dict:
     scene = village.scenes[scene_id]
     turns = scenes.scene_turns(course, scene, seed)
-    turn = turns[index]
+    turn = _turn_at(scene_id, turns, index)
     exercise = scenes.turn_exercise(scene, seed, index, turn)
     result = check_answer(course, exercise, submission)
 

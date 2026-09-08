@@ -118,3 +118,25 @@ def test_a_wrong_last_turn_still_ends_the_scene(conn, pair):
     )
     assert result["scene_completed"] is True
     assert game_repo.last_played(conn) == {"bar-01": "2026-09-08T10:00:00"}
+
+
+def test_turn_payload_rejects_a_negative_index(pair):
+    course, village = pair
+    with pytest.raises(IndexError):
+        service.turn_payload(course, village, scene_id="bar-01", seed="s1", index=-1)
+
+
+def test_answer_turn_rejects_a_negative_index(conn, pair):
+    course, village = pair
+    with pytest.raises(IndexError):
+        service.answer_turn(
+            conn, course, village,
+            scene_id="bar-01", seed="s1", index=-1, submission={"tile_indices": []},
+            today="2026-09-08", now="2026-09-08T10:00:00",
+        )
+
+
+def test_a_shopping_scene_rejects_a_negative_index_too(pair):
+    course, village = pair
+    with pytest.raises(IndexError):
+        service.turn_payload(course, village, scene_id="magazin-01", seed="s1", index=-1)
