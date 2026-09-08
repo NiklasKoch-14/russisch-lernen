@@ -392,7 +392,7 @@ def start_scene(
             now=dt.datetime.now().isoformat(timespec="seconds"),
         )
     except KeyError as exc:
-        raise HTTPException(status_code=404, detail=str(exc)) from exc
+        raise HTTPException(status_code=404, detail=exc.args[0]) from exc
 
 
 @router.get("/game/scenes/{scene_id}/turns/{index}")
@@ -411,6 +411,8 @@ def read_turn(
         )
     except IndexError as exc:
         raise HTTPException(status_code=404, detail=f"Zug {index} gibt es nicht") from exc
+    except KeyError as exc:
+        raise HTTPException(status_code=404, detail=exc.args[0]) from exc
 
 
 @router.post("/game/scenes/{scene_id}/turns/{index}")

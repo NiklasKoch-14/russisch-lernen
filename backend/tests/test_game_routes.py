@@ -7,6 +7,7 @@ from app.db import get_connection
 from app.dependencies import get_course, get_db, get_village
 from app.game.loader import load_village
 from app.main import app
+from tests.village_factory import MINIMAL_DIALOG, write_village
 
 
 @pytest.fixture
@@ -72,6 +73,36 @@ def test_a_turn_beyond_the_end_is_a_404(client):
         f"/api/game/scenes/{started['scene_id']}/turns/99", params={"seed": started["seed"]}
     )
     assert response.status_code == 404
+
+
+def test_a_turn_of_a_scene_with_an_unknown_npc_is_a_404_not_a_500(db_path, tmp_path):
+    # Der Lader prueft Szenen nicht gegen die Personenliste (nur `make validate`
+    # tut das) — eine Szene kann also auf eine nicht existierende Person zeigen.
+    # Die Route muss das trotzdem sauber als 404 melden statt mit einem
+    # unbehandelten KeyError abzubrechen.
+    course = load_course(settings.content_dir, language=settings.default_language)
+    broken_scene = {**MINIMAL_DIALOG, "npc": "geist"}
+    village = load_village(write_village(tmp_path, scenes=[broken_scene]))
+
+    def override_db():
+        conn = get_connection(db_path)
+        try:
+            yield conn
+        finally:
+            conn.close()
+
+    app.dependency_overrides[get_db] = override_db
+    app.dependency_overrides[get_course] = lambda: course
+    app.dependency_overrides[get_village] = lambda: village
+    try:
+        response = TestClient(app).get(
+            f"/api/game/scenes/{broken_scene['id']}/turns/0", params={"seed": "s1"}
+        )
+    finally:
+        app.dependency_overrides.clear()
+
+    assert response.status_code == 404
+    assert "geist" in response.json()["detail"]
 
 
 def test_answering_a_turn_grades_it(client):
