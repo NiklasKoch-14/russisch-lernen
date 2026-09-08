@@ -101,6 +101,13 @@ CREATE TABLE IF NOT EXISTS screening_results (
     placement_unit INTEGER NOT NULL,
     created_at     TEXT NOT NULL
 );
+
+CREATE TABLE IF NOT EXISTS game_scene_runs (
+    id        INTEGER PRIMARY KEY AUTOINCREMENT,
+    scene_id  TEXT NOT NULL,
+    seed      TEXT NOT NULL,
+    played_at TEXT NOT NULL
+);
 """
 
 PROFILE_COLUMNS = {
