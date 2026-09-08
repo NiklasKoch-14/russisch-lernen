@@ -3,6 +3,7 @@ from pathlib import Path
 from app.content.loader import load_course
 from app.game import scenes
 from app.game.loader import load_village
+from app.game.models import Hotspot, Npc, Place, Scene, Village
 from app.repositories import game_repo
 from tests.village_factory import MINIMAL_DIALOG, write_village
 
@@ -134,11 +135,54 @@ def test_pick_scene_prefers_never_played_then_the_oldest_played(conn, tmp_path):
     assert scene.id == "bar-02"  # unter den gespielten gewinnt die älteste
 
 
-def test_pick_scene_breaks_ties_between_never_played_scenes_by_id(conn, tmp_path):
-    village = load_village(
-        write_village(tmp_path, scenes=[_dialog_scene("bar-b"), _dialog_scene("bar-a")])
+def test_pick_scene_breaks_ties_between_never_played_scenes_by_id(conn):
+    # Szenen direkt konstruieren mit Insertion Order gegen die Alphabet-Reihenfolge:
+    # höhere ID (bar-b) zuerst, damit die Insertion Order "falsch" ist.
+    scene_b = Scene(
+        id="bar-b",
+        kind="dialog",
+        place="bar",
+        npc="pjotr",
+        title_de="Dialog bar-b",
+        hint_unit=15,
     )
+    scene_a = Scene(
+        id="bar-a",
+        kind="dialog",
+        place="bar",
+        npc="pjotr",
+        title_de="Dialog bar-a",
+        hint_unit=15,
+    )
+
+    # Village mit Szenen in der Reihenfolge (bar-b, bar-a) konstruieren.
+    # Pythons dict erhält Insertion Order. scenes_at() iteriert über scenes.values(),
+    # folgt also der Insertion Order. Mit sort(key=(..., scene.id)) gewinnt bar-a,
+    # weil "bar-a" < "bar-b" alphabetisch. Ohne scene.id würde die stabile Sortierung
+    # die Insertion Order beibehalten, also würde bar-b gewinnen.
+    place = Place(
+        id="bar",
+        name_ru="бар",
+        name_de="Bar",
+        kind="npcs",
+        art="bar",
+        hotspot=Hotspot(x=0.1, y=0.5, w=0.2, h=0.2),
+    )
+    npc = Npc(
+        id="pjotr",
+        name_ru="Пётр",
+        name_de="Pjotr",
+        place="bar",
+        about_de="Sitzt jeden Abend am selben Platz.",
+        art="npc_pjotr",
+    )
+    village = Village(
+        places={"bar": place},
+        npcs={"pjotr": npc},
+        scenes={"bar-b": scene_b, "bar-a": scene_a},  # bar-b zuerst (Insertion Order)
+    )
+
     scene, _ = scenes.pick_scene(
         village, conn, place_id="bar", npc_id="pjotr", now="2026-09-08T11:00:00"
     )
-    assert scene.id == "bar-a"
+    assert scene.id == "bar-a"  # Mit Tie-Break nach scene.id gewinnt bar-a
