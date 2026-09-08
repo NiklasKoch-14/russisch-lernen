@@ -6,7 +6,8 @@
   "grammar_focus": {
     "id": "prs-plural-endings",
     "title_de": "Bei мы endet das Verb auf -м, bei они́ auf -ят",
-    "explanation_de": "Die Verbendung sagt, wer handelt — auch in der Mehrzahl. Zu мы gehört -м: мы говори́м. Zu они́ gehört -ят (oder -ут): они́ говоря́т. Verwechselst du говоря́т und говори́м, sagst du über andere, was du über euch sagen wolltest."
+    "explanation_de": "Die Verbendung sagt, wer handelt — auch in der Mehrzahl. Zu мы gehört -м: мы говори́м. Zu они́ gehört -ят (oder -ут): они́ говоря́т. Verwechselst du говоря́т und говори́м, sagst du über andere, was du über euch sagen wolltest.",
+    "primer": "konjugation"
   },
   "new_lexemes": [
     "my",

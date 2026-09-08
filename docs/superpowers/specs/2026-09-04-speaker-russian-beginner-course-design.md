@@ -50,6 +50,7 @@ versioniertes **Content-Paket** im Repository, das das Backend read-only lädt.
 content/ru/
   lexicon.json        Wortform-Lexikon (Paradigmen, Betonung, Transliteration, Bedeutung)
   screening.json      Aufgaben der Klick-Einstufung
+  primers.json        Deutsche Grundbegriffe (was ein Fall überhaupt ist)
   units/001.json … units/100.json
 ```
 
@@ -126,7 +127,8 @@ Nur tatsächlich im Kurs benutzte Formen müssen vorhanden sein — kein vollst�
   "grammar_focus": {
     "id": "prs-conj-e",
     "title_de": "Verbendungen im Präsens",
-    "explanation_de": "Im Russischen zeigt die Verbendung, wer handelt …"
+    "explanation_de": "Im Russischen zeigt die Verbendung, wer handelt …",
+    "primer": "akkusativ"
   },
   "new_lexemes": ["kofe", "khotet", "pozhalujsta"],
   "exercises": [ { "id": "31-1", "type": "build_sentence", … } ]
@@ -135,6 +137,13 @@ Nur tatsächlich im Kurs benutzte Formen müssen vorhanden sein — kein vollst�
 
 Jede Einheit startet mit **einer kurzen deutschen Regel** (3–4 Sätze) zum Grammatik-Fokus, danach
 folgen 6–10 Aufgaben. Der Erklärtext ist Pflichtfeld.
+
+Das Feld `primer` ist optional und verweist auf einen Eintrag in `primers.json`. Ein Primer erklärt
+den **deutschen** Grundbegriff — was ein Akkusativ ist, was konjugieren heißt —, nicht die russische
+Regel. Der Zielnutzer hat Fälle in der Schule nie gelernt; ohne diese Vorstufe bleibt die
+Einheitenregel unverständlich. Ein Primer wird **einmal geschrieben und mehrfach referenziert**: die
+Einheit mit der kleinsten Id zeigt ihn aufgeklappt, jede spätere zugeklappt zum Nachschlagen.
+Dieses `first_use`-Flag berechnet das Backend aus den Inhalten, es hängt nicht am Lernfortschritt.
 
 ### 3.4 Aufgabentypen
 
@@ -328,6 +337,8 @@ lokale Testläufe Inhaltsfehler fangen. Geprüfte Regeln:
    fordert **nicht**, dass bereits alle 100 Einheiten existieren — Inhalte entstehen inkrementell.
    Jede vorhandene Einheit muss aber eine `stage` tragen, die zur Tabelle in Abschnitt 4 passt.
 10. Jede `screening.json`-Sonde verweist auf eine existierende Einheit.
+11. Jeder in `grammar_focus.primer` genannte Primer existiert in `primers.json`, und jeder
+    Primer hat einen nichtleeren Titel und Text.
 
 ## 10. Testing
 

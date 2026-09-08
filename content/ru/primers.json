@@ -1,0 +1,30 @@
+{
+  "version": 1,
+  "primers": [
+    {
+      "id": "konjugation",
+      "title_de": "Kurz vorweg: Was heißt konjugieren?",
+      "text_de": "Konjugieren heißt: das Verb ändert seine Endung, je nachdem wer handelt. Das kennst du aus dem Deutschen —\n\nich mach-e, du mach-st, er mach-t, wir mach-en, ihr mach-t, sie mach-en\n\nDer Stamm mach- bleibt stehen, nur die Endung wechselt. Im Russischen ist es genauso. Ein Unterschied lohnt sich zu merken: das Deutsche hat für diese sechs Personen nur vier verschiedene Endungen, das Russische hat sechs verschiedene. Dafür musst du im Russischen genauer hinhören."
+    },
+    {
+      "id": "akkusativ",
+      "title_de": "Kurz vorweg: Was ist der Akkusativ?",
+      "text_de": "Der Akkusativ ist der Fall des direkten Objekts — dessen, was von der Handlung betroffen ist. Im Deutschen siehst du ihn fast nur beim Maskulinum:\n\nDer Kaffee ist gut.   ← Nominativ, der Kaffee ist das Thema des Satzes\nIch trinke den Kaffee. ← Akkusativ, der Kaffee wird getrunken\n\nBei die und das ändert sich im Deutschen gar nichts: ich trinke die Milch, ich lese das Buch.\n\nFrageprobe: Wen oder was? — Wen oder was trinke ich? Den Kaffee."
+    },
+    {
+      "id": "genitiv",
+      "title_de": "Kurz vorweg: Was ist der Genitiv?",
+      "text_de": "Der Genitiv ist der Fall der Zugehörigkeit und der Herkunft. Im Deutschen erkennst du ihn am -s oder an des:\n\nDas ist das Auto des Bruders. Das ist die Tasche meiner Schwester.\n\nFrageprobe: Wessen? — Wessen Auto? Des Bruders.\n\nIm Russischen arbeitet der Genitiv mehr als im Deutschen. Er steht auch nach aus — из Герма́нии, aus Deutschland — und beim Besitz: у меня́ heißt wörtlich bei mir und ist die russische Art, ich habe zu sagen."
+    },
+    {
+      "id": "dativ",
+      "title_de": "Kurz vorweg: Was ist der Dativ?",
+      "text_de": "Der Dativ ist der Fall dessen, dem etwas gegeben oder gesagt wird:\n\nIch gebe dem Freund das Buch.\n\nFrageprobe: Wem? — Wem gebe ich das Buch? Dem Freund.\n\nEr kann aber noch etwas, und das brauchst du im Russischen dauernd: er benennt den, den ein Zustand betrifft. Mir ist kalt. Ihm ist das egal. Da empfängt niemand etwas, trotzdem steht der Dativ. Genau nach diesem Muster baut das Russische die Altersangabe."
+    },
+    {
+      "id": "praepositiv",
+      "title_de": "Kurz vorweg: Was ist der Präpositiv?",
+      "text_de": "Diesen Fall gibt es im Deutschen nicht unter eigenem Namen — im Russischen ist er der Fall des Ortes. Er antwortet auf die Frage wo?\n\nIm Deutschen übernimmt der Dativ diese Aufgabe: Ich bin in der Stadt. Ich arbeite auf der Baustelle. Der Fall wechselt dort mit der Bedeutung —\n\nIch gehe in die Stadt.  ← wohin? Akkusativ\nIch bin in der Stadt.   ← wo? Dativ\n\nDer Präpositiv macht dieselbe Unterscheidung. Und er hat eine Eigenheit: er steht nie allein. Ohne ein Vorwort wie в oder на gibt es keinen Präpositiv."
+    }
+  ]
+}

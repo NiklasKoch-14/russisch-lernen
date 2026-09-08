@@ -8,9 +8,15 @@ EXTRA_EXERCISES = [dict(MINIMAL_UNIT["exercises"][0], id=f"1-{index}") for index
 GOOD_UNIT = dict(MINIMAL_UNIT, exercises=MINIMAL_UNIT["exercises"] + EXTRA_EXERCISES)
 
 
-def _course(tmp_path, *, lexicon=None, units=None, screening=None):
+def _course(tmp_path, *, lexicon=None, units=None, screening=None, primers=None):
     return load_course(
-        write_course(tmp_path, lexicon=lexicon, units=units or [GOOD_UNIT], screening=screening)
+        write_course(
+            tmp_path,
+            lexicon=lexicon,
+            units=units or [GOOD_UNIT],
+            screening=screening,
+            primers=primers,
+        )
     )
 
 
@@ -217,3 +223,28 @@ def test_listen_meaning_tokens_take_part_in_the_vocabulary_order_check(tmp_path)
     unit = _unit_with_listen_meaning(sentence=[["nope", "nom"]])
     errors = validate_course(_course(tmp_path, units=[unit]))
     assert any("nope" in error for error in errors)
+
+
+def test_reports_grammar_focus_pointing_at_unknown_primer(tmp_path):
+    unit = copy.deepcopy(GOOD_UNIT)
+    unit["grammar_focus"]["primer"] = "gibtsnicht"
+    errors = validate_course(_course(tmp_path, units=[unit]))
+    assert any("gibtsnicht" in error for error in errors)
+
+
+def test_accepts_grammar_focus_pointing_at_a_known_primer(tmp_path):
+    unit = copy.deepcopy(GOOD_UNIT)
+    unit["grammar_focus"]["primer"] = "akkusativ"
+    assert validate_course(_course(tmp_path, units=[unit])) == []
+
+
+def test_reports_primer_with_empty_text(tmp_path):
+    primers = [{"id": "akkusativ", "title_de": "Was ist der Akkusativ?", "text_de": "   "}]
+    errors = validate_course(_course(tmp_path, primers=primers))
+    assert any("akkusativ" in error and "text_de" in error for error in errors)
+
+
+def test_reports_primer_with_empty_title(tmp_path):
+    primers = [{"id": "akkusativ", "title_de": "", "text_de": "Der Fall des Objekts."}]
+    errors = validate_course(_course(tmp_path, primers=primers))
+    assert any("akkusativ" in error and "title_de" in error for error in errors)

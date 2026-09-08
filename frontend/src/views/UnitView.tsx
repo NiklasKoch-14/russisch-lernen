@@ -48,6 +48,15 @@ export default function UnitView() {
       <article className="space-y-4">
         <h2 className="text-2xl font-semibold">{unit.title_de}</h2>
         <p className="text-slate-600">{unit.scenario_de}</p>
+        {unit.primer && (
+          <details
+            open={unit.primer.first_use}
+            className="rounded-2xl border-2 border-amber-200 bg-amber-50 p-4"
+          >
+            <summary className="cursor-pointer font-medium">{unit.primer.title_de}</summary>
+            <p className="mt-2 whitespace-pre-line">{unit.primer.text_de}</p>
+          </details>
+        )}
         <section className="rounded-2xl border-2 border-sky-200 bg-sky-50 p-4">
           <h3 className="font-medium">{unit.grammar_focus.title_de}</h3>
           <p className="mt-2 whitespace-pre-line">{unit.grammar_focus.explanation_de}</p>

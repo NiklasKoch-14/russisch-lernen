@@ -6,7 +6,8 @@
   "grammar_focus": {
     "id": "iz-genitive",
     "title_de": "из verlangt den Genitiv",
-    "explanation_de": "Nach из („aus“) verändert sich das Land: Герма́ния wird zu из Герма́нии, Росси́я zu из Росси́и. Länder auf -ия enden im Genitiv immer auf -ии. Und ein Wort für „komme“ brauchst du gar nicht — Я из Герма́нии heißt wörtlich nur „ich aus Deutschland“."
+    "explanation_de": "Nach из („aus“) verändert sich das Land: Герма́ния wird zu из Герма́нии, Росси́я zu из Росси́и. Länder auf -ия enden im Genitiv immer auf -ии. Und ein Wort für „komme“ brauchst du gar nicht — Я из Герма́нии heißt wörtlich nur „ich aus Deutschland“.",
+    "primer": "genitiv"
   },
   "new_lexemes": [
     "otkuda",

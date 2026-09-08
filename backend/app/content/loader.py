@@ -12,6 +12,7 @@ from app.content.models import (
     Lexeme,
     ListenMeaningExercise,
     MatchPairsExercise,
+    Primer,
     ReplyOption,
     ScreeningProbe,
     TokenRef,
@@ -141,6 +142,7 @@ def _unit(raw: dict, source: Path) -> Unit:
                 id=focus["id"],
                 title_de=focus["title_de"],
                 explanation_de=focus["explanation_de"],
+                primer=focus.get("primer"),
             ),
             new_lexemes=list(raw["new_lexemes"]),
             exercises=[_exercise(item, int(raw["id"])) for item in raw["exercises"]],
@@ -162,6 +164,14 @@ def load_course(content_dir: str | Path, language: str = "russian") -> Course:
             raise ContentError(f"Einheiten-ID {unit.id} kommt doppelt vor ({path.name})")
         units[unit.id] = unit
 
+    raw_primers = _read_json(root / "primers.json")
+    primers = {
+        item["id"]: Primer(
+            id=item["id"], title_de=item["title_de"], text_de=item["text_de"]
+        )
+        for item in raw_primers["primers"]
+    }
+
     raw_screening = _read_json(root / "screening.json")
     screening = [
         ScreeningProbe(
@@ -174,4 +184,10 @@ def load_course(content_dir: str | Path, language: str = "russian") -> Course:
         for probe in raw_screening["probes"]
     ]
 
-    return Course(language=language, lexemes=lexemes, units=units, screening=screening)
+    return Course(
+        language=language,
+        lexemes=lexemes,
+        units=units,
+        screening=screening,
+        primers=primers,
+    )

@@ -6,7 +6,8 @@
   "grammar_focus": {
     "id": "zhit-conjugation",
     "title_de": "жить: die Betonung sitzt auf der Endung",
-    "explanation_de": "жить verliert im Präsens sein -ть und bekommt einen Stamm auf -в-: я живу́, ты живёшь, он живёт, мы живём, вы живёте, они́ живу́т. Die Betonung liegt immer auf der Endung — deshalb steht dort ё statt е, denn ё ist im Russischen immer betont. Gefragt wird mit где, geantwortet mit здесь oder там; beide Wörter ändern sich nie."
+    "explanation_de": "жить verliert im Präsens sein -ть und bekommt einen Stamm auf -в-: я живу́, ты живёшь, он живёт, мы живём, вы живёте, они́ живу́т. Die Betonung liegt immer auf der Endung — deshalb steht dort ё statt е, denn ё ist im Russischen immer betont. Gefragt wird mit где, geantwortet mit здесь oder там; beide Wörter ändern sich nie.",
+    "primer": "konjugation"
   },
   "new_lexemes": [
     "zhit",

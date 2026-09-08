@@ -74,6 +74,14 @@ MINIMAL_UNIT = {
     ],
 }
 
+MINIMAL_PRIMERS = [
+    {
+        "id": "akkusativ",
+        "title_de": "Was ist der Akkusativ?",
+        "text_de": "Der Fall des direkten Objekts: ich trinke den Kaffee.",
+    }
+]
+
 MINIMAL_SCREENING = [
     {
         "id": "s1",
@@ -85,7 +93,7 @@ MINIMAL_SCREENING = [
 ]
 
 
-def write_course(root, *, lexicon=None, units=None, screening=None) -> Path:
+def write_course(root, *, lexicon=None, units=None, screening=None, primers=None) -> Path:
     """Write a course tree under root and return the content directory."""
     content = Path(root) / "ru"
     (content / "units").mkdir(parents=True, exist_ok=True)
@@ -94,6 +102,10 @@ def write_course(root, *, lexicon=None, units=None, screening=None) -> Path:
     )
     (content / "screening.json").write_text(
         json.dumps({"probes": screening if screening is not None else MINIMAL_SCREENING}),
+        encoding="utf-8",
+    )
+    (content / "primers.json").write_text(
+        json.dumps({"primers": primers if primers is not None else MINIMAL_PRIMERS}),
         encoding="utf-8",
     )
     for unit in units if units is not None else [MINIMAL_UNIT]:

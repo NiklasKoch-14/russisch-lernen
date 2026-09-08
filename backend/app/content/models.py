@@ -24,10 +24,21 @@ class Lexeme:
 
 
 @dataclass(frozen=True)
+class Primer:
+    """Ein deutscher Grundbegriff — was ein Fall oder eine Form überhaupt ist."""
+
+    id: str
+    title_de: str
+    text_de: str
+
+
+@dataclass(frozen=True)
 class GrammarFocus:
     id: str
     title_de: str
     explanation_de: str
+    primer: str | None = None
+    """Id des Primers, der vor der Regel steht — None, wenn die Einheit keinen braucht."""
 
 
 @dataclass(frozen=True)
@@ -122,6 +133,7 @@ class Course:
     lexemes: dict[str, Lexeme]
     units: dict[int, Unit]
     screening: list[ScreeningProbe] = field(default_factory=list)
+    primers: dict[str, Primer] = field(default_factory=dict)
 
     def form(self, ref: TokenRef) -> Form:
         """Resolve a token reference to its concrete word form."""

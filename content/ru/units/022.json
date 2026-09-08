@@ -6,7 +6,8 @@
   "grammar_focus": {
     "id": "dative-age",
     "title_de": "Alter steht im Dativ: мне два́дцать лет",
-    "explanation_de": "Im Russischen ist man nicht alt, sondern *einem* ist ein Alter. Die Person steht deshalb im Dativ: я → мне, ты → тебе́, он → ему́, она́ → ей. Danach kommt die Zahl und das Wort für Jahr — und dessen Form hängt an der Zahl: nach 1 год, nach 2, 3 und 4 го́да, ab 5 лет. Gefragt wird mit ско́лько: Ско́лько тебе́ лет?"
+    "explanation_de": "Im Russischen ist man nicht alt, sondern *einem* ist ein Alter. Die Person steht deshalb im Dativ: я → мне, ты → тебе́, он → ему́, она́ → ей. Danach kommt die Zahl und das Wort für Jahr — und dessen Form hängt an der Zahl: nach 1 год, nach 2, 3 und 4 го́да, ab 5 лет. Gefragt wird mit ско́лько: Ско́лько тебе́ лет?",
+    "primer": "dativ"
   },
   "new_lexemes": [
     "skolko",

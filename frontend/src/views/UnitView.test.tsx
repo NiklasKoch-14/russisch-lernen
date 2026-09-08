@@ -16,6 +16,7 @@ const unit = {
     title_de: "Locker oder förmlich?",
     explanation_de: "Zu Fremden sagst du здра́вствуйте.",
   },
+  primer: null,
   new_words: [],
   solved_exercise_ids: [],
   exercises: [
@@ -39,6 +40,17 @@ const unit = {
   ],
 };
 
+const primer = {
+  id: "akkusativ",
+  title_de: "Kurz vorweg: Was ist der Akkusativ?",
+  text_de: "Der Fall des direkten Objekts: ich trinke den Kaffee.",
+  first_use: true,
+};
+
+function detailsFor(title: string) {
+  return screen.getByText(title).closest("details");
+}
+
 function renderUnit() {
   return render(
     <MemoryRouter initialEntries={["/kurs/5"]}>
@@ -58,6 +70,37 @@ describe("UnitView", () => {
     expect(await screen.findByText("Locker oder förmlich?")).toBeInTheDocument();
     fireEvent.click(screen.getByRole("button", { name: "Los geht's" }));
     expect(await screen.findByText("Auf Wiedersehen!")).toBeInTheDocument();
+  });
+
+  it("zeigt keine Vorerklärung, wenn die Einheit keine braucht", async () => {
+    vi.spyOn(api, "getUnit").mockResolvedValue(unit);
+    renderUnit();
+    await screen.findByText("Locker oder förmlich?");
+    expect(screen.queryByText(/Kurz vorweg/)).not.toBeInTheDocument();
+  });
+
+  it("zeigt die deutsche Vorerklärung über der Regel", async () => {
+    vi.spyOn(api, "getUnit").mockResolvedValue({ ...unit, primer });
+    renderUnit();
+    expect(await screen.findByText(primer.title_de)).toBeInTheDocument();
+    expect(screen.getByText(/direkten Objekts/)).toBeInTheDocument();
+  });
+
+  it("klappt die Vorerklärung auf, wo der Begriff zuerst vorkommt", async () => {
+    vi.spyOn(api, "getUnit").mockResolvedValue({ ...unit, primer });
+    renderUnit();
+    await screen.findByText(primer.title_de);
+    expect(detailsFor(primer.title_de)).toHaveAttribute("open");
+  });
+
+  it("zeigt die Vorerklärung später zugeklappt zum Nachschlagen", async () => {
+    vi.spyOn(api, "getUnit").mockResolvedValue({
+      ...unit,
+      primer: { ...primer, first_use: false },
+    });
+    renderUnit();
+    await screen.findByText(primer.title_de);
+    expect(detailsFor(primer.title_de)).not.toHaveAttribute("open");
   });
 
   it("zeigt nach einer falschen Antwort die Lösung", async () => {

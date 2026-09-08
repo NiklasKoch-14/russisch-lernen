@@ -6,7 +6,8 @@
   "grammar_focus": {
     "id": "u-menja-est",
     "title_de": "Besitz heißt „bei mir ist“: у меня́ есть",
-    "explanation_de": "Russisch sagt nicht „ich habe“, sondern „bei mir ist“: у меня́ есть маши́на. Nach у steht die Person in einer eigenen Form — я → меня́, ты → тебя́, мы → нас, вы → вас. есть bleibt dabei immer gleich, egal wer besitzt. Das Ding selbst steht ganz normal in der Grundform: маши́на, соба́ка, вопро́с. Für он und она́ heißt es у него́ und у неё — das kommt später dran."
+    "explanation_de": "Russisch sagt nicht „ich habe“, sondern „bei mir ist“: у меня́ есть маши́на. Nach у steht die Person in einer eigenen Form — я → меня́, ты → тебя́, мы → нас, вы → вас. есть bleibt dabei immer gleich, egal wer besitzt. Das Ding selbst steht ganz normal in der Grundform: маши́на, соба́ка, вопро́с. Für он und она́ heißt es у него́ und у неё — das kommt später dran.",
+    "primer": "genitiv"
   },
   "new_lexemes": [
     "u",

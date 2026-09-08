@@ -6,7 +6,8 @@
   "grammar_focus": {
     "id": "acc-pronouns",
     "title_de": "Wörtlich: „wie nennen sie dich?“",
-    "explanation_de": "Russisch fragt anders nach dem Namen als Deutsch: Как тебя́ зову́т? heißt wörtlich „wie nennen sie dich?“. Deshalb steht das Pronomen im Akkusativ — меня́ (mich), тебя́ (dich), вас (Sie). Ein eigenes Wort für „heiße“ gibt es nicht, und ein Wort für „ist“ fehlt im Russischen im Präsens ohnehin."
+    "explanation_de": "Russisch fragt anders nach dem Namen als Deutsch: Как тебя́ зову́т? heißt wörtlich „wie nennen sie dich?“. Deshalb steht das Pronomen im Akkusativ — меня́ (mich), тебя́ (dich), вас (Sie). Ein eigenes Wort für „heiße“ gibt es nicht, und ein Wort für „ist“ fehlt im Russischen im Präsens ohnehin.",
+    "primer": "akkusativ"
   },
   "new_lexemes": [
     "ja",

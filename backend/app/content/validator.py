@@ -162,6 +162,9 @@ def _check_units(course: Course) -> list[str]:
             )
         if not unit.grammar_focus.explanation_de.strip():
             errors.append(f"Einheit {unit.id}: Erklärung des Grammatik-Fokus ist leer")
+        primer_id = unit.grammar_focus.primer
+        if primer_id is not None and primer_id not in course.primers:
+            errors.append(f"Einheit {unit.id}: Primer {primer_id!r} gibt es nicht")
         if len(unit.exercises) < MIN_EXERCISES:
             errors.append(
                 f"Einheit {unit.id}: braucht mindestens 6 Aufgaben, hat {len(unit.exercises)}"
@@ -187,6 +190,16 @@ def _check_units(course: Course) -> list[str]:
     return errors
 
 
+def _check_primers(course: Course) -> list[str]:
+    errors: list[str] = []
+    for primer in course.primers.values():
+        if not primer.title_de.strip():
+            errors.append(f"Primer {primer.id}: title_de ist leer")
+        if not primer.text_de.strip():
+            errors.append(f"Primer {primer.id}: text_de ist leer")
+    return errors
+
+
 def _check_screening(course: Course) -> list[str]:
     errors: list[str] = []
     for probe in course.screening:
@@ -204,4 +217,9 @@ def _check_screening(course: Course) -> list[str]:
 
 def validate_course(course: Course) -> list[str]:
     """Return every content rule violation as a German message; empty means valid."""
-    return _check_lexicon(course) + _check_units(course) + _check_screening(course)
+    return (
+        _check_lexicon(course)
+        + _check_primers(course)
+        + _check_units(course)
+        + _check_screening(course)
+    )

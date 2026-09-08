@@ -6,7 +6,8 @@
   "grammar_focus": {
     "id": "prs-conj-intro",
     "title_de": "Die Endung sagt, wer spricht",
-    "explanation_de": "Russische Verben ändern ihre Endung je nach Person — das Pronomen könnte man sogar weglassen. Von говори́ть („sprechen“) heißt es я говорю́, ты говори́шь, он говори́т und вы говори́те. Merke dir das Muster -ю / -ишь / -ит / -ите; es taucht bei vielen Verben genau so wieder auf."
+    "explanation_de": "Russische Verben ändern ihre Endung je nach Person — das Pronomen könnte man sogar weglassen. Von говори́ть („sprechen“) heißt es я говорю́, ты говори́шь, он говори́т und вы говори́те. Merke dir das Muster -ю / -ишь / -ит / -ите; es taucht bei vielen Verben genau so wieder auf.",
+    "primer": "konjugation"
   },
   "new_lexemes": [
     "govorit",

@@ -73,12 +73,21 @@ export interface NewWord extends Word {
   gloss_de: string;
 }
 
+export interface Primer {
+  id: string;
+  title_de: string;
+  text_de: string;
+  /** Wahr in der Einheit, die den Begriff zuerst benutzt — dort steht der Kasten offen. */
+  first_use: boolean;
+}
+
 export interface UnitDetail {
   id: number;
   stage: number;
   title_de: string;
   scenario_de: string;
   grammar_focus: { id: string; title_de: string; explanation_de: string };
+  primer: Primer | null;
   new_words: NewWord[];
   solved_exercise_ids: string[];
   exercises: Exercise[];

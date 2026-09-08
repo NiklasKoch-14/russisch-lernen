@@ -212,3 +212,33 @@ def test_wiederholung_lehnt_eine_fremde_aufgabe_ab(conn, tmp_path):
         service.submit_review_exercise(
             conn, course, unit_id=1, exercise_id="gibtesnicht", submission={}
         )
+
+
+def _units_sharing_a_primer():
+    """Zwei Einheiten, die denselben Primer benutzen — die erste soll ihn aufklappen."""
+    first = copy.deepcopy(MINIMAL_UNIT)
+    first["grammar_focus"]["primer"] = "akkusativ"
+    second = copy.deepcopy(first)
+    second["id"] = 2
+    return [first, second]
+
+
+def test_unit_payload_ohne_primer_liefert_none(conn, course):
+    assert unit_payload(course, conn, 1)["primer"] is None
+
+
+def test_unit_payload_liefert_den_primer_text(conn, tmp_path):
+    course = load_course(write_course(tmp_path, units=_units_sharing_a_primer()))
+    primer = unit_payload(course, conn, 1)["primer"]
+    assert primer["title_de"] == "Was ist der Akkusativ?"
+    assert "direkten Objekts" in primer["text_de"]
+
+
+def test_primer_ist_in_der_ersten_einheit_aufgeklappt(conn, tmp_path):
+    course = load_course(write_course(tmp_path, units=_units_sharing_a_primer()))
+    assert unit_payload(course, conn, 1)["primer"]["first_use"] is True
+
+
+def test_primer_ist_in_spaeteren_einheiten_zugeklappt(conn, tmp_path):
+    course = load_course(write_course(tmp_path, units=_units_sharing_a_primer()))
+    assert unit_payload(course, conn, 2)["primer"]["first_use"] is False

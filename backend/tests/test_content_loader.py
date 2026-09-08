@@ -116,3 +116,27 @@ def test_audio_prompt_is_rejected_on_other_exercise_types(tmp_path):
 def test_audio_prompt_defaults_to_false(tmp_path):
     exercise = load_course(write_course(tmp_path)).units[1].exercises[0]
     assert exercise.audio_prompt is False
+
+
+def test_loads_primers_keyed_by_id(tmp_path):
+    course = load_course(write_course(tmp_path))
+    assert course.primers["akkusativ"].title_de == "Was ist der Akkusativ?"
+
+
+def test_missing_primers_file_is_an_error(tmp_path):
+    content = write_course(tmp_path)
+    (content / "primers.json").unlink()
+    with pytest.raises(ContentError, match="primers.json"):
+        load_course(content)
+
+
+def test_grammar_focus_without_primer_reference_has_none(tmp_path):
+    course = load_course(write_course(tmp_path))
+    assert course.units[1].grammar_focus.primer is None
+
+
+def test_grammar_focus_keeps_its_primer_reference(tmp_path):
+    unit = copy.deepcopy(MINIMAL_UNIT)
+    unit["grammar_focus"]["primer"] = "akkusativ"
+    course = load_course(write_course(tmp_path, units=[unit]))
+    assert course.units[1].grammar_focus.primer == "akkusativ"

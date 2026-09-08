@@ -3,7 +3,7 @@ import json
 from dataclasses import dataclass
 from sqlite3 import Connection
 
-from app.content.models import Course, TokenRef
+from app.content.models import Course, TokenRef, Unit
 from app.course.checker import check_answer
 from app.course.presenter import citation_form, present_exercise
 from app.repositories import lexeme_srs_repo, progress_repo
@@ -157,6 +157,24 @@ def submit_review_exercise(
     )
 
 
+def primer_payload(course: Course, unit: Unit) -> dict | None:
+    """Der Grundbegriff vor der Regel — aufgeklappt nur dort, wo er zuerst vorkommt."""
+    primer = course.primers.get(unit.grammar_focus.primer or "")
+    if primer is None:
+        return None
+    first_user = min(
+        other.id
+        for other in course.ordered_units()
+        if other.grammar_focus.primer == primer.id
+    )
+    return {
+        "id": primer.id,
+        "title_de": primer.title_de,
+        "text_de": primer.text_de,
+        "first_use": unit.id == first_user,
+    }
+
+
 def unit_payload(course: Course, conn: Connection, unit_id: int) -> dict:
     unit = course.units[unit_id]
     solved = progress_repo.correct_exercise_ids(conn, unit_id)
@@ -170,6 +188,7 @@ def unit_payload(course: Course, conn: Connection, unit_id: int) -> dict:
             "title_de": unit.grammar_focus.title_de,
             "explanation_de": unit.grammar_focus.explanation_de,
         },
+        "primer": primer_payload(course, unit),
         "new_words": new_words(course, unit),
         "solved_exercise_ids": sorted(solved),
         "exercises": [present_exercise(course, exercise) for exercise in unit.exercises],
