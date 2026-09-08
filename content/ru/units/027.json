@@ -1,0 +1,374 @@
+{
+  "id": 27,
+  "stage": 2,
+  "title_de": "Eine Suppe, bitte",
+  "scenario_de": "Am Mittag bestellst du etwas zu essen.",
+  "grammar_focus": {
+    "id": "acc-feminine-u",
+    "title_de": "Weibliche Wörter auf -а bekommen im Akkusativ ein -у",
+    "explanation_de": "Was auf -а endet, endet im Akkusativ auf -у: пи́цца wird zu я хочу́ пи́ццу. Was auf -я endet, bekommt entsprechend -ю. Bei manchen Wörtern wandert dabei zusätzlich die Betonung nach vorn: вода́, aber я пью во́ду. Männliche Sachwörter und sächliche Wörter machen nichts mit — суп bleibt суп, мя́со bleibt мя́со.",
+    "primer": "akkusativ"
+  },
+  "new_lexemes": [
+    "sup",
+    "voda",
+    "pitstsa",
+    "ryba",
+    "mjaso",
+    "chashka"
+  ],
+  "exercises": [
+    {
+      "id": "27-1",
+      "type": "match_pairs",
+      "prompt_de": "Vier Dinge auf der Karte.",
+      "pairs": [
+        [
+          "sup",
+          "nom.sg"
+        ],
+        [
+          "pitstsa",
+          "nom.sg"
+        ],
+        [
+          "ryba",
+          "nom.sg"
+        ],
+        [
+          "mjaso",
+          "nom.sg"
+        ]
+      ]
+    },
+    {
+      "id": "27-2",
+      "type": "match_pairs",
+      "prompt_de": "Vier weibliche Wörter — alle auf -а.",
+      "pairs": [
+        [
+          "voda",
+          "nom.sg"
+        ],
+        [
+          "chashka",
+          "nom.sg"
+        ],
+        [
+          "kniga",
+          "nom.sg"
+        ],
+        [
+          "sumka",
+          "nom.sg"
+        ]
+      ]
+    },
+    {
+      "id": "27-3",
+      "type": "build_sentence",
+      "prompt_de": "Ich möchte eine Pizza.",
+      "solution": [
+        [
+          "ja",
+          "nom"
+        ],
+        [
+          "khotet",
+          "prs.1sg"
+        ],
+        [
+          "pitstsa",
+          "acc.sg"
+        ]
+      ],
+      "distractors": [
+        [
+          "pitstsa",
+          "nom.sg"
+        ],
+        [
+          "khotet",
+          "prs.3sg"
+        ]
+      ]
+    },
+    {
+      "id": "27-4",
+      "type": "build_sentence",
+      "prompt_de": "Ich trinke Wasser.",
+      "solution": [
+        [
+          "ja",
+          "nom"
+        ],
+        [
+          "pit",
+          "prs.1sg"
+        ],
+        [
+          "voda",
+          "acc.sg"
+        ]
+      ],
+      "distractors": [
+        [
+          "voda",
+          "nom.sg"
+        ],
+        [
+          "pit",
+          "prs.3sg"
+        ]
+      ]
+    },
+    {
+      "id": "27-5",
+      "type": "build_sentence",
+      "prompt_de": "Sie möchte Fisch.",
+      "solution": [
+        [
+          "ona",
+          "nom"
+        ],
+        [
+          "khotet",
+          "prs.3sg"
+        ],
+        [
+          "ryba",
+          "acc.sg"
+        ]
+      ],
+      "distractors": [
+        [
+          "ryba",
+          "nom.sg"
+        ],
+        [
+          "khotet",
+          "prs.1sg"
+        ]
+      ]
+    },
+    {
+      "id": "27-6",
+      "type": "choose_form",
+      "prompt_de": "Wir möchten Suppe.",
+      "sentence": [
+        [
+          "my",
+          "nom"
+        ],
+        "___",
+        [
+          "sup",
+          "acc.sg"
+        ]
+      ],
+      "answer": [
+        "khotet",
+        "prs.1pl"
+      ],
+      "distractor_forms": [
+        "prs.3pl",
+        "prs.2pl",
+        "prs.3sg"
+      ]
+    },
+    {
+      "id": "27-7",
+      "type": "choose_form",
+      "prompt_de": "Trinkst du Wasser?",
+      "sentence": [
+        [
+          "ty",
+          "nom"
+        ],
+        "___",
+        [
+          "voda",
+          "acc.sg"
+        ]
+      ],
+      "answer": [
+        "pit",
+        "prs.2sg"
+      ],
+      "distractor_forms": [
+        "prs.1sg",
+        "prs.3sg",
+        "prs.3pl"
+      ],
+      "audio_prompt": true
+    },
+    {
+      "id": "27-8",
+      "type": "build_sentence",
+      "prompt_de": "Das Fleisch ist sehr gut.",
+      "solution": [
+        [
+          "mjaso",
+          "nom.sg"
+        ],
+        [
+          "ochen",
+          "base"
+        ],
+        [
+          "khoroshij",
+          "nom.n"
+        ]
+      ],
+      "distractors": [
+        [
+          "khoroshij",
+          "nom.m"
+        ],
+        [
+          "khoroshij",
+          "nom.f"
+        ]
+      ]
+    },
+    {
+      "id": "27-9",
+      "type": "dialog_reply",
+      "prompt_de": "Der Kellner fragt nach, ob du die Suppe willst.",
+      "tutor_line": [
+        [
+          "vy",
+          "nom"
+        ],
+        [
+          "khotet",
+          "prs.2pl"
+        ],
+        [
+          "sup",
+          "acc.sg"
+        ]
+      ],
+      "correct_index": 0,
+      "options": [
+        {
+          "tokens": [
+            [
+              "da",
+              "base"
+            ],
+            [
+              "ja",
+              "nom"
+            ],
+            [
+              "khotet",
+              "prs.1sg"
+            ],
+            [
+              "sup",
+              "acc.sg"
+            ]
+          ],
+          "why_de": ""
+        },
+        {
+          "tokens": [
+            [
+              "da",
+              "base"
+            ],
+            [
+              "ja",
+              "nom"
+            ],
+            [
+              "khotet",
+              "prs.1pl"
+            ],
+            [
+              "sup",
+              "acc.sg"
+            ]
+          ],
+          "why_de": "хоти́м gehört zu мы. Wenn du von dir allein sprichst, heißt es хочу́."
+        },
+        {
+          "tokens": [
+            [
+              "net",
+              "base"
+            ],
+            [
+              "ja",
+              "nom"
+            ],
+            [
+              "khotet",
+              "prs.1sg"
+            ],
+            [
+              "voda",
+              "nom.sg"
+            ]
+          ],
+          "why_de": "Nach хочу́ steht der Akkusativ: я хочу́ во́ду, nicht вода́."
+        }
+      ]
+    },
+    {
+      "id": "27-11",
+      "type": "build_sentence",
+      "prompt_de": "Die Pizza ist sehr gut.",
+      "solution": [
+        [
+          "pitstsa",
+          "nom.sg"
+        ],
+        [
+          "ochen",
+          "base"
+        ],
+        [
+          "khoroshij",
+          "nom.f"
+        ]
+      ],
+      "distractors": [
+        [
+          "khoroshij",
+          "nom.m"
+        ],
+        [
+          "ryba",
+          "nom.sg"
+        ]
+      ]
+    },
+    {
+      "id": "27-10",
+      "type": "listen_meaning",
+      "prompt_de": "Hör zu. Was wird gesagt?",
+      "sentence": [
+        [
+          "ja",
+          "nom"
+        ],
+        [
+          "pit",
+          "prs.1sg"
+        ],
+        [
+          "voda",
+          "acc.sg"
+        ]
+      ],
+      "correct_index": 0,
+      "options_de": [
+        "Ich trinke Wasser.",
+        "Ich möchte Wasser.",
+        "Er trinkt Wasser."
+      ]
+    }
+  ]
+}

@@ -1,0 +1,366 @@
+{
+  "id": 29,
+  "stage": 2,
+  "title_de": "Im Café",
+  "scenario_de": "Du erzählst am Telefon, wo du gerade steckst.",
+  "grammar_focus": {
+    "id": "v-prepositional",
+    "title_de": "в + Präpositiv: der Fall des Ortes",
+    "explanation_de": "Auf die Frage где? antwortest du mit в und dem Präpositiv. Die allermeisten Wörter hängen dafür ein -е an: го́род wird zu в го́роде, магази́н zu в магази́не, шко́ла zu в шко́ле, дом zu в до́ме. Unveränderliche Fremdwörter machen auch hier nichts mit: в кафе́ bleibt кафе́. Und das Wichtigste: der Präpositiv steht nie allein. Ohne в oder на gibt es ihn nicht.",
+    "primer": "praepositiv"
+  },
+  "new_lexemes": [
+    "v",
+    "restoran",
+    "magazin",
+    "shkola",
+    "park",
+    "ofis"
+  ],
+  "exercises": [
+    {
+      "id": "29-1",
+      "type": "match_pairs",
+      "prompt_de": "Vier Orte in der Stadt.",
+      "pairs": [
+        [
+          "restoran",
+          "nom.sg"
+        ],
+        [
+          "magazin",
+          "nom.sg"
+        ],
+        [
+          "shkola",
+          "nom.sg"
+        ],
+        [
+          "park",
+          "nom.sg"
+        ]
+      ]
+    },
+    {
+      "id": "29-2",
+      "type": "match_pairs",
+      "prompt_de": "Noch vier Orte — zwei kennst du schon.",
+      "pairs": [
+        [
+          "ofis",
+          "nom.sg"
+        ],
+        [
+          "kafe",
+          "nom.sg"
+        ],
+        [
+          "gorod",
+          "nom.sg"
+        ],
+        [
+          "dom",
+          "nom.sg"
+        ]
+      ]
+    },
+    {
+      "id": "29-3",
+      "type": "build_sentence",
+      "prompt_de": "Ich bin im Café.",
+      "solution": [
+        [
+          "ja",
+          "nom"
+        ],
+        [
+          "v",
+          "base"
+        ],
+        [
+          "kafe",
+          "prp.sg"
+        ]
+      ],
+      "distractors": [
+        [
+          "magazin",
+          "prp.sg"
+        ],
+        [
+          "my",
+          "nom"
+        ]
+      ]
+    },
+    {
+      "id": "29-4",
+      "type": "build_sentence",
+      "prompt_de": "Wir sind in der Stadt.",
+      "solution": [
+        [
+          "my",
+          "nom"
+        ],
+        [
+          "v",
+          "base"
+        ],
+        [
+          "gorod",
+          "prp.sg"
+        ]
+      ],
+      "distractors": [
+        [
+          "gorod",
+          "nom.sg"
+        ],
+        [
+          "dom",
+          "prp.sg"
+        ]
+      ]
+    },
+    {
+      "id": "29-5",
+      "type": "build_sentence",
+      "prompt_de": "Meine Frau ist im Laden.",
+      "solution": [
+        [
+          "moj",
+          "nom.f"
+        ],
+        [
+          "zhena",
+          "nom.sg"
+        ],
+        [
+          "v",
+          "base"
+        ],
+        [
+          "magazin",
+          "prp.sg"
+        ]
+      ],
+      "distractors": [
+        [
+          "magazin",
+          "nom.sg"
+        ],
+        [
+          "moj",
+          "nom.m"
+        ]
+      ]
+    },
+    {
+      "id": "29-6",
+      "type": "choose_form",
+      "prompt_de": "Wo arbeitet er?",
+      "sentence": [
+        [
+          "gde",
+          "base"
+        ],
+        [
+          "on",
+          "nom"
+        ],
+        "___"
+      ],
+      "answer": [
+        "rabotat",
+        "prs.3sg"
+      ],
+      "distractor_forms": [
+        "prs.1sg",
+        "prs.2sg",
+        "prs.3pl"
+      ]
+    },
+    {
+      "id": "29-7",
+      "type": "choose_form",
+      "prompt_de": "Was machst du im Park?",
+      "sentence": [
+        [
+          "chto",
+          "acc"
+        ],
+        [
+          "ty",
+          "nom"
+        ],
+        "___",
+        [
+          "v",
+          "base"
+        ],
+        [
+          "park",
+          "prp.sg"
+        ]
+      ],
+      "answer": [
+        "delat",
+        "prs.2sg"
+      ],
+      "distractor_forms": [
+        "prs.1sg",
+        "prs.3sg",
+        "prs.1pl"
+      ],
+      "audio_prompt": true
+    },
+    {
+      "id": "29-8",
+      "type": "build_sentence",
+      "prompt_de": "Die Kinder sind in der Schule.",
+      "solution": [
+        [
+          "deti",
+          "nom.pl"
+        ],
+        [
+          "v",
+          "base"
+        ],
+        [
+          "shkola",
+          "prp.sg"
+        ]
+      ],
+      "distractors": [
+        [
+          "shkola",
+          "nom.sg"
+        ],
+        [
+          "roditeli",
+          "nom.pl"
+        ]
+      ]
+    },
+    {
+      "id": "29-9",
+      "type": "dialog_reply",
+      "prompt_de": "Am Telefon fragt dich deine Freundin, wo du bist.",
+      "tutor_line": [
+        [
+          "gde",
+          "base"
+        ],
+        [
+          "ty",
+          "nom"
+        ]
+      ],
+      "correct_index": 0,
+      "options": [
+        {
+          "tokens": [
+            [
+              "ja",
+              "nom"
+            ],
+            [
+              "v",
+              "base"
+            ],
+            [
+              "kafe",
+              "prp.sg"
+            ]
+          ],
+          "why_de": ""
+        },
+        {
+          "tokens": [
+            [
+              "ja",
+              "nom"
+            ],
+            [
+              "v",
+              "base"
+            ],
+            [
+              "gorod",
+              "nom.sg"
+            ]
+          ],
+          "why_de": "Nach в steht der Präpositiv: в го́роде, nicht в го́род."
+        },
+        {
+          "tokens": [
+            [
+              "ja",
+              "nom"
+            ],
+            [
+              "kafe",
+              "prp.sg"
+            ]
+          ],
+          "why_de": "Ohne в gibt es keinen Präpositiv. Der Ort braucht sein Vorwort."
+        }
+      ]
+    },
+    {
+      "id": "29-11",
+      "type": "build_sentence",
+      "prompt_de": "Der Laden ist im Haus.",
+      "solution": [
+        [
+          "magazin",
+          "nom.sg"
+        ],
+        [
+          "v",
+          "base"
+        ],
+        [
+          "dom",
+          "prp.sg"
+        ]
+      ],
+      "distractors": [
+        [
+          "magazin",
+          "prp.sg"
+        ],
+        [
+          "dom",
+          "nom.sg"
+        ]
+      ]
+    },
+    {
+      "id": "29-10",
+      "type": "listen_meaning",
+      "prompt_de": "Hör zu. Was wird gesagt?",
+      "sentence": [
+        [
+          "my",
+          "nom"
+        ],
+        [
+          "v",
+          "base"
+        ],
+        [
+          "restoran",
+          "prp.sg"
+        ]
+      ],
+      "correct_index": 0,
+      "options_de": [
+        "Wir sind im Restaurant.",
+        "Wir sind im Laden.",
+        "Sie sind im Restaurant."
+      ]
+    }
+  ]
+}

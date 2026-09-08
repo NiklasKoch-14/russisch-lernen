@@ -1,0 +1,358 @@
+{
+  "id": 25,
+  "stage": 2,
+  "title_de": "Kaffee, bitte",
+  "scenario_de": "Du stehst am Tresen und bestellst dein erstes Getränk.",
+  "grammar_focus": {
+    "id": "acc-inanimate-unchanged",
+    "title_de": "Beim Akkusativ ändern sich Sachen oft gar nicht",
+    "explanation_de": "Männliche Sachwörter und sächliche Wörter sehen im Akkusativ genauso aus wie im Nominativ. Я пью сок — ich trinke Saft, und сок steht da wie im Wörterbuch. Zwei Wörter dieser Einheit ändern sich sogar nie, in keinem einzigen Fall: ко́фе und кафе́ sind Fremdwörter und bleiben immer gleich. Auseinanderhalten kannst du sie an der Betonung — ко́фе mit Betonung vorn ist das Getränk, кафе́ mit Betonung hinten das Lokal.",
+    "primer": "akkusativ"
+  },
+  "new_lexemes": [
+    "kofe",
+    "chaj",
+    "sok",
+    "moloko",
+    "pit",
+    "kafe"
+  ],
+  "exercises": [
+    {
+      "id": "25-1",
+      "type": "match_pairs",
+      "prompt_de": "Vier Dinge zum Trinken.",
+      "pairs": [
+        [
+          "kofe",
+          "nom.sg"
+        ],
+        [
+          "chaj",
+          "nom.sg"
+        ],
+        [
+          "sok",
+          "nom.sg"
+        ],
+        [
+          "moloko",
+          "nom.sg"
+        ]
+      ]
+    },
+    {
+      "id": "25-2",
+      "type": "match_pairs",
+      "prompt_de": "Ein Verb, ein Ort und zwei alte Bekannte.",
+      "pairs": [
+        [
+          "pit",
+          "inf"
+        ],
+        [
+          "kafe",
+          "nom.sg"
+        ],
+        [
+          "stol",
+          "nom.sg"
+        ],
+        [
+          "telefon",
+          "nom.sg"
+        ]
+      ]
+    },
+    {
+      "id": "25-3",
+      "type": "choose_form",
+      "prompt_de": "Ich trinke Kaffee.",
+      "sentence": [
+        [
+          "ja",
+          "nom"
+        ],
+        "___",
+        [
+          "kofe",
+          "acc.sg"
+        ]
+      ],
+      "answer": [
+        "pit",
+        "prs.1sg"
+      ],
+      "distractor_forms": [
+        "prs.2sg",
+        "prs.3sg",
+        "inf"
+      ]
+    },
+    {
+      "id": "25-4",
+      "type": "choose_form",
+      "prompt_de": "Was trinkst du?",
+      "sentence": [
+        [
+          "chto",
+          "acc"
+        ],
+        [
+          "ty",
+          "nom"
+        ],
+        "___"
+      ],
+      "answer": [
+        "pit",
+        "prs.2sg"
+      ],
+      "distractor_forms": [
+        "prs.1sg",
+        "prs.3sg",
+        "prs.3pl"
+      ],
+      "audio_prompt": true
+    },
+    {
+      "id": "25-5",
+      "type": "choose_form",
+      "prompt_de": "Meine Frau trinkt Tee.",
+      "sentence": [
+        [
+          "moj",
+          "nom.f"
+        ],
+        [
+          "zhena",
+          "nom.sg"
+        ],
+        "___",
+        [
+          "chaj",
+          "acc.sg"
+        ]
+      ],
+      "answer": [
+        "pit",
+        "prs.3sg"
+      ],
+      "distractor_forms": [
+        "prs.1sg",
+        "prs.2sg",
+        "prs.1pl"
+      ]
+    },
+    {
+      "id": "25-6",
+      "type": "build_sentence",
+      "prompt_de": "Einen Kaffee, bitte.",
+      "solution": [
+        [
+          "kofe",
+          "acc.sg"
+        ],
+        [
+          "pozhalujsta",
+          "base"
+        ]
+      ],
+      "distractors": [
+        [
+          "chaj",
+          "acc.sg"
+        ],
+        [
+          "spasibo",
+          "base"
+        ]
+      ]
+    },
+    {
+      "id": "25-7",
+      "type": "build_sentence",
+      "prompt_de": "Wir trinken auch Saft.",
+      "solution": [
+        [
+          "my",
+          "nom"
+        ],
+        [
+          "tozhe",
+          "base"
+        ],
+        [
+          "pit",
+          "prs.1pl"
+        ],
+        [
+          "sok",
+          "acc.sg"
+        ]
+      ],
+      "distractors": [
+        [
+          "pit",
+          "prs.3pl"
+        ],
+        [
+          "chaj",
+          "acc.sg"
+        ]
+      ]
+    },
+    {
+      "id": "25-8",
+      "type": "build_sentence",
+      "prompt_de": "Das ist ein gutes Café.",
+      "solution": [
+        [
+          "eto",
+          "base"
+        ],
+        [
+          "khoroshij",
+          "nom.n"
+        ],
+        [
+          "kafe",
+          "nom.sg"
+        ]
+      ],
+      "distractors": [
+        [
+          "khoroshij",
+          "nom.m"
+        ],
+        [
+          "novyj",
+          "nom.n"
+        ]
+      ]
+    },
+    {
+      "id": "25-9",
+      "type": "dialog_reply",
+      "prompt_de": "Der Kellner fragt, was ihr trinkt.",
+      "tutor_line": [
+        [
+          "chto",
+          "acc"
+        ],
+        [
+          "vy",
+          "nom"
+        ],
+        [
+          "pit",
+          "prs.2pl"
+        ]
+      ],
+      "correct_index": 0,
+      "options": [
+        {
+          "tokens": [
+            [
+              "chaj",
+              "acc.sg"
+            ],
+            [
+              "pozhalujsta",
+              "base"
+            ]
+          ],
+          "why_de": ""
+        },
+        {
+          "tokens": [
+            [
+              "ja",
+              "nom"
+            ],
+            [
+              "pit",
+              "prs.3sg"
+            ],
+            [
+              "chaj",
+              "acc.sg"
+            ]
+          ],
+          "why_de": "пьёт gehört zu он und она́. Zu я gehört пью."
+        },
+        {
+          "tokens": [
+            [
+              "ja",
+              "nom"
+            ],
+            [
+              "pit",
+              "prs.1sg"
+            ],
+            [
+              "kafe",
+              "acc.sg"
+            ]
+          ],
+          "why_de": "кафе́ ist das Lokal, nicht das Getränk. Der Kaffee heißt ко́фе."
+        }
+      ]
+    },
+    {
+      "id": "25-11",
+      "type": "build_sentence",
+      "prompt_de": "Der Tee ist sehr gut.",
+      "solution": [
+        [
+          "chaj",
+          "nom.sg"
+        ],
+        [
+          "ochen",
+          "base"
+        ],
+        [
+          "khoroshij",
+          "nom.m"
+        ]
+      ],
+      "distractors": [
+        [
+          "khoroshij",
+          "nom.n"
+        ],
+        [
+          "kofe",
+          "nom.sg"
+        ]
+      ]
+    },
+    {
+      "id": "25-10",
+      "type": "listen_meaning",
+      "prompt_de": "Hör zu. Was wird gesagt?",
+      "sentence": [
+        [
+          "ja",
+          "nom"
+        ],
+        [
+          "pit",
+          "prs.1sg"
+        ],
+        [
+          "moloko",
+          "acc.sg"
+        ]
+      ],
+      "correct_index": 0,
+      "options_de": [
+        "Ich trinke Milch.",
+        "Ich trinke Saft.",
+        "Er trinkt Milch."
+      ]
+    }
+  ]
+}

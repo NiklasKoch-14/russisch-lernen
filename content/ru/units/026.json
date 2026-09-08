@@ -1,0 +1,370 @@
+{
+  "id": 26,
+  "stage": 2,
+  "title_de": "Ich möchte",
+  "scenario_de": "Du bestellst, was du wirklich willst, und fragst deinen Freund, was er nimmt.",
+  "grammar_focus": {
+    "id": "khotet-irregular",
+    "title_de": "хоте́ть bricht mitten im Paradigma die Regel",
+    "explanation_de": "хоте́ть ist unregelmäßig; hier hilft nur auswendig lernen. Im Singular steht ein ч und die Betonung wandert: я хочу́, ты хо́чешь, он хо́чет. Im Plural steht ein т und die Endungen sind ganz andere: мы хоти́м, вы хоти́те, они́ хотя́т. Merk dir vor allem die Bruchstelle zwischen хо́чет und хоти́м — genau dort springt das Verb von der einen Klasse in die andere.",
+    "primer": "konjugation"
+  },
+  "new_lexemes": [
+    "khotet",
+    "pivo",
+    "buterbrod",
+    "salat",
+    "menju",
+    "eshchjo"
+  ],
+  "exercises": [
+    {
+      "id": "26-1",
+      "type": "match_pairs",
+      "prompt_de": "Was es hier zu essen und zu trinken gibt.",
+      "pairs": [
+        [
+          "pivo",
+          "nom.sg"
+        ],
+        [
+          "buterbrod",
+          "nom.sg"
+        ],
+        [
+          "salat",
+          "nom.sg"
+        ],
+        [
+          "menju",
+          "nom.sg"
+        ]
+      ]
+    },
+    {
+      "id": "26-2",
+      "type": "match_pairs",
+      "prompt_de": "Ein Verb, ein kleines Wort und zwei Getränke.",
+      "pairs": [
+        [
+          "khotet",
+          "inf"
+        ],
+        [
+          "eshchjo",
+          "base"
+        ],
+        [
+          "kofe",
+          "nom.sg"
+        ],
+        [
+          "chaj",
+          "nom.sg"
+        ]
+      ]
+    },
+    {
+      "id": "26-3",
+      "type": "choose_form",
+      "prompt_de": "Ich möchte einen Salat.",
+      "sentence": [
+        [
+          "ja",
+          "nom"
+        ],
+        "___",
+        [
+          "salat",
+          "acc.sg"
+        ]
+      ],
+      "answer": [
+        "khotet",
+        "prs.1sg"
+      ],
+      "distractor_forms": [
+        "prs.2sg",
+        "prs.3sg",
+        "prs.3pl"
+      ]
+    },
+    {
+      "id": "26-4",
+      "type": "choose_form",
+      "prompt_de": "Was möchtest du?",
+      "sentence": [
+        [
+          "chto",
+          "acc"
+        ],
+        [
+          "ty",
+          "nom"
+        ],
+        "___"
+      ],
+      "answer": [
+        "khotet",
+        "prs.2sg"
+      ],
+      "distractor_forms": [
+        "prs.1sg",
+        "prs.3sg",
+        "prs.1pl"
+      ],
+      "audio_prompt": true
+    },
+    {
+      "id": "26-5",
+      "type": "choose_form",
+      "prompt_de": "Wir möchten noch ein Bier.",
+      "sentence": [
+        [
+          "my",
+          "nom"
+        ],
+        "___",
+        [
+          "eshchjo",
+          "base"
+        ],
+        [
+          "pivo",
+          "acc.sg"
+        ]
+      ],
+      "answer": [
+        "khotet",
+        "prs.1pl"
+      ],
+      "distractor_forms": [
+        "prs.3sg",
+        "prs.2pl",
+        "prs.3pl"
+      ]
+    },
+    {
+      "id": "26-6",
+      "type": "choose_form",
+      "prompt_de": "Unsere Eltern möchten ein belegtes Brot.",
+      "sentence": [
+        [
+          "nash",
+          "nom.pl"
+        ],
+        [
+          "roditeli",
+          "nom.pl"
+        ],
+        "___",
+        [
+          "buterbrod",
+          "acc.sg"
+        ]
+      ],
+      "answer": [
+        "khotet",
+        "prs.3pl"
+      ],
+      "distractor_forms": [
+        "prs.3sg",
+        "prs.1pl",
+        "prs.2pl"
+      ]
+    },
+    {
+      "id": "26-7",
+      "type": "build_sentence",
+      "prompt_de": "Die Speisekarte, bitte.",
+      "solution": [
+        [
+          "menju",
+          "acc.sg"
+        ],
+        [
+          "pozhalujsta",
+          "base"
+        ]
+      ],
+      "distractors": [
+        [
+          "salat",
+          "acc.sg"
+        ],
+        [
+          "spasibo",
+          "base"
+        ]
+      ]
+    },
+    {
+      "id": "26-8",
+      "type": "build_sentence",
+      "prompt_de": "Er möchte auch Bier.",
+      "solution": [
+        [
+          "on",
+          "nom"
+        ],
+        [
+          "tozhe",
+          "base"
+        ],
+        [
+          "khotet",
+          "prs.3sg"
+        ],
+        [
+          "pivo",
+          "acc.sg"
+        ]
+      ],
+      "distractors": [
+        [
+          "khotet",
+          "prs.1sg"
+        ],
+        [
+          "chaj",
+          "acc.sg"
+        ]
+      ]
+    },
+    {
+      "id": "26-9",
+      "type": "dialog_reply",
+      "prompt_de": "Die Kellnerin nimmt eure Bestellung auf.",
+      "tutor_line": [
+        [
+          "chto",
+          "acc"
+        ],
+        [
+          "vy",
+          "nom"
+        ],
+        [
+          "khotet",
+          "prs.2pl"
+        ]
+      ],
+      "correct_index": 0,
+      "options": [
+        {
+          "tokens": [
+            [
+              "ja",
+              "nom"
+            ],
+            [
+              "khotet",
+              "prs.1sg"
+            ],
+            [
+              "salat",
+              "acc.sg"
+            ]
+          ],
+          "why_de": ""
+        },
+        {
+          "tokens": [
+            [
+              "ja",
+              "nom"
+            ],
+            [
+              "khotet",
+              "prs.1pl"
+            ],
+            [
+              "salat",
+              "acc.sg"
+            ]
+          ],
+          "why_de": "хоти́м gehört zu мы. Wenn du von dir allein sprichst, heißt es хочу́."
+        },
+        {
+          "tokens": [
+            [
+              "ja",
+              "nom"
+            ],
+            [
+              "khotet",
+              "prs.3sg"
+            ],
+            [
+              "salat",
+              "acc.sg"
+            ]
+          ],
+          "why_de": "хо́чет gehört zu он und она́, nicht zu я."
+        }
+      ]
+    },
+    {
+      "id": "26-11",
+      "type": "build_sentence",
+      "prompt_de": "Ich möchte noch ein belegtes Brot.",
+      "solution": [
+        [
+          "ja",
+          "nom"
+        ],
+        [
+          "khotet",
+          "prs.1sg"
+        ],
+        [
+          "eshchjo",
+          "base"
+        ],
+        [
+          "buterbrod",
+          "acc.sg"
+        ]
+      ],
+      "distractors": [
+        [
+          "khotet",
+          "prs.3sg"
+        ],
+        [
+          "salat",
+          "acc.sg"
+        ]
+      ]
+    },
+    {
+      "id": "26-10",
+      "type": "listen_meaning",
+      "prompt_de": "Hör zu. Was wird gesagt?",
+      "sentence": [
+        [
+          "my",
+          "nom"
+        ],
+        [
+          "khotet",
+          "prs.1pl"
+        ],
+        [
+          "eshchjo",
+          "base"
+        ],
+        [
+          "kofe",
+          "acc.sg"
+        ]
+      ],
+      "correct_index": 0,
+      "options_de": [
+        "Wir möchten noch einen Kaffee.",
+        "Sie möchten noch einen Kaffee.",
+        "Wir möchten noch einen Tee."
+      ]
+    }
+  ]
+}

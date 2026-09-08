@@ -1,0 +1,366 @@
+{
+  "id": 32,
+  "stage": 2,
+  "title_de": "Ich nehme das",
+  "scenario_de": "Ihr habt fertig gegessen und wollt zahlen.",
+  "grammar_focus": {
+    "id": "acc-prp-mixed",
+    "title_de": "Alles zusammen: Objekt im Akkusativ, Ort im Präpositiv",
+    "explanation_de": "Diese Einheit bringt keine neue Regel, sie mischt die alten. Achte auf zwei Dinge. Nach брать, пить, хоте́ть und чита́ть steht das Objekt im Akkusativ: я беру́ пи́ццу, aber я беру́ сала́т. Nach в und на steht der Ort im Präpositiv: мы в кафе́, она́ на рабо́те. брать selbst geht übrigens wie жить — беру́, берёшь, берёт, берём, берёте, беру́т, die Betonung sitzt auf der Endung.",
+    "primer": "akkusativ"
+  },
+  "new_lexemes": [
+    "brat_vzjat",
+    "schjot",
+    "ofitsiant",
+    "karta",
+    "stakan",
+    "devushka"
+  ],
+  "exercises": [
+    {
+      "id": "32-1",
+      "type": "match_pairs",
+      "prompt_de": "Was am Ende des Essens wichtig wird.",
+      "pairs": [
+        [
+          "schjot",
+          "nom.sg"
+        ],
+        [
+          "ofitsiant",
+          "nom.sg"
+        ],
+        [
+          "karta",
+          "nom.sg"
+        ],
+        [
+          "stakan",
+          "nom.sg"
+        ]
+      ]
+    },
+    {
+      "id": "32-2",
+      "type": "match_pairs",
+      "prompt_de": "Ein Verb, eine Anrede und zwei Dinge vom Tisch.",
+      "pairs": [
+        [
+          "brat_vzjat",
+          "inf"
+        ],
+        [
+          "devushka",
+          "nom.sg"
+        ],
+        [
+          "chashka",
+          "nom.sg"
+        ],
+        [
+          "menju",
+          "nom.sg"
+        ]
+      ]
+    },
+    {
+      "id": "32-3",
+      "type": "choose_form",
+      "prompt_de": "Ich nehme den Salat.",
+      "sentence": [
+        [
+          "ja",
+          "nom"
+        ],
+        "___",
+        [
+          "salat",
+          "acc.sg"
+        ]
+      ],
+      "answer": [
+        "brat_vzjat",
+        "prs.1sg"
+      ],
+      "distractor_forms": [
+        "prs.2sg",
+        "prs.3sg",
+        "inf"
+      ]
+    },
+    {
+      "id": "32-4",
+      "type": "choose_form",
+      "prompt_de": "Was nimmst du?",
+      "sentence": [
+        [
+          "chto",
+          "acc"
+        ],
+        [
+          "ty",
+          "nom"
+        ],
+        "___"
+      ],
+      "answer": [
+        "brat_vzjat",
+        "prs.2sg"
+      ],
+      "distractor_forms": [
+        "prs.1sg",
+        "prs.3sg",
+        "prs.3pl"
+      ],
+      "audio_prompt": true
+    },
+    {
+      "id": "32-5",
+      "type": "build_sentence",
+      "prompt_de": "Ich nehme die Pizza.",
+      "solution": [
+        [
+          "ja",
+          "nom"
+        ],
+        [
+          "brat_vzjat",
+          "prs.1sg"
+        ],
+        [
+          "pitstsa",
+          "acc.sg"
+        ]
+      ],
+      "distractors": [
+        [
+          "pitstsa",
+          "nom.sg"
+        ],
+        [
+          "brat_vzjat",
+          "prs.3sg"
+        ]
+      ]
+    },
+    {
+      "id": "32-6",
+      "type": "build_sentence",
+      "prompt_de": "Die Rechnung, bitte.",
+      "solution": [
+        [
+          "schjot",
+          "acc.sg"
+        ],
+        [
+          "pozhalujsta",
+          "base"
+        ]
+      ],
+      "distractors": [
+        [
+          "karta",
+          "acc.sg"
+        ],
+        [
+          "spasibo",
+          "base"
+        ]
+      ]
+    },
+    {
+      "id": "32-7",
+      "type": "build_sentence",
+      "prompt_de": "Wir sind im Restaurant.",
+      "solution": [
+        [
+          "my",
+          "nom"
+        ],
+        [
+          "v",
+          "base"
+        ],
+        [
+          "restoran",
+          "prp.sg"
+        ]
+      ],
+      "distractors": [
+        [
+          "restoran",
+          "nom.sg"
+        ],
+        [
+          "na",
+          "base"
+        ]
+      ]
+    },
+    {
+      "id": "32-8",
+      "type": "build_sentence",
+      "prompt_de": "Meine Freundin arbeitet im Café.",
+      "solution": [
+        [
+          "moj",
+          "nom.f"
+        ],
+        [
+          "podruga",
+          "nom.sg"
+        ],
+        [
+          "rabotat",
+          "prs.3sg"
+        ],
+        [
+          "v",
+          "base"
+        ],
+        [
+          "kafe",
+          "prp.sg"
+        ]
+      ],
+      "distractors": [
+        [
+          "rabotat",
+          "prs.1sg"
+        ],
+        [
+          "moj",
+          "nom.m"
+        ]
+      ]
+    },
+    {
+      "id": "32-9",
+      "type": "dialog_reply",
+      "prompt_de": "Der Kellner fragt, was ihr nehmt.",
+      "tutor_line": [
+        [
+          "chto",
+          "acc"
+        ],
+        [
+          "vy",
+          "nom"
+        ],
+        [
+          "brat_vzjat",
+          "prs.2pl"
+        ]
+      ],
+      "correct_index": 0,
+      "options": [
+        {
+          "tokens": [
+            [
+              "ja",
+              "nom"
+            ],
+            [
+              "brat_vzjat",
+              "prs.1sg"
+            ],
+            [
+              "sup",
+              "acc.sg"
+            ]
+          ],
+          "why_de": ""
+        },
+        {
+          "tokens": [
+            [
+              "ja",
+              "nom"
+            ],
+            [
+              "brat_vzjat",
+              "prs.3pl"
+            ],
+            [
+              "sup",
+              "acc.sg"
+            ]
+          ],
+          "why_de": "беру́т gehört zu они́. Wenn du von dir sprichst, heißt es беру́."
+        },
+        {
+          "tokens": [
+            [
+              "ja",
+              "nom"
+            ],
+            [
+              "brat_vzjat",
+              "prs.1sg"
+            ],
+            [
+              "voda",
+              "nom.sg"
+            ]
+          ],
+          "why_de": "Nach беру́ steht der Akkusativ: я беру́ во́ду, nicht вода́."
+        }
+      ]
+    },
+    {
+      "id": "32-11",
+      "type": "build_sentence",
+      "prompt_de": "Sie nimmt die Bankkarte.",
+      "solution": [
+        [
+          "ona",
+          "nom"
+        ],
+        [
+          "brat_vzjat",
+          "prs.3sg"
+        ],
+        [
+          "karta",
+          "acc.sg"
+        ]
+      ],
+      "distractors": [
+        [
+          "karta",
+          "nom.sg"
+        ],
+        [
+          "brat_vzjat",
+          "prs.1sg"
+        ]
+      ]
+    },
+    {
+      "id": "32-10",
+      "type": "listen_meaning",
+      "prompt_de": "Hör zu. Was wird gesagt?",
+      "sentence": [
+        [
+          "ja",
+          "nom"
+        ],
+        [
+          "brat_vzjat",
+          "prs.1sg"
+        ],
+        [
+          "chaj",
+          "acc.sg"
+        ]
+      ],
+      "correct_index": 0,
+      "options_de": [
+        "Ich nehme Tee.",
+        "Ich nehme Saft.",
+        "Wir nehmen Tee."
+      ]
+    }
+  ]
+}

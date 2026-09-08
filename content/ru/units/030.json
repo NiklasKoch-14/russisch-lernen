@@ -1,0 +1,390 @@
+{
+  "id": 30,
+  "stage": 2,
+  "title_de": "Auf der Arbeit",
+  "scenario_de": "Ein Freund ruft an und fragt, wo du steckst.",
+  "grammar_focus": {
+    "id": "na-prepositional",
+    "title_de": "на oder в — dieselbe Endung, andere Gewohnheit",
+    "explanation_de": "на verlangt genau denselben Präpositiv wie в. Welches der beiden Wörter ein Ort nimmt, ist reine Gewohnheit und wird zusammen mit dem Wort gelernt. Mit на stehen unter anderem: на рабо́те, на по́чте, на вокза́ле, на ры́нке, на у́лице, на ку́хне. Mit в stehen die meisten geschlossenen Räume: в до́ме, в магази́не, в о́фисе. Faustregel für den Anfang: wenn dir на bei einem Ort noch nicht ausdrücklich begegnet ist, nimm в.",
+    "primer": "praepositiv"
+  },
+  "new_lexemes": [
+    "na",
+    "rabota",
+    "pochta",
+    "vokzal",
+    "rynok",
+    "kukhnja"
+  ],
+  "exercises": [
+    {
+      "id": "30-1",
+      "type": "match_pairs",
+      "prompt_de": "Vier Orte, die на nehmen.",
+      "pairs": [
+        [
+          "rabota",
+          "nom.sg"
+        ],
+        [
+          "pochta",
+          "nom.sg"
+        ],
+        [
+          "vokzal",
+          "nom.sg"
+        ],
+        [
+          "rynok",
+          "nom.sg"
+        ]
+      ]
+    },
+    {
+      "id": "30-2",
+      "type": "match_pairs",
+      "prompt_de": "Zwei mit на, zwei mit в — welches ist welches, kommt gleich.",
+      "pairs": [
+        [
+          "kukhnja",
+          "nom.sg"
+        ],
+        [
+          "ulitsa",
+          "nom.sg"
+        ],
+        [
+          "magazin",
+          "nom.sg"
+        ],
+        [
+          "park",
+          "nom.sg"
+        ]
+      ]
+    },
+    {
+      "id": "30-3",
+      "type": "build_sentence",
+      "prompt_de": "Ich bin auf der Arbeit.",
+      "solution": [
+        [
+          "ja",
+          "nom"
+        ],
+        [
+          "na",
+          "base"
+        ],
+        [
+          "rabota",
+          "prp.sg"
+        ]
+      ],
+      "distractors": [
+        [
+          "rabota",
+          "nom.sg"
+        ],
+        [
+          "v",
+          "base"
+        ]
+      ]
+    },
+    {
+      "id": "30-4",
+      "type": "build_sentence",
+      "prompt_de": "Mama ist in der Küche.",
+      "solution": [
+        [
+          "mama",
+          "nom.sg"
+        ],
+        [
+          "na",
+          "base"
+        ],
+        [
+          "kukhnja",
+          "prp.sg"
+        ]
+      ],
+      "distractors": [
+        [
+          "kukhnja",
+          "nom.sg"
+        ],
+        [
+          "v",
+          "base"
+        ]
+      ]
+    },
+    {
+      "id": "30-5",
+      "type": "build_sentence",
+      "prompt_de": "Wir sind am Bahnhof.",
+      "solution": [
+        [
+          "my",
+          "nom"
+        ],
+        [
+          "na",
+          "base"
+        ],
+        [
+          "vokzal",
+          "prp.sg"
+        ]
+      ],
+      "distractors": [
+        [
+          "vokzal",
+          "nom.sg"
+        ],
+        [
+          "v",
+          "base"
+        ]
+      ]
+    },
+    {
+      "id": "30-6",
+      "type": "choose_form",
+      "prompt_de": "Wo arbeitet ihr?",
+      "sentence": [
+        [
+          "gde",
+          "base"
+        ],
+        [
+          "vy",
+          "nom"
+        ],
+        "___"
+      ],
+      "answer": [
+        "rabotat",
+        "prs.2pl"
+      ],
+      "distractor_forms": [
+        "prs.1pl",
+        "prs.3pl",
+        "prs.2sg"
+      ]
+    },
+    {
+      "id": "30-7",
+      "type": "choose_form",
+      "prompt_de": "Was machst du auf dem Markt?",
+      "sentence": [
+        [
+          "chto",
+          "acc"
+        ],
+        [
+          "ty",
+          "nom"
+        ],
+        "___",
+        [
+          "na",
+          "base"
+        ],
+        [
+          "rynok",
+          "prp.sg"
+        ]
+      ],
+      "answer": [
+        "delat",
+        "prs.2sg"
+      ],
+      "distractor_forms": [
+        "prs.1sg",
+        "prs.3sg",
+        "prs.2pl"
+      ],
+      "audio_prompt": true
+    },
+    {
+      "id": "30-8",
+      "type": "build_sentence",
+      "prompt_de": "Mein Mann arbeitet auf der Post.",
+      "solution": [
+        [
+          "moj",
+          "nom.m"
+        ],
+        [
+          "muzh",
+          "nom.sg"
+        ],
+        [
+          "rabotat",
+          "prs.3sg"
+        ],
+        [
+          "na",
+          "base"
+        ],
+        [
+          "pochta",
+          "prp.sg"
+        ]
+      ],
+      "distractors": [
+        [
+          "pochta",
+          "nom.sg"
+        ],
+        [
+          "rabotat",
+          "prs.1sg"
+        ]
+      ]
+    },
+    {
+      "id": "30-9",
+      "type": "dialog_reply",
+      "prompt_de": "Dein Freund fragt, ob du gerade arbeitest.",
+      "tutor_line": [
+        [
+          "ty",
+          "nom"
+        ],
+        [
+          "na",
+          "base"
+        ],
+        [
+          "rabota",
+          "prp.sg"
+        ]
+      ],
+      "correct_index": 0,
+      "options": [
+        {
+          "tokens": [
+            [
+              "da",
+              "base"
+            ],
+            [
+              "ja",
+              "nom"
+            ],
+            [
+              "na",
+              "base"
+            ],
+            [
+              "rabota",
+              "prp.sg"
+            ]
+          ],
+          "why_de": ""
+        },
+        {
+          "tokens": [
+            [
+              "da",
+              "base"
+            ],
+            [
+              "ja",
+              "nom"
+            ],
+            [
+              "v",
+              "base"
+            ],
+            [
+              "rabota",
+              "prp.sg"
+            ]
+          ],
+          "why_de": "рабо́та nimmt на, nicht в. Das ist Gewohnheit und wird mitgelernt."
+        },
+        {
+          "tokens": [
+            [
+              "net",
+              "base"
+            ],
+            [
+              "ja",
+              "nom"
+            ],
+            [
+              "na",
+              "base"
+            ],
+            [
+              "rynok",
+              "nom.sg"
+            ]
+          ],
+          "why_de": "Nach на steht der Präpositiv: на ры́нке, nicht на ры́нок."
+        }
+      ]
+    },
+    {
+      "id": "30-11",
+      "type": "build_sentence",
+      "prompt_de": "Der Markt ist auf der Straße.",
+      "solution": [
+        [
+          "rynok",
+          "nom.sg"
+        ],
+        [
+          "na",
+          "base"
+        ],
+        [
+          "ulitsa",
+          "prp.sg"
+        ]
+      ],
+      "distractors": [
+        [
+          "rynok",
+          "prp.sg"
+        ],
+        [
+          "ulitsa",
+          "nom.sg"
+        ]
+      ]
+    },
+    {
+      "id": "30-10",
+      "type": "listen_meaning",
+      "prompt_de": "Hör zu. Was wird gesagt?",
+      "sentence": [
+        [
+          "ja",
+          "nom"
+        ],
+        [
+          "na",
+          "base"
+        ],
+        [
+          "pochta",
+          "prp.sg"
+        ]
+      ],
+      "correct_index": 0,
+      "options_de": [
+        "Ich bin auf der Post.",
+        "Ich bin auf der Arbeit.",
+        "Er ist auf der Post."
+      ]
+    }
+  ]
+}

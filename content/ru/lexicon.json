@@ -1512,6 +1512,10 @@
         "nom": {
           "text": "что",
           "translit": "što"
+        },
+        "acc": {
+          "text": "что",
+          "translit": "što"
         }
       }
     },
@@ -1524,6 +1528,10 @@
         "nom.sg": {
           "text": "стол",
           "translit": "stol"
+        },
+        "prp.sg": {
+          "text": "столе́",
+          "translit": "stolé"
         }
       }
     },
@@ -1536,6 +1544,10 @@
         "nom.sg": {
           "text": "кни́га",
           "translit": "kníga"
+        },
+        "acc.sg": {
+          "text": "кни́гу",
+          "translit": "knígu"
         }
       }
     },
@@ -1572,6 +1584,10 @@
         "nom.sg": {
           "text": "су́мка",
           "translit": "súmka"
+        },
+        "acc.sg": {
+          "text": "су́мку",
+          "translit": "súmku"
         }
       }
     },
@@ -1582,6 +1598,10 @@
       "gloss_de": "das Telefon",
       "forms": {
         "nom.sg": {
+          "text": "телефо́н",
+          "translit": "telefón"
+        },
+        "acc.sg": {
           "text": "телефо́н",
           "translit": "telefón"
         }
@@ -1692,6 +1712,10 @@
         "nom.sg": {
           "text": "го́род",
           "translit": "górod"
+        },
+        "prp.sg": {
+          "text": "го́роде",
+          "translit": "górode"
         }
       }
     },
@@ -1704,6 +1728,10 @@
         "nom.sg": {
           "text": "дом",
           "translit": "dom"
+        },
+        "prp.sg": {
+          "text": "до́ме",
+          "translit": "dóme"
         }
       }
     },
@@ -2048,6 +2076,10 @@
         "nom.sg": {
           "text": "маши́на",
           "translit": "mašína"
+        },
+        "acc.sg": {
+          "text": "маши́ну",
+          "translit": "mašínu"
         }
       }
     },
@@ -2060,6 +2092,10 @@
         "nom.sg": {
           "text": "соба́ка",
           "translit": "sobáka"
+        },
+        "acc.sg": {
+          "text": "соба́ку",
+          "translit": "sobáku"
         }
       }
     },
@@ -2072,6 +2108,10 @@
         "nom.sg": {
           "text": "ко́шка",
           "translit": "kóška"
+        },
+        "acc.sg": {
+          "text": "ко́шку",
+          "translit": "kóšku"
         }
       }
     },
@@ -2082,6 +2122,10 @@
       "gloss_de": "die Frage",
       "forms": {
         "nom.sg": {
+          "text": "вопро́с",
+          "translit": "voprós"
+        },
+        "acc.sg": {
           "text": "вопро́с",
           "translit": "voprós"
         }
@@ -2193,6 +2237,910 @@
         "nom.sg": {
           "text": "у́лица",
           "translit": "úlica"
+        },
+        "prp.sg": {
+          "text": "у́лице",
+          "translit": "úlice"
+        }
+      }
+    },
+    {
+      "id": "kofe",
+      "lemma": "ко́фе",
+      "pos": "noun",
+      "gloss_de": "der Kaffee",
+      "forms": {
+        "nom.sg": {
+          "text": "ко́фе",
+          "translit": "kófe"
+        },
+        "acc.sg": {
+          "text": "ко́фе",
+          "translit": "kófe"
+        }
+      }
+    },
+    {
+      "id": "chaj",
+      "lemma": "чай",
+      "pos": "noun",
+      "gloss_de": "der Tee",
+      "forms": {
+        "nom.sg": {
+          "text": "чай",
+          "translit": "čaj"
+        },
+        "acc.sg": {
+          "text": "чай",
+          "translit": "čaj"
+        }
+      }
+    },
+    {
+      "id": "sok",
+      "lemma": "сок",
+      "pos": "noun",
+      "gloss_de": "der Saft",
+      "forms": {
+        "nom.sg": {
+          "text": "сок",
+          "translit": "sok"
+        },
+        "acc.sg": {
+          "text": "сок",
+          "translit": "sok"
+        }
+      }
+    },
+    {
+      "id": "moloko",
+      "lemma": "молоко́",
+      "pos": "noun",
+      "gloss_de": "die Milch",
+      "forms": {
+        "nom.sg": {
+          "text": "молоко́",
+          "translit": "molokó"
+        },
+        "acc.sg": {
+          "text": "молоко́",
+          "translit": "molokó"
+        }
+      }
+    },
+    {
+      "id": "pit",
+      "lemma": "пить",
+      "pos": "verb",
+      "gloss_de": "trinken",
+      "forms": {
+        "inf": {
+          "text": "пить",
+          "translit": "pit'"
+        },
+        "prs.1sg": {
+          "text": "пью",
+          "translit": "p'ju"
+        },
+        "prs.2sg": {
+          "text": "пьёшь",
+          "translit": "p'još'"
+        },
+        "prs.3sg": {
+          "text": "пьёт",
+          "translit": "p'jot"
+        },
+        "prs.1pl": {
+          "text": "пьём",
+          "translit": "p'jom"
+        },
+        "prs.2pl": {
+          "text": "пьёте",
+          "translit": "p'jote"
+        },
+        "prs.3pl": {
+          "text": "пьют",
+          "translit": "p'jut"
+        }
+      }
+    },
+    {
+      "id": "kafe",
+      "lemma": "кафе́",
+      "pos": "noun",
+      "gloss_de": "das Café",
+      "forms": {
+        "nom.sg": {
+          "text": "кафе́",
+          "translit": "kafé"
+        },
+        "acc.sg": {
+          "text": "кафе́",
+          "translit": "kafé"
+        },
+        "prp.sg": {
+          "text": "кафе́",
+          "translit": "kafé"
+        }
+      }
+    },
+    {
+      "id": "khotet",
+      "lemma": "хоте́ть",
+      "pos": "verb",
+      "gloss_de": "wollen, möchten",
+      "forms": {
+        "inf": {
+          "text": "хоте́ть",
+          "translit": "chotét'"
+        },
+        "prs.1sg": {
+          "text": "хочу́",
+          "translit": "chočú"
+        },
+        "prs.2sg": {
+          "text": "хо́чешь",
+          "translit": "chóčeš'"
+        },
+        "prs.3sg": {
+          "text": "хо́чет",
+          "translit": "chóčet"
+        },
+        "prs.1pl": {
+          "text": "хоти́м",
+          "translit": "chotím"
+        },
+        "prs.2pl": {
+          "text": "хоти́те",
+          "translit": "chotíte"
+        },
+        "prs.3pl": {
+          "text": "хотя́т",
+          "translit": "chotját"
+        }
+      }
+    },
+    {
+      "id": "pivo",
+      "lemma": "пи́во",
+      "pos": "noun",
+      "gloss_de": "das Bier",
+      "forms": {
+        "nom.sg": {
+          "text": "пи́во",
+          "translit": "pívo"
+        },
+        "acc.sg": {
+          "text": "пи́во",
+          "translit": "pívo"
+        }
+      }
+    },
+    {
+      "id": "buterbrod",
+      "lemma": "бутербро́д",
+      "pos": "noun",
+      "gloss_de": "das belegte Brot",
+      "forms": {
+        "nom.sg": {
+          "text": "бутербро́д",
+          "translit": "buterbród"
+        },
+        "acc.sg": {
+          "text": "бутербро́д",
+          "translit": "buterbród"
+        }
+      }
+    },
+    {
+      "id": "salat",
+      "lemma": "сала́т",
+      "pos": "noun",
+      "gloss_de": "der Salat",
+      "forms": {
+        "nom.sg": {
+          "text": "сала́т",
+          "translit": "salát"
+        },
+        "acc.sg": {
+          "text": "сала́т",
+          "translit": "salát"
+        }
+      }
+    },
+    {
+      "id": "menju",
+      "lemma": "меню́",
+      "pos": "noun",
+      "gloss_de": "die Speisekarte",
+      "forms": {
+        "nom.sg": {
+          "text": "меню́",
+          "translit": "menjú"
+        },
+        "acc.sg": {
+          "text": "меню́",
+          "translit": "menjú"
+        }
+      }
+    },
+    {
+      "id": "eshchjo",
+      "lemma": "ещё",
+      "pos": "adv",
+      "gloss_de": "noch",
+      "forms": {
+        "base": {
+          "text": "ещё",
+          "translit": "ješčjo"
+        }
+      }
+    },
+    {
+      "id": "sup",
+      "lemma": "суп",
+      "pos": "noun",
+      "gloss_de": "die Suppe",
+      "forms": {
+        "nom.sg": {
+          "text": "суп",
+          "translit": "sup"
+        },
+        "acc.sg": {
+          "text": "суп",
+          "translit": "sup"
+        }
+      }
+    },
+    {
+      "id": "voda",
+      "lemma": "вода́",
+      "pos": "noun",
+      "gloss_de": "das Wasser",
+      "forms": {
+        "nom.sg": {
+          "text": "вода́",
+          "translit": "vodá"
+        },
+        "acc.sg": {
+          "text": "во́ду",
+          "translit": "vódu"
+        }
+      }
+    },
+    {
+      "id": "pitstsa",
+      "lemma": "пи́цца",
+      "pos": "noun",
+      "gloss_de": "die Pizza",
+      "forms": {
+        "nom.sg": {
+          "text": "пи́цца",
+          "translit": "pícca"
+        },
+        "acc.sg": {
+          "text": "пи́ццу",
+          "translit": "píccu"
+        }
+      }
+    },
+    {
+      "id": "ryba",
+      "lemma": "ры́ба",
+      "pos": "noun",
+      "gloss_de": "der Fisch",
+      "forms": {
+        "nom.sg": {
+          "text": "ры́ба",
+          "translit": "rýba"
+        },
+        "acc.sg": {
+          "text": "ры́бу",
+          "translit": "rýbu"
+        }
+      }
+    },
+    {
+      "id": "mjaso",
+      "lemma": "мя́со",
+      "pos": "noun",
+      "gloss_de": "das Fleisch",
+      "forms": {
+        "nom.sg": {
+          "text": "мя́со",
+          "translit": "mjáso"
+        },
+        "acc.sg": {
+          "text": "мя́со",
+          "translit": "mjáso"
+        }
+      }
+    },
+    {
+      "id": "chashka",
+      "lemma": "ча́шка",
+      "pos": "noun",
+      "gloss_de": "die Tasse",
+      "forms": {
+        "nom.sg": {
+          "text": "ча́шка",
+          "translit": "čáška"
+        },
+        "acc.sg": {
+          "text": "ча́шку",
+          "translit": "čášku"
+        }
+      }
+    },
+    {
+      "id": "chitat",
+      "lemma": "чита́ть",
+      "pos": "verb",
+      "gloss_de": "lesen",
+      "forms": {
+        "inf": {
+          "text": "чита́ть",
+          "translit": "čitát'"
+        },
+        "prs.1sg": {
+          "text": "чита́ю",
+          "translit": "čitáju"
+        },
+        "prs.2sg": {
+          "text": "чита́ешь",
+          "translit": "čitáješ'"
+        },
+        "prs.3sg": {
+          "text": "чита́ет",
+          "translit": "čitájet"
+        },
+        "prs.1pl": {
+          "text": "чита́ем",
+          "translit": "čitájem"
+        },
+        "prs.2pl": {
+          "text": "чита́ете",
+          "translit": "čitájete"
+        },
+        "prs.3pl": {
+          "text": "чита́ют",
+          "translit": "čitájut"
+        }
+      }
+    },
+    {
+      "id": "delat",
+      "lemma": "де́лать",
+      "pos": "verb",
+      "gloss_de": "machen, tun",
+      "forms": {
+        "inf": {
+          "text": "де́лать",
+          "translit": "délat'"
+        },
+        "prs.1sg": {
+          "text": "де́лаю",
+          "translit": "délaju"
+        },
+        "prs.2sg": {
+          "text": "де́лаешь",
+          "translit": "délaješ'"
+        },
+        "prs.3sg": {
+          "text": "де́лает",
+          "translit": "délajet"
+        },
+        "prs.1pl": {
+          "text": "де́лаем",
+          "translit": "délajem"
+        },
+        "prs.2pl": {
+          "text": "де́лаете",
+          "translit": "délajete"
+        },
+        "prs.3pl": {
+          "text": "де́лают",
+          "translit": "délajut"
+        }
+      }
+    },
+    {
+      "id": "znat",
+      "lemma": "знать",
+      "pos": "verb",
+      "gloss_de": "wissen, kennen",
+      "forms": {
+        "inf": {
+          "text": "знать",
+          "translit": "znat'"
+        },
+        "prs.1sg": {
+          "text": "зна́ю",
+          "translit": "znáju"
+        },
+        "prs.2sg": {
+          "text": "зна́ешь",
+          "translit": "znáješ'"
+        },
+        "prs.3sg": {
+          "text": "зна́ет",
+          "translit": "znájet"
+        },
+        "prs.1pl": {
+          "text": "зна́ем",
+          "translit": "znájem"
+        },
+        "prs.2pl": {
+          "text": "зна́ете",
+          "translit": "znájete"
+        },
+        "prs.3pl": {
+          "text": "зна́ют",
+          "translit": "znájut"
+        }
+      }
+    },
+    {
+      "id": "rabotat",
+      "lemma": "рабо́тать",
+      "pos": "verb",
+      "gloss_de": "arbeiten",
+      "forms": {
+        "inf": {
+          "text": "рабо́тать",
+          "translit": "rabótat'"
+        },
+        "prs.1sg": {
+          "text": "рабо́таю",
+          "translit": "rabótaju"
+        },
+        "prs.2sg": {
+          "text": "рабо́таешь",
+          "translit": "rabótaješ'"
+        },
+        "prs.3sg": {
+          "text": "рабо́тает",
+          "translit": "rabótajet"
+        },
+        "prs.1pl": {
+          "text": "рабо́таем",
+          "translit": "rabótajem"
+        },
+        "prs.2pl": {
+          "text": "рабо́таете",
+          "translit": "rabótajete"
+        },
+        "prs.3pl": {
+          "text": "рабо́тают",
+          "translit": "rabótajut"
+        }
+      }
+    },
+    {
+      "id": "gazeta",
+      "lemma": "газе́та",
+      "pos": "noun",
+      "gloss_de": "die Zeitung",
+      "forms": {
+        "nom.sg": {
+          "text": "газе́та",
+          "translit": "gazéta"
+        },
+        "acc.sg": {
+          "text": "газе́ту",
+          "translit": "gazétu"
+        }
+      }
+    },
+    {
+      "id": "zhurnal",
+      "lemma": "журна́л",
+      "pos": "noun",
+      "gloss_de": "die Zeitschrift",
+      "forms": {
+        "nom.sg": {
+          "text": "журна́л",
+          "translit": "žurnál"
+        },
+        "acc.sg": {
+          "text": "журна́л",
+          "translit": "žurnál"
+        }
+      }
+    },
+    {
+      "id": "v",
+      "lemma": "в",
+      "pos": "prep",
+      "gloss_de": "in",
+      "forms": {
+        "base": {
+          "text": "в",
+          "translit": "v"
+        }
+      }
+    },
+    {
+      "id": "restoran",
+      "lemma": "рестора́н",
+      "pos": "noun",
+      "gloss_de": "das Restaurant",
+      "forms": {
+        "nom.sg": {
+          "text": "рестора́н",
+          "translit": "restorán"
+        },
+        "acc.sg": {
+          "text": "рестора́н",
+          "translit": "restorán"
+        },
+        "prp.sg": {
+          "text": "рестора́не",
+          "translit": "restoráne"
+        }
+      }
+    },
+    {
+      "id": "magazin",
+      "lemma": "магази́н",
+      "pos": "noun",
+      "gloss_de": "der Laden",
+      "forms": {
+        "nom.sg": {
+          "text": "магази́н",
+          "translit": "magazín"
+        },
+        "acc.sg": {
+          "text": "магази́н",
+          "translit": "magazín"
+        },
+        "prp.sg": {
+          "text": "магази́не",
+          "translit": "magazíne"
+        }
+      }
+    },
+    {
+      "id": "shkola",
+      "lemma": "шко́ла",
+      "pos": "noun",
+      "gloss_de": "die Schule",
+      "forms": {
+        "nom.sg": {
+          "text": "шко́ла",
+          "translit": "škóla"
+        },
+        "prp.sg": {
+          "text": "шко́ле",
+          "translit": "škóle"
+        }
+      }
+    },
+    {
+      "id": "park",
+      "lemma": "парк",
+      "pos": "noun",
+      "gloss_de": "der Park",
+      "forms": {
+        "nom.sg": {
+          "text": "парк",
+          "translit": "park"
+        },
+        "prp.sg": {
+          "text": "па́рке",
+          "translit": "párke"
+        }
+      }
+    },
+    {
+      "id": "ofis",
+      "lemma": "о́фис",
+      "pos": "noun",
+      "gloss_de": "das Büro",
+      "forms": {
+        "nom.sg": {
+          "text": "о́фис",
+          "translit": "ófis"
+        },
+        "prp.sg": {
+          "text": "о́фисе",
+          "translit": "ófise"
+        }
+      }
+    },
+    {
+      "id": "na",
+      "lemma": "на",
+      "pos": "prep",
+      "gloss_de": "auf, an",
+      "forms": {
+        "base": {
+          "text": "на",
+          "translit": "na"
+        }
+      }
+    },
+    {
+      "id": "rabota",
+      "lemma": "рабо́та",
+      "pos": "noun",
+      "gloss_de": "die Arbeit",
+      "forms": {
+        "nom.sg": {
+          "text": "рабо́та",
+          "translit": "rabóta"
+        },
+        "prp.sg": {
+          "text": "рабо́те",
+          "translit": "rabóte"
+        }
+      }
+    },
+    {
+      "id": "pochta",
+      "lemma": "по́чта",
+      "pos": "noun",
+      "gloss_de": "die Post",
+      "forms": {
+        "nom.sg": {
+          "text": "по́чта",
+          "translit": "póčta"
+        },
+        "prp.sg": {
+          "text": "по́чте",
+          "translit": "póčte"
+        }
+      }
+    },
+    {
+      "id": "vokzal",
+      "lemma": "вокза́л",
+      "pos": "noun",
+      "gloss_de": "der Bahnhof",
+      "forms": {
+        "nom.sg": {
+          "text": "вокза́л",
+          "translit": "vokzál"
+        },
+        "prp.sg": {
+          "text": "вокза́ле",
+          "translit": "vokzále"
+        }
+      }
+    },
+    {
+      "id": "rynok",
+      "lemma": "ры́нок",
+      "pos": "noun",
+      "gloss_de": "der Markt",
+      "forms": {
+        "nom.sg": {
+          "text": "ры́нок",
+          "translit": "rýnok"
+        },
+        "prp.sg": {
+          "text": "ры́нке",
+          "translit": "rýnke"
+        }
+      }
+    },
+    {
+      "id": "kukhnja",
+      "lemma": "ку́хня",
+      "pos": "noun",
+      "gloss_de": "die Küche",
+      "forms": {
+        "nom.sg": {
+          "text": "ку́хня",
+          "translit": "kúchnja"
+        },
+        "prp.sg": {
+          "text": "ку́хне",
+          "translit": "kúchne"
+        }
+      }
+    },
+    {
+      "id": "stoit",
+      "lemma": "сто́ить",
+      "pos": "verb",
+      "gloss_de": "kosten",
+      "forms": {
+        "inf": {
+          "text": "сто́ить",
+          "translit": "stóit'"
+        },
+        "prs.3sg": {
+          "text": "сто́ит",
+          "translit": "stóit"
+        },
+        "prs.3pl": {
+          "text": "сто́ят",
+          "translit": "stójat"
+        }
+      }
+    },
+    {
+      "id": "rubl",
+      "lemma": "рубль",
+      "pos": "noun",
+      "gloss_de": "der Rubel",
+      "forms": {
+        "nom.sg": {
+          "text": "рубль",
+          "translit": "rubl'"
+        },
+        "gen.sg": {
+          "text": "рубля́",
+          "translit": "rubljá"
+        },
+        "gen.pl": {
+          "text": "рубле́й",
+          "translit": "rubléj"
+        }
+      }
+    },
+    {
+      "id": "evro",
+      "lemma": "е́вро",
+      "pos": "noun",
+      "gloss_de": "der Euro",
+      "forms": {
+        "nom.sg": {
+          "text": "е́вро",
+          "translit": "jévro"
+        },
+        "gen.sg": {
+          "text": "е́вро",
+          "translit": "jévro"
+        },
+        "gen.pl": {
+          "text": "е́вро",
+          "translit": "jévro"
+        }
+      }
+    },
+    {
+      "id": "dorogo",
+      "lemma": "до́рого",
+      "pos": "adv",
+      "gloss_de": "teuer",
+      "forms": {
+        "base": {
+          "text": "до́рого",
+          "translit": "dórogo"
+        }
+      }
+    },
+    {
+      "id": "deshjovo",
+      "lemma": "дёшево",
+      "pos": "adv",
+      "gloss_de": "billig",
+      "forms": {
+        "base": {
+          "text": "дёшево",
+          "translit": "djoševo"
+        }
+      }
+    },
+    {
+      "id": "dengi",
+      "lemma": "де́ньги",
+      "pos": "noun",
+      "gloss_de": "das Geld",
+      "forms": {
+        "nom.pl": {
+          "text": "де́ньги",
+          "translit": "dén'gi"
+        }
+      }
+    },
+    {
+      "id": "brat_vzjat",
+      "lemma": "брать",
+      "pos": "verb",
+      "gloss_de": "nehmen",
+      "forms": {
+        "inf": {
+          "text": "брать",
+          "translit": "brat'"
+        },
+        "prs.1sg": {
+          "text": "беру́",
+          "translit": "berú"
+        },
+        "prs.2sg": {
+          "text": "берёшь",
+          "translit": "berjoš'"
+        },
+        "prs.3sg": {
+          "text": "берёт",
+          "translit": "berjot"
+        },
+        "prs.1pl": {
+          "text": "берём",
+          "translit": "berjom"
+        },
+        "prs.2pl": {
+          "text": "берёте",
+          "translit": "berjote"
+        },
+        "prs.3pl": {
+          "text": "беру́т",
+          "translit": "berút"
+        }
+      }
+    },
+    {
+      "id": "schjot",
+      "lemma": "счёт",
+      "pos": "noun",
+      "gloss_de": "die Rechnung",
+      "forms": {
+        "nom.sg": {
+          "text": "счёт",
+          "translit": "ščjot"
+        },
+        "acc.sg": {
+          "text": "счёт",
+          "translit": "ščjot"
+        }
+      }
+    },
+    {
+      "id": "ofitsiant",
+      "lemma": "официа́нт",
+      "pos": "noun",
+      "gloss_de": "der Kellner",
+      "forms": {
+        "nom.sg": {
+          "text": "официа́нт",
+          "translit": "oficiánt"
+        }
+      }
+    },
+    {
+      "id": "karta",
+      "lemma": "ка́рта",
+      "pos": "noun",
+      "gloss_de": "die Bankkarte",
+      "forms": {
+        "nom.sg": {
+          "text": "ка́рта",
+          "translit": "kárta"
+        },
+        "acc.sg": {
+          "text": "ка́рту",
+          "translit": "kártu"
+        }
+      }
+    },
+    {
+      "id": "stakan",
+      "lemma": "стака́н",
+      "pos": "noun",
+      "gloss_de": "das Glas",
+      "forms": {
+        "nom.sg": {
+          "text": "стака́н",
+          "translit": "stakán"
+        },
+        "acc.sg": {
+          "text": "стака́н",
+          "translit": "stakán"
+        }
+      }
+    },
+    {
+      "id": "devushka",
+      "lemma": "де́вушка",
+      "pos": "noun",
+      "gloss_de": "junge Frau (so ruft man die Kellnerin)",
+      "forms": {
+        "nom.sg": {
+          "text": "де́вушка",
+          "translit": "dévuška"
         }
       }
     }

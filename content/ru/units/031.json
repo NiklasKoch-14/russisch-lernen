@@ -1,0 +1,360 @@
+{
+  "id": 31,
+  "stage": 2,
+  "title_de": "Was kostet das?",
+  "scenario_de": "An der Kasse willst du wissen, was du bezahlst.",
+  "grammar_focus": {
+    "id": "stoit-prices",
+    "title_de": "сто́ит, сто́ят — und die Zahlwörter beim Preis",
+    "explanation_de": "Von сто́ить brauchst du im Alltag zwei Formen: сто́ит für eine Sache, сто́ят für mehrere. Ско́лько э́то сто́ит? heißt: Was kostet das? Beim Preis kehrt dann das Muster wieder, das du vom Alter schon kennst: оди́н рубль, два рубля́, пять рубле́й. Nach 1 die Grundform, nach 2, 3 und 4 die Form auf -я́, ab 5 die Form auf -е́й — genau wie год, го́да, лет. Е́вро ist ein Fremdwort und ändert sich nie: два е́вро, пять е́вро.",
+    "primer": "genitiv"
+  },
+  "new_lexemes": [
+    "stoit",
+    "rubl",
+    "evro",
+    "dorogo",
+    "deshjovo",
+    "dengi"
+  ],
+  "exercises": [
+    {
+      "id": "31-1",
+      "type": "match_pairs",
+      "prompt_de": "Womit man über Preise redet.",
+      "pairs": [
+        [
+          "stoit",
+          "inf"
+        ],
+        [
+          "dorogo",
+          "base"
+        ],
+        [
+          "deshjovo",
+          "base"
+        ],
+        [
+          "dengi",
+          "nom.pl"
+        ]
+      ]
+    },
+    {
+      "id": "31-2",
+      "type": "match_pairs",
+      "prompt_de": "Zwei Währungen und zwei alte Bekannte.",
+      "pairs": [
+        [
+          "rubl",
+          "nom.sg"
+        ],
+        [
+          "evro",
+          "nom.sg"
+        ],
+        [
+          "menju",
+          "nom.sg"
+        ],
+        [
+          "magazin",
+          "nom.sg"
+        ]
+      ]
+    },
+    {
+      "id": "31-3",
+      "type": "choose_form",
+      "prompt_de": "Wie viel kostet das Bier?",
+      "sentence": [
+        [
+          "skolko",
+          "base"
+        ],
+        "___",
+        [
+          "pivo",
+          "nom.sg"
+        ]
+      ],
+      "answer": [
+        "stoit",
+        "prs.3sg"
+      ],
+      "distractor_forms": [
+        "prs.3pl",
+        "inf"
+      ]
+    },
+    {
+      "id": "31-4",
+      "type": "build_sentence",
+      "prompt_de": "Das kostet zwei Rubel.",
+      "solution": [
+        [
+          "eto",
+          "base"
+        ],
+        [
+          "stoit",
+          "prs.3sg"
+        ],
+        [
+          "dva",
+          "nom.m"
+        ],
+        [
+          "rubl",
+          "gen.sg"
+        ]
+      ],
+      "distractors": [
+        [
+          "rubl",
+          "nom.sg"
+        ],
+        [
+          "rubl",
+          "gen.pl"
+        ]
+      ]
+    },
+    {
+      "id": "31-5",
+      "type": "build_sentence",
+      "prompt_de": "Das kostet fünf Rubel.",
+      "solution": [
+        [
+          "eto",
+          "base"
+        ],
+        [
+          "stoit",
+          "prs.3sg"
+        ],
+        [
+          "pjat",
+          "nom"
+        ],
+        [
+          "rubl",
+          "gen.pl"
+        ]
+      ],
+      "distractors": [
+        [
+          "rubl",
+          "gen.sg"
+        ],
+        [
+          "rubl",
+          "nom.sg"
+        ]
+      ]
+    },
+    {
+      "id": "31-6",
+      "type": "build_sentence",
+      "prompt_de": "Das ist sehr teuer.",
+      "solution": [
+        [
+          "eto",
+          "base"
+        ],
+        [
+          "ochen",
+          "base"
+        ],
+        [
+          "dorogo",
+          "base"
+        ]
+      ],
+      "distractors": [
+        [
+          "deshjovo",
+          "base"
+        ],
+        [
+          "khorosho",
+          "base"
+        ]
+      ]
+    },
+    {
+      "id": "31-7",
+      "type": "choose_form",
+      "prompt_de": "Wie viel kostet die Pizza?",
+      "sentence": [
+        [
+          "skolko",
+          "base"
+        ],
+        "___",
+        [
+          "pitstsa",
+          "nom.sg"
+        ]
+      ],
+      "answer": [
+        "stoit",
+        "prs.3sg"
+      ],
+      "distractor_forms": [
+        "prs.3pl",
+        "inf"
+      ],
+      "audio_prompt": true
+    },
+    {
+      "id": "31-8",
+      "type": "build_sentence",
+      "prompt_de": "Der Salat kostet drei Euro.",
+      "solution": [
+        [
+          "salat",
+          "nom.sg"
+        ],
+        [
+          "stoit",
+          "prs.3sg"
+        ],
+        [
+          "tri",
+          "nom"
+        ],
+        [
+          "evro",
+          "gen.sg"
+        ]
+      ],
+      "distractors": [
+        [
+          "stoit",
+          "prs.3pl"
+        ],
+        [
+          "rubl",
+          "gen.sg"
+        ]
+      ]
+    },
+    {
+      "id": "31-9",
+      "type": "dialog_reply",
+      "prompt_de": "Du fragst an der Theke nach dem Preis.",
+      "tutor_line": [
+        [
+          "skolko",
+          "base"
+        ],
+        [
+          "stoit",
+          "prs.3sg"
+        ],
+        [
+          "kofe",
+          "nom.sg"
+        ]
+      ],
+      "correct_index": 0,
+      "options": [
+        {
+          "tokens": [
+            [
+              "dva",
+              "nom.m"
+            ],
+            [
+              "evro",
+              "gen.sg"
+            ]
+          ],
+          "why_de": ""
+        },
+        {
+          "tokens": [
+            [
+              "dva",
+              "nom.m"
+            ],
+            [
+              "rubl",
+              "nom.sg"
+            ]
+          ],
+          "why_de": "Nach два steht рубля́, nicht рубль — genau wie два го́да."
+        },
+        {
+          "tokens": [
+            [
+              "pjat",
+              "nom"
+            ],
+            [
+              "rubl",
+              "gen.sg"
+            ]
+          ],
+          "why_de": "Ab пять steht die Form auf -е́й: пять рубле́й."
+        }
+      ]
+    },
+    {
+      "id": "31-11",
+      "type": "build_sentence",
+      "prompt_de": "Im Laden ist es billig.",
+      "solution": [
+        [
+          "v",
+          "base"
+        ],
+        [
+          "magazin",
+          "prp.sg"
+        ],
+        [
+          "deshjovo",
+          "base"
+        ]
+      ],
+      "distractors": [
+        [
+          "dorogo",
+          "base"
+        ],
+        [
+          "magazin",
+          "nom.sg"
+        ]
+      ]
+    },
+    {
+      "id": "31-10",
+      "type": "listen_meaning",
+      "prompt_de": "Hör zu. Was wird gesagt?",
+      "sentence": [
+        [
+          "eto",
+          "base"
+        ],
+        [
+          "ochen",
+          "base"
+        ],
+        [
+          "dorogo",
+          "base"
+        ]
+      ],
+      "correct_index": 0,
+      "options_de": [
+        "Das ist sehr teuer.",
+        "Das ist sehr billig.",
+        "Das ist sehr gut."
+      ]
+    }
+  ]
+}

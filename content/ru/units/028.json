@@ -1,0 +1,358 @@
+{
+  "id": 28,
+  "stage": 2,
+  "title_de": "Was liest du?",
+  "scenario_de": "Am Nebentisch fragt dich jemand, was du da liest.",
+  "grammar_focus": {
+    "id": "at-class-endings",
+    "title_de": "Die -ать-Klasse: sechs Endungen für sehr viele Verben",
+    "explanation_de": "Bei den -ать-Verben streichst du das -ть und hängst an: -ю, -ешь, -ет, -ем, -ете, -ют. Aus чита́ть wird so чита́ю, чита́ешь, чита́ет, чита́ем, чита́ете, чита́ют. Genauso gehen де́лать, знать und рабо́тать. Die Betonung bleibt dabei stehen, wo sie im Infinitiv saß — anders als bei жить oder брать. Wenn dir diese sechs Endungen sitzen, hast du den größten Teil der russischen Verben in der Hand.",
+    "primer": "konjugation"
+  },
+  "new_lexemes": [
+    "chitat",
+    "delat",
+    "znat",
+    "rabotat",
+    "gazeta",
+    "zhurnal"
+  ],
+  "exercises": [
+    {
+      "id": "28-1",
+      "type": "match_pairs",
+      "prompt_de": "Vier Verben der -ать-Klasse.",
+      "pairs": [
+        [
+          "chitat",
+          "inf"
+        ],
+        [
+          "delat",
+          "inf"
+        ],
+        [
+          "znat",
+          "inf"
+        ],
+        [
+          "rabotat",
+          "inf"
+        ]
+      ]
+    },
+    {
+      "id": "28-2",
+      "type": "match_pairs",
+      "prompt_de": "Vier Dinge zum Lesen.",
+      "pairs": [
+        [
+          "gazeta",
+          "nom.sg"
+        ],
+        [
+          "zhurnal",
+          "nom.sg"
+        ],
+        [
+          "kniga",
+          "nom.sg"
+        ],
+        [
+          "menju",
+          "nom.sg"
+        ]
+      ]
+    },
+    {
+      "id": "28-3",
+      "type": "choose_form",
+      "prompt_de": "Was liest du?",
+      "sentence": [
+        [
+          "chto",
+          "acc"
+        ],
+        [
+          "ty",
+          "nom"
+        ],
+        "___"
+      ],
+      "answer": [
+        "chitat",
+        "prs.2sg"
+      ],
+      "distractor_forms": [
+        "prs.1sg",
+        "prs.3sg",
+        "prs.3pl"
+      ],
+      "audio_prompt": true
+    },
+    {
+      "id": "28-4",
+      "type": "choose_form",
+      "prompt_de": "Ich lese die Zeitung.",
+      "sentence": [
+        [
+          "ja",
+          "nom"
+        ],
+        "___",
+        [
+          "gazeta",
+          "acc.sg"
+        ]
+      ],
+      "answer": [
+        "chitat",
+        "prs.1sg"
+      ],
+      "distractor_forms": [
+        "prs.2sg",
+        "prs.3sg",
+        "inf"
+      ]
+    },
+    {
+      "id": "28-5",
+      "type": "choose_form",
+      "prompt_de": "Was macht ihr?",
+      "sentence": [
+        [
+          "chto",
+          "acc"
+        ],
+        [
+          "vy",
+          "nom"
+        ],
+        "___"
+      ],
+      "answer": [
+        "delat",
+        "prs.2pl"
+      ],
+      "distractor_forms": [
+        "prs.1pl",
+        "prs.3pl",
+        "prs.2sg"
+      ]
+    },
+    {
+      "id": "28-6",
+      "type": "choose_form",
+      "prompt_de": "Wo arbeitest du?",
+      "sentence": [
+        [
+          "gde",
+          "base"
+        ],
+        [
+          "ty",
+          "nom"
+        ],
+        "___"
+      ],
+      "answer": [
+        "rabotat",
+        "prs.2sg"
+      ],
+      "distractor_forms": [
+        "prs.1sg",
+        "prs.3sg",
+        "prs.1pl"
+      ]
+    },
+    {
+      "id": "28-7",
+      "type": "build_sentence",
+      "prompt_de": "Ich lese eine Zeitschrift.",
+      "solution": [
+        [
+          "ja",
+          "nom"
+        ],
+        [
+          "chitat",
+          "prs.1sg"
+        ],
+        [
+          "zhurnal",
+          "acc.sg"
+        ]
+      ],
+      "distractors": [
+        [
+          "chitat",
+          "prs.3sg"
+        ],
+        [
+          "gazeta",
+          "acc.sg"
+        ]
+      ]
+    },
+    {
+      "id": "28-8",
+      "type": "build_sentence",
+      "prompt_de": "Wir arbeiten auch hier.",
+      "solution": [
+        [
+          "my",
+          "nom"
+        ],
+        [
+          "tozhe",
+          "base"
+        ],
+        [
+          "rabotat",
+          "prs.1pl"
+        ],
+        [
+          "zdes",
+          "base"
+        ]
+      ],
+      "distractors": [
+        [
+          "rabotat",
+          "prs.3pl"
+        ],
+        [
+          "tam",
+          "base"
+        ]
+      ]
+    },
+    {
+      "id": "28-9",
+      "type": "dialog_reply",
+      "prompt_de": "Dein Nachbar am Tisch will wissen, was du liest.",
+      "tutor_line": [
+        [
+          "chto",
+          "acc"
+        ],
+        [
+          "ty",
+          "nom"
+        ],
+        [
+          "chitat",
+          "prs.2sg"
+        ]
+      ],
+      "correct_index": 0,
+      "options": [
+        {
+          "tokens": [
+            [
+              "ja",
+              "nom"
+            ],
+            [
+              "chitat",
+              "prs.1sg"
+            ],
+            [
+              "gazeta",
+              "acc.sg"
+            ]
+          ],
+          "why_de": ""
+        },
+        {
+          "tokens": [
+            [
+              "ja",
+              "nom"
+            ],
+            [
+              "chitat",
+              "prs.3sg"
+            ],
+            [
+              "gazeta",
+              "acc.sg"
+            ]
+          ],
+          "why_de": "чита́ет gehört zu он und она́. Zu я gehört чита́ю."
+        },
+        {
+          "tokens": [
+            [
+              "ja",
+              "nom"
+            ],
+            [
+              "chitat",
+              "prs.1sg"
+            ],
+            [
+              "gazeta",
+              "nom.sg"
+            ]
+          ],
+          "why_de": "Nach чита́ю steht der Akkusativ: газе́ту, nicht газе́та."
+        }
+      ]
+    },
+    {
+      "id": "28-11",
+      "type": "build_sentence",
+      "prompt_de": "Er liest ein Buch.",
+      "solution": [
+        [
+          "on",
+          "nom"
+        ],
+        [
+          "chitat",
+          "prs.3sg"
+        ],
+        [
+          "kniga",
+          "acc.sg"
+        ]
+      ],
+      "distractors": [
+        [
+          "kniga",
+          "nom.sg"
+        ],
+        [
+          "chitat",
+          "prs.1sg"
+        ]
+      ]
+    },
+    {
+      "id": "28-10",
+      "type": "listen_meaning",
+      "prompt_de": "Hör zu. Was wird gesagt?",
+      "sentence": [
+        [
+          "ja",
+          "nom"
+        ],
+        [
+          "rabotat",
+          "prs.1sg"
+        ],
+        [
+          "zdes",
+          "base"
+        ]
+      ],
+      "correct_index": 0,
+      "options_de": [
+        "Ich arbeite hier.",
+        "Ich wohne hier.",
+        "Er arbeitet hier."
+      ]
+    }
+  ]
+}
