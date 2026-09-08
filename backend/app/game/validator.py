@@ -1,5 +1,8 @@
+from pathlib import Path
+
 from app.content.models import Course
 from app.content.validation import check_token as _check_token
+from app.game.art import art_path
 from app.game.models import Scene, Turn, Village
 
 MIN_TURNS = 2
@@ -106,9 +109,24 @@ def _check_npcs(village: Village) -> list[str]:
     ]
 
 
-def validate_village(course: Course, village: Village) -> list[str]:
+def _check_art(village: Village, art_dir: Path) -> list[str]:
+    errors: list[str] = []
+    for place in sorted(village.places.values(), key=lambda place: place.id):
+        if art_path(art_dir, place.art) is None:
+            errors.append(f"Ort {place.id}: zum Bild {place.art!r} gibt es keine Datei")
+    for npc in sorted(village.npcs.values(), key=lambda npc: npc.id):
+        if art_path(art_dir, npc.art) is None:
+            errors.append(f"Person {npc.id}: zum Bild {npc.art!r} gibt es keine Datei")
+    if art_path(art_dir, "village") is None:
+        errors.append("Zur Dorfkarte 'village' gibt es keine Datei")
+    return errors
+
+
+def validate_village(course: Course, village: Village, art_dir: Path | None = None) -> list[str]:
     """Return every village rule violation as a German message; empty means valid."""
     errors = _check_places(village) + _check_npcs(village)
     for scene in sorted(village.scenes.values(), key=lambda scene: scene.id):
         errors.extend(_check_scene(course, village, scene))
+    if art_dir is not None:
+        errors.extend(_check_art(village, art_dir))
     return errors

@@ -147,3 +147,20 @@ def test_reports_ask_template_prompt_de_without_item_placeholder(tmp_path):
     assert any(
         "enthält kein {item}" in error for error in validate_village(course, village)
     )
+
+
+def test_reports_a_place_whose_picture_is_missing(tmp_path):
+    course, village = _pair(tmp_path)
+    empty_art = tmp_path / "leer"
+    empty_art.mkdir()
+    errors = validate_village(course, village, empty_art)
+    assert any("bar" in error and "Datei" in error for error in errors)
+
+
+def test_accepts_a_place_whose_picture_exists(tmp_path):
+    course, village = _pair(tmp_path)
+    art_dir = tmp_path / "art"
+    art_dir.mkdir()
+    for name in ("village", "bar", "magazin", "npc_pjotr", "npc_nina"):
+        (art_dir / f"{name}.svg").write_text("<svg/>", encoding="utf-8")
+    assert validate_village(course, village, art_dir) == []

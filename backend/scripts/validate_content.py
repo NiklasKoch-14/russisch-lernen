@@ -22,7 +22,7 @@ def main(argv: list[str]) -> int:
         print(f"FEHLER beim Laden: {exc}")
         return 2
 
-    errors = validate_course(course) + validate_village(course, village)
+    errors = validate_course(course) + validate_village(course, village, game_dir / "art")
     if errors:
         print(f"{len(errors)} Problem(e) in {content_dir.parent}:")
         for error in errors:
