@@ -1,4 +1,4 @@
-import { NavLink, Route, Routes } from "react-router-dom";
+import { NavLink, Route, Routes, useLocation } from "react-router-dom";
 
 import AutoplayToggle from "./audio/AutoplayToggle";
 import { SpeechProvider } from "./audio/SpeechContext";
@@ -12,17 +12,31 @@ import UnitView from "./views/UnitView";
 
 const TABS = [
   { to: "/kurs", label: "Kurs" },
+  { to: "/dorf", label: "Dorf" },
   { to: "/wiederholen", label: "Wiederholen" },
   { to: "/profil", label: "Profil" },
 ];
 
+const WIDE_PREFIX = "/dorf";
+
 export default function App() {
+  const { pathname } = useLocation();
+  // Das Dorf ist eine Karte und braucht Platz. Fliesstext bleibt schmal:
+  // ueber die volle Breite gezogen liest er sich schlechter, nicht besser.
+  const wide = pathname.startsWith(WIDE_PREFIX);
+
   return (
     <TransliterationProvider>
       <SpeechProvider>
         <div className="min-h-screen bg-slate-50 text-slate-900">
           <header className="border-b border-slate-200 bg-white">
-            <div className="mx-auto flex max-w-3xl items-center gap-6 px-4 py-3">
+            <div
+              className={
+                wide
+                  ? "flex items-center gap-6 px-4 py-3"
+                  : "mx-auto flex max-w-3xl items-center gap-6 px-4 py-3"
+              }
+            >
               <span className="text-lg font-semibold">Speaker</span>
               <nav className="flex gap-4">
                 {TABS.map((tab) => (
@@ -42,7 +56,7 @@ export default function App() {
               </div>
             </div>
           </header>
-          <main className="mx-auto max-w-3xl px-4 py-6">
+          <main className={wide ? "px-4 py-6" : "mx-auto max-w-3xl px-4 py-6"}>
             <Routes>
               <Route path="/" element={<CourseView />} />
               <Route path="/kurs" element={<CourseView />} />
