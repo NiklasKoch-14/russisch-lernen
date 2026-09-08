@@ -96,3 +96,54 @@ def test_reports_hint_unit_that_does_not_exist(tmp_path):
     scene["hint_unit"] = 999
     course, village = _pair(tmp_path, scenes=[scene, MINIMAL_SHOPPING])
     assert any("999" in error for error in validate_village(course, village))
+
+
+def test_reports_scene_with_unknown_npc(tmp_path):
+    scene = copy.deepcopy(MINIMAL_DIALOG)
+    scene["npc"] = "nirgendwo"
+    course, village = _pair(tmp_path, scenes=[scene, MINIMAL_SHOPPING])
+    assert any("nirgendwo" in error for error in validate_village(course, village))
+
+
+def test_reports_turn_with_empty_prompt_de(tmp_path):
+    scene = copy.deepcopy(MINIMAL_DIALOG)
+    scene["turns"][0]["prompt_de"] = "   "
+    course, village = _pair(tmp_path, scenes=[scene, MINIMAL_SHOPPING])
+    assert any("prompt_de ist leer" in error for error in validate_village(course, village))
+
+
+def test_reports_hotspot_outside_zero_to_one(tmp_path):
+    places = copy.deepcopy(MINIMAL_PLACES)
+    places[0]["hotspot"] = {"x": -0.1, "y": 0.5, "w": 0.2, "h": 0.2}
+    course, village = _pair(tmp_path, places=places)
+    assert any(
+        "außerhalb von 0 bis 1" in error for error in validate_village(course, village)
+    )
+
+
+def test_reports_shopping_scene_without_ask_template(tmp_path):
+    scene = copy.deepcopy(MINIMAL_SHOPPING)
+    del scene["ask_template"]
+    course, village = _pair(tmp_path, scenes=[MINIMAL_DIALOG, scene])
+    assert any(
+        "shopping braucht ein ask_template" in error
+        for error in validate_village(course, village)
+    )
+
+
+def test_reports_ask_template_with_two_item_slots(tmp_path):
+    scene = copy.deepcopy(MINIMAL_SHOPPING)
+    scene["ask_template"]["solution"].append("{item}")
+    course, village = _pair(tmp_path, scenes=[MINIMAL_DIALOG, scene])
+    assert any(
+        "braucht genau einen" in error for error in validate_village(course, village)
+    )
+
+
+def test_reports_ask_template_prompt_de_without_item_placeholder(tmp_path):
+    scene = copy.deepcopy(MINIMAL_SHOPPING)
+    scene["ask_template"]["prompt_de"] = "Frag nach der Ware."
+    course, village = _pair(tmp_path, scenes=[MINIMAL_DIALOG, scene])
+    assert any(
+        "enthält kein {item}" in error for error in validate_village(course, village)
+    )
