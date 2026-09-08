@@ -1,4 +1,4 @@
-import { fireEvent, render, screen } from "@testing-library/react";
+import { fireEvent, render, screen, within } from "@testing-library/react";
 import { MemoryRouter, Route, Routes } from "react-router-dom";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 
@@ -46,6 +46,11 @@ describe("VillageView", () => {
     expect(button.style.top).toBe("50%");
     expect(button.style.width).toBe("20%");
     expect(button.style.height).toBe("25%");
+    // Prozentangaben beziehen sich auf den naechsten positionierten
+    // Vorfahren. Ohne "relative" am Kartenrahmen wuerden sie sich auf ein
+    // ganz anderes Element beziehen und die Flaechen saessen woanders,
+    // obwohl die Inline-Werte oben unveraendert blieben.
+    expect(screen.getByTestId("village-map")).toHaveClass("relative");
   });
 
   it("öffnet den Ort beim Klick", async () => {
@@ -67,8 +72,14 @@ describe("VillageView", () => {
     const map = await screen.findByAltText("Das Dorf");
     fireEvent.error(map);
     // Ohne Bild braucht die Klickfläche einen sichtbaren Namen, sonst ist der
-    // Ort nicht mehr zu finden — Abschnitt 6 der Spec.
-    expect(await screen.findByRole("button", { name: /бар/ })).toBeVisible();
+    // Ort nicht mehr zu finden — Abschnitt 6 der Spec. "sr-only" liefert
+    // ebenfalls einen zugänglichen Namen, ist aber nicht sichtbar — darum
+    // muss die Beschriftung selbst geprüft werden, nicht nur der Knopf.
+    const button = await screen.findByRole("button", { name: /бар/ });
+    expect(button).toBeVisible();
+    const label = within(button).getByText("бар");
+    expect(label).toBeVisible();
+    expect(label).not.toHaveClass("sr-only");
     expect(screen.getByTestId("village-map")).toHaveClass("bg-slate-200");
   });
 });

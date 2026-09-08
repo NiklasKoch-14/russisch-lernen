@@ -28,6 +28,14 @@ describe("Seitenbreite", () => {
     renderAt("/dorf");
     expect(screen.getByRole("main")).not.toHaveClass("max-w-3xl");
   });
+
+  it("hält Fremdpfade mit dem Präfix 'dorf' schmal", () => {
+    // Regressionsschutz: ein reiner Präfix-Vergleich ("/dorf".startsWith)
+    // würde auch "/dorfmarkt" faelschlich die volle Breite geben, obwohl
+    // das kein Unterpfad des Dorfs ist.
+    renderAt("/dorfmarkt");
+    expect(screen.getByRole("main")).toHaveClass("max-w-3xl");
+  });
 });
 
 describe("Kopfzeile im Dorf", () => {
