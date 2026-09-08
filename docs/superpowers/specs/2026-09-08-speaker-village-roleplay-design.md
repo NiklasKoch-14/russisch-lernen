@@ -169,6 +169,7 @@ Eine `shopping`-Szene wird nicht ausgeschrieben, sondern aus einem Pool zusammen
     ["voda", "acc.sg"], ["chaj", "acc.sg"], ["pitstsa", "acc.sg"]
   ],
   "ask_template": {
+    "npc_line": [["chto", "acc"], ["vy", "nom"], ["khotet", "prs.2pl"]],
     "prompt_de": "Frag nach: {item}",
     "solution": [["ja", "nom"], ["khotet", "prs.1sg"], "{item}", ["pozhalujsta", "base"]]
   },
@@ -181,11 +182,15 @@ Eine `shopping`-Szene wird nicht ausgeschrieben, sondern aus einem Pool zusammen
 }
 ```
 
-`{item}` ist der Platzhalter, an dem `scenes.py` die gewürfelte Ware einsetzt. Der Zettel wird aus
-einem **Seed** gezogen, nicht aus Zufall: derselbe Seed ergibt denselben Zettel. Das macht die Szene
-neu ladbar und im Test reproduzierbar.
+`{item}` ist der Platzhalter, an dem `scenes.py` die gewürfelte Ware einsetzt — in `solution` als
+Token, in `prompt_de` als deutsche Bedeutung der Ware. Der Zettel wird aus einem **Seed** gezogen,
+nicht aus Zufall: derselbe Seed ergibt denselben Zettel. Das macht die Szene neu ladbar und im Test
+reproduzierbar.
 
-Ablenker einer zusammengesetzten Szene sind die nicht gezogenen Waren aus dem Pool.
+Ablenker einer zusammengesetzten Szene sind die nicht gezogenen Waren aus dem Pool. Deshalb fordert
+Regel 9 in Abschnitt 10, dass der Pool größer ist als `count`.
+
+Die `npc_line` der Vorlage wiederholt sich in jedem Zug — die Verkäuferin fragt jedes Mal dasselbe.
 
 ## 5. Ablauf und Zustand
 
