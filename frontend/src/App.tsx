@@ -6,9 +6,12 @@ import ChatView from "./ChatView";
 import { TransliterationProvider } from "./course/TransliterationContext";
 import ProfileView from "./ProfileView";
 import CourseView from "./views/CourseView";
+import PlaceView from "./views/PlaceView";
 import ReviewView from "./views/ReviewView";
+import SceneView from "./views/SceneView";
 import ScreeningView from "./views/ScreeningView";
 import UnitView from "./views/UnitView";
+import VillageView from "./views/VillageView";
 
 const TABS = [
   { to: "/kurs", label: "Kurs" },
@@ -23,7 +26,9 @@ export default function App() {
   const { pathname } = useLocation();
   // Das Dorf ist eine Karte und braucht Platz. Fliesstext bleibt schmal:
   // ueber die volle Breite gezogen liest er sich schlechter, nicht besser.
-  const wide = pathname.startsWith(WIDE_PREFIX);
+  // Nur "/dorf" selbst und seine Unterrouten zaehlen — ein Pfad wie
+  // "/dorfmarkt" soll nicht versehentlich die volle Breite bekommen.
+  const wide = pathname === WIDE_PREFIX || pathname.startsWith(`${WIDE_PREFIX}/`);
 
   return (
     <TransliterationProvider>
@@ -65,6 +70,9 @@ export default function App() {
               <Route path="/wiederholen" element={<ReviewView />} />
               <Route path="/profil" element={<ProfileView />} />
               <Route path="/gespraech" element={<ChatView />} />
+              <Route path="/dorf" element={<VillageView />} />
+              <Route path="/dorf/:placeId" element={<PlaceView />} />
+              <Route path="/dorf/:placeId/szene/:sceneId" element={<SceneView />} />
             </Routes>
           </main>
         </div>
