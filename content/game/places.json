@@ -1,0 +1,13 @@
+{
+  "version": 1,
+  "places": [
+    { "id": "shkola", "name_ru": "шко́ла", "name_de": "Sprachkurs", "kind": "course",
+      "art": "shkola", "hotspot": { "x": 0.08, "y": 0.30, "w": 0.18, "h": 0.30 } },
+    { "id": "kafe", "name_ru": "кафе́", "name_de": "Café", "kind": "npcs",
+      "art": "kafe", "hotspot": { "x": 0.30, "y": 0.34, "w": 0.18, "h": 0.28 } },
+    { "id": "magazin", "name_ru": "магази́н", "name_de": "Laden", "kind": "shopping",
+      "art": "magazin", "hotspot": { "x": 0.52, "y": 0.32, "w": 0.18, "h": 0.30 } },
+    { "id": "bar", "name_ru": "бар", "name_de": "Bar", "kind": "npcs",
+      "art": "bar", "hotspot": { "x": 0.74, "y": 0.36, "w": 0.18, "h": 0.28 } }
+  ]
+}

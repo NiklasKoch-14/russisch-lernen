@@ -1,0 +1,10 @@
+{
+  "version": 1,
+  "npcs": [
+    { "id": "pjotr", "name_ru": "Пётр", "name_de": "Pjotr", "place": "bar",
+      "about_de": "Sitzt jeden Abend am selben Platz und fragt jeden Neuen aus.",
+      "art": "npc_pjotr" },
+    { "id": "nina", "name_ru": "Ни́на", "name_de": "Nina", "place": "magazin",
+      "about_de": "Führt den Laden seit dreißig Jahren.", "art": "npc_nina" }
+  ]
+}
