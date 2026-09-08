@@ -8,6 +8,8 @@ from app.content.loader import load_course
 from app.content.models import Course
 from app.db import get_connection
 from app.course.review_index import ReviewIndex, build_index
+from app.game.loader import load_village
+from app.game.models import Village
 from app.ollama_client import OllamaClient
 from app.tts_client import TtsClient
 
@@ -54,3 +56,13 @@ def _review_index() -> ReviewIndex:
 
 def get_review_index() -> ReviewIndex:
     return _review_index()
+
+
+@lru_cache(maxsize=1)
+def _load_village() -> Village:
+    return load_village(settings.game_dir)
+
+
+def get_village() -> Village:
+    """Das Dorf, einmal je Prozess geladen."""
+    return _load_village()

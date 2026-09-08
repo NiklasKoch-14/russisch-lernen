@@ -12,6 +12,9 @@ class Settings:
     db_path: str = os.environ.get("DB_PATH", "./data/speaker.db")
     default_language: str = os.environ.get("DEFAULT_LANGUAGE", "russian")
     content_dir: str = os.environ.get("CONTENT_DIR", DEFAULT_CONTENT_DIR)
+    game_dir: str = os.environ.get(
+        "GAME_DIR", str(Path(__file__).resolve().parents[2] / "content" / "game")
+    )
     tts_host: str = os.environ.get("TTS_HOST", "http://tts:5001")
     audio_cache_dir: str = os.environ.get("AUDIO_CACHE_DIR", "./data/audio")
     audio_cache_max_mb: int = int(os.environ.get("AUDIO_CACHE_MAX_MB", "50"))
