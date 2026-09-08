@@ -3,7 +3,7 @@ import { useNavigate, useParams, useSearchParams } from "react-router-dom";
 
 import BuildSentenceExercise from "../course/BuildSentenceExercise";
 import NpcLine from "../game/NpcLine";
-import { answerTurn, getTurn } from "../gameApi";
+import { answerTurn, artUrl, getTurn } from "../gameApi";
 import type { Submission, TurnResult, TurnView } from "../gameTypes";
 
 export default function SceneView() {
@@ -77,6 +77,18 @@ export default function SceneView() {
 
   return (
     <section className="mx-auto max-w-3xl space-y-4">
+      <header className="flex items-center gap-3">
+        <img
+          src={artUrl(turn.npc.art)}
+          alt={turn.npc.name_de}
+          className="h-16 w-16 rounded-full object-cover"
+        />
+        <div>
+          <p className="text-lg font-medium">{turn.npc.name_ru}</p>
+          <p className="text-sm text-slate-600">{turn.npc.name_de}</p>
+        </div>
+      </header>
+
       <p className="text-sm text-slate-500">
         Zug {turn.index + 1} von {turn.turn_count}
       </p>

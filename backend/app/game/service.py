@@ -116,9 +116,11 @@ def turn_payload(
     turns = scenes.scene_turns(course, scene, seed)
     turn = _turn_at(scene_id, turns, index)
     exercise = scenes.turn_exercise(scene, seed, index, turn)
+    npc = village.npcs[scene.npc]
     return {
         "index": index,
         "turn_count": len(turns),
+        "npc": {"id": npc.id, "name_ru": npc.name_ru, "name_de": npc.name_de, "art": npc.art},
         "npc_line": _line(course, turn.npc_line),
         "exercise": present_exercise(course, exercise),
     }

@@ -70,6 +70,20 @@ def test_turn_payload_shows_the_npc_line_and_hides_the_solution(pair):
     assert len(payload["exercise"]["tiles"]) == 5
 
 
+def test_turn_payload_names_the_npc_of_the_scene(pair):
+    # Eine Szene ist allein durch (scene_id, seed) bestimmt und muss ein
+    # Neuladen der Gespraechsansicht ueberstehen; deshalb liefert der Zug
+    # selbst mit, mit wem gesprochen wird, statt es dem Router zu ueberlassen.
+    course, village = pair
+    payload = service.turn_payload(course, village, scene_id="bar-01", seed="s1", index=0)
+    assert payload["npc"] == {
+        "id": "pjotr",
+        "name_ru": "Пётр",
+        "name_de": "Pjotr",
+        "art": "npc_pjotr",
+    }
+
+
 def test_a_correct_answer_is_graded_and_scheduled(conn, pair):
     course, village = pair
     submission = _correct_submission(course, village, "bar-01", "s1", 0)

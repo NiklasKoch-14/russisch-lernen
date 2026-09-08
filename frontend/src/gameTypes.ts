@@ -57,6 +57,7 @@ export interface SpokenLine {
 export interface TurnView {
   index: number;
   turn_count: number;
+  npc: { id: string; name_ru: string; name_de: string; art: string };
   npc_line: SpokenLine;
   exercise: BuildSentenceExercise;
 }

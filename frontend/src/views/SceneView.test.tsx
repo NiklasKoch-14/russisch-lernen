@@ -3,11 +3,13 @@ import { MemoryRouter, Route, Routes } from "react-router-dom";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 
 import * as api from "../gameApi";
+import { artUrl } from "../gameApi";
 import SceneView from "./SceneView";
 
 const turn = (index: number) => ({
   index,
   turn_count: 2,
+  npc: { id: "pjotr", name_ru: "Пётр", name_de: "Pjotr", art: "npc_pjotr" },
   npc_line: { text: "приве́т как дела́", translit: "privét kak delá", audio_text: "приве́т" },
   exercise: {
     id: `bar-01:s1#${index}`,
@@ -52,6 +54,15 @@ describe("SceneView", () => {
     renderScene();
     expect(await screen.findByText("приве́т как дела́")).toBeInTheDocument();
     expect(screen.getByRole("button", { name: /хорошо́/ })).toBeInTheDocument();
+  });
+
+  it("zeigt, mit wem man spricht", async () => {
+    vi.spyOn(api, "getTurn").mockResolvedValue(turn(0));
+    renderScene();
+    expect(await screen.findByText("Пётр")).toBeInTheDocument();
+    expect(screen.getByText("Pjotr")).toBeInTheDocument();
+    const image = screen.getByRole("img", { name: "Pjotr" });
+    expect(image).toHaveAttribute("src", artUrl("npc_pjotr"));
   });
 
   it("wiederholt den Zug nach einem Fehler genau einmal", async () => {
