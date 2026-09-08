@@ -15,13 +15,17 @@ def _shopping_turns(course: Course, scene: Scene, seed: str) -> list[Turn]:
     unused = [scene.pool[position] for position in order[scene.count :]]
 
     turns: list[Turn] = []
-    for item in picked:
+    for index, item in enumerate(picked):
+        # Je Zug eine eigene Ziehung aus den übrigen Waren, sonst sieht der
+        # Lernende nach dem ersten Zug, welche Kachel nie die Lösung ist.
+        distractor_order = shuffled_order(f"{scene.id}:{seed}:distractors:{index}", len(unused))
+        distractors = [unused[position] for position in distractor_order[:MAX_SHOPPING_DISTRACTORS]]
         turns.append(
             Turn(
                 npc_line=list(template.npc_line),
                 prompt_de=template.prompt_de.replace("{item}", course.gloss(item)),
                 solution=[item if ref is None else ref for ref in template.solution],
-                distractors=unused[:MAX_SHOPPING_DISTRACTORS],
+                distractors=distractors,
             )
         )
     if scene.closing_turn is not None:

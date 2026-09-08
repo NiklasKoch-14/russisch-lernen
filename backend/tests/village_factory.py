@@ -79,6 +79,8 @@ MINIMAL_SHOPPING = {
         ["ryba", "acc.sg"],
         ["sup", "acc.sg"],
         ["voda", "acc.sg"],
+        ["chaj", "acc.sg"],
+        ["pitstsa", "acc.sg"],
     ],
     "ask_template": {
         "npc_line": [["chto", "acc"], ["vy", "nom"], ["khotet", "prs.2pl"]],
