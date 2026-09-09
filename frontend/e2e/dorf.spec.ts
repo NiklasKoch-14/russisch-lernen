@@ -34,6 +34,8 @@ test.describe("Dorf", () => {
     // Ansicht; ohne ihn waere es wieder eine eigene Seite.
     await expect(page.getByTestId("place-stage")).toBeVisible();
 
+    await useMode(page, "tiles");
+
     const progress = page.getByText(/Zug 1 von \d+/);
     await expect(progress).toBeVisible();
     // Die Gespraechsansicht stellt oben vor, mit wem man spricht.
@@ -79,6 +81,39 @@ test.describe("Dorf", () => {
     await expect(back).toBeInViewport();
   });
 
+  test("lässt die Antwort tippen und benennt den Fehler", async ({ page }) => {
+    await page.goto("/dorf");
+    await page.getByRole("button", { name: /бар/ }).click();
+    await page.getByRole("button", { name: /Пётр/ }).click();
+    await useMode(page, "typing");
+
+    // Die Bildschirmtastatur schreibt ins Feld — auf einer deutschen Tastatur
+    // gibt es sonst keinen Weg zu kyrillischen Buchstaben.
+    const field = page.getByLabel("Deine Antwort auf Russisch");
+    await expect(field).toBeVisible();
+
+    // So viele Unsinnswoerter wie gesucht sind: bei falscher Wortzahl meldet
+    // die Pruefung nur die Laenge und kommt gar nicht bis zum ersten Wort.
+    const wanted = (await page.getByText(/^(ein Wort|\d+ Wörter)$/).textContent()) ?? "";
+    const count = wanted === "ein Wort" ? 1 : Number(/\d+/.exec(wanted)?.[0]);
+    for (let word = 0; word < count; word += 1) {
+      if (word > 0) await page.getByRole("button", { name: "Leerzeichen" }).click();
+      for (const letter of ["к", "в", "а"]) {
+        await page.getByRole("button", { name: letter, exact: true }).click();
+      }
+    }
+    await expect(field).toHaveValue(Array(count).fill("ква").join(" "));
+
+    await page.getByRole("button", { name: "Prüfen" }).click();
+
+    // Nicht nur „falsch": die Rueckmeldung sagt, was mit dem Wort nicht stimmt,
+    // und markiert es in der eigenen Antwort.
+    await expect(page.getByTestId("turn-feedback")).toContainText("Nicht ganz.");
+    await expect(page.getByTestId("turn-feedback")).toContainText("kommt im Kurs nicht vor");
+    const marked = page.getByTestId("typed-answer").locator("span").first();
+    await expect(marked).toHaveClass(/rose/);
+  });
+
   test("führt vom Sprachkurs in eine Einheit statt in ein Gespräch", async ({ page }) => {
     await page.goto("/dorf");
     await page.getByRole("button", { name: /шко́ла/ }).click();
@@ -87,6 +122,33 @@ test.describe("Dorf", () => {
     await expect(page).toHaveURL(/\/kurs\/\d+$/);
   });
 });
+
+/**
+ * Stellt die Aufgabenform der Szene ein, statt sich auf die Vorgabe zu
+ * verlassen: der Schalter merkt sich die Wahl im Profil, und die Tests teilen
+ * sich eine Datenbank — welcher Modus gerade gilt, haengt sonst davon ab, was
+ * vorher lief.
+ */
+async function useMode(page: import("@playwright/test").Page, mode: "tiles" | "typing") {
+  // Erst abwarten, dass die Aufgabe ueberhaupt dasteht: vorher gibt es den
+  // Schalter nicht, und "nicht da" liesse sich nicht von "schon im richtigen
+  // Modus" unterscheiden.
+  await expect(page.getByRole("button", { name: "Prüfen" })).toBeVisible();
+
+  const wanted = page.getByRole("button", {
+    name: mode === "tiles" ? "lieber Kacheln" : "lieber tippen",
+  });
+  if ((await wanted.count()) > 0) await wanted.click();
+
+  // Warten, bis die neue Aufgabenform wirklich dasteht: der Wechsel holt den
+  // Zug neu, und beide Formen haben einen Knopf "Prüfen" — wer zu frueh
+  // weitermacht, bedient die alte Aufgabe.
+  await expect(
+    mode === "tiles"
+      ? page.locator('main button[aria-pressed]').first()
+      : page.getByLabel("Deine Antwort auf Russisch"),
+  ).toBeVisible();
+}
 
 /**
  * Waehlt alle Kacheln der aktuellen Aufgabe, statt die richtige Lösung zu

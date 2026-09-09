@@ -53,10 +53,19 @@ Hör-Aufgaben ihre Textfassung. Keine Einheit wird dadurch unlösbar.
 1. **Einstufung** (`/einstufung`) — sechs Klick-Sonden mit steigender Schwierigkeit, Abbruch nach zwei
    Fehlern in Folge. Ergebnis ist die empfohlene Starteinheit.
 2. **Kurs** (`/kurs`) — Einheiten in fünf Stufen. Jede Einheit beginnt mit einer kurzen deutschen Regel
-   und hat danach 6–10 Aufgaben in vier Formaten: Satz aus Kacheln bauen, Wortform wählen, Paare
-   zuordnen, Dialogantwort wählen.
+   und hat danach 6–10 Aufgaben in fünf Formaten: Satz aus Kacheln bauen, Wortform wählen, Paare
+   zuordnen, Dialogantwort wählen, Gehörtes zuordnen.
 3. **Wiederholen** (`/wiederholen`) — fällige Wortformen nach SM-2. Wiederholt wird nicht „die Vokabel",
    sondern die einzelne Form, bei der es hakt (`де́лаю` getrennt von `де́лает`).
+4. **Dorf** (`/dorf`) — Bar, Café, Laden und Schule als anklickbare Karte; in den Räumen stehen Leute,
+   die man anspricht. Ein Gespräch läuft über 2–5 Züge und **wird getippt**: kein Kachelbaukasten,
+   sondern ein leeres Feld mit kyrillischer Bildschirmtastatur. Ein Schalter in der Szene stellt auf
+   Kacheln zurück.
+
+   Geprüft wird streng, aber der Fehler wird benannt. Betonungszeichen, Groß- und Kleinschreibung,
+   `ё`/`е` und Satzzeichen sind egal; alles andere zählt. Weil das Lexikon jede Form kennt, kann die
+   Meldung sagen, *was* stattdessen dastand — „Du hast рабо́та geschrieben — das ist Nominativ, hier
+   steht Präpositiv: рабо́те." Ein bloßer Vertipper zählt nicht gegen die Wiederholungsplanung.
 
 Der Freitext-Chat mit dem Tutor bleibt erhalten, schaltet sich aber erst ab Stufe 3 frei — davor fehlt
 schlicht der Wortschatz.
