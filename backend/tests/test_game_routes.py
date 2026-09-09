@@ -102,7 +102,41 @@ def test_a_turn_of_a_scene_with_an_unknown_npc_is_a_404_not_a_500(db_path, tmp_p
         app.dependency_overrides.clear()
 
     assert response.status_code == 404
-    assert "geist" in response.json()["detail"]
+    # Die Meldung nennt nicht nur die Id, sondern sagt auch, was ihr fehlt —
+    # sonst steht im Fehler nur ein nacktes Wort wie "geist".
+    detail = response.json()["detail"]
+    assert "geist" in detail
+    assert "Person" in detail
+
+
+def test_starting_a_scene_with_an_unknown_npc_is_a_404_not_a_500(db_path, tmp_path):
+    # Derselbe kaputte Inhalt beim Betreten des Ortes: auch hier darf kein
+    # unbehandelter KeyError durchschlagen.
+    course = load_course(settings.content_dir, language=settings.default_language)
+    broken_scene = {**MINIMAL_DIALOG, "npc": "geist"}
+    village = load_village(write_village(tmp_path, scenes=[broken_scene]))
+
+    def override_db():
+        conn = get_connection(db_path)
+        try:
+            yield conn
+        finally:
+            conn.close()
+
+    app.dependency_overrides[get_db] = override_db
+    app.dependency_overrides[get_course] = lambda: course
+    app.dependency_overrides[get_village] = lambda: village
+    try:
+        response = TestClient(app).post(
+            f"/api/game/places/{broken_scene['place']}/scene", json={}
+        )
+    finally:
+        app.dependency_overrides.clear()
+
+    assert response.status_code == 404
+    detail = response.json()["detail"]
+    assert "geist" in detail
+    assert "Person" in detail
 
 
 def test_answering_a_turn_grades_it(client):

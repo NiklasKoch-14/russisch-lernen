@@ -5,11 +5,25 @@ from app.course.checker import check_answer
 from app.course.presenter import present_exercise, spoken_text
 from app.course.service import schedule_form
 from app.game import scenes
-from app.game.models import Turn, Village
+from app.game.models import Npc, Scene, Turn, Village
 from app.repositories import game_repo, progress_repo
 
 NPC_CONFUSED: list[TokenRef] = [("izvinit", "imp.pl")]
 """Was der NPC sagt, wenn er nicht versteht — «Извини́те?»"""
+
+
+def _npc_of(village: Village, scene: Scene) -> Npc:
+    """Die Person einer Szene — mit einer lesbaren Meldung, wenn es sie nicht gibt.
+
+    Der Lader prueft Szenen nicht gegen die Personenliste, das tut nur
+    `make validate`. Fehlerhafter Inhalt darf hier deshalb nicht als nacktes
+    KeyError durchschlagen: die Routen machen daraus einen 404 und zeigen den
+    Text an.
+    """
+    try:
+        return village.npcs[scene.npc]
+    except KeyError as exc:
+        raise KeyError(f"Zu Szene {scene.id!r} gibt es die Person {scene.npc!r} nicht") from exc
 
 
 def _line(course: Course, refs: list[TokenRef]) -> dict:
@@ -95,7 +109,7 @@ def start_scene(
     scene, seed = scenes.pick_scene(
         village, conn, place_id=place_id, npc_id=npc_id, now=now
     )
-    npc = village.npcs[scene.npc]
+    npc = _npc_of(village, scene)
     return {
         "scene_id": scene.id,
         "seed": seed,
@@ -116,7 +130,7 @@ def turn_payload(
     turns = scenes.scene_turns(course, scene, seed)
     turn = _turn_at(scene_id, turns, index)
     exercise = scenes.turn_exercise(scene, seed, index, turn)
-    npc = village.npcs[scene.npc]
+    npc = _npc_of(village, scene)
     return {
         "index": index,
         "turn_count": len(turns),
