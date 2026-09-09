@@ -5,6 +5,7 @@ class ProfileResponse(BaseModel):
     language: str
     cefr_level: str
     show_transliteration: bool = True
+    type_in_village: bool = True
     placement_unit: int | None = None
     audio_autoplay: bool = True
 
@@ -63,6 +64,7 @@ class AnalyzeSessionResponse(BaseModel):
 
 class ProfilePatchRequest(BaseModel):
     show_transliteration: bool | None = None
+    type_in_village: bool | None = None
     placement_unit: int | None = None
     audio_autoplay: bool | None = None
 

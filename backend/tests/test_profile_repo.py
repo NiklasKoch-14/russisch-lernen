@@ -56,3 +56,15 @@ def test_autoplay_survives_unrelated_updates(conn):
     update_profile(conn, audio_autoplay=False)
     update_profile(conn, show_transliteration=False)
     assert get_or_create_profile(conn, default_language="russian").audio_autoplay is False
+
+
+def test_profile_defaults_to_typing_in_the_village(conn):
+    profile = profile_repo.get_or_create_profile(conn, default_language="russian")
+    assert profile.type_in_village is True
+
+
+def test_update_profile_switches_back_to_tiles(conn):
+    profile_repo.get_or_create_profile(conn, default_language="russian")
+    updated = profile_repo.update_profile(conn, type_in_village=False)
+    assert updated.type_in_village is False
+    assert profile_repo.get_or_create_profile(conn, "russian").type_in_village is False

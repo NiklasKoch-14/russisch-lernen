@@ -1,6 +1,6 @@
 from sqlite3 import Connection
 
-from app.content.models import BuildSentenceExercise, Course
+from app.content.models import BuildSentenceExercise, Course, TypeSentenceExercise
 from app.course.shuffle import shuffled_order
 from app.game.models import Scene, Turn, Village
 from app.repositories import game_repo
@@ -40,14 +40,24 @@ def scene_turns(course: Course, scene: Scene, seed: str) -> list[Turn]:
     return list(scene.turns)
 
 
-def turn_exercise(scene: Scene, seed: str, index: int, turn: Turn) -> BuildSentenceExercise:
-    """Einen Zug als Kachelaufgabe — damit presenter und checker unverändert greifen.
+def turn_exercise(
+    scene: Scene, seed: str, index: int, turn: Turn, *, typed: bool = False
+) -> BuildSentenceExercise | TypeSentenceExercise:
+    """Einen Zug als Aufgabe — damit presenter und checker unverändert greifen.
 
     Die Id geht in das Mischen der Kacheln ein und muss deshalb den Seed
     enthalten: derselbe Zug mit anderem Einkaufszettel soll anders liegen.
+
+    Getippt fallen die Ablenker weg; derselbe Zug wird dadurch schwerer, ohne
+    dass sich am Inhalt etwas ändert.
     """
+    exercise_id = f"{scene.id}:{seed}#{index}"
+    if typed:
+        return TypeSentenceExercise(
+            id=exercise_id, prompt_de=turn.prompt_de, solution=list(turn.solution)
+        )
     return BuildSentenceExercise(
-        id=f"{scene.id}:{seed}#{index}",
+        id=exercise_id,
         prompt_de=turn.prompt_de,
         solution=list(turn.solution),
         distractors=list(turn.distractors),

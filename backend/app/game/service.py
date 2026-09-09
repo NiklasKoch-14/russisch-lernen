@@ -129,12 +129,18 @@ def start_scene(
 
 
 def turn_payload(
-    course: Course, village: Village, *, scene_id: str, seed: str, index: int
+    course: Course,
+    village: Village,
+    *,
+    scene_id: str,
+    seed: str,
+    index: int,
+    typed: bool = False,
 ) -> dict:
     scene = village.scenes[scene_id]
     turns = scenes.scene_turns(course, scene, seed)
     turn = _turn_at(scene_id, turns, index)
-    exercise = scenes.turn_exercise(scene, seed, index, turn)
+    exercise = scenes.turn_exercise(scene, seed, index, turn, typed=typed)
     npc = _npc_of(village, scene)
     return {
         "index": index,
@@ -160,7 +166,11 @@ def answer_turn(
     scene = village.scenes[scene_id]
     turns = scenes.scene_turns(course, scene, seed)
     turn = _turn_at(scene_id, turns, index)
-    exercise = scenes.turn_exercise(scene, seed, index, turn)
+    # Nicht das Profil entscheidet, wie geprüft wird, sondern die Gestalt der
+    # Einsendung: sonst könnte der Schalter mitten im Zug umgelegt werden und
+    # die Prüfung passte nicht mehr zu dem, was auf dem Schirm stand.
+    typed = isinstance(submission.get("text"), str)
+    exercise = scenes.turn_exercise(scene, seed, index, turn, typed=typed)
     result = check_answer(course, exercise, submission)
 
     for ref in result.trained_forms:

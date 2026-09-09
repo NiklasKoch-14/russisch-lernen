@@ -13,6 +13,7 @@ CREATE TABLE IF NOT EXISTS profile (
     created_at TEXT NOT NULL,
     show_transliteration INTEGER NOT NULL DEFAULT 1,
     audio_autoplay INTEGER NOT NULL DEFAULT 1,
+    type_in_village INTEGER NOT NULL DEFAULT 1,
     placement_unit INTEGER
 );
 
@@ -117,6 +118,8 @@ PROFILE_COLUMNS = {
     "show_transliteration": "INTEGER NOT NULL DEFAULT 1",
     "placement_unit": "INTEGER",
     "audio_autoplay": "INTEGER NOT NULL DEFAULT 1",
+    # Im Dorf wird getippt, bis der Nutzer auf Kacheln zurueckstellt.
+    "type_in_village": "INTEGER NOT NULL DEFAULT 1",
 }
 
 

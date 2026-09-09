@@ -158,3 +158,28 @@ def test_art_route_serves_the_village_map(client):
 
 def test_art_route_refuses_to_escape_the_directory(client):
     assert client.get("/api/game/art/..%2F..%2Fetc%2Fpasswd").status_code == 404
+
+
+def test_a_turn_can_be_asked_for_typing(client):
+    started = client.post("/api/game/places/bar/scene", json={}).json()
+    response = client.get(
+        f"/api/game/scenes/{started['scene_id']}/turns/0",
+        params={"seed": started["seed"], "typed": "true"},
+    )
+    assert response.status_code == 200
+    exercise = response.json()["exercise"]
+    assert exercise["type"] == "type_sentence"
+    assert exercise["word_count"] >= 1
+    assert "tiles" not in exercise
+
+
+def test_a_typed_answer_is_accepted_by_the_route(client):
+    started = client.post("/api/game/places/bar/scene", json={}).json()
+    response = client.post(
+        f"/api/game/scenes/{started['scene_id']}/turns/0",
+        json={"seed": started["seed"], "submission": {"text": "квакквак"}},
+    )
+    assert response.status_code == 200
+    body = response.json()
+    assert body["correct"] is False
+    assert body["explanation_de"]

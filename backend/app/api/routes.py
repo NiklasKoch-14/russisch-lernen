@@ -64,6 +64,7 @@ def read_profile(conn: Connection = Depends(get_db)) -> ProfileResponse:
         language=profile.language,
         cefr_level=profile.cefr_level,
         show_transliteration=profile.show_transliteration,
+        type_in_village=profile.type_in_village,
         placement_unit=profile.placement_unit,
         audio_autoplay=profile.audio_autoplay,
     )
@@ -262,6 +263,7 @@ def patch_profile(
     profile = update_profile(
         conn,
         show_transliteration=payload.show_transliteration,
+        type_in_village=payload.type_in_village,
         placement_unit=payload.placement_unit,
         audio_autoplay=payload.audio_autoplay,
     )
@@ -269,6 +271,7 @@ def patch_profile(
         language=profile.language,
         cefr_level=profile.cefr_level,
         show_transliteration=profile.show_transliteration,
+        type_in_village=profile.type_in_village,
         placement_unit=profile.placement_unit,
         audio_autoplay=profile.audio_autoplay,
     )
@@ -400,6 +403,7 @@ def read_turn(
     scene_id: str,
     index: int,
     seed: str,
+    typed: bool = False,
     course: Course = Depends(get_course),
     village: Village = Depends(get_village),
 ) -> dict:
@@ -407,7 +411,7 @@ def read_turn(
         raise HTTPException(status_code=404, detail=f"Szene {scene_id} gibt es nicht")
     try:
         return game_service.turn_payload(
-            course, village, scene_id=scene_id, seed=seed, index=index
+            course, village, scene_id=scene_id, seed=seed, index=index, typed=typed
         )
     except IndexError as exc:
         raise HTTPException(status_code=404, detail=f"Zug {index} gibt es nicht") from exc

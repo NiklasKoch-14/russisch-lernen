@@ -167,3 +167,66 @@ def test_a_shopping_scene_rejects_a_negative_index_too(pair):
     course, village = pair
     with pytest.raises(IndexError):
         service.turn_payload(course, village, scene_id="magazin-01", seed="s1", index=-1)
+
+
+def _typed_submission(course, village, scene_id, seed, index):
+    scene = village.scenes[scene_id]
+    turn = scenes.scene_turns(course, scene, seed)[index]
+    return {"text": " ".join(course.form(ref).text for ref in turn.solution)}
+
+
+class TestTippenImDorf:
+    def test_turn_payload_asks_for_a_typed_sentence(self, pair):
+        course, village = pair
+        payload = service.turn_payload(
+            course, village, scene_id="bar-01", seed="s1", index=0, typed=True
+        )
+        assert payload["exercise"]["type"] == "type_sentence"
+        assert payload["exercise"]["word_count"] == 3
+        assert "tiles" not in payload["exercise"]
+
+    def test_turn_payload_still_shows_the_npc_line_when_typing(self, pair):
+        course, village = pair
+        payload = service.turn_payload(
+            course, village, scene_id="bar-01", seed="s1", index=0, typed=True
+        )
+        assert payload["npc_line"]["text"] == "приве́т как дела́"
+
+    def test_turn_payload_keeps_tiles_by_default(self, pair):
+        course, village = pair
+        payload = service.turn_payload(course, village, scene_id="bar-01", seed="s1", index=0)
+        assert payload["exercise"]["type"] == "build_sentence"
+
+    def test_a_typed_answer_is_graded(self, conn, pair):
+        course, village = pair
+        result = service.answer_turn(
+            conn, course, village,
+            scene_id="bar-01", seed="s1", index=0,
+            submission=_typed_submission(course, village, "bar-01", "s1", 0),
+            today="2026-09-09", now="2026-09-09T12:00:00",
+        )
+        assert result["correct"] is True
+
+    def test_a_wrong_typed_answer_gets_the_diagnosis(self, conn, pair):
+        course, village = pair
+        result = service.answer_turn(
+            conn, course, village,
+            scene_id="bar-01", seed="s1", index=0,
+            submission={"text": "пло́хо а ты"},
+            today="2026-09-09", now="2026-09-09T12:00:00",
+        )
+        assert result["correct"] is False
+        assert "хорошо́" in result["explanation_de"]
+        assert result["npc_reaction"] is not None
+
+    def test_the_submission_decides_how_it_is_graded(self, conn, pair):
+        # Der Schalter darf mitten im Zug umgelegt werden koennen, ohne dass
+        # die Pruefung nicht mehr zu dem passt, was auf dem Schirm stand.
+        course, village = pair
+        result = service.answer_turn(
+            conn, course, village,
+            scene_id="bar-01", seed="s1", index=0,
+            submission=_correct_submission(course, village, "bar-01", "s1", 0),
+            today="2026-09-09", now="2026-09-09T12:00:00",
+        )
+        assert result["correct"] is True
