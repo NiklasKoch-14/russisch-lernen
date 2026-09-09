@@ -1,0 +1,31 @@
+{
+  "id": "magazin-02",
+  "kind": "shopping",
+  "place": "magazin",
+  "npc": "nina",
+  "title_de": "Noch ein Einkauf",
+  "hint_unit": 32,
+  "intro_de": "Nina räumt gerade ein Regal ein und dreht sich zu dir um.",
+  "outro_de": "Nina zählt das Wechselgeld ab und legt es auf die Theke.",
+  "count": 4,
+  "pool": [
+    ["mjaso", "acc.sg"],
+    ["salat", "acc.sg"],
+    ["buterbrod", "acc.sg"],
+    ["sok", "acc.sg"],
+    ["kofe", "acc.sg"],
+    ["pivo", "acc.sg"],
+    ["gazeta", "acc.sg"]
+  ],
+  "ask_template": {
+    "npc_line": [["chto", "acc"], ["eshchjo", "base"]],
+    "prompt_de": "Sag, dass du das nimmst: {item}",
+    "solution": [["ja", "nom"], ["brat_vzjat", "prs.1sg"], "{item}"]
+  },
+  "closing_turn": {
+    "npc_line": [["eto", "base"], ["stoit", "prs.3sg"], ["vosem", "nom"], ["evro", "gen.pl"]],
+    "prompt_de": "Sag, dass das billig ist, und bedank dich.",
+    "solution": [["eto", "base"], ["deshjovo", "base"], ["spasibo", "base"]],
+    "distractors": [["dorogo", "base"], ["pozhalujsta", "base"]]
+  }
+}

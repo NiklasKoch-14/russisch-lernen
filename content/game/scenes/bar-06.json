@@ -1,0 +1,37 @@
+{
+  "id": "bar-06",
+  "kind": "dialog",
+  "place": "bar",
+  "npc": "pjotr",
+  "title_de": "Pjotr fragt weiter",
+  "hint_unit": 28,
+  "intro_de": "Pjotr erkennt dich wieder und rückt sein Glas zur Seite.",
+  "outro_de": "Pjotr faltet die Zeitung zusammen und bestellt noch eins.",
+  "turns": [
+    {
+      "npc_line": [["privet", "base"], ["chto", "acc"], ["ty", "nom"],
+                   ["zdes", "base"], ["delat", "prs.2sg"]],
+      "prompt_de": "Sag, dass du hier arbeitest.",
+      "solution": [["ja", "nom"], ["zdes", "base"], ["rabotat", "prs.1sg"]],
+      "distractors": [["rabotat", "prs.2sg"], ["tam", "base"]]
+    },
+    {
+      "npc_line": [["a", "base"], ["chto", "acc"], ["ty", "nom"], ["chitat", "prs.2sg"]],
+      "prompt_de": "Sag, dass du eine Zeitung liest.",
+      "solution": [["ja", "nom"], ["chitat", "prs.1sg"], ["gazeta", "acc.sg"]],
+      "distractors": [["chitat", "prs.3sg"], ["zhurnal", "acc.sg"]]
+    },
+    {
+      "npc_line": [["ty", "nom"], ["khorosho", "base"], ["govorit", "prs.2sg"], ["po_russki", "base"]],
+      "prompt_de": "Bedank dich herzlich.",
+      "solution": [["spasibo", "base"], ["bolshoj", "nom.n"]],
+      "distractors": [["pozhalujsta", "base"], ["bolshoj", "nom.f"]]
+    },
+    {
+      "npc_line": [["ladno", "base"], ["do", "base"], ["svidanie", "gen.sg"]],
+      "prompt_de": "Verabschiede dich locker.",
+      "solution": [["poka", "base"]],
+      "distractors": [["zdravstvujte", "base"], ["spasibo", "base"]]
+    }
+  ]
+}

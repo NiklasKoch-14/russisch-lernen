@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" role="img">
+  <title>Ве́ра, die zuerst nach der Familie fragt</title>
+
+  <rect width="400" height="400" fill="#44403c"/>
+  <circle cx="332" cy="76" r="18" fill="#fde68a" opacity="0.7"/>
+
+  <!-- Schultern, geblümte Bluse -->
+  <path d="M52 400 Q200 262 348 400 Z" fill="#9d174d" stroke="#500724" stroke-width="6"/>
+  <circle cx="120" cy="356" r="8" fill="#fbcfe8" opacity="0.8"/>
+  <circle cx="286" cy="352" r="8" fill="#fbcfe8" opacity="0.8"/>
+  <circle cx="164" cy="386" r="7" fill="#fbcfe8" opacity="0.8"/>
+  <circle cx="244" cy="390" r="7" fill="#fbcfe8" opacity="0.8"/>
+
+  <!-- Hals und Kopf -->
+  <rect x="180" y="238" width="42" height="52" rx="15" fill="#eec6a4"/>
+  <ellipse cx="200" cy="196" rx="76" ry="88" fill="#eec6a4" stroke="#7c2d12" stroke-width="3"/>
+
+  <!-- Kopftuch -->
+  <path d="M118 196 Q112 100 200 96 Q288 100 282 196 Q276 130 200 126 Q124 130 118 196 Z" fill="#1d4ed8"/>
+  <path d="M118 196 Q106 244 128 268 Q148 236 140 196 Z" fill="#1e40af"/>
+  <path d="M282 196 Q294 244 272 268 Q252 236 260 196 Z" fill="#1e40af"/>
+  <circle cx="160" cy="140" r="5" fill="#bfdbfe" opacity="0.9"/>
+  <circle cx="200" cy="128" r="5" fill="#bfdbfe" opacity="0.9"/>
+  <circle cx="240" cy="140" r="5" fill="#bfdbfe" opacity="0.9"/>
+
+  <!-- Lachfältchen -->
+  <path d="M136 216 q-10 8 -14 18" fill="none" stroke="#c98f6b" stroke-width="3"/>
+  <path d="M264 216 q10 8 14 18" fill="none" stroke="#c98f6b" stroke-width="3"/>
+
+  <!-- Brille -->
+  <circle cx="170" cy="200" r="24" fill="#ffffff" opacity="0.35" stroke="#292524" stroke-width="4"/>
+  <circle cx="230" cy="200" r="24" fill="#ffffff" opacity="0.35" stroke="#292524" stroke-width="4"/>
+  <path d="M194 200 L206 200" stroke="#292524" stroke-width="4"/>
+  <path d="M146 196 L122 190" stroke="#292524" stroke-width="4"/>
+  <path d="M254 196 L278 190" stroke="#292524" stroke-width="4"/>
+  <circle cx="170" cy="201" r="5" fill="#1c1917"/>
+  <circle cx="230" cy="201" r="5" fill="#1c1917"/>
+
+  <!-- Augenbrauen über der Brille -->
+  <path d="M152 170 Q170 162 188 168" fill="none" stroke="#a8a29e" stroke-width="5" stroke-linecap="round"/>
+  <path d="M212 168 Q230 162 248 170" fill="none" stroke="#a8a29e" stroke-width="5" stroke-linecap="round"/>
+
+  <!-- Nase und warmes Lächeln -->
+  <path d="M197 210 Q190 236 200 242 Q210 238 203 210" fill="#dfb28e" stroke="#7c2d12" stroke-width="2"/>
+  <path d="M172 258 Q200 280 228 258" fill="none" stroke="#9f1239" stroke-width="5" stroke-linecap="round"/>
+</svg>

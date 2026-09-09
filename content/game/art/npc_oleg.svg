@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" role="img">
+  <title>Оле́г, der selten mehr als drei Wörter sagt</title>
+
+  <rect width="400" height="400" fill="#3f3f46"/>
+
+  <!-- breite Schultern, Arbeitsjacke -->
+  <path d="M36 400 Q200 250 364 400 Z" fill="#3f6212" stroke="#1a2e05" stroke-width="6"/>
+  <path d="M160 400 Q200 330 240 400 Z" fill="#57534e"/>
+  <path d="M120 400 q14 -46 40 -62" fill="none" stroke="#1a2e05" stroke-width="5"/>
+  <path d="M280 400 q-14 -46 -40 -62" fill="none" stroke="#1a2e05" stroke-width="5"/>
+
+  <!-- Hals und Kopf, kantig -->
+  <rect x="174" y="238" width="52" height="52" rx="14" fill="#d9a97e"/>
+  <path d="M126 180 Q126 106 200 106 Q274 106 274 180 Q274 266 200 286 Q126 266 126 180 Z" fill="#d9a97e" stroke="#57534e" stroke-width="3"/>
+  <ellipse cx="122" cy="196" rx="10" ry="16" fill="#d9a97e" stroke="#57534e" stroke-width="2"/>
+  <ellipse cx="278" cy="196" rx="10" ry="16" fill="#d9a97e" stroke="#57534e" stroke-width="2"/>
+
+  <!-- Wollmütze -->
+  <path d="M120 148 Q120 84 200 84 Q280 84 280 148 Q200 128 120 148 Z" fill="#7f1d1d"/>
+  <rect x="116" y="140" width="168" height="28" rx="10" fill="#991b1b"/>
+
+  <!-- tiefe Augenbrauen -->
+  <path d="M148 186 Q172 178 192 188" fill="none" stroke="#292524" stroke-width="8" stroke-linecap="round"/>
+  <path d="M208 188 Q228 178 252 186" fill="none" stroke="#292524" stroke-width="8" stroke-linecap="round"/>
+
+  <!-- schmale Augen -->
+  <path d="M156 206 Q172 198 188 206" fill="none" stroke="#292524" stroke-width="4" stroke-linecap="round"/>
+  <path d="M212 206 Q228 198 244 206" fill="none" stroke="#292524" stroke-width="4" stroke-linecap="round"/>
+  <circle cx="172" cy="207" r="4" fill="#1c1917"/>
+  <circle cx="228" cy="207" r="4" fill="#1c1917"/>
+
+  <!-- breite Nase -->
+  <path d="M192 206 Q182 236 200 242 Q218 236 208 206" fill="#c9926a" stroke="#57534e" stroke-width="2"/>
+
+  <!-- Vollbart -->
+  <path d="M136 214 Q140 300 200 306 Q260 300 264 214 Q252 268 200 272 Q148 268 136 214 Z" fill="#44403c"/>
+  <path d="M150 246 Q200 240 250 246" fill="none" stroke="#57534e" stroke-width="3" opacity="0.7"/>
+
+  <!-- Strichmund -->
+  <path d="M180 262 L220 262" stroke="#292524" stroke-width="5" stroke-linecap="round"/>
+</svg>

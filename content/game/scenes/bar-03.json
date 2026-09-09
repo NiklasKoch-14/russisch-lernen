@@ -1,0 +1,37 @@
+{
+  "id": "bar-03",
+  "kind": "dialog",
+  "place": "bar",
+  "npc": "sasha",
+  "title_de": "Sascha will alles wissen",
+  "hint_unit": 24,
+  "intro_de": "Ein junger Mann rutscht einen Hocker näher und redet sofort los.",
+  "outro_de": "Sascha lacht, klopft dir auf die Schulter und dreht sich zum nächsten Gespräch.",
+  "turns": [
+    {
+      "npc_line": [["privet", "base"], ["otkuda", "base"], ["ty", "nom"]],
+      "prompt_de": "Sag, dass du aus Deutschland bist.",
+      "solution": [["ja", "nom"], ["iz", "base"], ["germanija", "gen.sg"]],
+      "distractors": [["germanija", "nom.sg"], ["rossija", "gen.sg"]]
+    },
+    {
+      "npc_line": [["a", "base"], ["gde", "base"], ["ty", "nom"], ["zhit", "prs.2sg"]],
+      "prompt_de": "Sag, dass du in der Stadt wohnst.",
+      "solution": [["ja", "nom"], ["zhit", "prs.1sg"], ["v", "base"], ["gorod", "prp.sg"]],
+      "distractors": [["zhit", "prs.2sg"], ["dom", "prp.sg"]]
+    },
+    {
+      "npc_line": [["ty", "nom"], ["govorit", "prs.2sg"], ["po_russki", "base"]],
+      "prompt_de": "Sag, dass du ein bisschen Russisch sprichst.",
+      "solution": [["ja", "nom"], ["nemnogo", "base"], ["govorit", "prs.1sg"], ["po_russki", "base"]],
+      "distractors": [["govorit", "prs.3sg"], ["po_nemetski", "base"]]
+    },
+    {
+      "npc_line": [["ja", "nom"], ["tozhe", "base"], ["nemnogo", "base"],
+                   ["govorit", "prs.1sg"], ["po_nemetski", "base"]],
+      "prompt_de": "Sag, dass das sehr gut ist.",
+      "solution": [["eto", "base"], ["ochen", "base"], ["khorosho", "base"]],
+      "distractors": [["plokho", "base"], ["konechno", "base"]]
+    }
+  ]
+}

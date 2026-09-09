@@ -1,0 +1,36 @@
+{
+  "id": "bar-05",
+  "kind": "dialog",
+  "place": "bar",
+  "npc": "vera",
+  "title_de": "Vera fragt nach der Familie",
+  "hint_unit": 23,
+  "intro_de": "Vera setzt sich mit ihrem Glas an deinen Tisch.",
+  "outro_de": "Vera merkt sich jedes Wort — beim nächsten Mal fragt sie nach der Katze.",
+  "turns": [
+    {
+      "npc_line": [["zdravstvujte", "base"], ["kak", "base"], ["vy", "acc"], ["zvat", "prs.3pl"]],
+      "prompt_de": "Sag, dass du Nika heißt.",
+      "solution": [["ja", "acc"], ["zvat", "prs.3pl"], ["nika", "nom.sg"]],
+      "distractors": [["ja", "nom"], ["ty", "acc"]]
+    },
+    {
+      "npc_line": [["u", "base"], ["vy", "gen"], ["est", "prs.3sg"], ["semja", "nom.sg"]],
+      "prompt_de": "Sag ja und dass du eine Schwester hast.",
+      "solution": [["da", "base"], ["u", "base"], ["ja", "gen"], ["est", "prs.3sg"], ["sestra", "nom.sg"]],
+      "distractors": [["brat", "nom.sg"], ["ja", "dat"]]
+    },
+    {
+      "npc_line": [["a", "base"], ["u", "base"], ["vy", "gen"], ["est", "prs.3sg"], ["deti", "nom.pl"]],
+      "prompt_de": "Sag nein und dass du eine Katze hast.",
+      "solution": [["net", "base"], ["u", "base"], ["ja", "gen"], ["est", "prs.3sg"], ["koshka", "nom.sg"]],
+      "distractors": [["koshka", "acc.sg"], ["sobaka", "nom.sg"]]
+    },
+    {
+      "npc_line": [["ochen", "base"], ["prijatno", "base"]],
+      "prompt_de": "Sag, dass es dir auch sehr angenehm ist.",
+      "solution": [["ja", "dat"], ["tozhe", "base"], ["ochen", "base"], ["prijatno", "base"]],
+      "distractors": [["ja", "nom"], ["plokho", "base"]]
+    }
+  ]
+}

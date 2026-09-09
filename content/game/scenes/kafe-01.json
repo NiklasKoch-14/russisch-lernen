@@ -1,0 +1,31 @@
+{
+  "id": "kafe-01",
+  "kind": "dialog",
+  "place": "kafe",
+  "npc": "lena",
+  "title_de": "Bestellen bei Lena",
+  "hint_unit": 26,
+  "intro_de": "Lena kommt an den Tisch und wartet freundlich ab.",
+  "outro_de": "Lena schreibt alles auf und verschwindet in der Küche.",
+  "turns": [
+    {
+      "npc_line": [["zdravstvujte", "base"], ["chto", "acc"], ["vy", "nom"], ["khotet", "prs.2pl"]],
+      "prompt_de": "Bitte um die Speisekarte.",
+      "solution": [["menju", "acc.sg"], ["pozhalujsta", "base"]],
+      "distractors": [["schjot", "acc.sg"], ["stakan", "acc.sg"]]
+    },
+    {
+      "npc_line": [["pozhalujsta", "base"], ["chto", "acc"], ["vy", "nom"],
+                   ["khotet", "prs.2pl"], ["pit", "inf"]],
+      "prompt_de": "Sag, dass du einen Kaffee möchtest.",
+      "solution": [["ja", "nom"], ["khotet", "prs.1sg"], ["kofe", "acc.sg"], ["pozhalujsta", "base"]],
+      "distractors": [["khotet", "prs.2pl"], ["chaj", "acc.sg"]]
+    },
+    {
+      "npc_line": [["eshchjo", "base"], ["salat", "nom.sg"]],
+      "prompt_de": "Sag ja und dass du noch eine Suppe möchtest.",
+      "solution": [["da", "base"], ["ja", "nom"], ["khotet", "prs.1sg"], ["eshchjo", "base"], ["sup", "acc.sg"]],
+      "distractors": [["khotet", "prs.3sg"], ["pitstsa", "acc.sg"]]
+    }
+  ]
+}
