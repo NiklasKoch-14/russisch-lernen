@@ -9,7 +9,11 @@ from app.content.models import (
     ListenMeaningExercise,
     MatchPairsExercise,
     TokenRef,
+    TypeSentenceExercise,
 )
+from app.content.formkeys import contrast_labels_de
+from app.course.lexicon_index import lookup
+from app.course.normalize import normalize, words
 from app.course.presenter import (
     build_sentence_tiles,
     choose_form_options,
@@ -151,6 +155,82 @@ def _check_listen_meaning(
     )
 
 
+def _is_typo(typed: str, wanted: str) -> bool:
+    """Ein Zeichen daneben — vertippt, verschluckt oder zu viel."""
+    if typed == wanted or abs(len(typed) - len(wanted)) > 1:
+        return False
+    if len(typed) == len(wanted):
+        return sum(a != b for a, b in zip(typed, wanted)) == 1
+    short, long = sorted((typed, wanted), key=len)
+    same = 0
+    while same < len(short) and short[same] == long[same]:
+        same += 1
+    return short[same:] == long[same + 1 :]
+
+
+def _wanted_count_de(count: int) -> str:
+    return "ist ein Wort" if count == 1 else f"sind {count} Wörter"
+
+
+def _diagnose(course: Course, typed: list[str], solution: list[TokenRef]) -> tuple[str, bool]:
+    """Die erste Abweichung benennen. Zweiter Wert: zaehlt sie gegen die Wiederholung?
+
+    Nur eine Meldung, nicht fuenf — wer drei Fehler auf einmal vorgehalten
+    bekommt, korrigiert keinen davon.
+    """
+    count = len(solution)
+    if len(typed) < count:
+        return f"Da fehlt noch etwas — gesucht {_wanted_count_de(count)}.", True
+    if len(typed) > count:
+        return f"Ein Wort zu viel — gesucht {_wanted_count_de(count)}.", True
+
+    for word, ref in zip(typed, solution):
+        wanted = course.form(ref).text
+        if normalize(wanted) == word:
+            continue
+        found = lookup(course, word)
+        same_lexeme = [candidate for candidate in found if candidate[0] == ref[0]]
+        if same_lexeme:
+            typed_label, wanted_label = contrast_labels_de(same_lexeme[0][1], ref[1])
+            return (
+                f"Du hast {course.form(same_lexeme[0]).text} geschrieben — das ist "
+                f"{typed_label}, hier steht {wanted_label}: {wanted}."
+            ), True
+        if found:
+            return (
+                f"{course.form(found[0]).text} heißt {course.gloss(found[0])} — "
+                f"gesucht war {wanted}."
+            ), True
+        # Der Tippfehler kommt erst nach dem Lexikon: рабо́та und рабо́те
+        # unterscheiden sich um einen Buchstaben, und genau darum geht es beim
+        # Russischlernen. Als Vertipper durchgewinkt waere die Aufgabe wertlos.
+        if _is_typo(word, normalize(wanted)):
+            return f"Fast — {word} ist verschrieben, richtig ist {wanted}.", False
+        return f"Das Wort {word} kommt im Kurs nicht vor.", False
+
+    return "", True
+
+
+def _check_type_sentence(
+    course: Course, exercise: TypeSentenceExercise, submission: dict
+) -> CheckResult:
+    raw = submission.get("text")
+    typed = words(raw) if isinstance(raw, str) else []
+    text, translit = _render(course, exercise.solution)
+    correct = typed == [normalize(course.form(ref).text) for ref in exercise.solution]
+    explanation, counts = ("", True) if correct else _diagnose(course, typed, exercise.solution)
+    return CheckResult(
+        correct=correct,
+        solution_text=text,
+        solution_translit=translit,
+        explanation_de=explanation,
+        # Ein Vertipper oder ein Wort ausserhalb des Kurses sagt nichts darueber,
+        # ob die Form sitzt — solche Antworten bleiben aus der Planung heraus.
+        trained_forms=list(exercise.solution) if counts else [],
+        solution_audio=[spoken_text(course, list(exercise.solution))],
+    )
+
+
 def check_answer(course: Course, exercise: Exercise, submission: dict) -> CheckResult:
     """Grade a submission. Malformed input counts as a wrong answer, never an error."""
     if isinstance(exercise, BuildSentenceExercise):
@@ -163,4 +243,6 @@ def check_answer(course: Course, exercise: Exercise, submission: dict) -> CheckR
         return _check_dialog_reply(course, exercise, submission)
     if isinstance(exercise, ListenMeaningExercise):
         return _check_listen_meaning(course, exercise, submission)
+    if isinstance(exercise, TypeSentenceExercise):
+        return _check_type_sentence(course, exercise, submission)
     raise ValueError(f"Unbekannter Aufgabentyp: {exercise!r}")

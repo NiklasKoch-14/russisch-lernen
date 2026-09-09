@@ -7,6 +7,7 @@ from app.content.models import (
     ListenMeaningExercise,
     MatchPairsExercise,
     TokenRef,
+    TypeSentenceExercise,
 )
 from app.course.shuffle import shuffled_order
 
@@ -158,5 +159,11 @@ def present_exercise(course: Course, exercise: Exercise) -> dict:
             "tutor_line": [_word(course, ref, gloss=True) for ref in exercise.tutor_line],
             "options": options,
         }
+
+    if isinstance(exercise, TypeSentenceExercise):
+        # Die Wortzahl ist Absicht: die Kachelaufgabe verraet die Satzlaenge
+        # ohnehin, und ohne sie raet man beim Auftrag „frag zurueck", ob ein
+        # oder vier Woerter gemeint sind.
+        return base | {"word_count": len(exercise.solution)}
 
     raise ValueError(f"Unbekannter Aufgabentyp: {exercise!r}")

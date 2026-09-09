@@ -98,12 +98,28 @@ class ListenMeaningExercise:
     type: str = "listen_meaning"
 
 
+@dataclass(frozen=True)
+class TypeSentenceExercise:
+    """Der Satz wird getippt — keine Kacheln, keine Ablenker.
+
+    Kommt nicht aus `units/NNN.json`, sondern entsteht zur Laufzeit aus einem
+    Zug im Dorf. Der Lader kennt den Typ deshalb nicht; er steht hier, damit
+    Presenter und Checker ihn typsicher behandeln.
+    """
+
+    id: str
+    prompt_de: str
+    solution: list[TokenRef]
+    type: str = "type_sentence"
+
+
 Exercise = (
     BuildSentenceExercise
     | ChooseFormExercise
     | MatchPairsExercise
     | DialogReplyExercise
     | ListenMeaningExercise
+    | TypeSentenceExercise
 )
 
 
