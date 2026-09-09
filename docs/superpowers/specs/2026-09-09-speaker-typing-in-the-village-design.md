@@ -119,6 +119,10 @@ wird die **erste** abweichende Stelle diagnostiziert — eine Meldung, nicht fü
 | ein Buchstabe daneben | „Fast — in рабо́те ist ein Tippfehler." | Levenshtein ≤ 1 zur erwarteten Form |
 | unbekannt | „Das Wort ко́шка kommt im Kurs nicht vor." | Index leer, Levenshtein > 1 |
 
+Zusätzlich nennt das Ergebnis mit `wrong_word_index`, das wievielte Wort beanstandet wurde —
+allein, damit der Client es einfärben kann. Wo kein einzelnes Wort schuld ist (es fehlt schlicht
+etwas) bleibt es leer, ebenso bei allen anderen Aufgabentypen.
+
 Reihenfolge der Prüfung: Länge, dann Index-Treffer, dann Tippfehler, dann unbekannt. Der
 Tippfehler-Test steht **hinter** dem Index, sonst würde `рабо́та` gegen `рабо́те` als Tippfehler
 durchgehen, obwohl es eine echte Formverwechslung ist — genau die, um die es beim Russischlernen

@@ -174,3 +174,33 @@ class TestWiederholungsplanung:
     def test_unbekanntes_wort_zaehlt_nicht(self, course):
         result = check_answer(course, _exercise([("chai", "nom.sg")]), {"text": "ко́шка"})
         assert result.trained_forms == []
+
+
+class TestStelleDesFehlers:
+    def test_richtig_hat_keine_stelle(self, course):
+        result = check_answer(course, _exercise(AT_WORK), {"text": "я на рабо́те"})
+        assert result.wrong_word_index is None
+
+    def test_falsche_form_nennt_die_stelle(self, course):
+        result = check_answer(course, _exercise(AT_WORK), {"text": "я на рабо́та"})
+        assert result.wrong_word_index == 2
+
+    def test_erstes_falsches_wort_zaehlt(self, course):
+        result = check_answer(course, _exercise(AT_WORK), {"text": "я чай рабо́та"})
+        assert result.wrong_word_index == 1
+
+    def test_zu_viele_woerter_zeigen_auf_das_ueberzaehlige(self, course):
+        result = check_answer(course, _exercise(AT_WORK), {"text": "я на рабо́те чай"})
+        assert result.wrong_word_index == 3
+
+    def test_fehlendes_wort_hat_keine_stelle(self, course):
+        result = check_answer(course, _exercise(AT_WORK), {"text": "я на"})
+        assert result.wrong_word_index is None
+
+    def test_andere_aufgabentypen_kennen_keine_stelle(self, tmp_path):
+        from app.content.loader import load_course
+        from tests.content_factory import write_course
+
+        other = load_course(write_course(tmp_path / "kurs"))
+        result = check_answer(other, other.units[1].exercises[0], {"tile_indices": []})
+        assert result.wrong_word_index is None

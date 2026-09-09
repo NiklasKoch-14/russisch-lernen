@@ -186,6 +186,7 @@ def answer_turn(
         "solution_translit": result.solution_translit,
         "solution_audio": result.solution_audio,
         "explanation_de": result.explanation_de,
+        "wrong_word_index": result.wrong_word_index,
         "npc_reaction": None if result.correct else _line(course, NPC_CONFUSED),
         "scene_completed": completed,
         "outro_de": scene.outro_de if completed else "",
