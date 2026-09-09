@@ -26,16 +26,23 @@ test.describe("Dorf", () => {
     await page.getByRole("button", { name: /бар/ }).click();
     await page.getByRole("button", { name: /Пётр/ }).click();
 
-    await expect(page.getByText(/Zug 1 von/)).toBeVisible();
+    const progress = page.getByText(/Zug 1 von \d+/);
+    await expect(progress).toBeVisible();
     // Die Gespraechsansicht stellt oben vor, mit wem man spricht.
     await expect(page.getByText("Пётр")).toBeVisible();
     await expect(page.getByText("Pjotr")).toBeVisible();
 
-    // Beide Zuege der Szene bewusst falsch beantworten: die Zusicherung aus
+    // Wie viele Zuege es sind, sagt die Anzeige — nicht der Test. Pjotr hat
+    // mehrere Szenen, und welche davon drankommt, haengt davon ab, was zuletzt
+    // gespielt wurde; eine feste Zahl waere nur beim ersten Lauf richtig.
+    const turnCount = Number(/von (\d+)/.exec((await progress.textContent()) ?? "")?.[1]);
+    expect(turnCount).toBeGreaterThanOrEqual(2);
+
+    // Jeden Zug der Szene bewusst falsch beantworten: die Zusicherung aus
     // der Fehlerbehandlung lautet, dass es trotzdem bis zum Ende geht — nach
     // einer falschen Antwort kommt derselbe Zug genau einmal wieder, danach
     // geht es weiter, unabhaengig vom zweiten Ausgang.
-    for (let turn = 0; turn < 2; turn += 1) {
+    for (let turn = 0; turn < turnCount; turn += 1) {
       await answerWrong(page);
       await page.getByRole("button", { name: "Nochmal" }).click();
 
