@@ -2,52 +2,46 @@
   <title>Оле́г, breit auf dem Hocker am Tresen</title>
 
   <!-- Hocker -->
-  <rect x="66" y="298" width="68" height="14" rx="5" fill="#57534e"/>
-  <line x1="78" y1="312" x2="70" y2="384" stroke="#44403c" stroke-width="10" stroke-linecap="round"/>
-  <line x1="122" y1="312" x2="130" y2="384" stroke="#44403c" stroke-width="10" stroke-linecap="round"/>
-  <line x1="74" y1="350" x2="126" y2="350" stroke="#44403c" stroke-width="7"/>
+  <rect x="30" y="252" width="84" height="16" rx="5" fill="#57534e" stroke="#292524" stroke-width="3"/>
+  <line x1="44" y1="268" x2="38" y2="372" stroke="#44403c" stroke-width="10" stroke-linecap="round"/>
+  <line x1="100" y1="268" x2="106" y2="372" stroke="#44403c" stroke-width="10" stroke-linecap="round"/>
+  <line x1="42" y1="324" x2="102" y2="324" stroke="#44403c" stroke-width="7"/>
 
-  <!-- Beine, sitzend -->
-  <rect x="52" y="256" width="28" height="50" rx="10" fill="#3f3f46"/>
-  <rect x="120" y="256" width="28" height="50" rx="10" fill="#3f3f46"/>
-  <rect x="54" y="292" width="26" height="86" rx="9" fill="#3f3f46"/>
-  <rect x="120" y="292" width="26" height="86" rx="9" fill="#3f3f46"/>
-  <path d="M48 378 q-8 12 8 14 l30 0 l0 -14 Z" fill="#1c1917"/>
-  <path d="M152 378 q8 12 -8 14 l-30 0 l0 -14 Z" fill="#1c1917"/>
+  <!-- Beine, breit sitzend -->
+  <path d="M50 230 L154 246 L154 296 L50 280 Z" fill="#3f3f46"/>
+  <rect x="126" y="280" width="34" height="90" rx="11" fill="#3f3f46"/>
+  <path d="M124 370 q-6 14 12 16 l38 0 q6 -10 -6 -16 Z" fill="#1c1917"/>
 
   <!-- breiter Rumpf in der Arbeitsjacke -->
-  <path d="M50 134 q50 -20 100 0 l6 128 l-112 0 Z" fill="#3f6212" stroke="#1a2e05" stroke-width="4"/>
-  <path d="M90 130 l0 132 l20 0 l0 -132 Z" fill="#57534e"/>
-  <path d="M50 134 q-10 62 -4 108" fill="none" stroke="#1a2e05" stroke-width="4"/>
-  <path d="M150 134 q10 62 4 108" fill="none" stroke="#1a2e05" stroke-width="4"/>
+  <path d="M38 126 q50 -20 92 0 l6 112 l-104 6 Z" fill="#3f6212" stroke="#1a2e05" stroke-width="4"/>
+  <path d="M76 122 l0 120 l20 -1 l0 -119 Z" fill="#57534e"/>
+  <path d="M38 126 q-8 60 -4 106" fill="none" stroke="#1a2e05" stroke-width="4"/>
 
-  <!-- Arme, ein Glas in der Hand -->
-  <path d="M54 152 q-24 40 -14 76" fill="none" stroke="#3f6212" stroke-width="22" stroke-linecap="round"/>
-  <path d="M146 152 q24 34 10 66" fill="none" stroke="#3f6212" stroke-width="22" stroke-linecap="round"/>
-  <circle cx="42" cy="234" r="12" fill="#d9a97e"/>
-  <circle cx="152" cy="222" r="12" fill="#d9a97e"/>
-  <rect x="142" y="196" width="20" height="28" rx="3" fill="#fde68a" opacity="0.85" stroke="#a16207" stroke-width="2"/>
+  <!-- Arme: ein Glas vorn auf dem Tresen, ein Arm haengt -->
+  <path d="M126 148 q36 26 34 62" fill="none" stroke="#3f6212" stroke-width="23" stroke-linecap="round"/>
+  <path d="M44 150 q-16 44 8 66" fill="none" stroke="#3f6212" stroke-width="23" stroke-linecap="round"/>
+  <circle cx="160" cy="216" r="13" fill="#d9a97e"/>
+  <circle cx="60" cy="222" r="13" fill="#d9a97e"/>
+  <rect x="150" y="186" width="22" height="30" rx="3" fill="#fde68a" opacity="0.85" stroke="#a16207" stroke-width="2"/>
 
   <!-- Hals und kantiger Kopf -->
-  <rect x="86" y="98" width="28" height="30" rx="8" fill="#d9a97e"/>
-  <path d="M68 62 q0 -34 32 -34 q32 0 32 34 q0 40 -32 48 q-32 -8 -32 -48 Z" fill="#d9a97e" stroke="#57534e" stroke-width="2"/>
-  <ellipse cx="66" cy="66" rx="5" ry="8" fill="#d9a97e" stroke="#57534e" stroke-width="2"/>
-  <ellipse cx="134" cy="66" rx="5" ry="8" fill="#d9a97e" stroke="#57534e" stroke-width="2"/>
+  <rect x="74" y="92" width="30" height="30" rx="8" fill="#d9a97e"/>
+  <path d="M56 58 q0 -34 32 -34 q32 0 32 34 q0 40 -32 48 q-32 -8 -32 -48 Z" fill="#d9a97e" stroke="#57534e" stroke-width="2"/>
+  <ellipse cx="54" cy="62" rx="5" ry="8" fill="#d9a97e" stroke="#57534e" stroke-width="2"/>
+  <ellipse cx="122" cy="62" rx="5" ry="8" fill="#d9a97e" stroke="#57534e" stroke-width="2"/>
 
   <!-- Wollmuetze -->
-  <path d="M66 44 q0 -28 34 -28 q34 0 34 28 q-34 -10 -68 0 Z" fill="#7f1d1d"/>
-  <rect x="64" y="40" width="72" height="14" rx="5" fill="#991b1b"/>
+  <path d="M54 40 q0 -28 34 -28 q34 0 34 28 q-34 -10 -68 0 Z" fill="#7f1d1d"/>
+  <rect x="52" y="36" width="72" height="14" rx="5" fill="#991b1b"/>
 
-  <!-- schwere Brauen, schmale Augen -->
-  <path d="M76 64 q11 -5 20 1" fill="none" stroke="#292524" stroke-width="5" stroke-linecap="round"/>
-  <path d="M104 65 q9 -6 20 -1" fill="none" stroke="#292524" stroke-width="5" stroke-linecap="round"/>
-  <path d="M80 76 q8 -5 16 0" fill="none" stroke="#292524" stroke-width="3" stroke-linecap="round"/>
-  <path d="M104 76 q8 -5 16 0" fill="none" stroke="#292524" stroke-width="3" stroke-linecap="round"/>
-  <circle cx="88" cy="77" r="2.5" fill="#1c1917"/>
-  <circle cx="112" cy="77" r="2.5" fill="#1c1917"/>
-  <path d="M94 78 q-6 14 6 17 q12 -3 6 -17" fill="#c9926a"/>
-
-  <!-- Vollbart und Strichmund -->
-  <path d="M72 82 q2 34 28 38 q26 -4 28 -38 q-6 22 -28 24 q-22 -2 -28 -24 Z" fill="#44403c"/>
-  <path d="M88 98 l24 0" stroke="#292524" stroke-width="4" stroke-linecap="round"/>
+  <!-- Brauen, schmale Augen, Bart, Strichmund -->
+  <path d="M64 60 q11 -5 20 1" fill="none" stroke="#292524" stroke-width="5" stroke-linecap="round"/>
+  <path d="M92 61 q9 -6 20 -1" fill="none" stroke="#292524" stroke-width="5" stroke-linecap="round"/>
+  <path d="M68 72 q8 -5 16 0" fill="none" stroke="#292524" stroke-width="3" stroke-linecap="round"/>
+  <path d="M92 72 q8 -5 16 0" fill="none" stroke="#292524" stroke-width="3" stroke-linecap="round"/>
+  <circle cx="76" cy="73" r="2.5" fill="#1c1917"/>
+  <circle cx="100" cy="73" r="2.5" fill="#1c1917"/>
+  <path d="M82 74 q-6 14 6 17 q12 -3 6 -17" fill="#c9926a"/>
+  <path d="M60 78 q2 34 28 38 q26 -4 28 -38 q-6 22 -28 24 q-22 -2 -28 -24 Z" fill="#44403c"/>
+  <path d="M76 94 l24 0" stroke="#292524" stroke-width="4" stroke-linecap="round"/>
 </svg>

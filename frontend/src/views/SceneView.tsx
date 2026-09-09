@@ -81,7 +81,7 @@ export default function SceneView() {
     <div
       data-testid="dialog-card"
       data-side={side}
-      className={`space-y-4 rounded-2xl border-2 border-slate-200 bg-white/95 p-4 shadow-lg backdrop-blur-sm sm:absolute sm:top-4 sm:bottom-4 sm:w-[46%] sm:overflow-y-auto ${
+      className={`space-y-4 rounded-2xl border-2 border-slate-200 bg-white/95 p-4 shadow-lg backdrop-blur-sm sm:absolute sm:top-4 sm:max-h-[calc(100%-2rem)] sm:w-[46%] sm:overflow-y-auto ${
         side === "left" ? "sm:left-4" : "sm:right-4"
       }`}
     >

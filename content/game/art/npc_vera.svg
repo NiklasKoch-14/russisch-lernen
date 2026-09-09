@@ -1,53 +1,51 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 400" role="img">
-  <title>Ве́ра, mit ihrem Glas am Tisch</title>
+  <title>Ве́ра, am Tisch sitzend, leicht vorgebeugt</title>
 
-  <!-- Stuhl: gehoert zur Figur -->
-  <rect x="68" y="302" width="64" height="12" rx="4" fill="#57534e"/>
-  <line x1="76" y1="314" x2="72" y2="384" stroke="#44403c" stroke-width="8" stroke-linecap="round"/>
-  <line x1="124" y1="314" x2="128" y2="384" stroke="#44403c" stroke-width="8" stroke-linecap="round"/>
-  <path d="M132 302 q10 -46 4 -70" fill="none" stroke="#44403c" stroke-width="8" stroke-linecap="round"/>
+  <!-- Stuhl mit Lehne hinter ihr -->
+  <rect x="28" y="254" width="78" height="14" rx="5" fill="#57534e" stroke="#292524" stroke-width="3"/>
+  <path d="M32 254 q-8 -60 -2 -84" fill="none" stroke="#44403c" stroke-width="9" stroke-linecap="round"/>
+  <line x1="40" y1="268" x2="36" y2="372" stroke="#44403c" stroke-width="8" stroke-linecap="round"/>
+  <line x1="96" y1="268" x2="100" y2="372" stroke="#44403c" stroke-width="8" stroke-linecap="round"/>
 
-  <!-- Beine unter dem Rock, sitzend -->
-  <path d="M70 250 l60 0 l6 56 l-72 0 Z" fill="#500724"/>
-  <rect x="74" y="298" width="20" height="80" rx="8" fill="#a8a29e"/>
-  <rect x="108" y="298" width="20" height="80" rx="8" fill="#a8a29e"/>
-  <path d="M68 378 q-8 12 6 14 l26 0 l0 -14 Z" fill="#44403c"/>
-  <path d="M134 378 q8 12 -6 14 l-26 0 l0 -14 Z" fill="#44403c"/>
+  <!-- Rock ueber den Oberschenkeln, Unterschenkel hinunter -->
+  <path d="M50 234 L148 248 L148 292 L50 282 Z" fill="#500724"/>
+  <rect x="124" y="278" width="26" height="92" rx="9" fill="#a8a29e"/>
+  <path d="M122 370 q-6 14 10 16 l32 0 q6 -10 -4 -16 Z" fill="#44403c"/>
 
   <!-- geblümte Bluse -->
-  <path d="M60 140 q40 -18 80 0 l8 116 l-96 0 Z" fill="#9d174d" stroke="#500724" stroke-width="4"/>
-  <circle cx="78" cy="180" r="5" fill="#fbcfe8" opacity="0.85"/>
-  <circle cx="118" cy="168" r="5" fill="#fbcfe8" opacity="0.85"/>
-  <circle cx="98" cy="212" r="5" fill="#fbcfe8" opacity="0.85"/>
-  <circle cx="128" cy="216" r="4" fill="#fbcfe8" opacity="0.85"/>
+  <path d="M50 138 q40 -18 78 0 l6 106 l-90 4 Z" fill="#9d174d" stroke="#500724" stroke-width="4"/>
+  <circle cx="70" cy="176" r="5" fill="#fbcfe8" opacity="0.85"/>
+  <circle cx="108" cy="164" r="5" fill="#fbcfe8" opacity="0.85"/>
+  <circle cx="88" cy="208" r="5" fill="#fbcfe8" opacity="0.85"/>
+  <circle cx="118" cy="212" r="4" fill="#fbcfe8" opacity="0.85"/>
 
-  <!-- Arme, ein Glas in der Hand, leicht nach vorn geneigt -->
-  <path d="M62 156 q-22 36 -10 70" fill="none" stroke="#9d174d" stroke-width="19" stroke-linecap="round"/>
-  <path d="M138 156 q22 32 8 62" fill="none" stroke="#9d174d" stroke-width="19" stroke-linecap="round"/>
-  <circle cx="54" cy="230" r="11" fill="#eec6a4"/>
-  <circle cx="146" cy="220" r="11" fill="#eec6a4"/>
-  <rect x="137" y="196" width="18" height="26" rx="3" fill="#fca5a5" opacity="0.75" stroke="#9f1239" stroke-width="2"/>
+  <!-- Arme, ein Glas vorn in der Hand -->
+  <path d="M122 154 q32 28 30 60" fill="none" stroke="#9d174d" stroke-width="20" stroke-linecap="round"/>
+  <path d="M52 156 q-16 40 12 60" fill="none" stroke="#9d174d" stroke-width="20" stroke-linecap="round"/>
+  <circle cx="152" cy="216" r="12" fill="#eec6a4"/>
+  <circle cx="66" cy="214" r="12" fill="#eec6a4"/>
+  <rect x="143" y="188" width="18" height="26" rx="3" fill="#fca5a5" opacity="0.75" stroke="#9f1239" stroke-width="2"/>
 
   <!-- Hals und Kopf -->
-  <rect x="88" y="104" width="24" height="30" rx="8" fill="#eec6a4"/>
-  <ellipse cx="100" cy="72" rx="31" ry="35" fill="#eec6a4" stroke="#7c2d12" stroke-width="2"/>
+  <rect x="82" y="102" width="26" height="30" rx="8" fill="#eec6a4"/>
+  <ellipse cx="96" cy="70" rx="31" ry="35" fill="#eec6a4" stroke="#7c2d12" stroke-width="2"/>
 
   <!-- Kopftuch -->
-  <path d="M68 74 q-2 -36 32 -38 q34 2 32 38 q-4 -26 -32 -28 q-28 2 -32 28 Z" fill="#1d4ed8"/>
-  <path d="M68 74 q-6 20 4 32 q10 -14 6 -32 Z" fill="#1e40af"/>
-  <path d="M132 74 q6 20 -4 32 q-10 -14 -6 -32 Z" fill="#1e40af"/>
-  <circle cx="86" cy="50" r="2.5" fill="#bfdbfe"/>
-  <circle cx="100" cy="45" r="2.5" fill="#bfdbfe"/>
-  <circle cx="114" cy="50" r="2.5" fill="#bfdbfe"/>
+  <path d="M64 72 q-2 -36 32 -38 q34 2 32 38 q-4 -26 -32 -28 q-28 2 -32 28 Z" fill="#1d4ed8"/>
+  <path d="M64 72 q-6 20 4 32 q10 -14 6 -32 Z" fill="#1e40af"/>
+  <path d="M128 72 q6 20 -4 32 q-10 -14 -6 -32 Z" fill="#1e40af"/>
+  <circle cx="82" cy="48" r="2.5" fill="#bfdbfe"/>
+  <circle cx="96" cy="43" r="2.5" fill="#bfdbfe"/>
+  <circle cx="110" cy="48" r="2.5" fill="#bfdbfe"/>
 
   <!-- Brille, Augen, Laecheln -->
-  <circle cx="88" cy="74" r="10" fill="#ffffff" opacity="0.35" stroke="#292524" stroke-width="3"/>
-  <circle cx="112" cy="74" r="10" fill="#ffffff" opacity="0.35" stroke="#292524" stroke-width="3"/>
-  <path d="M98 74 L102 74" stroke="#292524" stroke-width="3"/>
-  <path d="M78 72 L69 69" stroke="#292524" stroke-width="3"/>
-  <path d="M122 72 L131 69" stroke="#292524" stroke-width="3"/>
-  <circle cx="88" cy="75" r="3" fill="#1c1917"/>
-  <circle cx="112" cy="75" r="3" fill="#1c1917"/>
-  <path d="M97 80 q-5 12 3 15 q7 -3 2 -15" fill="#dfb28e"/>
-  <path d="M88 100 q12 10 24 0" fill="none" stroke="#9f1239" stroke-width="4" stroke-linecap="round"/>
+  <circle cx="84" cy="72" r="10" fill="#ffffff" opacity="0.35" stroke="#292524" stroke-width="3"/>
+  <circle cx="108" cy="72" r="10" fill="#ffffff" opacity="0.35" stroke="#292524" stroke-width="3"/>
+  <path d="M94 72 L98 72" stroke="#292524" stroke-width="3"/>
+  <path d="M74 70 L65 67" stroke="#292524" stroke-width="3"/>
+  <path d="M118 70 L127 67" stroke="#292524" stroke-width="3"/>
+  <circle cx="84" cy="73" r="3" fill="#1c1917"/>
+  <circle cx="108" cy="73" r="3" fill="#1c1917"/>
+  <path d="M93 78 q-5 12 3 15 q7 -3 2 -15" fill="#dfb28e"/>
+  <path d="M84 98 q12 10 24 0" fill="none" stroke="#9f1239" stroke-width="4" stroke-linecap="round"/>
 </svg>
