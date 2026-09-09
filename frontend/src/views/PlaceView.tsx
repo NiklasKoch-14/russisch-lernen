@@ -1,9 +1,13 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
+import PlaceHeader from "../game/PlaceHeader";
 import PlaceStage from "../game/PlaceStage";
 import { artUrl, getPlace, startScene } from "../gameApi";
 import type { PlaceDetail } from "../gameTypes";
+
+const ACTION = "rounded-xl bg-sky-600 px-5 py-2 font-medium text-white disabled:bg-slate-300";
+const BACK = "rounded-xl border-2 border-slate-300 px-5 py-2 font-medium text-slate-700 hover:border-sky-400";
 
 export default function PlaceView() {
   const { placeId } = useParams();
@@ -36,48 +40,29 @@ export default function PlaceView() {
   if (error) return <p>Der Ort konnte nicht geladen werden.</p>;
   if (!place) return <p>Ort wird geladen …</p>;
 
+  /** Nur wo Personen im Raum stehen, ist die Bühne auch anklickbar. */
+  const selectable = place.kind === "npcs" && !artMissing;
+
   return (
     <section className="mx-auto max-w-5xl space-y-6">
-      <header className="space-y-1">
-        <h2 className="text-2xl font-semibold">{place.name_ru}</h2>
-        <p className="text-slate-600">{place.name_de}</p>
-      </header>
+      <PlaceHeader nameRu={place.name_ru} nameDe={place.name_de} />
 
-      {place.kind === "npcs" && !artMissing ? (
-        <PlaceStage
-          art={place.art}
-          altText={place.name_de}
-          npcs={place.npcs}
-          onSelect={(npc) => open(npc.id)}
-          onArtMissing={() => setArtMissing(true)}
-        />
-      ) : (
+      {artMissing ? (
         <img
           src={artUrl(place.art)}
           alt={place.name_de}
           className="block w-full rounded-2xl"
         />
-      )}
-
-      {place.kind === "course" && (
-        <button
-          type="button"
-          disabled={!place.next_unit_id}
-          onClick={() => place.next_unit_id && navigate(`/kurs/${place.next_unit_id}`)}
-          className="rounded-xl bg-sky-600 px-5 py-2 font-medium text-white disabled:bg-slate-300"
-        >
-          {place.next_unit_id ? `Einheit ${place.next_unit_id} beginnen` : "Alles geschafft"}
-        </button>
-      )}
-
-      {place.kind === "shopping" && (
-        <button
-          type="button"
-          onClick={() => open(undefined)}
-          className="rounded-xl bg-sky-600 px-5 py-2 font-medium text-white"
-        >
-          Einkaufen gehen
-        </button>
+      ) : (
+        // Auch Orte ohne Personen benutzen die Bühne: gleicher Zuschnitt,
+        // gleicher Rückfall, kein zweiter Weg, ein Bild zu zeigen.
+        <PlaceStage
+          art={place.art}
+          altText={place.name_de}
+          npcs={place.npcs}
+          onSelect={selectable ? (npc) => open(npc.id) : undefined}
+          onArtMissing={() => setArtMissing(true)}
+        />
       )}
 
       {place.kind === "npcs" && (
@@ -102,13 +87,28 @@ export default function PlaceView() {
         </ul>
       )}
 
-      <button
-        type="button"
-        onClick={() => navigate("/dorf")}
-        className="text-sky-700 underline"
-      >
-        Zurück ins Dorf
-      </button>
+      <div data-testid="place-actions" className="flex flex-wrap items-center gap-3">
+        {place.kind === "course" && (
+          <button
+            type="button"
+            disabled={!place.next_unit_id}
+            onClick={() => place.next_unit_id && navigate(`/kurs/${place.next_unit_id}`)}
+            className={ACTION}
+          >
+            {place.next_unit_id ? `Einheit ${place.next_unit_id} beginnen` : "Alles geschafft"}
+          </button>
+        )}
+
+        {place.kind === "shopping" && (
+          <button type="button" onClick={() => open(undefined)} className={ACTION}>
+            Einkaufen gehen
+          </button>
+        )}
+
+        <button type="button" onClick={() => navigate("/dorf")} className={BACK}>
+          Zurück ins Dorf
+        </button>
+      </div>
     </section>
   );
 }

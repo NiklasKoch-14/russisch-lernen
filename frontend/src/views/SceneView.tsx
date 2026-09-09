@@ -3,6 +3,7 @@ import { useNavigate, useParams, useSearchParams } from "react-router-dom";
 
 import BuildSentenceExercise from "../course/BuildSentenceExercise";
 import NpcLine from "../game/NpcLine";
+import PlaceHeader from "../game/PlaceHeader";
 import PlaceStage from "../game/PlaceStage";
 import { answerTurn, getPlace, getTurn } from "../gameApi";
 import type { PlaceDetail, Submission, TurnResult, TurnView } from "../gameTypes";
@@ -151,16 +152,19 @@ export default function SceneView() {
   );
 
   return (
-    <section className="relative mx-auto max-w-5xl">
-      {place && (
-        <PlaceStage
-          art={place.art}
-          altText={place.name_de}
-          npcs={place.npcs}
-          focusNpcId={done ? undefined : turn!.npc.id}
-        />
-      )}
-      {card}
+    <section className="mx-auto max-w-5xl space-y-6">
+      {place && <PlaceHeader nameRu={place.name_ru} nameDe={place.name_de} />}
+      <div className="relative">
+        {place && (
+          <PlaceStage
+            art={place.art}
+            altText={place.name_de}
+            npcs={place.npcs}
+            focusNpcId={done ? undefined : turn!.npc.id}
+          />
+        )}
+        {card}
+      </div>
     </section>
   );
 }

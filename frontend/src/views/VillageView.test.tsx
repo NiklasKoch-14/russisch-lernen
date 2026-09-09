@@ -83,3 +83,21 @@ describe("VillageView", () => {
     expect(screen.getByTestId("village-map")).toHaveClass("bg-slate-200");
   });
 });
+
+describe("VillageView — Namensliste", () => {
+  it("verzichtet auf die Liste, solange die Karte da ist", async () => {
+    // Die Gebaeude tragen ihre Schilder im Bild; die Liste waere dieselbe
+    // Angabe ein zweites Mal.
+    vi.spyOn(api, "getVillage").mockResolvedValue(village);
+    renderVillage();
+    await screen.findByAltText("Das Dorf");
+    expect(screen.queryByRole("list")).toBeNull();
+  });
+
+  it("zeigt die Liste, wenn das Kartenbild fehlt", async () => {
+    vi.spyOn(api, "getVillage").mockResolvedValue(village);
+    renderVillage();
+    fireEvent.error(await screen.findByAltText("Das Dorf"));
+    expect(screen.getByRole("list")).toBeInTheDocument();
+  });
+});

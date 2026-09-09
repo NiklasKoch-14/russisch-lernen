@@ -62,6 +62,10 @@ export default function VillageView() {
           </button>
         ))}
       </div>
+      {/* Nur als Rueckfall: solange die Karte da ist, tragen die Gebaeude
+          ihre Schilder im Bild — die Liste waere dieselbe Angabe ein zweites
+          Mal. Fehlt das Bild, ist sie der einzige Weg zu den Namen. */}
+      {mapMissing && (
       <ul className="flex flex-wrap gap-3 text-sm text-slate-600">
         {places.map((place) => (
           <li key={place.id}>
@@ -69,6 +73,7 @@ export default function VillageView() {
           </li>
         ))}
       </ul>
+      )}
     </section>
   );
 }

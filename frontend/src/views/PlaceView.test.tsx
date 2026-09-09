@@ -177,3 +177,25 @@ describe("PlaceView", () => {
     expect(screen.queryByText(/Einheit läuft/)).not.toBeInTheDocument();
   });
 });
+
+describe("PlaceView — einheitlicher Zuschnitt", () => {
+  beforeEach(() => vi.restoreAllMocks());
+
+  it("zeigt den Laden in derselben Buehne wie die Bar", async () => {
+    // Vorher stand das Bild dort in einer anderen Huelle und war schmaler.
+    vi.spyOn(api, "getPlace").mockResolvedValue({ ...bar, kind: "shopping", npcs: [] });
+    renderPlace();
+    await screen.findByRole("button", { name: /Einkaufen/ });
+    expect(screen.getByTestId("place-stage")).toBeInTheDocument();
+  });
+
+  it("stellt Weiterweg und Rueckweg als gleichrangige Knoepfe nebeneinander", async () => {
+    // Vorher klebte ein unterstrichener Link direkt am Knopf.
+    vi.spyOn(api, "getPlace").mockResolvedValue({ ...bar, kind: "shopping", npcs: [] });
+    renderPlace();
+    const actions = await screen.findByTestId("place-actions");
+    const back = within(actions).getByRole("button", { name: /Zurück ins Dorf/ });
+    expect(within(actions).getByRole("button", { name: /Einkaufen/ })).toBeVisible();
+    expect(back.className).not.toMatch(/underline/);
+  });
+});

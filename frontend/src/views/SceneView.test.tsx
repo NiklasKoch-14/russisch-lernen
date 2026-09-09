@@ -209,6 +209,17 @@ describe("SceneView", () => {
     expect(feedback.className).toMatch(/rose/);
   });
 
+  it("nennt ueber dem Raum, wo man ist", async () => {
+    // Derselbe Kopf wie auf der Ortsseite — sonst wechselt beim Ansprechen
+    // einer Person die halbe Seitengestalt.
+    vi.spyOn(api, "getPlace").mockResolvedValue(bar);
+    vi.spyOn(api, "getTurn").mockResolvedValue(turn(0));
+    renderScene();
+    const header = await screen.findByTestId("place-header");
+    expect(within(header).getByText("бар")).toBeVisible();
+    expect(within(header).getByText("Bar")).toBeVisible();
+  });
+
   it("zeigt am Ende das Nachwort", async () => {
     vi.spyOn(api, "getTurn").mockResolvedValue(turn(1));
     vi.spyOn(api, "answerTurn").mockResolvedValue({
