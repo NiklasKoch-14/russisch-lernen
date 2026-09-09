@@ -1,5 +1,15 @@
 from dataclasses import dataclass
 
+MAX_INTERVAL_DAYS = 365.0
+"""Obergrenze für den Abstand zweier Wiederholungen.
+
+Ohne sie wächst das Intervall bei jeder richtigen Antwort um den Ease-Faktor:
+nach rund 17 Treffern liegt der nächste Termin jenseits des Jahres 9999, und
+`date + timedelta` bricht mit OverflowError ab — die Antwort scheitert dann mit
+500, obwohl sie richtig war. Ein Jahr ist auch fachlich genug: was man ein Jahr
+lang nicht vergisst, braucht diese Planung nicht mehr.
+"""
+
 
 @dataclass
 class SM2Result:
@@ -17,7 +27,7 @@ def sm2_update(*, correct: bool, repetitions: int, ease_factor: float, interval_
         elif repetitions == 1:
             new_interval = 6.0
         else:
-            new_interval = round(interval_days * ease_factor, 2)
+            new_interval = min(round(interval_days * ease_factor, 2), MAX_INTERVAL_DAYS)
         new_repetitions = repetitions + 1
     else:
         new_repetitions = 0

@@ -8,7 +8,7 @@ from app.course.checker import check_answer
 from app.course.presenter import citation_form, present_exercise
 from app.repositories import lexeme_srs_repo, progress_repo
 from app.repositories.lexeme_srs_repo import SrsState
-from app.srs.sm2 import sm2_update
+from app.srs.sm2 import MAX_INTERVAL_DAYS, sm2_update
 
 
 @dataclass(frozen=True)
@@ -35,7 +35,9 @@ def schedule_form(conn: Connection, ref: TokenRef, *, correct: bool, today: str)
         correct=correct,
         repetitions=state.repetitions if state else 0,
         ease_factor=state.ease_factor if state else 2.5,
-        interval_days=state.interval_days if state else 0.0,
+        # Gedeckelt auch beim Lesen: in Datenbanken aus der Zeit ohne Deckel
+        # stehen Intervalle, die jede Datumsrechnung sprengen.
+        interval_days=min(state.interval_days, MAX_INTERVAL_DAYS) if state else 0.0,
     )
     due = dt.date.fromisoformat(today) + dt.timedelta(days=max(result.interval_days, 1))
     lexeme_srs_repo.upsert_state(

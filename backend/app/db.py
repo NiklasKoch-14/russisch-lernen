@@ -1,6 +1,9 @@
+import datetime as dt
 import sqlite3
 from contextlib import contextmanager
 from pathlib import Path
+
+from app.srs.sm2 import MAX_INTERVAL_DAYS
 
 SCHEMA = """
 CREATE TABLE IF NOT EXISTS profile (
@@ -125,6 +128,21 @@ def _ensure_profile_columns(conn: sqlite3.Connection) -> None:
             conn.execute(f"ALTER TABLE profile ADD COLUMN {name} {definition}")
 
 
+def _cap_runaway_intervals(conn: sqlite3.Connection) -> None:
+    """Deckle Wiederholungsabstände aus der Zeit vor `MAX_INTERVAL_DAYS`.
+
+    Dort wuchs das Intervall bei jeder richtigen Antwort weiter; jenseits von
+    rund 2,9 Millionen Tagen sprengt der Termin den Datumsbereich, und die
+    Antwort scheiterte mit 500. Betroffene Zeilen bekommen den Deckel und einen
+    erreichbaren Termin — sonst kämen ihre Wörter nie wieder an die Reihe.
+    """
+    due = (dt.date.today() + dt.timedelta(days=MAX_INTERVAL_DAYS)).isoformat()
+    conn.execute(
+        "UPDATE lexeme_srs SET interval_days = ?, due_date = ? WHERE interval_days > ?",
+        (MAX_INTERVAL_DAYS, due, MAX_INTERVAL_DAYS),
+    )
+
+
 def get_connection(db_path: str) -> sqlite3.Connection:
     Path(db_path).parent.mkdir(parents=True, exist_ok=True)
     conn = sqlite3.connect(db_path, check_same_thread=False)
@@ -138,6 +156,7 @@ def init_db(db_path: str) -> None:
     try:
         conn.executescript(SCHEMA)
         _ensure_profile_columns(conn)
+        _cap_runaway_intervals(conn)
         conn.commit()
     finally:
         conn.close()

@@ -10,8 +10,9 @@ from app.course.presenter import (
     dialog_reply_options,
     match_pairs_sides,
 )
-from app.course.service import unit_payload
+from app.course.service import MAX_INTERVAL_DAYS, schedule_form, unit_payload
 from app.repositories import lexeme_srs_repo, progress_repo
+from app.repositories.lexeme_srs_repo import SrsState
 from tests.content_factory import MINIMAL_UNIT, write_course
 
 
@@ -242,3 +243,28 @@ def test_primer_ist_in_der_ersten_einheit_aufgeklappt(conn, tmp_path):
 def test_primer_ist_in_spaeteren_einheiten_zugeklappt(conn, tmp_path):
     course = load_course(write_course(tmp_path, units=_units_sharing_a_primer()))
     assert unit_payload(course, conn, 2)["primer"]["first_use"] is False
+
+
+def test_scheduling_survives_a_huge_stored_interval(conn):
+    """Eine Datenbank aus der Zeit ohne Deckel darf die Antwort nicht umbringen.
+
+    Genau das ist passiert: `POST /api/game/scenes/bar-02/turns/1` antwortete
+    mit 500, weil `date + timedelta(days=…)` über das Jahr 9999 hinauslief.
+    """
+    lexeme_srs_repo.upsert_state(
+        conn,
+        SrsState(
+            lexeme_id="eto",
+            form_key="base",
+            interval_days=9_000_000.0,
+            ease_factor=2.5,
+            repetitions=30,
+            due_date="9999-12-31",
+        ),
+    )
+
+    schedule_form(conn, ("eto", "base"), correct=True, today="2026-09-09")
+
+    state = lexeme_srs_repo.get_state(conn, lexeme_id="eto", form_key="base")
+    assert state.interval_days <= MAX_INTERVAL_DAYS
+    assert state.due_date < "9999-01-01"

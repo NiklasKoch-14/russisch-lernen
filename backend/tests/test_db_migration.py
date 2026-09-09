@@ -1,6 +1,7 @@
 import sqlite3
 
 from app.db import get_connection, init_db
+from app.srs.sm2 import MAX_INTERVAL_DAYS
 
 OLD_PROFILE_SCHEMA = """
 CREATE TABLE profile (
@@ -56,4 +57,36 @@ def test_init_db_is_idempotent(tmp_path):
     init_db(path)
     conn = get_connection(path)
     assert len(_columns(conn, "profile")) == 7
+    conn.close()
+
+
+def test_init_db_caps_runaway_intervals_from_older_databases(tmp_path):
+    """Datenbanken aus der Zeit ohne Deckel tragen unerreichbare Termine.
+
+    Sie waren der Grund, warum eine richtige Antwort mit 500 endete; ohne
+    Aufräumen käme jedes betroffene Wort nie wieder zur Wiederholung.
+    """
+    path = str(tmp_path / "runaway.db")
+    init_db(path)
+    conn = get_connection(path)
+    conn.execute(
+        "INSERT INTO lexeme_srs (lexeme_id, form_key, interval_days, ease_factor,"
+        " repetitions, due_date) VALUES ('eto', 'base', 9000000.0, 2.5, 30, '9999-12-31')"
+    )
+    conn.execute(
+        "INSERT INTO lexeme_srs (lexeme_id, form_key, interval_days, ease_factor,"
+        " repetitions, due_date) VALUES ('ne', 'base', 6.0, 2.5, 2, '2026-09-15')"
+    )
+    conn.commit()
+    conn.close()
+
+    init_db(path)
+
+    conn = get_connection(path)
+    rows = {row["lexeme_id"]: row for row in conn.execute("SELECT * FROM lexeme_srs")}
+    assert rows["eto"]["interval_days"] == MAX_INTERVAL_DAYS
+    assert rows["eto"]["due_date"] < "9999-01-01"
+    # Gesunde Zeilen bleiben unangetastet.
+    assert rows["ne"]["interval_days"] == 6.0
+    assert rows["ne"]["due_date"] == "2026-09-15"
     conn.close()

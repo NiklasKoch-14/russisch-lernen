@@ -1,4 +1,4 @@
-from app.srs.sm2 import sm2_update
+from app.srs.sm2 import MAX_INTERVAL_DAYS, sm2_update
 
 
 def test_first_correct_answer_sets_interval_to_one_day():
@@ -30,3 +30,27 @@ def test_incorrect_answer_resets_repetitions_and_interval():
 def test_ease_factor_never_drops_below_1_3():
     result = sm2_update(correct=False, repetitions=0, ease_factor=1.35, interval_days=1.0)
     assert result.ease_factor >= 1.3
+
+
+def test_interval_stops_growing_at_the_cap():
+    # Ohne Deckel verdoppelt sich das Intervall bei jeder richtigen Antwort:
+    # nach etwa 17 Treffern liegt der Termin jenseits des Jahres 9999, und die
+    # Datumsrechnung in schedule_form bricht mit OverflowError ab.
+    result = sm2_update(
+        correct=True, repetitions=20, ease_factor=2.5, interval_days=MAX_INTERVAL_DAYS
+    )
+    assert result.interval_days == MAX_INTERVAL_DAYS
+
+
+def test_many_correct_answers_in_a_row_stay_within_the_cap():
+    repetitions, ease, interval = 0, 2.5, 0.0
+    for _ in range(40):
+        result = sm2_update(
+            correct=True, repetitions=repetitions, ease_factor=ease, interval_days=interval
+        )
+        repetitions, ease, interval = (
+            result.repetitions,
+            result.ease_factor,
+            result.interval_days,
+        )
+    assert interval == MAX_INTERVAL_DAYS
