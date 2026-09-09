@@ -122,6 +122,9 @@ Koordinaten für das SVG und für ein später eingesetztes Rasterbild.
 }
 ```
 
+Seit dem 2026-09-09 hat eine Person an einem `npcs`-Ort zusätzlich ein `spot`-Rechteck: ihren Platz
+im Raumbild, zugleich ihre Klickfläche. Siehe `2026-09-09-speaker-village-people-in-the-room-design.md`.
+
 ### 4.3 Szenen
 
 ```json
