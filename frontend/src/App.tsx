@@ -33,7 +33,15 @@ export default function App() {
   return (
     <TransliterationProvider>
       <SpeechProvider>
-        <div className="min-h-screen bg-slate-50 text-slate-900">
+        {/* Im Dorf fuellt die Seite genau den Bildschirm: die Karte und die
+            Raeume sind Bilder, und wer ein Haus betritt, soll ohne Scrollen
+            wieder hinausfinden. Auf schmalen Fenstern bleibt der gewohnte
+            Fliesstext-Fluss, sonst wird es dort zu eng. */}
+        <div
+          className={`bg-slate-50 text-slate-900 ${
+            wide ? "min-h-screen sm:flex sm:h-dvh sm:min-h-0 sm:flex-col" : "min-h-screen"
+          }`}
+        >
           <header className="border-b border-slate-200 bg-white">
             <div
               className={
@@ -61,7 +69,13 @@ export default function App() {
               </div>
             </div>
           </header>
-          <main className={wide ? "px-4 py-6" : "mx-auto max-w-3xl px-4 py-6"}>
+          <main
+            className={
+              wide
+                ? "px-4 py-6 sm:flex sm:min-h-0 sm:flex-1 sm:flex-col sm:py-4"
+                : "mx-auto max-w-3xl px-4 py-6"
+            }
+          >
             <Routes>
               <Route path="/" element={<CourseView />} />
               <Route path="/kurs" element={<CourseView />} />

@@ -61,6 +61,24 @@ test.describe("Dorf", () => {
     await expect(page.getByRole("heading", { name: "Geschafft!" })).toBeVisible();
   });
 
+  test("kommt ohne Scrollen aus — die Wege zurück sind immer sichtbar", async ({ page }) => {
+    // Auf einem gewoehnlichen Fenster soll man ein Haus betreten und wieder
+    // verlassen koennen, ohne die Seite zu bewegen.
+    for (const path of ["/dorf", "/dorf/bar", "/dorf/magazin", "/dorf/shkola"]) {
+      await page.goto(path);
+      await expect(page.getByTestId(path === "/dorf" ? "village-map" : "place-stage")).toBeVisible();
+
+      const scrolls = await page.evaluate(
+        () => document.documentElement.scrollHeight > window.innerHeight + 1,
+      );
+      expect(scrolls, `${path} laesst sich scrollen`).toBe(false);
+    }
+
+    await page.goto("/dorf/bar");
+    const back = page.getByRole("button", { name: "Zurück ins Dorf" });
+    await expect(back).toBeInViewport();
+  });
+
   test("führt vom Sprachkurs in eine Einheit statt in ein Gespräch", async ({ page }) => {
     await page.goto("/dorf");
     await page.getByRole("button", { name: /шко́ла/ }).click();

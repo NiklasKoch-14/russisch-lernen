@@ -152,18 +152,23 @@ export default function SceneView() {
   );
 
   return (
-    <section className="mx-auto max-w-5xl space-y-6">
+    <section className="mx-auto flex w-full max-w-5xl flex-col gap-4 sm:min-h-0 sm:flex-1">
       {place && <PlaceHeader nameRu={place.name_ru} nameDe={place.name_de} />}
-      <div className="relative">
+      <div className="flex justify-center sm:min-h-0 sm:flex-1">
+        {/* Der Rahmen nimmt genau die Groesse der Buehne an, damit die
+            Dialogkarte an deren Rand sitzt und nicht am Seitenrand. */}
+        <div className="relative w-full sm:h-full sm:w-auto">
         {place && (
           <PlaceStage
             art={place.art}
             altText={place.name_de}
             npcs={place.npcs}
             focusNpcId={done ? undefined : turn!.npc.id}
+            className={"w-full sm:h-full sm:w-auto sm:max-w-full"}
           />
         )}
         {card}
+        </div>
       </div>
     </section>
   );

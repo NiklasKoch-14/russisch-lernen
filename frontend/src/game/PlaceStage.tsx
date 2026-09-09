@@ -17,6 +17,9 @@ interface Props {
   onArtMissing?: () => void;
   /** Liegt über dem Raum — die Dialogkarte. */
   children?: ReactNode;
+  /** Größenklassen von außen. Das Seitenverhältnis bleibt in jedem Fall: die
+      Figuren sitzen auf Anteilen davon. */
+  className?: string;
 }
 
 /**
@@ -35,6 +38,7 @@ export default function PlaceStage({
   focusNpcId,
   onArtMissing,
   children,
+  className = "w-full",
 }: Props) {
   const [artMissing, setArtMissing] = useState(false);
   // Lose Prüfung mit Absicht: fehlt das Feld ganz (ältere Nutzlast, Testdaten),
@@ -44,7 +48,7 @@ export default function PlaceStage({
   return (
     <div
       data-testid="place-stage"
-      className={`relative aspect-[3/2] w-full overflow-hidden rounded-2xl ${
+      className={`relative aspect-[3/2] overflow-hidden rounded-2xl ${className} ${
         artMissing ? "bg-slate-200" : ""
       }`}
     >

@@ -21,7 +21,7 @@ export default function VillageView() {
   if (!places) return <p>Das Dorf wird geladen …</p>;
 
   return (
-    <section className="space-y-4">
+    <section className="flex flex-col gap-4 sm:min-h-0 sm:flex-1">
       <h2 className="text-2xl font-semibold">Дере́вня — dein Dorf</h2>
       {/* Die Karte gibt das Seitenverhaeltnis vor; die Klickflaechen sind
           Anteile davon und sitzen deshalb bei jeder Fenstergroesse richtig.
@@ -29,7 +29,7 @@ export default function VillageView() {
           Flaechen bekommen sichtbare Beschriftung — das Dorf bleibt begehbar. */}
       <div
         data-testid="village-map"
-        className={`relative mx-auto aspect-[16/9] w-full max-w-[1600px] overflow-hidden rounded-2xl ${
+        className={`relative mx-auto aspect-[16/9] w-full max-w-[1600px] overflow-hidden rounded-2xl sm:h-full sm:w-auto sm:max-w-full ${
           mapMissing ? "bg-slate-200" : ""
         }`}
       >

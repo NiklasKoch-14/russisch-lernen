@@ -44,14 +44,18 @@ export default function PlaceView() {
   const selectable = place.kind === "npcs" && !artMissing;
 
   return (
-    <section className="mx-auto max-w-5xl space-y-6">
+    <section className="mx-auto flex w-full max-w-5xl flex-col gap-4 sm:min-h-0 sm:flex-1">
       <PlaceHeader nameRu={place.name_ru} nameDe={place.name_de} />
 
+      {/* Der Raum nimmt, was zwischen Kopf und Knopfzeile uebrig bleibt, und
+          behaelt dabei sein Seitenverhaeltnis — die Figuren sitzen auf
+          Anteilen davon und wuerden sonst verrutschen. */}
+      <div className="flex justify-center sm:min-h-0 sm:flex-1">
       {artMissing ? (
         <img
           src={artUrl(place.art)}
           alt={place.name_de}
-          className="block w-full rounded-2xl"
+          className="block w-full rounded-2xl sm:h-full sm:w-auto sm:object-contain"
         />
       ) : (
         // Auch Orte ohne Personen benutzen die Bühne: gleicher Zuschnitt,
@@ -62,11 +66,13 @@ export default function PlaceView() {
           npcs={place.npcs}
           onSelect={selectable ? (npc) => open(npc.id) : undefined}
           onArtMissing={() => setArtMissing(true)}
+          className={`w-full sm:h-full sm:w-auto sm:max-w-full`}
         />
       )}
+      </div>
 
       {place.kind === "npcs" && (
-        <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <ul className="grid gap-4 sm:max-h-40 sm:overflow-y-auto sm:grid-cols-2 lg:grid-cols-3">
           {place.npcs
             .filter((npc) => artMissing || npc.spot == null)
             .map((npc) => (
