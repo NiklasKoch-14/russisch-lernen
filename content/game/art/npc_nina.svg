@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" role="img">
+  <title>Ни́на, die den Laden führt</title>
+
+  <rect width="400" height="400" fill="#f0f9ff"/>
+  <rect x="0" y="330" width="400" height="70" fill="#e2e8f0"/>
+
+  <!-- Schultern / Schürze -->
+  <path d="M56 400 Q200 250 344 400 Z" fill="#0369a1" stroke="#0c4a6e" stroke-width="6"/>
+  <path d="M150 400 L164 300 Q200 288 236 300 L250 400 Z" fill="#f0f9ff" stroke="#78716c" stroke-width="4"/>
+  <circle cx="200" cy="332" r="7" fill="#0369a1"/>
+  <circle cx="200" cy="356" r="7" fill="#0369a1"/>
+
+  <!-- Hals -->
+  <rect x="180" y="228" width="40" height="56" rx="14" fill="#f0c9a0"/>
+
+  <!-- Kopf -->
+  <ellipse cx="200" cy="190" rx="76" ry="88" fill="#f0c9a0" stroke="#a86b3d" stroke-width="3"/>
+
+  <!-- Wangen, rundlich und freundlich -->
+  <circle cx="150" cy="210" r="16" fill="#f3a6a6" opacity="0.5"/>
+  <circle cx="250" cy="210" r="16" fill="#f3a6a6" opacity="0.5"/>
+
+  <!-- Haar unter dem Kopftuch sichtbar -->
+  <path d="M138 200 Q130 230 140 250" fill="none" stroke="#78716c" stroke-width="10" stroke-linecap="round"/>
+  <path d="M262 200 Q270 230 260 250" fill="none" stroke="#78716c" stroke-width="10" stroke-linecap="round"/>
+
+  <!-- Augenbrauen -->
+  <path d="M152 168 Q168 160 186 168" fill="none" stroke="#57534e" stroke-width="6" stroke-linecap="round"/>
+  <path d="M214 168 Q232 160 248 168" fill="none" stroke="#57534e" stroke-width="6" stroke-linecap="round"/>
+
+  <!-- Brille -->
+  <circle cx="170" cy="188" r="24" fill="none" stroke="#57534e" stroke-width="5"/>
+  <circle cx="230" cy="188" r="24" fill="none" stroke="#57534e" stroke-width="5"/>
+  <line x1="194" y1="188" x2="206" y2="188" stroke="#57534e" stroke-width="5"/>
+  <line x1="146" y1="184" x2="130" y2="178" stroke="#57534e" stroke-width="5"/>
+  <line x1="254" y1="184" x2="270" y2="178" stroke="#57534e" stroke-width="5"/>
+  <circle cx="170" cy="188" r="6" fill="#292524"/>
+  <circle cx="230" cy="188" r="6" fill="#292524"/>
+
+  <!-- Nase und lächelnder Mund -->
+  <path d="M196 196 Q190 214 200 220 Q210 214 204 196" fill="#e0ac7c"/>
+  <path d="M176 238 Q200 256 224 238" fill="none" stroke="#a83232" stroke-width="5" stroke-linecap="round"/>
+
+  <!-- Kopftuch, geknotet -->
+  <path d="M116 152 Q124 84 200 78 Q276 84 284 152 Q270 108 200 100 Q130 108 116 152 Z" fill="#dc2626"/>
+  <path d="M108 158 Q150 118 200 114 Q250 118 292 158 Q252 138 200 134 Q148 138 108 158 Z" fill="#ef4444"/>
+  <path d="M262 150 q34 6 40 42 q-24 -6 -46 -20 Z" fill="#dc2626"/>
+  <circle cx="120" cy="150" r="8" fill="#fde68a"/>
+  <circle cx="150" cy="130" r="8" fill="#fde68a"/>
+  <circle cx="250" cy="128" r="8" fill="#fde68a"/>
+</svg>

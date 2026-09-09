@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" role="img">
+  <title>Klassenzimmer in der шко́ла</title>
+
+  <rect width="1200" height="800" fill="#fef3c7"/>
+  <rect x="0" y="560" width="1200" height="240" fill="#d6b98c"/>
+  <rect x="0" y="560" width="1200" height="10" fill="#78716c"/>
+
+  <!-- Fenster mit Blick auf das Dorf -->
+  <rect x="880" y="90" width="260" height="220" rx="6" fill="#bae6fd" stroke="#78716c" stroke-width="8"/>
+  <line x1="1010" y1="90" x2="1010" y2="310" stroke="#78716c" stroke-width="6"/>
+  <line x1="880" y1="200" x2="1140" y2="200" stroke="#78716c" stroke-width="6"/>
+  <path d="M890 260 Q950 220 1000 255 T1130 245" fill="none" stroke="#86efac" stroke-width="10"/>
+
+  <!-- Tafel -->
+  <rect x="80" y="90" width="560" height="260" rx="10" fill="#14532d" stroke="#78716c" stroke-width="10"/>
+  <rect x="80" y="350" width="560" height="16" fill="#a8a29e"/>
+  <text x="360" y="170" text-anchor="middle" font-family="system-ui, sans-serif" font-size="40"
+        fill="#f5f5f4">А Б В Г Д</text>
+  <text x="360" y="230" text-anchor="middle" font-family="system-ui, sans-serif" font-size="30"
+        fill="#f5f5f4">я говорю́ по-ру́сски</text>
+  <circle cx="120" cy="330" r="8" fill="#f5f5f4"/>
+  <circle cx="150" cy="330" r="8" fill="#f5f5f4"/>
+
+  <!-- Lehrertisch -->
+  <rect x="230" y="410" width="220" height="24" fill="#92400e"/>
+  <rect x="240" y="434" width="14" height="70" fill="#78350f"/>
+  <rect x="426" y="434" width="14" height="70" fill="#78350f"/>
+  <rect x="270" y="392" width="70" height="20" fill="#fef3c7" stroke="#78716c" stroke-width="3"/>
+  <rect x="350" y="396" width="40" height="16" fill="#38bdf8"/>
+
+  <!-- Schülerbänke, drei Reihen -->
+  <g>
+    <rect x="120" y="540" width="140" height="18" fill="#b45309"/>
+    <rect x="128" y="558" width="10" height="60" fill="#78350f"/>
+    <rect x="234" y="558" width="10" height="60" fill="#78350f"/>
+  </g>
+  <g>
+    <rect x="340" y="540" width="140" height="18" fill="#b45309"/>
+    <rect x="348" y="558" width="10" height="60" fill="#78350f"/>
+    <rect x="454" y="558" width="10" height="60" fill="#78350f"/>
+  </g>
+  <g>
+    <rect x="120" y="640" width="140" height="18" fill="#b45309"/>
+    <rect x="128" y="658" width="10" height="60" fill="#78350f"/>
+    <rect x="234" y="658" width="10" height="60" fill="#78350f"/>
+  </g>
+  <g>
+    <rect x="340" y="640" width="140" height="18" fill="#b45309"/>
+    <rect x="348" y="658" width="10" height="60" fill="#78350f"/>
+    <rect x="454" y="658" width="10" height="60" fill="#78350f"/>
+  </g>
+
+  <!-- Weltkarte an der Wand -->
+  <rect x="700" y="420" width="230" height="150" rx="6" fill="#f0f9ff" stroke="#78716c" stroke-width="6"/>
+  <path d="M720 460 q40 -20 80 0 t90 10 q30 20 60 -5" fill="none" stroke="#0284c7" stroke-width="4"/>
+  <path d="M730 520 q50 20 100 5 t80 15" fill="none" stroke="#16a34a" stroke-width="4"/>
+</svg>

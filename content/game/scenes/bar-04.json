@@ -1,0 +1,36 @@
+{
+  "id": "bar-04",
+  "kind": "dialog",
+  "place": "bar",
+  "npc": "oleg",
+  "title_de": "Oleg und die Preise",
+  "hint_unit": 31,
+  "intro_de": "Oleg schaut kurz auf, sagt aber erst mal nichts.",
+  "outro_de": "Oleg nickt einmal. Das war für seine Verhältnisse ein langes Gespräch.",
+  "turns": [
+    {
+      "npc_line": [["chto", "acc"], ["ty", "nom"], ["pit", "prs.2sg"]],
+      "prompt_de": "Sag, dass du ein Bier trinkst.",
+      "solution": [["ja", "nom"], ["pit", "prs.1sg"], ["pivo", "acc.sg"]],
+      "distractors": [["pit", "prs.2sg"], ["sok", "acc.sg"]]
+    },
+    {
+      "npc_line": [["skolko", "base"], ["stoit", "prs.3sg"], ["pivo", "nom.sg"]],
+      "prompt_de": "Sag, dass es drei Euro kostet.",
+      "solution": [["eto", "base"], ["stoit", "prs.3sg"], ["tri", "nom"], ["evro", "gen.sg"]],
+      "distractors": [["stoit", "prs.3pl"], ["pjat", "nom"]]
+    },
+    {
+      "npc_line": [["eto", "base"], ["dorogo", "base"]],
+      "prompt_de": "Widersprich: das ist nicht teuer.",
+      "solution": [["net", "base"], ["eto", "base"], ["ne", "base"], ["dorogo", "base"]],
+      "distractors": [["deshjovo", "base"], ["ochen", "base"]]
+    },
+    {
+      "npc_line": [["ladno", "base"], ["poka", "base"]],
+      "prompt_de": "Verabschiede dich förmlich.",
+      "solution": [["do", "base"], ["svidanie", "gen.sg"]],
+      "distractors": [["privet", "base"], ["spasibo", "base"]]
+    }
+  ]
+}

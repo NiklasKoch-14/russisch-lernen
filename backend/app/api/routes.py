@@ -1,7 +1,10 @@
 import datetime as dt
+from pathlib import Path
 from sqlite3 import Connection
 
 from fastapi import APIRouter, Depends, HTTPException, Query, Response
+from fastapi.responses import FileResponse
+from pydantic import BaseModel
 
 from app.api.schemas import (
     AnalyzeSessionResponse,
@@ -37,7 +40,11 @@ from app.dependencies import (
     get_ollama,
     get_review_index,
     get_tts,
+    get_village,
 )
+from app.game import art as game_art
+from app.game import service as game_service
+from app.game.models import Village
 from app.ollama_client import OllamaClient
 from app.tts_client import TtsClient, TtsUnavailable
 from app.repositories import vocab_repo
@@ -340,3 +347,100 @@ def audio(
         media_type="audio/wav",
         headers={"Cache-Control": AUDIO_CACHE_HEADER},
     )
+
+
+class SceneStartRequest(BaseModel):
+    npc_id: str | None = None
+
+
+class TurnAnswerRequest(BaseModel):
+    seed: str
+    submission: dict
+
+
+@router.get("/game/village")
+def read_village(village: Village = Depends(get_village)) -> dict:
+    return game_service.village_payload(village)
+
+
+@router.get("/game/places/{place_id}")
+def read_place(
+    place_id: str,
+    conn: Connection = Depends(get_db),
+    course: Course = Depends(get_course),
+    village: Village = Depends(get_village),
+) -> dict:
+    if place_id not in village.places:
+        raise HTTPException(status_code=404, detail=f"Ort {place_id} gibt es nicht")
+    return game_service.place_payload(village, course, conn, place_id)
+
+
+@router.post("/game/places/{place_id}/scene")
+def start_scene(
+    place_id: str,
+    payload: SceneStartRequest,
+    conn: Connection = Depends(get_db),
+    course: Course = Depends(get_course),
+    village: Village = Depends(get_village),
+) -> dict:
+    if place_id not in village.places:
+        raise HTTPException(status_code=404, detail=f"Ort {place_id} gibt es nicht")
+    try:
+        return game_service.start_scene(
+            village, course, conn,
+            place_id=place_id, npc_id=payload.npc_id,
+            now=dt.datetime.now().isoformat(timespec="seconds"),
+        )
+    except KeyError as exc:
+        raise HTTPException(status_code=404, detail=exc.args[0]) from exc
+
+
+@router.get("/game/scenes/{scene_id}/turns/{index}")
+def read_turn(
+    scene_id: str,
+    index: int,
+    seed: str,
+    course: Course = Depends(get_course),
+    village: Village = Depends(get_village),
+) -> dict:
+    if scene_id not in village.scenes:
+        raise HTTPException(status_code=404, detail=f"Szene {scene_id} gibt es nicht")
+    try:
+        return game_service.turn_payload(
+            course, village, scene_id=scene_id, seed=seed, index=index
+        )
+    except IndexError as exc:
+        raise HTTPException(status_code=404, detail=f"Zug {index} gibt es nicht") from exc
+    except KeyError as exc:
+        raise HTTPException(status_code=404, detail=exc.args[0]) from exc
+
+
+@router.post("/game/scenes/{scene_id}/turns/{index}")
+def answer_turn(
+    scene_id: str,
+    index: int,
+    payload: TurnAnswerRequest,
+    conn: Connection = Depends(get_db),
+    course: Course = Depends(get_course),
+    village: Village = Depends(get_village),
+) -> dict:
+    if scene_id not in village.scenes:
+        raise HTTPException(status_code=404, detail=f"Szene {scene_id} gibt es nicht")
+    now = dt.datetime.now()
+    try:
+        return game_service.answer_turn(
+            conn, course, village,
+            scene_id=scene_id, seed=payload.seed, index=index,
+            submission=payload.submission,
+            today=now.date().isoformat(), now=now.isoformat(timespec="seconds"),
+        )
+    except IndexError as exc:
+        raise HTTPException(status_code=404, detail=f"Zug {index} gibt es nicht") from exc
+
+
+@router.get("/game/art/{art_id}")
+def read_art(art_id: str) -> FileResponse:
+    path = game_art.art_path(Path(settings.game_dir) / "art", art_id)
+    if path is None:
+        raise HTTPException(status_code=404, detail=f"Bild {art_id} gibt es nicht")
+    return FileResponse(path, media_type=game_art.MEDIA_TYPES[path.suffix])

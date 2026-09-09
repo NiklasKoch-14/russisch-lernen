@@ -1,0 +1,143 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img">
+  <title>Dorfplatz mit шко́ла, кафе́, магази́н und бар</title>
+
+  <rect width="1600" height="900" fill="#e0f2fe"/>
+  <circle cx="1420" cy="120" r="66" fill="#fef08a" opacity="0.85"/>
+  <ellipse cx="260" cy="120" rx="90" ry="26" fill="#ffffff" opacity="0.7"/>
+  <ellipse cx="330" cy="105" rx="60" ry="20" fill="#ffffff" opacity="0.6"/>
+
+  <path d="M0 470 Q 400 380 800 450 T 1600 430 V900 H0 Z" fill="#86efac"/>
+  <path d="M0 640 Q 800 600 1600 660 V900 H0 Z" fill="#d6d3d1"/>
+  <path d="M0 820 Q 800 790 1600 820" fill="none" stroke="#f5f5f4" stroke-width="8"
+        stroke-dasharray="40 32" opacity="0.85"/>
+
+  <!-- ferner Wald am Hügelkamm -->
+  <g opacity="0.85">
+    <g transform="translate(210,404) scale(0.55)">
+      <rect x="-6" y="-30" width="12" height="30" fill="#57534e"/>
+      <circle cx="0" cy="-55" r="30" fill="#16a34a"/>
+      <circle cx="-16" cy="-40" r="20" fill="#15803d"/>
+      <circle cx="16" cy="-40" r="20" fill="#15803d"/>
+    </g>
+    <g transform="translate(900,392) scale(0.5)">
+      <rect x="-6" y="-30" width="12" height="30" fill="#57534e"/>
+      <circle cx="0" cy="-55" r="30" fill="#16a34a"/>
+      <circle cx="-16" cy="-40" r="20" fill="#15803d"/>
+      <circle cx="16" cy="-40" r="20" fill="#15803d"/>
+    </g>
+    <g transform="translate(1310,398) scale(0.55)">
+      <rect x="-6" y="-30" width="12" height="30" fill="#57534e"/>
+      <circle cx="0" cy="-55" r="30" fill="#16a34a"/>
+      <circle cx="-16" cy="-40" r="20" fill="#15803d"/>
+      <circle cx="16" cy="-40" r="20" fill="#15803d"/>
+    </g>
+  </g>
+
+  <!-- Baumgruppe am linken Bildrand -->
+  <g transform="translate(50,470)">
+    <rect x="-6" y="-30" width="12" height="30" fill="#57534e"/>
+    <circle cx="0" cy="-58" r="32" fill="#22c55e"/>
+    <circle cx="-18" cy="-42" r="22" fill="#16a34a"/>
+    <circle cx="18" cy="-42" r="22" fill="#16a34a"/>
+  </g>
+
+  <!-- Baum in der Lücke шко́ла–кафе́ -->
+  <g transform="translate(448,478)">
+    <rect x="-5" y="-26" width="10" height="26" fill="#57534e"/>
+    <circle cx="0" cy="-50" r="26" fill="#22c55e"/>
+    <circle cx="-14" cy="-38" r="18" fill="#16a34a"/>
+    <circle cx="14" cy="-38" r="18" fill="#16a34a"/>
+  </g>
+
+  <!-- Laterne zwischen кафе́ und магази́н -->
+  <g>
+    <rect x="796" y="558" width="8" height="90" fill="#57534e"/>
+    <circle cx="800" cy="552" r="15" fill="#fde68a" stroke="#b45309" stroke-width="3"/>
+  </g>
+
+  <!-- Baumgruppe am rechten Bildrand -->
+  <g transform="translate(1548,472)">
+    <rect x="-6" y="-30" width="12" height="30" fill="#57534e"/>
+    <circle cx="0" cy="-58" r="32" fill="#22c55e"/>
+    <circle cx="-18" cy="-42" r="22" fill="#16a34a"/>
+    <circle cx="18" cy="-42" r="22" fill="#16a34a"/>
+  </g>
+
+  <!-- шко́ла: hotspot x .08-.26, y .30-.60  ->  128-416, 270-540 -->
+  <g>
+    <rect x="128" y="330" width="288" height="210" rx="8" fill="#fef3c7" stroke="#78716c" stroke-width="6"/>
+    <path d="M112 330 L272 250 L432 330 Z" fill="#b45309" stroke="#78716c" stroke-width="6"/>
+    <rect x="240" y="430" width="64" height="110" fill="#78716c"/>
+    <circle cx="288" cy="486" r="4" fill="#fef3c7"/>
+    <rect x="160" y="370" width="60" height="50" fill="#bae6fd" stroke="#78716c" stroke-width="4"/>
+    <line x1="190" y1="370" x2="190" y2="420" stroke="#78716c" stroke-width="3"/>
+    <rect x="324" y="370" width="60" height="50" fill="#bae6fd" stroke="#78716c" stroke-width="4"/>
+    <line x1="354" y1="370" x2="354" y2="420" stroke="#78716c" stroke-width="3"/>
+    <rect x="176" y="286" width="192" height="40" rx="6" fill="#0369a1"/>
+    <text x="272" y="314" text-anchor="middle" font-family="system-ui, sans-serif"
+          font-size="26" fill="#ffffff">шко́ла</text>
+  </g>
+
+  <!-- кафе́: hotspot x .30-.48, y .34-.62  ->  480-768, 306-558 -->
+  <g>
+    <rect x="480" y="366" width="288" height="192" rx="8" fill="#f5f5f4" stroke="#78716c" stroke-width="6"/>
+    <rect x="464" y="286" width="320" height="80" fill="#fef3c7" stroke="#78716c" stroke-width="6"/>
+    <rect x="464" y="286" width="40" height="80" fill="#b45309"/>
+    <rect x="544" y="286" width="40" height="80" fill="#b45309"/>
+    <rect x="624" y="286" width="40" height="80" fill="#b45309"/>
+    <rect x="704" y="286" width="40" height="80" fill="#b45309"/>
+    <rect x="540" y="410" width="168" height="100" fill="#bae6fd" stroke="#78716c" stroke-width="4"/>
+    <line x1="624" y1="410" x2="624" y2="510" stroke="#78716c" stroke-width="4"/>
+    <line x1="540" y1="460" x2="708" y2="460" stroke="#78716c" stroke-width="4"/>
+    <rect x="592" y="480" width="64" height="78" fill="#78716c"/>
+    <rect x="600" y="486" width="48" height="60" fill="#e0f2fe"/>
+    <rect x="528" y="322" width="192" height="40" rx="6" fill="#b45309"/>
+    <text x="624" y="350" text-anchor="middle" font-family="system-ui, sans-serif"
+          font-size="26" fill="#ffffff">кафе́</text>
+    <!-- Tischchen vor dem Café -->
+    <circle cx="624" cy="586" r="20" fill="#fafaf9" stroke="#78716c" stroke-width="4"/>
+    <circle cx="590" cy="602" r="10" fill="none" stroke="#78716c" stroke-width="4"/>
+    <circle cx="658" cy="602" r="10" fill="none" stroke="#78716c" stroke-width="4"/>
+  </g>
+
+  <!-- магази́н: hotspot x .52-.70, y .32-.62  ->  832-1120, 288-558 -->
+  <g>
+    <rect x="832" y="348" width="288" height="210" rx="8" fill="#f0f9ff" stroke="#78716c" stroke-width="6"/>
+    <path d="M816 348 L816 300 L1136 268 L1136 348 Z" fill="#57534e" stroke="#78716c" stroke-width="6"/>
+    <rect x="864" y="400" width="140" height="100" fill="#bae6fd" stroke="#78716c" stroke-width="4"/>
+    <line x1="864" y1="460" x2="1004" y2="460" stroke="#78716c" stroke-width="3"/>
+    <rect x="884" y="466" width="26" height="22" fill="#fbbf24" stroke="#78716c" stroke-width="2"/>
+    <rect x="918" y="466" width="26" height="22" fill="#34d399" stroke="#78716c" stroke-width="2"/>
+    <rect x="952" y="466" width="26" height="22" fill="#38bdf8" stroke="#78716c" stroke-width="2"/>
+    <rect x="1040" y="440" width="60" height="118" fill="#e0f2fe" stroke="#78716c" stroke-width="4"/>
+    <line x1="1070" y1="440" x2="1070" y2="558" stroke="#78716c" stroke-width="4"/>
+    <rect x="880" y="304" width="192" height="40" rx="6" fill="#047857"/>
+    <text x="976" y="332" text-anchor="middle" font-family="system-ui, sans-serif"
+          font-size="22" fill="#ffffff">магази́н</text>
+  </g>
+
+  <!-- бар: hotspot x .74-.92, y .36-.64  ->  1184-1472, 324-576 -->
+  <g>
+    <rect x="1184" y="384" width="288" height="192" rx="8" fill="#d6d3d1" stroke="#78716c" stroke-width="6"/>
+    <line x1="1220" y1="384" x2="1220" y2="576" stroke="#a8a29e" stroke-width="2"/>
+    <line x1="1256" y1="384" x2="1256" y2="576" stroke="#a8a29e" stroke-width="2"/>
+    <line x1="1292" y1="384" x2="1292" y2="576" stroke="#a8a29e" stroke-width="2"/>
+    <line x1="1364" y1="384" x2="1364" y2="576" stroke="#a8a29e" stroke-width="2"/>
+    <line x1="1400" y1="384" x2="1400" y2="576" stroke="#a8a29e" stroke-width="2"/>
+    <line x1="1436" y1="384" x2="1436" y2="576" stroke="#a8a29e" stroke-width="2"/>
+    <rect x="1168" y="304" width="320" height="80" fill="#292524" stroke="#78716c" stroke-width="6"/>
+    <circle cx="1220" cy="440" r="24" fill="#e0f2fe" stroke="#78716c" stroke-width="4"/>
+    <circle cx="1436" cy="440" r="24" fill="#e0f2fe" stroke="#78716c" stroke-width="4"/>
+    <rect x="1296" y="468" width="64" height="108" fill="#292524" stroke="#78716c" stroke-width="4"/>
+    <circle cx="1328" cy="502" r="14" fill="#e0f2fe" stroke="#78716c" stroke-width="3"/>
+    <circle cx="1256" cy="500" r="10" fill="#fde68a" stroke="#b45309" stroke-width="3"/>
+    <circle cx="1400" cy="500" r="10" fill="#fde68a" stroke="#b45309" stroke-width="3"/>
+    <rect x="1232" y="340" width="192" height="40" rx="6" fill="#44403c"/>
+    <text x="1328" y="368" text-anchor="middle" font-family="system-ui, sans-serif"
+          font-size="26" fill="#fde68a">бар</text>
+    <!-- Fass vor der Bar -->
+    <rect x="1140" y="530" width="34" height="40" rx="6" fill="#a8a29e" stroke="#78716c" stroke-width="3"/>
+    <line x1="1140" y1="542" x2="1174" y2="542" stroke="#78716c" stroke-width="3"/>
+    <line x1="1140" y1="558" x2="1174" y2="558" stroke="#78716c" stroke-width="3"/>
+  </g>
+</svg>

@@ -1,0 +1,99 @@
+import { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+
+import { artUrl, getPlace, startScene } from "../gameApi";
+import type { PlaceDetail } from "../gameTypes";
+
+export default function PlaceView() {
+  const { placeId } = useParams();
+  const navigate = useNavigate();
+  const [place, setPlace] = useState<PlaceDetail | null>(null);
+  const [error, setError] = useState(false);
+
+  useEffect(() => {
+    if (!placeId) return;
+    getPlace(placeId)
+      .then(setPlace)
+      .catch(() => setError(true));
+  }, [placeId]);
+
+  // "npcs" braucht die Wahl der Person, "shopping" nicht — deshalb startet
+  // hier auch die Einkaufsszene ohne npcId.
+  const open = (npcId?: string) => {
+    if (!placeId) return;
+    startScene(placeId, npcId)
+      .then((scene) =>
+        navigate(
+          `/dorf/${placeId}/szene/${scene.scene_id}?seed=${encodeURIComponent(scene.seed)}`,
+        ),
+      )
+      .catch(() => setError(true));
+  };
+
+  if (error) return <p>Der Ort konnte nicht geladen werden.</p>;
+  if (!place) return <p>Ort wird geladen …</p>;
+
+  return (
+    <section className="mx-auto max-w-5xl space-y-6">
+      <header className="space-y-1">
+        <h2 className="text-2xl font-semibold">{place.name_ru}</h2>
+        <p className="text-slate-600">{place.name_de}</p>
+      </header>
+
+      <img
+        src={artUrl(place.art)}
+        alt={place.name_de}
+        className="block w-full rounded-2xl"
+      />
+
+      {place.kind === "course" && (
+        <button
+          type="button"
+          disabled={!place.next_unit_id}
+          onClick={() => place.next_unit_id && navigate(`/kurs/${place.next_unit_id}`)}
+          className="rounded-xl bg-sky-600 px-5 py-2 font-medium text-white disabled:bg-slate-300"
+        >
+          {place.next_unit_id ? `Einheit ${place.next_unit_id} beginnen` : "Alles geschafft"}
+        </button>
+      )}
+
+      {place.kind === "shopping" && (
+        <button
+          type="button"
+          onClick={() => open(undefined)}
+          className="rounded-xl bg-sky-600 px-5 py-2 font-medium text-white"
+        >
+          Einkaufen gehen
+        </button>
+      )}
+
+      {place.kind === "npcs" && (
+        <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {place.npcs.map((npc) => (
+            <li key={npc.id}>
+              <button
+                type="button"
+                onClick={() => open(npc.id)}
+                className="flex w-full items-center gap-3 rounded-2xl border-2 border-slate-200 p-3 text-left hover:border-sky-400"
+              >
+                <img src={artUrl(npc.art)} alt="" className="h-16 w-16 rounded-full" />
+                <span>
+                  <span className="block font-medium">{npc.name_ru}</span>
+                  <span className="block text-sm text-slate-600">{npc.about_de}</span>
+                </span>
+              </button>
+            </li>
+          ))}
+        </ul>
+      )}
+
+      <button
+        type="button"
+        onClick={() => navigate("/dorf")}
+        className="text-sky-700 underline"
+      >
+        Zurück ins Dorf
+      </button>
+    </section>
+  );
+}

@@ -1,0 +1,30 @@
+{
+  "id": "magazin-01",
+  "kind": "shopping",
+  "place": "magazin",
+  "npc": "nina",
+  "title_de": "Einkaufen",
+  "hint_unit": 27,
+  "intro_de": "Nina schaut dich erwartungsvoll an.",
+  "outro_de": "Nina reicht dir die Tüte.",
+  "count": 3,
+  "pool": [
+    ["moloko", "acc.sg"],
+    ["ryba", "acc.sg"],
+    ["sup", "acc.sg"],
+    ["voda", "acc.sg"],
+    ["chaj", "acc.sg"],
+    ["pitstsa", "acc.sg"]
+  ],
+  "ask_template": {
+    "npc_line": [["chto", "acc"], ["vy", "nom"], ["khotet", "prs.2pl"]],
+    "prompt_de": "Frag nach: {item}",
+    "solution": [["ja", "nom"], ["khotet", "prs.1sg"], "{item}", ["pozhalujsta", "base"]]
+  },
+  "closing_turn": {
+    "npc_line": [["eto", "base"], ["stoit", "prs.3sg"], ["pjat", "nom"], ["evro", "gen.pl"]],
+    "prompt_de": "Bezahl mit Karte und bedank dich.",
+    "solution": [["karta", "nom.sg"], ["pozhalujsta", "base"]],
+    "distractors": [["dengi", "nom.pl"], ["spasibo", "base"]]
+  }
+}

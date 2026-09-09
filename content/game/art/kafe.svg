@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" role="img">
+  <title>Gaststube im кафе́</title>
+
+  <rect width="1200" height="800" fill="#fffbeb"/>
+  <rect x="0" y="580" width="1200" height="220" fill="#e7d7c1"/>
+  <line x1="0" y1="660" x2="1200" y2="660" stroke="#d6b98c" stroke-width="4"/>
+  <line x1="0" y1="740" x2="1200" y2="740" stroke="#d6b98c" stroke-width="4"/>
+
+  <!-- Fenster -->
+  <rect x="70" y="90" width="220" height="200" rx="6" fill="#bae6fd" stroke="#78716c" stroke-width="8"/>
+  <line x1="180" y1="90" x2="180" y2="290" stroke="#78716c" stroke-width="6"/>
+  <line x1="70" y1="190" x2="290" y2="190" stroke="#78716c" stroke-width="6"/>
+  <rect x="50" y="60" width="260" height="30" fill="#b45309"/>
+
+  <!-- Theke mit Kaffeemaschine -->
+  <rect x="760" y="380" width="380" height="200" fill="#92400e" stroke="#78716c" stroke-width="8"/>
+  <rect x="760" y="360" width="380" height="26" fill="#78350f"/>
+  <rect x="820" y="300" width="120" height="80" rx="8" fill="#57534e" stroke="#78716c" stroke-width="6"/>
+  <rect x="840" y="270" width="20" height="34" fill="#57534e"/>
+  <rect x="880" y="270" width="20" height="34" fill="#57534e"/>
+  <circle cx="850" cy="330" r="7" fill="#fde68a"/>
+  <circle cx="880" cy="330" r="7" fill="#fde68a"/>
+  <rect x="970" y="320" width="90" height="60" rx="26" fill="#e2e8f0" stroke="#78716c" stroke-width="4"/>
+  <!-- Gebäckvitrine -->
+  <rect x="1080" y="330" width="90" height="70" rx="6" fill="#f0f9ff" stroke="#78716c" stroke-width="4"/>
+  <circle cx="1105" cy="380" r="12" fill="#d6b98c"/>
+  <circle cx="1135" cy="380" r="12" fill="#fbbf24"/>
+  <circle cx="1150" cy="365" r="10" fill="#f87171"/>
+
+  <!-- Tisch mit karierter Decke, zwei Stühle -->
+  <g>
+    <circle cx="330" cy="520" r="90" fill="#ffffff" stroke="#78716c" stroke-width="6"/>
+    <path d="M240 460 h180 M240 500 h180 M240 540 h180 M240 580 h180" stroke="#0284c7" stroke-width="8" opacity="0.35"/>
+    <path d="M280 430 v180 M330 430 v180 M380 430 v180" stroke="#0284c7" stroke-width="8" opacity="0.35"/>
+    <circle cx="330" cy="520" r="90" fill="none" stroke="#78716c" stroke-width="6"/>
+    <circle cx="300" cy="470" r="18" fill="#fbbf24"/>
+    <circle cx="360" cy="480" r="4" fill="#78350f"/>
+  </g>
+  <path d="M215 605 q20 40 0 80" fill="none" stroke="#78716c" stroke-width="10"/>
+  <path d="M445 605 q-20 40 0 80" fill="none" stroke="#78716c" stroke-width="10"/>
+
+  <!-- Hängelampe -->
+  <line x1="600" y1="0" x2="600" y2="180" stroke="#78716c" stroke-width="4"/>
+  <path d="M550 180 h100 l-14 60 h-72 Z" fill="#b45309" stroke="#78716c" stroke-width="4"/>
+  <circle cx="600" cy="250" r="10" fill="#fde68a"/>
+</svg>

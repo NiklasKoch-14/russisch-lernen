@@ -10,6 +10,7 @@ from app.content.models import (
     TokenRef,
     Unit,
 )
+from app.content.validation import check_token as _check_token
 
 STRESS = "́"
 VOWELS = set("аеёиоуыэюяАЕЁИОУЫЭЮЯ")
@@ -74,16 +75,6 @@ def _exercise_tokens(exercise: Exercise) -> list[TokenRef]:
         return tokens
     if isinstance(exercise, ListenMeaningExercise):
         return list(exercise.sentence)
-    return []
-
-
-def _check_token(course: Course, token: TokenRef, where: str) -> list[str]:
-    lexeme_id, form_key = token
-    lexeme = course.lexemes.get(lexeme_id)
-    if lexeme is None:
-        return [f"{where}: Lexem {lexeme_id!r} existiert nicht im Lexikon"]
-    if form_key not in lexeme.forms:
-        return [f"{where}: Lexem {lexeme_id!r} hat keine Form {form_key!r}"]
     return []
 
 

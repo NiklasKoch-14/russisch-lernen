@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" role="img">
+  <title>На́дя, die Wirtin hinter der Theke</title>
+
+  <rect width="400" height="400" fill="#3f3f46"/>
+  <!-- angedeutetes Glasregal im Rücken -->
+  <rect x="24" y="90" width="352" height="6" fill="#52525b"/>
+  <path d="M56 90 l0 -34 q12 -10 24 0 l0 34 Z" fill="#71717a" opacity="0.7"/>
+  <path d="M100 90 l0 -34 q12 -10 24 0 l0 34 Z" fill="#71717a" opacity="0.7"/>
+  <path d="M300 90 l0 -34 q12 -10 24 0 l0 34 Z" fill="#71717a" opacity="0.7"/>
+
+  <!-- Schultern, Bluse und Schürze -->
+  <path d="M56 400 Q200 258 344 400 Z" fill="#0f766e" stroke="#134e4a" stroke-width="6"/>
+  <path d="M148 400 Q200 320 252 400 Z" fill="#f1f5f9"/>
+  <rect x="164" y="356" width="72" height="44" fill="#e2e8f0"/>
+  <path d="M170 356 q30 -14 60 0" fill="none" stroke="#94a3b8" stroke-width="4"/>
+
+  <!-- Hals und Kopf -->
+  <rect x="178" y="232" width="44" height="56" rx="16" fill="#f0c9a8"/>
+  <ellipse cx="200" cy="192" rx="78" ry="90" fill="#f0c9a8" stroke="#9a3412" stroke-width="3"/>
+  <ellipse cx="122" cy="196" rx="11" ry="17" fill="#f0c9a8" stroke="#9a3412" stroke-width="2"/>
+  <ellipse cx="278" cy="196" rx="11" ry="17" fill="#f0c9a8" stroke="#9a3412" stroke-width="2"/>
+
+  <!-- rotes Haar, straff nach hinten zum Dutt -->
+  <path d="M120 176 Q124 96 200 92 Q276 96 280 176 Q268 128 200 124 Q132 128 120 176 Z" fill="#b45309"/>
+  <circle cx="200" cy="86" r="30" fill="#b45309" stroke="#78350f" stroke-width="3"/>
+  <path d="M118 186 q-8 -30 6 -52" fill="none" stroke="#b45309" stroke-width="11" stroke-linecap="round"/>
+  <path d="M282 186 q8 -30 -6 -52" fill="none" stroke="#b45309" stroke-width="11" stroke-linecap="round"/>
+
+  <!-- Augenbrauen, Augen -->
+  <path d="M152 176 Q170 168 188 174" fill="none" stroke="#78350f" stroke-width="6" stroke-linecap="round"/>
+  <path d="M212 174 Q230 168 248 176" fill="none" stroke="#78350f" stroke-width="6" stroke-linecap="round"/>
+  <ellipse cx="170" cy="198" rx="12" ry="9" fill="#ffffff" stroke="#44403c" stroke-width="3"/>
+  <ellipse cx="230" cy="198" rx="12" ry="9" fill="#ffffff" stroke="#44403c" stroke-width="3"/>
+  <circle cx="171" cy="199" r="4" fill="#1c1917"/>
+  <circle cx="231" cy="199" r="4" fill="#1c1917"/>
+
+  <!-- Nase und Mund: freundlich, aber kurz angebunden -->
+  <path d="M198 200 Q192 228 200 234 Q210 230 203 200" fill="#e0ae8a" stroke="#9a3412" stroke-width="2"/>
+  <path d="M180 258 Q200 268 220 256" fill="none" stroke="#9f1239" stroke-width="5" stroke-linecap="round"/>
+
+  <!-- Ohrringe -->
+  <circle cx="122" cy="214" r="6" fill="#fcd34d"/>
+  <circle cx="278" cy="214" r="6" fill="#fcd34d"/>
+</svg>

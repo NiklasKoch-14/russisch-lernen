@@ -1,0 +1,24 @@
+{
+  "id": "bar-01",
+  "kind": "dialog",
+  "place": "bar",
+  "npc": "pjotr",
+  "title_de": "Der Mann am Tresen",
+  "hint_unit": 15,
+  "intro_de": "Ein älterer Mann dreht sich zu dir um.",
+  "outro_de": "Pjotr nickt und wendet sich seinem Glas zu.",
+  "turns": [
+    {
+      "npc_line": [["privet", "base"], ["kak", "base"], ["dela", "nom.pl"]],
+      "prompt_de": "Sag, dass es dir gut geht, und frag zurück.",
+      "solution": [["khorosho", "base"], ["a", "base"], ["ty", "nom"]],
+      "distractors": [["plokho", "base"], ["vy", "nom"]]
+    },
+    {
+      "npc_line": [["tozhe", "base"], ["khorosho", "base"]],
+      "prompt_de": "Verabschiede dich locker.",
+      "solution": [["poka", "base"]],
+      "distractors": [["spasibo", "base"]]
+    }
+  ]
+}

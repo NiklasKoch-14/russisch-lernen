@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" role="img">
+  <title>Са́ша, jung und mitten im Reden</title>
+
+  <rect width="400" height="400" fill="#334155"/>
+  <circle cx="70" cy="72" r="20" fill="#fbbf24" opacity="0.5"/>
+
+  <!-- Kapuzenpulli -->
+  <path d="M52 400 Q200 254 348 400 Z" fill="#1d4ed8" stroke="#1e3a8a" stroke-width="6"/>
+  <path d="M110 340 Q200 268 290 340 Q200 306 110 340 Z" fill="#2563eb"/>
+  <path d="M176 330 q6 50 -10 70" fill="none" stroke="#dbeafe" stroke-width="7" stroke-linecap="round"/>
+  <path d="M224 330 q-6 50 10 70" fill="none" stroke="#dbeafe" stroke-width="7" stroke-linecap="round"/>
+
+  <!-- Hals und Kopf -->
+  <rect x="180" y="234" width="42" height="52" rx="15" fill="#e8c19c"/>
+  <ellipse cx="200" cy="194" rx="76" ry="86" fill="#e8c19c" stroke="#7c2d12" stroke-width="3"/>
+  <ellipse cx="124" cy="198" rx="10" ry="16" fill="#e8c19c" stroke="#7c2d12" stroke-width="2"/>
+  <ellipse cx="276" cy="198" rx="10" ry="16" fill="#e8c19c" stroke="#7c2d12" stroke-width="2"/>
+
+  <!-- Wuschelhaar -->
+  <path d="M124 168 Q126 104 200 100 Q274 104 276 168 Q262 138 236 146 Q214 122 190 144 Q160 132 148 154 Q136 150 124 168 Z" fill="#292524"/>
+  <path d="M138 116 q22 -26 54 -28" fill="none" stroke="#292524" stroke-width="14" stroke-linecap="round"/>
+  <path d="M262 118 q-18 -24 -48 -30" fill="none" stroke="#292524" stroke-width="14" stroke-linecap="round"/>
+
+  <!-- hochgezogene Augenbrauen -->
+  <path d="M152 172 Q172 160 190 170" fill="none" stroke="#292524" stroke-width="6" stroke-linecap="round"/>
+  <path d="M210 170 Q228 160 248 172" fill="none" stroke="#292524" stroke-width="6" stroke-linecap="round"/>
+
+  <!-- weit offene Augen -->
+  <ellipse cx="171" cy="198" rx="13" ry="11" fill="#ffffff" stroke="#44403c" stroke-width="3"/>
+  <ellipse cx="229" cy="198" rx="13" ry="11" fill="#ffffff" stroke="#44403c" stroke-width="3"/>
+  <circle cx="173" cy="199" r="5" fill="#1c1917"/>
+  <circle cx="231" cy="199" r="5" fill="#1c1917"/>
+
+  <!-- Nase -->
+  <path d="M197 202 Q191 226 200 232 Q209 228 203 202" fill="#d8ab86" stroke="#7c2d12" stroke-width="2"/>
+
+  <!-- offener Mund: er redet gerade -->
+  <path d="M176 252 Q200 244 224 252 Q216 280 200 280 Q184 280 176 252 Z" fill="#7f1d1d" stroke="#7c2d12" stroke-width="2"/>
+  <path d="M181 254 Q200 250 219 254 Q200 258 181 254 Z" fill="#f8fafc"/>
+</svg>
