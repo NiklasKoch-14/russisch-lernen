@@ -70,17 +70,21 @@ def _check_scene(course: Course, village: Village, scene: Scene) -> list[str]:
     return errors
 
 
+def _check_rect(rect, where: str, label: str) -> list[str]:
+    """Ein Anteils-Rechteck muss im Bild liegen — für Klickflächen wie für Standorte."""
+    if any(value < 0 or value > 1 for value in (rect.x, rect.y, rect.w, rect.h)):
+        return [f"{where}: {label} liegt außerhalb von 0 bis 1"]
+    if rect.x + rect.w > 1 or rect.y + rect.h > 1:
+        return [f"{where}: {label} ragt über das Bild hinaus"]
+    return []
+
+
 def _check_places(village: Village) -> list[str]:
     errors: list[str] = []
     for place in village.places.values():
         if place.kind not in PLACE_KINDS:
             errors.append(f"Ort {place.id}: unbekannte Art {place.kind!r}")
-        spot = place.hotspot
-        values = (spot.x, spot.y, spot.w, spot.h)
-        if any(value < 0 or value > 1 for value in values):
-            errors.append(f"Ort {place.id}: Klickfläche liegt außerhalb von 0 bis 1")
-        elif spot.x + spot.w > 1 or spot.y + spot.h > 1:
-            errors.append(f"Ort {place.id}: Klickfläche ragt über die Karte hinaus")
+        errors.extend(_check_rect(place.hotspot, f"Ort {place.id}", "Klickfläche"))
 
     ordered = sorted(village.places.values(), key=lambda place: place.id)
     for index, first in enumerate(ordered):
@@ -102,11 +106,36 @@ def _overlap(first, second) -> bool:
 
 
 def _check_npcs(village: Village) -> list[str]:
-    return [
-        f"Person {npc.id}: Ort {npc.place!r} gibt es nicht"
-        for npc in village.npcs.values()
-        if npc.place not in village.places
-    ]
+    errors: list[str] = []
+    for npc in sorted(village.npcs.values(), key=lambda npc: npc.id):
+        place = village.places.get(npc.place)
+        if place is None:
+            errors.append(f"Person {npc.id}: Ort {npc.place!r} gibt es nicht")
+            continue
+        # An einem Personen-Ort wird die Figur im Raumbild angeklickt. Ohne
+        # Platz stünde sie nirgends und wäre nur über die Rückfall-Liste
+        # erreichbar.
+        if place.kind == "npcs" and npc.spot is None:
+            errors.append(
+                f"Person {npc.id}: braucht einen Platz im Raum, "
+                f"weil man am Ort {place.id} Personen anklickt"
+            )
+        if npc.spot is not None:
+            errors.extend(_check_rect(npc.spot, f"Person {npc.id}", "Platz"))
+
+    for place_id in sorted(village.places):
+        standing = sorted(
+            (npc for npc in village.npcs_at(place_id) if npc.spot is not None),
+            key=lambda npc: npc.id,
+        )
+        for index, first in enumerate(standing):
+            for second in standing[index + 1 :]:
+                if _overlap(first.spot, second.spot):
+                    errors.append(
+                        f"Personen {first.id} und {second.id} in {place_id}: "
+                        "ihre Plätze überlappen sich, eine von beiden ist nicht anklickbar"
+                    )
+    return errors
 
 
 def _check_art(village: Village, art_dir: Path) -> list[str]:

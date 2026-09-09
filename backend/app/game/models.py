@@ -5,7 +5,13 @@ from app.content.models import TokenRef
 
 @dataclass(frozen=True)
 class Hotspot:
-    """Klickfläche als Anteil der Kartenbreite und -höhe, Bezugsformat 16:9."""
+    """Rechteck als Anteil von Bildbreite und -höhe.
+
+    Zweimal gebraucht, mit derselben Bedeutung: die Klickfläche eines Ortes auf
+    der Dorfkarte (16:9) und der Platz einer Person im Raumbild (3:2). Beim
+    Menschen ist dasselbe Rechteck Standort und Klickfläche — zwei getrennte
+    Zahlenreihen würden auseinanderlaufen, und dann klickt man neben die Person.
+    """
 
     x: float
     y: float
@@ -32,6 +38,8 @@ class Npc:
     place: str
     about_de: str
     art: str
+    spot: Hotspot | None = None
+    """Wo die Person im Raumbild steht. None an Orten, wo niemand angeklickt wird."""
 
 
 @dataclass(frozen=True)

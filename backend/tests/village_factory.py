@@ -28,6 +28,7 @@ MINIMAL_NPCS = [
         "place": "bar",
         "about_de": "Sitzt jeden Abend am selben Platz.",
         "art": "npc_pjotr",
+        "spot": {"x": 0.1, "y": 0.3, "w": 0.15, "h": 0.5},
     },
     {
         "id": "prodavshchitsa",

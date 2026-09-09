@@ -21,6 +21,16 @@ def test_loads_npcs_with_their_place(tmp_path):
     assert village.npcs["pjotr"].place == "bar"
 
 
+def test_npc_spot_becomes_floats(tmp_path):
+    spot = load_village(write_village(tmp_path)).npcs["pjotr"].spot
+    assert (spot.x, spot.y, spot.w, spot.h) == (0.1, 0.3, 0.15, 0.5)
+
+
+def test_npc_without_a_spot_keeps_none(tmp_path):
+    # Nina steht im Laden — dort wird niemand angeklickt, sie braucht keinen Platz.
+    assert load_village(write_village(tmp_path)).npcs["prodavshchitsa"].spot is None
+
+
 def test_dialog_turns_become_token_tuples(tmp_path):
     turn = load_village(write_village(tmp_path)).scenes["bar-01"].turns[0]
     assert turn.npc_line == [("privet", "base"), ("kak", "base"), ("dela", "nom.pl")]

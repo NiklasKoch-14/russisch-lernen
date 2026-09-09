@@ -59,6 +59,13 @@ def _scene(raw: dict, source: Path) -> Scene:
         raise ContentError(f"{source.name}: Feld fehlt {exc}") from exc
 
 
+def _rect(raw: dict) -> Hotspot:
+    """Ein Anteils-Rechteck aus dem JSON — Klickfläche eines Ortes oder Platz einer Person."""
+    return Hotspot(
+        x=float(raw["x"]), y=float(raw["y"]), w=float(raw["w"]), h=float(raw["h"])
+    )
+
+
 def load_village(game_dir: str | Path) -> Village:
     """Load the whole village package from disk into an immutable Village."""
     root = Path(game_dir)
@@ -66,17 +73,13 @@ def load_village(game_dir: str | Path) -> Village:
     raw_places = _read_json(root / "places.json")
     places = {}
     for item in raw_places["places"]:
-        spot = item["hotspot"]
         places[item["id"]] = Place(
             id=item["id"],
             name_ru=item["name_ru"],
             name_de=item["name_de"],
             kind=item["kind"],
             art=item["art"],
-            hotspot=Hotspot(
-                x=float(spot["x"]), y=float(spot["y"]),
-                w=float(spot["w"]), h=float(spot["h"]),
-            ),
+            hotspot=_rect(item["hotspot"]),
         )
 
     raw_npcs = _read_json(root / "npcs.json")
@@ -88,6 +91,7 @@ def load_village(game_dir: str | Path) -> Village:
             place=item["place"],
             about_de=item["about_de"],
             art=item["art"],
+            spot=_rect(item["spot"]) if item.get("spot") is not None else None,
         )
         for item in raw_npcs["npcs"]
     }

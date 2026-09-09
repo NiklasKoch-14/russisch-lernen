@@ -5,7 +5,7 @@ from app.course.checker import check_answer
 from app.course.presenter import present_exercise, spoken_text
 from app.course.service import schedule_form
 from app.game import scenes
-from app.game.models import Npc, Scene, Turn, Village
+from app.game.models import Hotspot, Npc, Scene, Turn, Village
 from app.repositories import game_repo, progress_repo
 
 NPC_CONFUSED: list[TokenRef] = [("izvinit", "imp.pl")]
@@ -45,6 +45,13 @@ def _turn_at(scene_id: str, turns: list[Turn], index: int) -> Turn:
     return turns[index]
 
 
+def _rect_payload(rect: Hotspot | None) -> dict | None:
+    """Ein Anteils-Rechteck für den Client, oder None — dann steht die Person nirgends."""
+    if rect is None:
+        return None
+    return {"x": rect.x, "y": rect.y, "w": rect.w, "h": rect.h}
+
+
 def village_payload(village: Village) -> dict:
     return {
         "places": [
@@ -54,10 +61,7 @@ def village_payload(village: Village) -> dict:
                 "name_de": place.name_de,
                 "kind": place.kind,
                 "art": place.art,
-                "hotspot": {
-                    "x": place.hotspot.x, "y": place.hotspot.y,
-                    "w": place.hotspot.w, "h": place.hotspot.h,
-                },
+                "hotspot": _rect_payload(place.hotspot),
             }
             for place in sorted(village.places.values(), key=lambda place: place.id)
         ]
@@ -88,6 +92,7 @@ def place_payload(village: Village, course: Course, conn: Connection, place_id: 
                 "name_de": npc.name_de,
                 "about_de": npc.about_de,
                 "art": npc.art,
+                "spot": _rect_payload(npc.spot),
             }
             for npc in sorted(village.npcs_at(place_id), key=lambda npc: npc.id)
         ],

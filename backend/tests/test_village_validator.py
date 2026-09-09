@@ -164,3 +164,49 @@ def test_accepts_a_place_whose_picture_exists(tmp_path):
     for name in ("village", "bar", "magazin", "npc_pjotr", "npc_nina"):
         (art_dir / f"{name}.svg").write_text("<svg/>", encoding="utf-8")
     assert validate_village(course, village, art_dir) == []
+
+
+def test_reports_npc_at_a_talking_place_without_a_spot(tmp_path):
+    npcs = copy.deepcopy(MINIMAL_NPCS)
+    del npcs[0]["spot"]
+    course, village = _pair(tmp_path, npcs=npcs)
+    assert any("Platz im Raum" in error for error in validate_village(course, village))
+
+
+def test_accepts_a_missing_spot_where_nobody_is_clicked(tmp_path):
+    # Nina steht im Laden; der laeuft ueber einen Knopf, nicht ueber Personen.
+    course, village = _pair(tmp_path)
+    assert validate_village(course, village) == []
+
+
+def test_reports_spot_reaching_past_the_picture(tmp_path):
+    npcs = copy.deepcopy(MINIMAL_NPCS)
+    npcs[0]["spot"] = {"x": 0.9, "y": 0.3, "w": 0.3, "h": 0.5}
+    course, village = _pair(tmp_path, npcs=npcs)
+    assert any("Platz" in error and "hinaus" in error for error in validate_village(course, village))
+
+
+def test_reports_spot_outside_zero_to_one(tmp_path):
+    npcs = copy.deepcopy(MINIMAL_NPCS)
+    npcs[0]["spot"] = {"x": -0.1, "y": 0.3, "w": 0.2, "h": 0.5}
+    course, village = _pair(tmp_path, npcs=npcs)
+    assert any(
+        "außerhalb von 0 bis 1" in error for error in validate_village(course, village)
+    )
+
+
+def test_reports_two_people_standing_on_the_same_spot(tmp_path):
+    npcs = copy.deepcopy(MINIMAL_NPCS)
+    npcs.append(
+        {
+            "id": "dvojnik",
+            "name_ru": "Двойни́к",
+            "name_de": "Doppelgänger",
+            "place": "bar",
+            "about_de": "Steht genau da, wo Pjotr steht.",
+            "art": "npc_pjotr",
+            "spot": dict(npcs[0]["spot"]),
+        }
+    )
+    course, village = _pair(tmp_path, npcs=npcs)
+    assert any("überlappen" in error for error in validate_village(course, village))

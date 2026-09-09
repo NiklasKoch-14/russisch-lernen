@@ -42,6 +42,19 @@ def test_place_payload_lists_the_people_standing_there(conn, pair):
     assert payload["kind"] == "npcs"
 
 
+def test_place_payload_says_where_each_person_stands(conn, pair):
+    course, village = pair
+    payload = service.place_payload(village, course, conn, "bar")
+    assert payload["npcs"][0]["spot"] == {"x": 0.1, "y": 0.3, "w": 0.15, "h": 0.5}
+
+
+def test_place_payload_reports_a_missing_spot_as_null(conn, pair):
+    # Im Laden wird niemand angeklickt; die Ansicht muss das unterscheiden koennen.
+    course, village = pair
+    payload = service.place_payload(village, course, conn, "magazin")
+    assert payload["npcs"][0]["spot"] is None
+
+
 def test_course_place_points_at_the_first_unfinished_unit(conn, pair):
     course, village = pair
     village.places["bar"] = dataclasses.replace(village.places["bar"], kind="course")
