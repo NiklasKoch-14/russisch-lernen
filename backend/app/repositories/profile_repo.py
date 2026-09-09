@@ -36,14 +36,20 @@ def get_or_create_profile(conn: Connection, default_language: str) -> Profile:
     if row is not None:
         return _row_to_profile(row)
 
-    created_at = dt.datetime.now(dt.timezone.utc).isoformat()
+    # OR IGNORE, weil zwei Anfragen gleichzeitig auf eine frische Datenbank
+    # treffen koennen: beide finden kein Profil, beide legen eins an, und die
+    # zweite scheiterte sonst mit UNIQUE constraint failed — also mit 500 auf
+    # einer Route, die nur eine Voreinstellung liest.
     conn.execute(
-        "INSERT INTO profile (id, language, cefr_level, created_at, show_transliteration,"
-        " placement_unit, audio_autoplay, type_in_village) VALUES (1, ?, ?, ?, 1, NULL, 1, 1)",
-        (default_language, "UNPLACED", created_at),
+        "INSERT OR IGNORE INTO profile (id, language, cefr_level, created_at,"
+        " show_transliteration, placement_unit, audio_autoplay, type_in_village)"
+        " VALUES (1, ?, ?, ?, 1, NULL, 1, 1)",
+        (default_language, "UNPLACED", dt.datetime.now(dt.timezone.utc).isoformat()),
     )
     conn.commit()
-    return Profile(language=default_language, cefr_level="UNPLACED", created_at=created_at)
+    return _row_to_profile(
+        conn.execute(f"SELECT {SELECT_COLUMNS} FROM profile WHERE id = 1").fetchone()
+    )
 
 
 def update_profile(

@@ -68,3 +68,38 @@ def test_update_profile_switches_back_to_tiles(conn):
     updated = profile_repo.update_profile(conn, type_in_village=False)
     assert updated.type_in_village is False
     assert profile_repo.get_or_create_profile(conn, "russian").type_in_village is False
+
+
+class RacingConnection:
+    """Eine Verbindung, die zwischen Lesen und Schreiben ueberholt wird.
+
+    Genau das passiert im Betrieb, wenn zwei Anfragen gleichzeitig auf eine
+    frische Datenbank treffen: beide sehen kein Profil, beide legen eins an.
+    """
+
+    def __init__(self, conn, other):
+        self._conn = conn
+        self._other = other
+        self._overtaken = False
+
+    def execute(self, sql, *args):
+        result = self._conn.execute(sql, *args)
+        if sql.lstrip().startswith("SELECT") and not self._overtaken:
+            self._overtaken = True
+            profile_repo.get_or_create_profile(self._other, default_language="russian")
+        return result
+
+    def __getattr__(self, name):
+        return getattr(self._conn, name)
+
+
+def test_two_requests_at_once_do_not_collide(db_path):
+    from app.db import get_connection
+
+    first, second = get_connection(db_path), get_connection(db_path)
+    profile = profile_repo.get_or_create_profile(
+        RacingConnection(first, second), default_language="russian"
+    )
+    assert profile.language == "russian"
+    first.close()
+    second.close()
