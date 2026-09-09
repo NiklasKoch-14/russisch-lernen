@@ -1,4 +1,4 @@
-import { fireEvent, render, screen, within } from "@testing-library/react";
+import { act, fireEvent, render, screen, within } from "@testing-library/react";
 import { MemoryRouter, Route, Routes } from "react-router-dom";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 
@@ -209,6 +209,21 @@ describe("SceneView", () => {
     expect(feedback.className).toMatch(/rose/);
   });
 
+  it("stellt den Ortsnamen der Karte gegenueber", async () => {
+    // Steht die Karte links, gehoert der Name nach rechts — sonst deckt sie
+    // ihn zu.
+    vi.spyOn(api, "getPlace").mockResolvedValue(bar);
+    vi.spyOn(api, "getTurn").mockResolvedValue({
+      ...turn(0),
+      npc: { id: "nadja", name_ru: "На́дя", name_de: "Nadja", art: "npc_nadja" },
+    });
+    renderScene();
+    expect(await screen.findByTestId("dialog-card")).toHaveAttribute("data-side", "left");
+    const header = screen.getByTestId("place-header").parentElement!.parentElement!;
+    expect(header.className).toMatch(/right-4/);
+    expect(header.className).not.toMatch(/left-4/);
+  });
+
   it("nennt ueber dem Raum, wo man ist", async () => {
     // Derselbe Kopf wie auf der Ortsseite — sonst wechselt beim Ansprechen
     // einer Person die halbe Seitengestalt.
@@ -218,6 +233,36 @@ describe("SceneView", () => {
     const header = await screen.findByTestId("place-header");
     expect(within(header).getByText("бар")).toBeVisible();
     expect(within(header).getByText("Bar")).toBeVisible();
+  });
+
+  it("behaelt die gewaehlte Kachel, wenn der Raum erst spaeter eintrifft", async () => {
+    // Der Raum wird getrennt geladen. Haengt React die Dialogkarte beim
+    // Eintreffen um, verliert die Aufgabe ihre Auswahl — genau das ist beim
+    // Umbau auf das Vollbild passiert.
+    let liefereRaum: (place: typeof bar) => void = () => {};
+    vi.spyOn(api, "getPlace").mockReturnValue(
+      new Promise((resolve) => {
+        liefereRaum = resolve;
+      }) as ReturnType<typeof api.getPlace>,
+    );
+    vi.spyOn(api, "getTurn").mockResolvedValue(turn(0));
+    renderScene();
+
+    fireEvent.click(await screen.findByRole("button", { name: /хорошо́/ }));
+    expect(screen.getByRole("button", { name: /хорошо́/ })).toHaveAttribute(
+      "aria-pressed",
+      "true",
+    );
+
+    await act(async () => {
+      liefereRaum(bar);
+    });
+
+    await screen.findByTestId("place-stage");
+    expect(screen.getByRole("button", { name: /хорошо́/ })).toHaveAttribute(
+      "aria-pressed",
+      "true",
+    );
   });
 
   it("zeigt am Ende das Nachwort", async () => {

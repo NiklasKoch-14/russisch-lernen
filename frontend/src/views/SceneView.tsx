@@ -82,8 +82,8 @@ export default function SceneView() {
     <div
       data-testid="dialog-card"
       data-side={side}
-      className={`space-y-4 rounded-2xl border-2 border-slate-200 bg-white/95 p-4 shadow-lg backdrop-blur-sm sm:absolute sm:top-4 sm:max-h-[calc(100%-2rem)] sm:w-[46%] sm:overflow-y-auto ${
-        side === "left" ? "sm:left-4" : "sm:right-4"
+      className={`pointer-events-auto space-y-4 rounded-2xl border-2 border-slate-200 bg-white/95 p-4 shadow-lg backdrop-blur-sm absolute top-14 max-h-[calc(100%-4.5rem)] w-[46%] overflow-y-auto max-sm:static max-sm:mt-4 max-sm:max-h-none max-sm:w-full ${
+        side === "left" ? "left-4 sm:left-6" : "right-4 sm:right-6"
       }`}
     >
       {done ? (
@@ -152,23 +152,34 @@ export default function SceneView() {
   );
 
   return (
-    <section className="mx-auto flex w-full max-w-5xl flex-col gap-4 sm:min-h-0 sm:flex-1">
-      {place && <PlaceHeader nameRu={place.name_ru} nameDe={place.name_de} />}
-      <div className="flex justify-center sm:min-h-0 sm:flex-1">
-        {/* Der Rahmen nimmt genau die Groesse der Buehne an, damit die
-            Dialogkarte an deren Rand sitzt und nicht am Seitenrand. */}
-        <div className="relative w-full sm:h-full sm:w-auto">
+    <section className="flex w-full flex-col gap-4 sm:min-h-0 sm:flex-1">
+      {/* Der Rahmen steht immer, auch bevor der Raum geladen ist: sonst haengt
+          React die Dialogkarte beim Nachladen um und die schon gewaehlten
+          Kacheln sind weg. */}
+      <div className="relative aspect-[3/2] w-full overflow-hidden sm:aspect-auto sm:min-h-0 sm:flex-1">
         {place && (
           <PlaceStage
             art={place.art}
             altText={place.name_de}
             npcs={place.npcs}
             focusNpcId={done ? undefined : turn!.npc.id}
-            className={"w-full sm:h-full sm:w-auto sm:max-w-full"}
+            cover
           />
         )}
+        {place && (
+          // Auf die freie Seite: die Dialogkarte deckt sonst genau die Ecke
+          // zu, in der der Ortsname steht.
+          <div
+            className={`pointer-events-none absolute top-4 pt-14 sm:top-6 sm:pt-16 ${
+              side === "left" ? "right-4 text-right sm:right-6" : "left-4 sm:left-6"
+            }`}
+          >
+            <div className="pointer-events-auto">
+              <PlaceHeader nameRu={place.name_ru} nameDe={place.name_de} onImage />
+            </div>
+          </div>
+        )}
         {card}
-        </div>
       </div>
     </section>
   );

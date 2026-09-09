@@ -6,8 +6,10 @@ import PlaceStage from "../game/PlaceStage";
 import { artUrl, getPlace, startScene } from "../gameApi";
 import type { PlaceDetail } from "../gameTypes";
 
-const ACTION = "rounded-xl bg-sky-600 px-5 py-2 font-medium text-white disabled:bg-slate-300";
-const BACK = "rounded-xl border-2 border-slate-300 px-5 py-2 font-medium text-slate-700 hover:border-sky-400";
+const ACTION =
+  "rounded-xl bg-sky-600 px-5 py-2 font-medium text-white shadow disabled:bg-slate-300";
+const BACK =
+  "rounded-xl border-2 border-slate-300 bg-white/90 px-5 py-2 font-medium text-slate-700 shadow backdrop-blur-sm hover:border-sky-400";
 
 export default function PlaceView() {
   const { placeId } = useParams();
@@ -44,45 +46,72 @@ export default function PlaceView() {
   const selectable = place.kind === "npcs" && !artMissing;
 
   return (
-    <section className="mx-auto flex w-full max-w-5xl flex-col gap-4 sm:min-h-0 sm:flex-1">
-      <PlaceHeader nameRu={place.name_ru} nameDe={place.name_de} />
-
-      {/* Der Raum nimmt, was zwischen Kopf und Knopfzeile uebrig bleibt, und
-          behaelt dabei sein Seitenverhaeltnis — die Figuren sitzen auf
-          Anteilen davon und wuerden sonst verrutschen. */}
-      <div className="flex justify-center sm:min-h-0 sm:flex-1">
+    <section className="flex w-full flex-col gap-4 sm:min-h-0 sm:flex-1">
       {artMissing ? (
-        <img
-          src={artUrl(place.art)}
-          alt={place.name_de}
-          className="block w-full rounded-2xl sm:h-full sm:w-auto sm:object-contain"
-        />
+        <>
+          <PlaceHeader nameRu={place.name_ru} nameDe={place.name_de} />
+          <img src={artUrl(place.art)} alt={place.name_de} className="block w-full rounded-2xl" />
+        </>
       ) : (
-        // Auch Orte ohne Personen benutzen die Bühne: gleicher Zuschnitt,
-        // gleicher Rückfall, kein zweiter Weg, ein Bild zu zeigen.
-        <PlaceStage
-          art={place.art}
-          altText={place.name_de}
-          npcs={place.npcs}
-          onSelect={selectable ? (npc) => open(npc.id) : undefined}
-          onArtMissing={() => setArtMissing(true)}
-          className={`w-full sm:h-full sm:w-auto sm:max-w-full`}
-        />
+        <div className="relative aspect-[3/2] w-full overflow-hidden sm:aspect-auto sm:min-h-0 sm:flex-1">
+          <PlaceStage
+            art={place.art}
+            altText={place.name_de}
+            npcs={place.npcs}
+            onSelect={selectable ? (npc) => open(npc.id) : undefined}
+            onArtMissing={() => setArtMissing(true)}
+            cover
+          />
+          {/* Aufsätze liegen über dem Bild: der Raum soll den Platz ganz
+              ausfüllen, Name und Wege schweben darauf. */}
+          <div className="pointer-events-none absolute inset-0 flex flex-col justify-between p-4 sm:p-6">
+            <div className="pointer-events-auto self-start pt-14 sm:pt-16">
+              <PlaceHeader nameRu={place.name_ru} nameDe={place.name_de} onImage />
+            </div>
+            <div
+              data-testid="place-actions"
+              className="pointer-events-auto flex flex-wrap items-center gap-3 self-end"
+            >
+              {place.kind === "course" && (
+                <button
+                  type="button"
+                  disabled={!place.next_unit_id}
+                  onClick={() => place.next_unit_id && navigate(`/kurs/${place.next_unit_id}`)}
+                  className={ACTION}
+                >
+                  {place.next_unit_id
+                    ? `Einheit ${place.next_unit_id} beginnen`
+                    : "Alles geschafft"}
+                </button>
+              )}
+              {place.kind === "shopping" && (
+                <button type="button" onClick={() => open(undefined)} className={ACTION}>
+                  Einkaufen gehen
+                </button>
+              )}
+              <button type="button" onClick={() => navigate("/dorf")} className={BACK}>
+                Zurück ins Dorf
+              </button>
+            </div>
+          </div>
+        </div>
       )}
-      </div>
 
-      {place.kind === "npcs" && (
-        <ul className="grid gap-4 sm:max-h-40 sm:overflow-y-auto sm:grid-cols-2 lg:grid-cols-3">
-          {place.npcs
-            .filter((npc) => artMissing || npc.spot == null)
-            .map((npc) => (
+      {place.kind === "npcs" && artMissing && (
+        <>
+          <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {place.npcs.map((npc) => (
               <li key={npc.id}>
                 <button
                   type="button"
                   onClick={() => open(npc.id)}
                   className="flex w-full items-center gap-3 rounded-2xl border-2 border-slate-200 p-3 text-left hover:border-sky-400"
                 >
-                  <img src={artUrl(npc.art)} alt="" className="h-16 w-16 rounded-full object-contain" />
+                  <img
+                    src={artUrl(npc.art)}
+                    alt=""
+                    className="h-16 w-16 rounded-full object-contain"
+                  />
                   <span>
                     <span className="block font-medium">{npc.name_ru}</span>
                     <span className="block text-sm text-slate-600">{npc.about_de}</span>
@@ -90,31 +119,33 @@ export default function PlaceView() {
                 </button>
               </li>
             ))}
-        </ul>
+          </ul>
+          <div data-testid="place-actions" className="flex flex-wrap items-center gap-3">
+            <button type="button" onClick={() => navigate("/dorf")} className={BACK}>
+              Zurück ins Dorf
+            </button>
+          </div>
+        </>
       )}
 
-      <div data-testid="place-actions" className="flex flex-wrap items-center gap-3">
-        {place.kind === "course" && (
-          <button
-            type="button"
-            disabled={!place.next_unit_id}
-            onClick={() => place.next_unit_id && navigate(`/kurs/${place.next_unit_id}`)}
-            className={ACTION}
-          >
-            {place.next_unit_id ? `Einheit ${place.next_unit_id} beginnen` : "Alles geschafft"}
-          </button>
-        )}
-
-        {place.kind === "shopping" && (
-          <button type="button" onClick={() => open(undefined)} className={ACTION}>
-            Einkaufen gehen
-          </button>
-        )}
-
-        <button type="button" onClick={() => navigate("/dorf")} className={BACK}>
-          Zurück ins Dorf
-        </button>
-      </div>
+      {/* Leute ohne Platz im Raum bleiben über die Liste erreichbar. */}
+      {place.kind === "npcs" && !artMissing && place.npcs.some((npc) => npc.spot == null) && (
+        <ul className="flex flex-wrap gap-3">
+          {place.npcs
+            .filter((npc) => npc.spot == null)
+            .map((npc) => (
+              <li key={npc.id}>
+                <button
+                  type="button"
+                  onClick={() => open(npc.id)}
+                  className="rounded-xl border-2 border-slate-200 px-3 py-2 font-medium hover:border-sky-400"
+                >
+                  {npc.name_ru}
+                </button>
+              </li>
+            ))}
+        </ul>
+      )}
     </section>
   );
 }

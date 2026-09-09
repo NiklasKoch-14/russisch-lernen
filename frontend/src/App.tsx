@@ -39,10 +39,21 @@ export default function App() {
             Fliesstext-Fluss, sonst wird es dort zu eng. */}
         <div
           className={`bg-slate-50 text-slate-900 ${
-            wide ? "min-h-screen sm:flex sm:h-dvh sm:min-h-0 sm:flex-col" : "min-h-screen"
+            wide
+              ? "min-h-screen sm:relative sm:flex sm:h-dvh sm:min-h-0 sm:flex-col sm:overflow-hidden"
+              : "min-h-screen"
           }`}
         >
-          <header className="border-b border-slate-200 bg-white">
+          <header
+            className={
+              wide
+                ? // Ueber dem Bild statt darueber gestapelt: der Raum soll den
+                  // ganzen Platz bekommen, die Navigation bleibt trotzdem
+                  // sichtbar — so wollte es der Nutzer.
+                  "border-b border-slate-200 bg-white sm:absolute sm:inset-x-0 sm:top-0 sm:z-20 sm:border-0 sm:bg-white/75 sm:backdrop-blur"
+                : "border-b border-slate-200 bg-white"
+            }
+          >
             <div
               className={
                 wide
@@ -72,7 +83,7 @@ export default function App() {
           <main
             className={
               wide
-                ? "px-4 py-6 sm:flex sm:min-h-0 sm:flex-1 sm:flex-col sm:py-4"
+                ? "px-4 py-6 sm:flex sm:min-h-0 sm:flex-1 sm:flex-col sm:p-0"
                 : "mx-auto max-w-3xl px-4 py-6"
             }
           >

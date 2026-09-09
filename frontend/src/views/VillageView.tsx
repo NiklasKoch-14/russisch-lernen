@@ -22,7 +22,11 @@ export default function VillageView() {
 
   return (
     <section className="flex flex-col gap-4 sm:min-h-0 sm:flex-1">
-      <h2 className="text-2xl font-semibold">Дере́вня — dein Dorf</h2>
+      {/* Auf dem Bild statt darueber: die Karte soll den Platz ganz bekommen,
+          und hinter der schwebenden Kopfzeile waere die Zeile verdeckt. */}
+      <h2 className="text-2xl font-semibold sm:absolute sm:left-6 sm:top-6 sm:z-10 sm:pt-16 sm:text-4xl sm:text-white sm:drop-shadow sm:[paint-order:stroke_fill] sm:[-webkit-text-stroke:3px_#0f172a]">
+        Дере́вня — dein Dorf
+      </h2>
       {/* Die Karte gibt das Seitenverhaeltnis vor; die Klickflaechen sind
           Anteile davon und sitzen deshalb bei jeder Fenstergroesse richtig.
           Fehlt das Bild, traegt der Kasten selbst das Verhaeltnis und die

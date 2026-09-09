@@ -20,6 +20,12 @@ interface Props {
   /** Größenklassen von außen. Das Seitenverhältnis bleibt in jedem Fall: die
       Figuren sitzen auf Anteilen davon. */
   className?: string;
+  /** Füllt den Rahmen ganz: das Bild wächst über den Rand hinaus, statt sich
+      zu verzerren — sonst stünden die Figuren neben ihren Stühlen. Den
+      beschneidenden Rahmen stellt dann der Aufrufer, und die Aufsätze liegen
+      dort statt hier: so bleiben sie an ihrer Stelle im Baum, auch wenn das
+      Bild erst später eintrifft. */
+  cover?: boolean;
 }
 
 /**
@@ -39,18 +45,28 @@ export default function PlaceStage({
   onArtMissing,
   children,
   className = "w-full",
+  cover = false,
 }: Props) {
   const [artMissing, setArtMissing] = useState(false);
   // Lose Prüfung mit Absicht: fehlt das Feld ganz (ältere Nutzlast, Testdaten),
   // ist es undefined und nicht null — beides heißt: steht in keinem Raum.
   const standing = npcs.filter((npc) => npc.spot != null);
 
-  return (
+  const stage = (
     <div
       data-testid="place-stage"
-      className={`relative aspect-[3/2] overflow-hidden rounded-2xl ${className} ${
-        artMissing ? "bg-slate-200" : ""
-      }`}
+      className={
+        cover
+          ? // Mindestens so groß wie der Rahmen, in beiden Richtungen — das
+            // Seitenverhältnis lässt das Bild dann in einer Richtung
+            // überstehen, und der Rahmen schneidet es ab.
+            `absolute left-1/2 top-1/2 aspect-[3/2] min-h-full min-w-full -translate-x-1/2 -translate-y-1/2 ${
+              artMissing ? "bg-slate-200" : ""
+            }`
+          : `relative aspect-[3/2] overflow-hidden rounded-2xl ${className} ${
+              artMissing ? "bg-slate-200" : ""
+            }`
+      }
     >
       {!artMissing && (
         <img
@@ -73,9 +89,11 @@ export default function PlaceStage({
         />
       ))}
 
-      {children}
+      {!cover && children}
     </div>
   );
+
+  return stage;
 }
 
 function Figure({
