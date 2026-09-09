@@ -1,4 +1,4 @@
-import { REVEAL_DELAY_MS, RING_DELAY_MS } from "./useRevealOnHover";
+import { GLOSS_RING_MS, REVEAL_DELAY_MS, RING_DELAY_MS } from "./useRevealOnHover";
 
 const SIZE = 16;
 const STROKE = 2.5;
@@ -15,7 +15,13 @@ const CIRCUMFERENCE = 2 * Math.PI * RADIUS;
  * beginnt so, als liefe sie bereits seit dem Hovern, und wird punktgenau mit
  * dem Aufdecken voll.
  */
-export default function RevealRing() {
+export default function RevealRing({ phase = "translit" }: { phase?: "translit" | "gloss" }) {
+  // Erste Runde: verkürzt und mit Startversatz, weil sie später einsetzt.
+  // Zweite Runde: läuft von vorn und in anderer Farbe, damit erkennbar ist,
+  // dass noch etwas kommt.
+  const duration = phase === "gloss" ? GLOSS_RING_MS : REVEAL_DELAY_MS;
+  const offset = phase === "gloss" ? 0 : RING_DELAY_MS;
+  const stroke = phase === "gloss" ? "stroke-emerald-500" : "stroke-sky-500";
   return (
     <svg
       data-testid="reveal-ring"
@@ -41,9 +47,9 @@ export default function RevealRing() {
         strokeWidth={STROKE}
         strokeLinecap="round"
         strokeDasharray={CIRCUMFERENCE}
-        className="origin-center -rotate-90 stroke-sky-500"
+        className={`origin-center -rotate-90 ${stroke}`}
         style={{
-          animation: `speaker-reveal-ring ${REVEAL_DELAY_MS}ms linear -${RING_DELAY_MS}ms forwards`,
+          animation: `speaker-reveal-ring ${duration}ms linear -${offset}ms forwards`,
         }}
       />
     </svg>

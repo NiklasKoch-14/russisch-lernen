@@ -3,7 +3,7 @@ import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
 import Tile from "./Tile";
 
-const word = { text: "де́лаю", translit: "délaju" };
+const word = { text: "де́лаю", translit: "délaju", gloss_de: "machen, tun" };
 
 const renderTile = () =>
   render(<Tile word={word} state="idle" onClick={vi.fn()} />);
@@ -64,7 +64,11 @@ describe("Tile — Aufdecken der Aussprache", () => {
   });
 
   it("nimmt den Ladekreis weg, sobald aufgedeckt ist", () => {
-    renderTile();
+    // Bei einem Wort ohne Bedeutung ist mit der Aussprache Schluss; wo es eine
+    // gibt, dreht der Kreis eine zweite Runde (siehe unten).
+    render(
+      <Tile word={{ text: "де́лаю", translit: "délaju" }} state="idle" onClick={vi.fn()} />,
+    );
     fireEvent.mouseEnter(screen.getByRole("button"));
     act(() => vi.advanceTimersByTime(1000));
 
@@ -89,5 +93,58 @@ describe("Tile — Aufdecken der Aussprache", () => {
     fireEvent.mouseEnter(screen.getByRole("button"));
     act(() => vi.advanceTimersByTime(500));
     expect(screen.queryByTestId("reveal-ring")).toBeNull();
+  });
+});
+
+
+describe("Tile — Aufdecken der Bedeutung", () => {
+  it("zeigt die Bedeutung erst nach 2,5 Sekunden", () => {
+    renderTile();
+    fireEvent.mouseEnter(screen.getByRole("button"));
+
+    act(() => vi.advanceTimersByTime(1000));
+    // Erst die Aussprache — die Bedeutung nimmt sonst das Nachdenken vorweg.
+    expect(screen.getByText("délaju")).toBeVisible();
+    expect(screen.queryByText("machen, tun")).toBeNull();
+
+    act(() => vi.advanceTimersByTime(1500));
+    expect(screen.getByText("machen, tun")).toBeVisible();
+  });
+
+  it("laesst den Ladekreis eine zweite Runde drehen", () => {
+    renderTile();
+    fireEvent.mouseEnter(screen.getByRole("button"));
+
+    act(() => vi.advanceTimersByTime(1000));
+    const ring = screen.getByTestId("reveal-ring").querySelector("[style]") as HTMLElement;
+    // Zweite Runde: volle 1500 ms, ohne den Startversatz der ersten.
+    expect(ring.style.animation).toContain("1500ms");
+  });
+
+  it("dreht keine zweite Runde ohne Bedeutung", () => {
+    render(
+      <Tile word={{ text: "де́лаю", translit: "délaju" }} state="idle" onClick={vi.fn()} />,
+    );
+    fireEvent.mouseEnter(screen.getByRole("button"));
+    act(() => vi.advanceTimersByTime(1000));
+    expect(screen.queryByTestId("reveal-ring")).toBeNull();
+  });
+
+  it("hoert nach der zweiten Runde auf zu drehen", () => {
+    renderTile();
+    fireEvent.mouseEnter(screen.getByRole("button"));
+    act(() => vi.advanceTimersByTime(2500));
+    expect(screen.queryByTestId("reveal-ring")).toBeNull();
+  });
+
+  it("nimmt die Bedeutung weg, wenn die Maus weggeht", () => {
+    renderTile();
+    const button = screen.getByRole("button");
+    fireEvent.mouseEnter(button);
+    act(() => vi.advanceTimersByTime(2500));
+    expect(screen.getByText("machen, tun")).toBeVisible();
+
+    fireEvent.mouseLeave(button);
+    expect(screen.queryByText("machen, tun")).toBeNull();
   });
 });

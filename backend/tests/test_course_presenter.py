@@ -115,3 +115,44 @@ def test_listen_meaning_shuffles_options_and_hides_the_answer(tmp_path):
     assert "correct_index" not in payload
     assert payload["audio_text"] == "я де́лаю"
     assert [word["text"] for word in payload["sentence"]] == ["я", "де́лаю"]
+
+
+def test_tiles_carry_their_meaning(tmp_path):
+    # Die Kachel deckt nach laengerem Verweilen ihre Bedeutung auf; dafuer muss
+    # sie in der Nutzlast stehen.
+    course = _course(tmp_path)
+    payload = present_exercise(course, course.units[1].exercises[0])
+    assert {tile["gloss_de"] for tile in payload["tiles"]} == {"ich", "machen, tun"}
+
+
+def test_choose_form_options_carry_their_meaning(tmp_path):
+    course = _course(tmp_path)
+    payload = present_exercise(course, course.units[1].exercises[1])
+    assert all(option["gloss_de"] for option in payload["options"])
+    assert payload["sentence"][0]["gloss_de"] == "ich"
+
+
+def test_match_pairs_left_side_hides_the_meaning(tmp_path):
+    # Bei "Paare zuordnen" IST die Bedeutung die Loesung: stuende sie an der
+    # russischen Kachel, waere die Aufgabe geschenkt.
+    course = _course(tmp_path)
+    payload = present_exercise(course, course.units[1].exercises[2])
+    assert all("gloss_de" not in item for item in payload["left"])
+
+
+def test_listen_meaning_sentence_hides_the_meaning(tmp_path):
+    # Dieselbe Falle: gesucht ist die Bedeutung des gehoerten Satzes.
+    unit = copy.deepcopy(MINIMAL_UNIT)
+    unit["exercises"].append(
+        {
+            "id": "1-5",
+            "type": "listen_meaning",
+            "prompt_de": "Hör zu.",
+            "sentence": [["ja", "nom"], ["delat", "prs.1sg"]],
+            "correct_index": 0,
+            "options_de": ["Ich mache das.", "Er macht das.", "Du machst das."],
+        }
+    )
+    course = load_course(write_course(tmp_path, units=[unit]))
+    payload = present_exercise(course, course.units[1].exercises[4])
+    assert all("gloss_de" not in word for word in payload["sentence"])

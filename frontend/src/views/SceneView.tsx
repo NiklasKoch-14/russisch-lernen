@@ -119,7 +119,16 @@ export default function SceneView() {
           />
 
           {result && (
-            <div className="space-y-3 border-t-2 border-slate-200 pt-3">
+            // Dieselbe Rueckmeldung wie im Kurs: gruen mit "Richtig!", rot mit
+            // "Nicht ganz." — ohne sie bleibt nach dem Pruefen offen, ob die
+            // Antwort gestimmt hat.
+            <div
+              data-testid="turn-feedback"
+              className={`space-y-3 rounded-xl p-3 ${
+                result.correct ? "bg-emerald-50" : "bg-rose-50"
+              }`}
+            >
+              <p className="font-medium">{result.correct ? "Richtig!" : "Nicht ganz."}</p>
               {result.npc_reaction && <NpcLine line={result.npc_reaction} />}
               {!result.correct && <p>{result.explanation_de}</p>}
               {result.scene_completed && <p>{result.outro_de}</p>}

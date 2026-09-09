@@ -10,6 +10,11 @@ export const REVEAL_DELAY_MS = 1000;
 export const RING_START_FRACTION = 1 / 3;
 export const RING_DELAY_MS = Math.round(REVEAL_DELAY_MS * RING_START_FRACTION);
 
+/** So lange insgesamt, bis auch die Bedeutung erscheint. */
+export const GLOSS_DELAY_MS = 2500;
+/** Was davon auf die zweite Runde des Ladekreises entfällt. */
+export const GLOSS_RING_MS = GLOSS_DELAY_MS - REVEAL_DELAY_MS;
+
 /**
  * Deckt etwas nach kurzem Verweilen auf und verbirgt es beim Verlassen wieder.
  *
@@ -22,11 +27,14 @@ export function useRevealOnHover(delayMs: number = REVEAL_DELAY_MS) {
   const [revealed, setRevealed] = useState(false);
   /** Wartet schon lange genug, dass der Ladekreis sich lohnt. */
   const [pendingReveal, setPendingReveal] = useState(false);
+  /** Zweite Stufe: die Bedeutung, nach nochmals gut einer Sekunde. */
+  const [revealedGloss, setRevealedGloss] = useState(false);
   const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const ringTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const glossTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const clear = useCallback(() => {
-    for (const handle of [timer, ringTimer]) {
+    for (const handle of [timer, ringTimer, glossTimer]) {
       if (handle.current !== null) {
         clearTimeout(handle.current);
         handle.current = null;
@@ -47,6 +55,7 @@ export function useRevealOnHover(delayMs: number = REVEAL_DELAY_MS) {
       setRevealed(true);
       setPendingReveal(false);
     }, delayMs);
+    glossTimer.current = setTimeout(() => setRevealedGloss(true), GLOSS_DELAY_MS);
   }, [clear, delayMs]);
 
   const onMouseLeave = useCallback(() => {
@@ -54,7 +63,14 @@ export function useRevealOnHover(delayMs: number = REVEAL_DELAY_MS) {
     setHovering(false);
     setRevealed(false);
     setPendingReveal(false);
+    setRevealedGloss(false);
   }, [clear]);
 
-  return { hovering, revealed, pendingReveal, bind: { onMouseEnter, onMouseLeave } };
+  return {
+    hovering,
+    revealed,
+    pendingReveal,
+    revealedGloss,
+    bind: { onMouseEnter, onMouseLeave },
+  };
 }

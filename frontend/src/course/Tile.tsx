@@ -26,8 +26,11 @@ export default function Tile({
   className?: string;
 }) {
   // Das Aufdecken haengt an der ganzen Karte, nicht am winzigen Text darin.
-  const { revealed, pendingReveal, bind } = useRevealOnHover();
+  const { revealed, pendingReveal, revealedGloss, bind } = useRevealOnHover();
   const showsRing = pendingReveal && Boolean(word.translit);
+  // Zweite Runde nur, wo es auch etwas aufzudecken gibt.
+  const showsGlossRing = revealed && !revealedGloss && Boolean(word.gloss_de);
+  const showsGloss = revealedGloss && Boolean(word.gloss_de);
 
   return (
     <button
@@ -40,6 +43,14 @@ export default function Tile({
     >
       <RussianText word={word} revealed={revealed} />
       {showsRing ? <RevealRing /> : null}
+      {showsGlossRing ? <RevealRing phase="gloss" /> : null}
+      {/* Als Fahne unter der Kachel statt im Fluss: sonst waere jede Kachel
+          dauerhaft eine Zeile hoeher, nur damit beim Aufdecken nichts springt. */}
+      {showsGloss ? (
+        <span className="pointer-events-none absolute left-1/2 top-full z-10 mt-1 -translate-x-1/2 whitespace-nowrap rounded-lg bg-slate-800 px-2 py-1 text-xs font-medium text-white shadow">
+          {word.gloss_de}
+        </span>
+      ) : null}
     </button>
   );
 }

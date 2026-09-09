@@ -1,6 +1,8 @@
 export interface Word {
   text: string;
   translit: string;
+  /** Fehlt, wo die Bedeutung die Lösung wäre — Paare zuordnen, Hörverstehen. */
+  gloss_de?: string;
 }
 
 export interface Tile extends Word {

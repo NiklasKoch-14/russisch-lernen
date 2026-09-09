@@ -11,9 +11,19 @@ from app.content.models import (
 from app.course.shuffle import shuffled_order
 
 
-def _word(course: Course, ref: TokenRef) -> dict:
+def _word(course: Course, ref: TokenRef, *, gloss: bool = False) -> dict:
+    """Ein Wort für den Client.
+
+    Die Bedeutung bleibt standardmäßig weg: bei „Paare zuordnen" und beim
+    Hörverstehen IST sie die Lösung. Wo sie nur hilft — Kacheln, Satzlücken —,
+    wird sie ausdrücklich angefordert; die Kachel deckt sie nach längerem
+    Verweilen auf.
+    """
     form = course.form(ref)
-    return {"text": form.text, "translit": form.translit}
+    word = {"text": form.text, "translit": form.translit}
+    if gloss:
+        word["gloss_de"] = course.gloss(ref)
+    return word
 
 
 # Wie ein Woerterbuch ein Wort auffuehrt. Die Reihenfolge ist die Suchreihenfolge;
@@ -88,7 +98,10 @@ def present_exercise(course: Course, exercise: Exercise) -> dict:
     if isinstance(exercise, BuildSentenceExercise):
         tiles = build_sentence_tiles(course, exercise)
         payload = base | {
-            "tiles": [{"index": index, **_word(course, ref)} for index, ref in enumerate(tiles)],
+            "tiles": [
+                {"index": index, **_word(course, ref, gloss=True)}
+                for index, ref in enumerate(tiles)
+            ],
             "audio_prompt": exercise.audio_prompt,
         }
         if exercise.audio_prompt:
@@ -98,9 +111,13 @@ def present_exercise(course: Course, exercise: Exercise) -> dict:
     if isinstance(exercise, ChooseFormExercise):
         options = choose_form_options(course, exercise)
         payload = base | {
-            "sentence": [None if ref is None else _word(course, ref) for ref in exercise.sentence],
+            "sentence": [
+                None if ref is None else _word(course, ref, gloss=True)
+                for ref in exercise.sentence
+            ],
             "options": [
-                {"index": index, **_word(course, ref)} for index, ref in enumerate(options)
+                {"index": index, **_word(course, ref, gloss=True)}
+                for index, ref in enumerate(options)
             ],
             "audio_prompt": exercise.audio_prompt,
         }
@@ -138,7 +155,7 @@ def present_exercise(course: Course, exercise: Exercise) -> dict:
                 }
             )
         return base | {
-            "tutor_line": [_word(course, ref) for ref in exercise.tutor_line],
+            "tutor_line": [_word(course, ref, gloss=True) for ref in exercise.tutor_line],
             "options": options,
         }
 

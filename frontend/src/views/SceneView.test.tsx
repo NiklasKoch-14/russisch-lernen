@@ -183,6 +183,32 @@ describe("SceneView", () => {
     expect(getTurn).toHaveBeenCalledTimes(2);
   });
 
+  it("bestaetigt eine richtige Antwort sichtbar", async () => {
+    // Ohne Rueckmeldung weiss man nach dem Pruefen nicht, ob es gestimmt hat —
+    // im Kurs steht dort seit jeher "Richtig!" auf gruenem Grund.
+    vi.spyOn(api, "getTurn").mockResolvedValue(turn(0));
+    vi.spyOn(api, "answerTurn").mockResolvedValue(right);
+    renderScene();
+    fireEvent.click(await screen.findByRole("button", { name: /хорошо́/ }));
+    fireEvent.click(screen.getByRole("button", { name: "Prüfen" }));
+
+    const feedback = await screen.findByTestId("turn-feedback");
+    expect(within(feedback).getByText("Richtig!")).toBeVisible();
+    expect(feedback.className).toMatch(/emerald/);
+  });
+
+  it("benennt eine falsche Antwort als solche", async () => {
+    vi.spyOn(api, "getTurn").mockResolvedValue(turn(0));
+    vi.spyOn(api, "answerTurn").mockResolvedValue(wrong);
+    renderScene();
+    fireEvent.click(await screen.findByRole("button", { name: /хорошо́/ }));
+    fireEvent.click(screen.getByRole("button", { name: "Prüfen" }));
+
+    const feedback = await screen.findByTestId("turn-feedback");
+    expect(within(feedback).getByText("Nicht ganz.")).toBeVisible();
+    expect(feedback.className).toMatch(/rose/);
+  });
+
   it("zeigt am Ende das Nachwort", async () => {
     vi.spyOn(api, "getTurn").mockResolvedValue(turn(1));
     vi.spyOn(api, "answerTurn").mockResolvedValue({
