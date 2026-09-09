@@ -28,6 +28,7 @@ services:
       - DB_PATH=/data/speaker.db
       - DEFAULT_LANGUAGE=russian
       - CONTENT_DIR=/app/content/ru
+      - GAME_DIR=/app/content/game
       - TTS_HOST=http://tts:5001
       # Muss mit der Stimme des tts-Dienstes uebereinstimmen: der Wert geht in
       # den Zwischenspeicher-Schluessel ein.
