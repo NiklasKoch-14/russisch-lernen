@@ -58,17 +58,27 @@ export interface ListenMeaningExercise {
   options_de: string[];
 }
 
+export interface TypeSentenceExercise {
+  id: string;
+  type: "type_sentence";
+  prompt_de: string;
+  /** Wie viele Wörter gesucht sind — ohne die Angabe rät man beim Auftrag. */
+  word_count: number;
+}
+
 export type Exercise =
   | BuildSentenceExercise
   | ChooseFormExercise
   | MatchPairsExercise
   | DialogReplyExercise
-  | ListenMeaningExercise;
+  | ListenMeaningExercise
+  | TypeSentenceExercise;
 
 export type Submission =
   | { tile_indices: number[] }
   | { option_index: number }
-  | { pairs: number[][] };
+  | { pairs: number[][] }
+  | { text: string };
 
 export interface NewWord extends Word {
   id: string;
@@ -160,6 +170,8 @@ export interface Profile {
   language: string;
   cefr_level: string;
   show_transliteration: boolean;
+  /** Im Dorf wird getippt statt geklickt. */
+  type_in_village: boolean;
   placement_unit: number | null;
   audio_autoplay: boolean;
 }

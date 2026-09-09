@@ -2,6 +2,8 @@ import { useCallback, useEffect, useState } from "react";
 import { useNavigate, useParams, useSearchParams } from "react-router-dom";
 
 import BuildSentenceExercise from "../course/BuildSentenceExercise";
+import TypeSentenceExercise from "../course/TypeSentenceExercise";
+import { getProfile, patchProfile } from "../courseApi";
 import NpcLine from "../game/NpcLine";
 import PlaceHeader from "../game/PlaceHeader";
 import PlaceStage from "../game/PlaceStage";
@@ -22,13 +24,24 @@ export default function SceneView() {
   const [retried, setRetried] = useState(false);
   const [done, setDone] = useState<TurnResult | null>(null);
   const [error, setError] = useState(false);
+  /** Tippen statt Kacheln. null, solange das Profil noch nicht da ist. */
+  const [typed, setTyped] = useState<boolean | null>(null);
+
+  // Erst das Profil, dann der Zug: welche Aufgabenform der Server baut, steht
+  // in der Anfrage, und ein zweiter Aufruf mit der anderen Form wuerde die
+  // schon getippte Antwort verwerfen.
+  useEffect(() => {
+    getProfile()
+      .then((profile) => setTyped(profile.type_in_village))
+      .catch(() => setTyped(true));
+  }, []);
 
   useEffect(() => {
-    if (!sceneId || !seed) return;
-    getTurn(sceneId, seed, index)
+    if (!sceneId || !seed || typed === null) return;
+    getTurn(sceneId, seed, index, typed)
       .then(setTurn)
       .catch(() => setError(true));
-  }, [sceneId, seed, index]);
+  }, [sceneId, seed, index, typed]);
 
   // Der Raum kommt aus der Ortsnutzlast, nicht aus dem Router-Zustand: die
   // Szene muss ein Neuladen ihrer Adresse unbeschadet überstehen. Bleibt er
@@ -51,6 +64,15 @@ export default function SceneView() {
   );
 
   const leave = () => navigate(`/dorf/${placeId}`);
+
+  /** Mitten im Zug umschaltbar — gebraucht wird das, wenn *dieser* Satz zäh ist. */
+  const switchMode = () => {
+    const next = !typed;
+    // Der Zug bleibt stehen, bis der neue da ist: ihn zu leeren wuerde den
+    // Raum fuer einen Wimpernschlag abraeumen.
+    setTyped(next);
+    patchProfile({ type_in_village: next }).catch(() => {});
+  };
 
   const retry = () => {
     setResult(null);
@@ -112,12 +134,32 @@ export default function SceneView() {
 
           <NpcLine line={turn!.npc_line} />
 
-          <BuildSentenceExercise
-            key={`${turn!.index}-${retried}`}
-            exercise={turn!.exercise}
-            disabled={result !== null}
-            onSubmit={submit}
-          />
+          {turn!.exercise.type === "type_sentence" ? (
+            <TypeSentenceExercise
+              key={`${turn!.index}-${retried}-typed`}
+              exercise={turn!.exercise}
+              disabled={result !== null}
+              wrongWordIndex={result?.wrong_word_index ?? null}
+              onSubmit={submit}
+            />
+          ) : (
+            <BuildSentenceExercise
+              key={`${turn!.index}-${retried}`}
+              exercise={turn!.exercise}
+              disabled={result !== null}
+              onSubmit={submit}
+            />
+          )}
+
+          {result === null && (
+            <button
+              type="button"
+              onClick={switchMode}
+              className="text-sm text-sky-700 underline"
+            >
+              {typed ? "lieber Kacheln" : "lieber tippen"}
+            </button>
+          )}
 
           {result && (
             // Dieselbe Rueckmeldung wie im Kurs: gruen mit "Richtig!", rot mit

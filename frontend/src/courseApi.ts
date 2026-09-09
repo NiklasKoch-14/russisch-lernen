@@ -61,6 +61,6 @@ export const submitReviewExercise = (
 export const getProfile = () => request<Profile>("/profile");
 
 export const patchProfile = (
-  patch: Partial<Pick<Profile, "show_transliteration" | "audio_autoplay">>,
+  patch: Partial<Pick<Profile, "show_transliteration" | "audio_autoplay" | "type_in_village">>,
 ) =>
   request<Profile>("/profile", { method: "PATCH", body: JSON.stringify(patch) });

@@ -11,6 +11,7 @@ const profile = {
   language: "russian",
   cefr_level: "B1",
   show_transliteration: true,
+  type_in_village: true,
   audio_autoplay: true,
   placement_unit: 5,
 };

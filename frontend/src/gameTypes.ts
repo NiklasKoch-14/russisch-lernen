@@ -1,4 +1,8 @@
-import type { BuildSentenceExercise, Submission } from "./courseTypes";
+import type {
+  BuildSentenceExercise,
+  Submission,
+  TypeSentenceExercise,
+} from "./courseTypes";
 
 export interface Hotspot {
   x: number;
@@ -61,7 +65,7 @@ export interface TurnView {
   turn_count: number;
   npc: { id: string; name_ru: string; name_de: string; art: string };
   npc_line: SpokenLine;
-  exercise: BuildSentenceExercise;
+  exercise: BuildSentenceExercise | TypeSentenceExercise;
 }
 
 export interface TurnResult {
@@ -70,6 +74,8 @@ export interface TurnResult {
   solution_translit: string;
   solution_audio: string[];
   explanation_de: string;
+  /** Das beanstandete Wort einer getippten Antwort. null, wo es keins gibt. */
+  wrong_word_index: number | null;
   npc_reaction: SpokenLine | null;
   scene_completed: boolean;
   outro_de: string;

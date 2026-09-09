@@ -33,8 +33,8 @@ export const startScene = (placeId: string, npcId?: string) =>
     body: JSON.stringify({ npc_id: npcId ?? null }),
   });
 
-export const getTurn = (sceneId: string, seed: string, index: number) => {
-  const query = new URLSearchParams({ seed });
+export const getTurn = (sceneId: string, seed: string, index: number, typed = false) => {
+  const query = new URLSearchParams({ seed, typed: String(typed) });
   return request<TurnView>(`/game/scenes/${sceneId}/turns/${index}?${query}`);
 };
 

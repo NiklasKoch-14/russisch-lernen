@@ -2,6 +2,7 @@ import { act, fireEvent, render, screen, within } from "@testing-library/react";
 import { MemoryRouter, Route, Routes } from "react-router-dom";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 
+import * as courseApi from "../courseApi";
 import * as api from "../gameApi";
 import SceneView from "./SceneView";
 
@@ -54,6 +55,7 @@ const wrong = {
   solution_translit: "chorošó",
   solution_audio: ["хорошо́"],
   explanation_de: "Richtig ist: хорошо́",
+  wrong_word_index: null,
   npc_reaction: { text: "извини́те", translit: "izviníte", audio_text: "извини́те" },
   scene_completed: false,
   outro_de: "",
@@ -72,8 +74,33 @@ function renderScene() {
   );
 }
 
+const profile = {
+  language: "russian",
+  cefr_level: "A1",
+  show_transliteration: true,
+  type_in_village: false,
+  placement_unit: null,
+  audio_autoplay: true,
+};
+
+const typingTurn = (index: number) => ({
+  ...turn(index),
+  exercise: {
+    id: `bar-01:s1#${index}`,
+    type: "type_sentence" as const,
+    prompt_de: "Sag, dass es dir gut geht.",
+    word_count: 1,
+  },
+});
+
 describe("SceneView", () => {
-  beforeEach(() => vi.restoreAllMocks());
+  beforeEach(() => {
+    vi.restoreAllMocks();
+    // Der Kachelmodus ist hier die Vorgabe, damit die alten Faelle unveraendert
+    // gelten; das Tippen bekommt eigene Faelle.
+    vi.spyOn(courseApi, "getProfile").mockResolvedValue(profile);
+    vi.spyOn(courseApi, "patchProfile").mockResolvedValue(profile);
+  });
 
   it("zeigt die Zeile des NPC und die Kacheln", async () => {
     vi.spyOn(api, "getTurn").mockResolvedValue(turn(0));
@@ -276,5 +303,69 @@ describe("SceneView", () => {
     fireEvent.click(await screen.findByRole("button", { name: /хорошо́/ }));
     fireEvent.click(screen.getByRole("button", { name: "Prüfen" }));
     expect(await screen.findByText("Pjotr nickt.")).toBeInTheDocument();
+  });
+});
+
+describe("SceneView — tippen statt klicken", () => {
+  beforeEach(() => {
+    vi.restoreAllMocks();
+    vi.spyOn(courseApi, "getProfile").mockResolvedValue({ ...profile, type_in_village: true });
+    vi.spyOn(courseApi, "patchProfile").mockResolvedValue(profile);
+  });
+
+  it("holt den Zug in der Form, die das Profil vorgibt", async () => {
+    const getTurn = vi.spyOn(api, "getTurn").mockResolvedValue(typingTurn(0));
+    renderScene();
+    await screen.findByLabelText("Deine Antwort auf Russisch");
+    expect(getTurn).toHaveBeenCalledWith("bar-01", "s1", 0, true);
+  });
+
+  it("schickt den getippten Satz statt Kachelnummern", async () => {
+    vi.spyOn(api, "getTurn").mockResolvedValue(typingTurn(0));
+    const answerTurn = vi.spyOn(api, "answerTurn").mockResolvedValue(right);
+    renderScene();
+    const field = await screen.findByLabelText("Deine Antwort auf Russisch");
+    fireEvent.change(field, { target: { value: "хорошо" } });
+    fireEvent.click(screen.getByRole("button", { name: "Prüfen" }));
+    expect(answerTurn).toHaveBeenCalledWith("bar-01", 0, "s1", { text: "хорошо" });
+  });
+
+  it("markiert nach der Antwort das beanstandete Wort", async () => {
+    vi.spyOn(api, "getTurn").mockResolvedValue(typingTurn(0));
+    vi.spyOn(api, "answerTurn").mockResolvedValue({ ...wrong, wrong_word_index: 0 });
+    renderScene();
+    const field = await screen.findByLabelText("Deine Antwort auf Russisch");
+    fireEvent.change(field, { target: { value: "пло́хо" } });
+    fireEvent.click(screen.getByRole("button", { name: "Prüfen" }));
+
+    const shown = await screen.findByTestId("typed-answer");
+    expect(shown.querySelector("span")?.className).toContain("rose");
+  });
+
+  it("stellt auf Wunsch auf Kacheln zurueck und merkt sich das", async () => {
+    const getTurn = vi
+      .spyOn(api, "getTurn")
+      .mockResolvedValueOnce(typingTurn(0))
+      .mockResolvedValue(turn(0));
+    const patch = vi.spyOn(courseApi, "patchProfile").mockResolvedValue(profile);
+    renderScene();
+
+    fireEvent.click(await screen.findByRole("button", { name: "lieber Kacheln" }));
+    expect(await screen.findByRole("button", { name: /хорошо́/ })).toBeInTheDocument();
+    expect(getTurn).toHaveBeenLastCalledWith("bar-01", "s1", 0, false);
+    expect(patch).toHaveBeenCalledWith({ type_in_village: false });
+  });
+
+  it("bietet den Wechsel nach dem Pruefen nicht mehr an", async () => {
+    // Sonst passte die Aufgabe nicht mehr zu der Rueckmeldung darunter.
+    vi.spyOn(api, "getTurn").mockResolvedValue(typingTurn(0));
+    vi.spyOn(api, "answerTurn").mockResolvedValue(right);
+    renderScene();
+    const field = await screen.findByLabelText("Deine Antwort auf Russisch");
+    fireEvent.change(field, { target: { value: "хорошо" } });
+    fireEvent.click(screen.getByRole("button", { name: "Prüfen" }));
+
+    await screen.findByTestId("turn-feedback");
+    expect(screen.queryByRole("button", { name: "lieber Kacheln" })).not.toBeInTheDocument();
   });
 });
