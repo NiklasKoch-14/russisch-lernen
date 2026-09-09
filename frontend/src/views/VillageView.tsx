@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
+import { rectStyle } from "../game/rect";
 import { artUrl, getVillage } from "../gameApi";
 import type { Place } from "../gameTypes";
 
@@ -46,12 +47,7 @@ export default function VillageView() {
             type="button"
             onClick={() => navigate(`/dorf/${place.id}`)}
             title={place.name_de}
-            style={{
-              left: `${place.hotspot.x * 100}%`,
-              top: `${place.hotspot.y * 100}%`,
-              width: `${place.hotspot.w * 100}%`,
-              height: `${place.hotspot.h * 100}%`,
-            }}
+            style={rectStyle(place.hotspot)}
             className="absolute flex items-center justify-center rounded-xl border-2 border-transparent transition hover:border-sky-500 hover:bg-sky-500/10 focus:border-sky-600 focus:outline-none"
           >
             {mapMissing ? (

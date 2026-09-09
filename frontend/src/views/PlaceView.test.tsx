@@ -18,8 +18,18 @@ const bar = {
       name_de: "Pjotr",
       about_de: "Sitzt jeden Abend am selben Platz.",
       art: "npc_pjotr",
+      spot: { x: 0.03, y: 0.36, w: 0.14, h: 0.42 },
     },
   ],
+};
+
+const ohnePlatz = {
+  id: "sasha",
+  name_ru: "Са́ша",
+  name_de: "Sascha",
+  about_de: "Steht noch nirgends.",
+  art: "npc_sasha",
+  spot: null,
 };
 
 const started = {
@@ -63,7 +73,7 @@ function renderPlace(path = "/dorf/bar") {
 describe("PlaceView", () => {
   beforeEach(() => vi.restoreAllMocks());
 
-  it("stellt die Leute des Ortes mit sichtbarem Namen und Vorstellung vor", async () => {
+  it("stellt die Leute im Raum auf, mit sichtbarem Namen", async () => {
     vi.spyOn(api, "getPlace").mockResolvedValue(bar);
     renderPlace();
     const button = await screen.findByRole("button", { name: /Пётр/ });
@@ -73,7 +83,31 @@ describe("PlaceView", () => {
     const nameLabel = within(button).getByText("Пётр");
     expect(nameLabel).toBeVisible();
     expect(nameLabel).not.toHaveClass("sr-only");
-    expect(within(button).getByText(/Sitzt jeden Abend/)).toBeVisible();
+    // Und zwar an seinem Platz im Raumbild, nicht in einer Liste darunter.
+    expect(button.style.left).toBe("3%");
+    expect(screen.getByTestId("place-stage")).toContainElement(button);
+  });
+
+  it("faellt auf die Liste zurueck, wenn es zum Raum kein Bild gibt", async () => {
+    vi.spyOn(api, "getPlace").mockResolvedValue(bar);
+    renderPlace();
+    fireEvent.error(await screen.findByAltText("Bar"));
+    const entry = await screen.findByRole("button", { name: /Пётр/ });
+    expect(within(entry).getByText(/Sitzt jeden Abend/)).toBeVisible();
+  });
+
+  it("fuehrt Leute ohne Platz unter dem Bild auf", async () => {
+    // Sonst waere jemand ohne `spot` gar nicht erreichbar.
+    vi.spyOn(api, "getPlace").mockResolvedValue({
+      ...bar,
+      npcs: [...bar.npcs, ohnePlatz],
+    });
+    const start = vi.spyOn(api, "startScene").mockResolvedValue(started);
+    renderPlace();
+    const entry = await screen.findByRole("button", { name: /Са́ша/ });
+    expect(screen.getByTestId("place-stage")).not.toContainElement(entry);
+    fireEvent.click(entry);
+    expect(start).toHaveBeenCalledWith("bar", "sasha");
   });
 
   it("startet beim Anklicken einer Person eine Szene mit ihrer ID", async () => {

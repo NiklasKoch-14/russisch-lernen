@@ -12,11 +12,15 @@ test.describe("Dorf", () => {
     await expect(page).toHaveURL(/\/dorf\/bar$/);
   });
 
-  test("öffnet die Bar und stellt ihre Leute vor", async ({ page }) => {
+  test("öffnet die Bar und stellt ihre Leute in den Raum", async ({ page }) => {
     await page.goto("/dorf");
     await page.getByRole("button", { name: /бар/ }).click();
 
-    await expect(page.getByText("Пётр")).toBeVisible();
+    // Nicht irgendwo auf der Seite, sondern im Raumbild: eine Liste unter dem
+    // Bild wuerde denselben Text zeigen und den Umbau unbemerkt lassen.
+    const stage = page.getByTestId("place-stage");
+    await expect(stage.getByRole("button", { name: /Пётр/ })).toBeVisible();
+    await expect(stage.getByRole("button", { name: /На́дя/ })).toBeVisible();
   });
 
   test("spricht jemanden an und bringt das Gespräch bis zum Ende — auch bei lauter falschen Antworten", async ({
@@ -25,6 +29,10 @@ test.describe("Dorf", () => {
     await page.goto("/dorf");
     await page.getByRole("button", { name: /бар/ }).click();
     await page.getByRole("button", { name: /Пётр/ }).click();
+
+    // Der Raum bleibt waehrend des Gespraechs stehen — das ist der Kern der
+    // Ansicht; ohne ihn waere es wieder eine eigene Seite.
+    await expect(page.getByTestId("place-stage")).toBeVisible();
 
     const progress = page.getByText(/Zug 1 von \d+/);
     await expect(progress).toBeVisible();

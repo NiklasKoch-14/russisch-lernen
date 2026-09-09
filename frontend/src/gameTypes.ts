@@ -26,6 +26,8 @@ export interface Npc {
   name_de: string;
   about_de: string;
   art: string;
+  /** Platz im Raumbild, zugleich Klickfläche. null, wo niemand angeklickt wird. */
+  spot: Hotspot | null;
 }
 
 export interface PlaceDetail {

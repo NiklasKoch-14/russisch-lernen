@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
+import PlaceStage from "../game/PlaceStage";
 import { artUrl, getPlace, startScene } from "../gameApi";
 import type { PlaceDetail } from "../gameTypes";
 
@@ -9,6 +10,8 @@ export default function PlaceView() {
   const navigate = useNavigate();
   const [place, setPlace] = useState<PlaceDetail | null>(null);
   const [error, setError] = useState(false);
+  /** Ohne Raumbild gibt es keine Bühne — dann wieder die Liste wie früher. */
+  const [artMissing, setArtMissing] = useState(false);
 
   useEffect(() => {
     if (!placeId) return;
@@ -40,11 +43,21 @@ export default function PlaceView() {
         <p className="text-slate-600">{place.name_de}</p>
       </header>
 
-      <img
-        src={artUrl(place.art)}
-        alt={place.name_de}
-        className="block w-full rounded-2xl"
-      />
+      {place.kind === "npcs" && !artMissing ? (
+        <PlaceStage
+          art={place.art}
+          altText={place.name_de}
+          npcs={place.npcs}
+          onSelect={(npc) => open(npc.id)}
+          onArtMissing={() => setArtMissing(true)}
+        />
+      ) : (
+        <img
+          src={artUrl(place.art)}
+          alt={place.name_de}
+          className="block w-full rounded-2xl"
+        />
+      )}
 
       {place.kind === "course" && (
         <button
@@ -69,21 +82,23 @@ export default function PlaceView() {
 
       {place.kind === "npcs" && (
         <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {place.npcs.map((npc) => (
-            <li key={npc.id}>
-              <button
-                type="button"
-                onClick={() => open(npc.id)}
-                className="flex w-full items-center gap-3 rounded-2xl border-2 border-slate-200 p-3 text-left hover:border-sky-400"
-              >
-                <img src={artUrl(npc.art)} alt="" className="h-16 w-16 rounded-full" />
-                <span>
-                  <span className="block font-medium">{npc.name_ru}</span>
-                  <span className="block text-sm text-slate-600">{npc.about_de}</span>
-                </span>
-              </button>
-            </li>
-          ))}
+          {place.npcs
+            .filter((npc) => artMissing || npc.spot == null)
+            .map((npc) => (
+              <li key={npc.id}>
+                <button
+                  type="button"
+                  onClick={() => open(npc.id)}
+                  className="flex w-full items-center gap-3 rounded-2xl border-2 border-slate-200 p-3 text-left hover:border-sky-400"
+                >
+                  <img src={artUrl(npc.art)} alt="" className="h-16 w-16 rounded-full object-contain" />
+                  <span>
+                    <span className="block font-medium">{npc.name_ru}</span>
+                    <span className="block text-sm text-slate-600">{npc.about_de}</span>
+                  </span>
+                </button>
+              </li>
+            ))}
         </ul>
       )}
 

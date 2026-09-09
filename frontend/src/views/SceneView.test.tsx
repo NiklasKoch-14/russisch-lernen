@@ -1,10 +1,35 @@
-import { fireEvent, render, screen } from "@testing-library/react";
+import { fireEvent, render, screen, within } from "@testing-library/react";
 import { MemoryRouter, Route, Routes } from "react-router-dom";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 
 import * as api from "../gameApi";
-import { artUrl } from "../gameApi";
 import SceneView from "./SceneView";
+
+const bar = {
+  id: "bar",
+  name_ru: "бар",
+  name_de: "Bar",
+  kind: "npcs" as const,
+  art: "bar",
+  npcs: [
+    {
+      id: "pjotr",
+      name_ru: "Пётр",
+      name_de: "Pjotr",
+      about_de: "Sitzt jeden Abend am selben Platz.",
+      art: "npc_pjotr",
+      spot: { x: 0.03, y: 0.36, w: 0.14, h: 0.42 },
+    },
+    {
+      id: "nadja",
+      name_ru: "На́дя",
+      name_de: "Nadja",
+      about_de: "Steht hinter der Theke.",
+      art: "npc_nadja",
+      spot: { x: 0.8, y: 0.25, w: 0.13, h: 0.29 },
+    },
+  ],
+};
 
 const turn = (index: number) => ({
   index,
@@ -41,6 +66,7 @@ function renderScene() {
     <MemoryRouter initialEntries={["/dorf/bar/szene/bar-01?seed=s1"]}>
       <Routes>
         <Route path="/dorf/:placeId/szene/:sceneId" element={<SceneView />} />
+        <Route path="/dorf/:placeId" element={<p>Zurück im Raum</p>} />
       </Routes>
     </MemoryRouter>,
   );
@@ -56,13 +82,56 @@ describe("SceneView", () => {
     expect(screen.getByRole("button", { name: /хорошо́/ })).toBeInTheDocument();
   });
 
-  it("zeigt, mit wem man spricht", async () => {
+  it("zeigt in der Karte, mit wem man spricht", async () => {
     vi.spyOn(api, "getTurn").mockResolvedValue(turn(0));
     renderScene();
-    expect(await screen.findByText("Пётр")).toBeInTheDocument();
-    expect(screen.getByText("Pjotr")).toBeInTheDocument();
-    const image = screen.getByRole("img", { name: "Pjotr" });
-    expect(image).toHaveAttribute("src", artUrl("npc_pjotr"));
+    const card = await screen.findByTestId("dialog-card");
+    expect(within(card).getByText("Пётр")).toBeInTheDocument();
+    expect(within(card).getByText("Pjotr")).toBeInTheDocument();
+  });
+
+  it("laesst den Raum stehen und hebt die angesprochene Person hervor", async () => {
+    const getPlace = vi.spyOn(api, "getPlace").mockResolvedValue(bar);
+    vi.spyOn(api, "getTurn").mockResolvedValue(turn(0));
+    renderScene();
+
+    expect(await screen.findByTestId("place-stage")).toBeInTheDocument();
+    expect(getPlace).toHaveBeenCalledWith("bar");
+    expect(screen.getByTestId("figure-pjotr").className).not.toMatch(/opacity-/);
+    expect(screen.getByTestId("figure-nadja").className).toMatch(/opacity-/);
+  });
+
+  it("laesst waehrend des Gespraechs niemanden im Raum anklicken", async () => {
+    // Ein halb gefuehrtes Gespraech soll nicht durch einen Klick verlorengehen.
+    vi.spyOn(api, "getPlace").mockResolvedValue(bar);
+    vi.spyOn(api, "getTurn").mockResolvedValue(turn(0));
+    renderScene();
+    await screen.findByTestId("place-stage");
+    expect(screen.queryByRole("button", { name: /На́дя/ })).not.toBeInTheDocument();
+  });
+
+  it("legt die Karte auf die Seite, wo mehr Platz ist", async () => {
+    vi.spyOn(api, "getPlace").mockResolvedValue(bar);
+    vi.spyOn(api, "getTurn").mockResolvedValue(turn(0));
+    const { unmount } = renderScene();
+    // Pjotr steht links im Bild — die Karte gehoert nach rechts.
+    expect(await screen.findByTestId("dialog-card")).toHaveAttribute("data-side", "right");
+    unmount();
+
+    vi.spyOn(api, "getTurn").mockResolvedValue({
+      ...turn(0),
+      npc: { id: "nadja", name_ru: "На́дя", name_de: "Nadja", art: "npc_nadja" },
+    });
+    renderScene();
+    expect(await screen.findByTestId("dialog-card")).toHaveAttribute("data-side", "left");
+  });
+
+  it("bricht auf Wunsch ab und geht zurueck in den Raum", async () => {
+    vi.spyOn(api, "getPlace").mockResolvedValue(bar);
+    vi.spyOn(api, "getTurn").mockResolvedValue(turn(0));
+    renderScene();
+    fireEvent.click(await screen.findByRole("button", { name: "Zurück" }));
+    expect(await screen.findByText("Zurück im Raum")).toBeInTheDocument();
   });
 
   it("wiederholt den Zug nach einem Fehler genau einmal", async () => {
