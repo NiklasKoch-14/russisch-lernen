@@ -53,14 +53,15 @@ export default function PlaceView() {
           <img src={artUrl(place.art)} alt={place.name_de} className="block w-full rounded-2xl" />
         </>
       ) : (
-        <div className="relative aspect-[3/2] w-full overflow-hidden sm:aspect-auto sm:min-h-0 sm:flex-1">
+        <div className="flex justify-center sm:min-h-0 sm:flex-1">
+        <div className="relative mx-auto aspect-[3/2] w-full overflow-hidden rounded-2xl sm:h-full sm:w-auto sm:max-w-full">
           <PlaceStage
             art={place.art}
             altText={place.name_de}
             npcs={place.npcs}
             onSelect={selectable ? (npc) => open(npc.id) : undefined}
             onArtMissing={() => setArtMissing(true)}
-            cover
+            className="h-full w-full"
           />
           {/* Aufsätze liegen über dem Bild: der Raum soll den Platz ganz
               ausfüllen, Name und Wege schweben darauf. */}
@@ -94,6 +95,7 @@ export default function PlaceView() {
               </button>
             </div>
           </div>
+        </div>
         </div>
       )}
 

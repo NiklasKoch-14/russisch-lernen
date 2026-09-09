@@ -156,14 +156,15 @@ export default function SceneView() {
       {/* Der Rahmen steht immer, auch bevor der Raum geladen ist: sonst haengt
           React die Dialogkarte beim Nachladen um und die schon gewaehlten
           Kacheln sind weg. */}
-      <div className="relative aspect-[3/2] w-full overflow-hidden sm:aspect-auto sm:min-h-0 sm:flex-1">
+      <div className="flex justify-center sm:min-h-0 sm:flex-1">
+      <div className="relative mx-auto aspect-[3/2] w-full overflow-hidden rounded-2xl sm:h-full sm:w-auto sm:max-w-full">
         {place && (
           <PlaceStage
             art={place.art}
             altText={place.name_de}
             npcs={place.npcs}
             focusNpcId={done ? undefined : turn!.npc.id}
-            cover
+            className="h-full w-full"
           />
         )}
         {place && (
@@ -180,6 +181,7 @@ export default function SceneView() {
           </div>
         )}
         {card}
+      </div>
       </div>
     </section>
   );
