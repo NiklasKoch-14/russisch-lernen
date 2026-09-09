@@ -1,40 +1,43 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" role="img">
-  <title>Са́ша, jung und mitten im Reden</title>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 400" role="img">
+  <title>Са́ша, stehend und mitten im Reden</title>
 
-  <rect width="400" height="400" fill="#334155"/>
-  <circle cx="70" cy="72" r="20" fill="#fbbf24" opacity="0.5"/>
+  <!-- Beine in Jeans -->
+  <rect x="76" y="248" width="22" height="128" rx="8" fill="#1e3a8a"/>
+  <rect x="104" y="248" width="22" height="128" rx="8" fill="#1e3a8a"/>
+  <path d="M70 376 q-8 12 6 14 l28 0 l0 -14 Z" fill="#292524"/>
+  <path d="M132 376 q8 12 -6 14 l-28 0 l0 -14 Z" fill="#292524"/>
 
   <!-- Kapuzenpulli -->
-  <path d="M52 400 Q200 254 348 400 Z" fill="#1d4ed8" stroke="#1e3a8a" stroke-width="6"/>
-  <path d="M110 340 Q200 268 290 340 Q200 306 110 340 Z" fill="#2563eb"/>
-  <path d="M176 330 q6 50 -10 70" fill="none" stroke="#dbeafe" stroke-width="7" stroke-linecap="round"/>
-  <path d="M224 330 q-6 50 10 70" fill="none" stroke="#dbeafe" stroke-width="7" stroke-linecap="round"/>
+  <path d="M60 130 q40 -18 80 0 l8 128 l-96 0 Z" fill="#1d4ed8" stroke="#1e3a8a" stroke-width="4"/>
+  <path d="M74 130 q26 26 52 0 q-26 -14 -52 0 Z" fill="#2563eb"/>
+  <path d="M88 140 q4 34 -6 48" fill="none" stroke="#dbeafe" stroke-width="5" stroke-linecap="round"/>
+  <path d="M112 140 q-4 34 6 48" fill="none" stroke="#dbeafe" stroke-width="5" stroke-linecap="round"/>
+
+  <!-- Arme, eine Hand erklaert etwas -->
+  <path d="M62 146 q-26 32 -20 66" fill="none" stroke="#1d4ed8" stroke-width="20" stroke-linecap="round"/>
+  <path d="M138 146 q30 20 26 -14" fill="none" stroke="#1d4ed8" stroke-width="20" stroke-linecap="round"/>
+  <circle cx="44" cy="218" r="11" fill="#e8c19c"/>
+  <circle cx="166" cy="126" r="12" fill="#e8c19c"/>
 
   <!-- Hals und Kopf -->
-  <rect x="180" y="234" width="42" height="52" rx="15" fill="#e8c19c"/>
-  <ellipse cx="200" cy="194" rx="76" ry="86" fill="#e8c19c" stroke="#7c2d12" stroke-width="3"/>
-  <ellipse cx="124" cy="198" rx="10" ry="16" fill="#e8c19c" stroke="#7c2d12" stroke-width="2"/>
-  <ellipse cx="276" cy="198" rx="10" ry="16" fill="#e8c19c" stroke="#7c2d12" stroke-width="2"/>
+  <rect x="88" y="96" width="24" height="28" rx="8" fill="#e8c19c"/>
+  <ellipse cx="100" cy="66" rx="31" ry="35" fill="#e8c19c" stroke="#7c2d12" stroke-width="2"/>
+  <ellipse cx="71" cy="68" rx="5" ry="8" fill="#e8c19c" stroke="#7c2d12" stroke-width="2"/>
+  <ellipse cx="129" cy="68" rx="5" ry="8" fill="#e8c19c" stroke="#7c2d12" stroke-width="2"/>
 
   <!-- Wuschelhaar -->
-  <path d="M124 168 Q126 104 200 100 Q274 104 276 168 Q262 138 236 146 Q214 122 190 144 Q160 132 148 154 Q136 150 124 168 Z" fill="#292524"/>
-  <path d="M138 116 q22 -26 54 -28" fill="none" stroke="#292524" stroke-width="14" stroke-linecap="round"/>
-  <path d="M262 118 q-18 -24 -48 -30" fill="none" stroke="#292524" stroke-width="14" stroke-linecap="round"/>
+  <path d="M70 54 q2 -26 30 -28 q28 2 30 28 q-8 -12 -18 -8 q-10 -10 -22 0 q-12 -4 -20 8 Z" fill="#292524"/>
+  <path d="M76 34 q10 -10 24 -11" fill="none" stroke="#292524" stroke-width="7" stroke-linecap="round"/>
+  <path d="M126 36 q-8 -10 -22 -13" fill="none" stroke="#292524" stroke-width="7" stroke-linecap="round"/>
 
-  <!-- hochgezogene Augenbrauen -->
-  <path d="M152 172 Q172 160 190 170" fill="none" stroke="#292524" stroke-width="6" stroke-linecap="round"/>
-  <path d="M210 170 Q228 160 248 172" fill="none" stroke="#292524" stroke-width="6" stroke-linecap="round"/>
-
-  <!-- weit offene Augen -->
-  <ellipse cx="171" cy="198" rx="13" ry="11" fill="#ffffff" stroke="#44403c" stroke-width="3"/>
-  <ellipse cx="229" cy="198" rx="13" ry="11" fill="#ffffff" stroke="#44403c" stroke-width="3"/>
-  <circle cx="173" cy="199" r="5" fill="#1c1917"/>
-  <circle cx="231" cy="199" r="5" fill="#1c1917"/>
-
-  <!-- Nase -->
-  <path d="M197 202 Q191 226 200 232 Q209 228 203 202" fill="#d8ab86" stroke="#7c2d12" stroke-width="2"/>
-
-  <!-- offener Mund: er redet gerade -->
-  <path d="M176 252 Q200 244 224 252 Q216 280 200 280 Q184 280 176 252 Z" fill="#7f1d1d" stroke="#7c2d12" stroke-width="2"/>
-  <path d="M181 254 Q200 250 219 254 Q200 258 181 254 Z" fill="#f8fafc"/>
+  <!-- hochgezogene Brauen, grosse Augen, offener Mund -->
+  <path d="M80 58 q9 -6 17 -1" fill="none" stroke="#292524" stroke-width="4" stroke-linecap="round"/>
+  <path d="M103 57 q9 -5 17 1" fill="none" stroke="#292524" stroke-width="4" stroke-linecap="round"/>
+  <ellipse cx="88" cy="70" rx="7" ry="6" fill="#ffffff" stroke="#44403c" stroke-width="2"/>
+  <ellipse cx="112" cy="70" rx="7" ry="6" fill="#ffffff" stroke="#44403c" stroke-width="2"/>
+  <circle cx="89" cy="71" r="3" fill="#1c1917"/>
+  <circle cx="113" cy="71" r="3" fill="#1c1917"/>
+  <path d="M98 72 q-4 12 2 15 q6 -3 1 -15" fill="#d8ab86"/>
+  <path d="M88 92 q12 -5 24 0 q-4 16 -12 16 q-8 0 -12 -16 Z" fill="#7f1d1d" stroke="#7c2d12" stroke-width="2"/>
+  <path d="M91 93 q9 -2 18 0 q-9 3 -18 0 Z" fill="#f8fafc"/>
 </svg>

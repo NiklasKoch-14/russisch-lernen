@@ -1,38 +1,44 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" role="img">
-  <title>Ле́на, die im Café bedient</title>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 400" role="img">
+  <title>Ле́на, mit dem Tablett im Café</title>
 
-  <rect width="400" height="400" fill="#78350f"/>
-  <rect x="0" y="300" width="400" height="100" fill="#92400e"/>
-  <!-- Tasse auf dem Tresen im Vordergrund -->
-  <path d="M40 386 l0 -26 l44 0 l0 26 Z" fill="#f8fafc" stroke="#cbd5e1" stroke-width="3"/>
-  <path d="M84 366 q16 6 0 16" fill="none" stroke="#f8fafc" stroke-width="5"/>
+  <!-- Beine -->
+  <rect x="78" y="250" width="20" height="126" rx="8" fill="#1c1917"/>
+  <rect x="104" y="250" width="20" height="126" rx="8" fill="#1c1917"/>
+  <path d="M72 376 q-8 12 6 14 l26 0 l0 -14 Z" fill="#292524"/>
+  <path d="M130 376 q8 12 -6 14 l-26 0 l0 -14 Z" fill="#292524"/>
 
-  <!-- Schultern, weißes Hemd mit Schürze -->
-  <path d="M58 400 Q200 258 342 400 Z" fill="#f8fafc" stroke="#cbd5e1" stroke-width="5"/>
-  <path d="M150 400 Q200 300 250 400 Z" fill="#1c1917"/>
-  <path d="M182 286 l18 22 l18 -22 l-18 -12 Z" fill="#0f172a"/>
-  <path d="M124 400 q30 -70 76 -92 q46 22 76 92" fill="none" stroke="#e2e8f0" stroke-width="3"/>
+  <!-- weisses Hemd mit schwarzer Schuerze -->
+  <path d="M62 136 q38 -18 76 0 l8 122 l-92 0 Z" fill="#f8fafc" stroke="#cbd5e1" stroke-width="4"/>
+  <path d="M80 168 l40 0 l6 90 l-52 0 Z" fill="#1c1917"/>
+  <path d="M80 168 q20 -10 40 0" fill="none" stroke="#44403c" stroke-width="4"/>
+  <path d="M90 132 l10 14 l10 -14 l-10 -8 Z" fill="#0f172a"/>
+
+  <!-- Arme: ein Tablett auf der flachen Hand -->
+  <path d="M64 150 q-24 30 -18 62" fill="none" stroke="#f8fafc" stroke-width="19" stroke-linecap="round"/>
+  <path d="M136 150 q28 12 20 -20" fill="none" stroke="#f8fafc" stroke-width="19" stroke-linecap="round"/>
+  <circle cx="46" cy="216" r="11" fill="#f2cdaa"/>
+  <circle cx="158" cy="126" r="11" fill="#f2cdaa"/>
+  <ellipse cx="160" cy="112" rx="30" ry="8" fill="#a16207" stroke="#78350f" stroke-width="2"/>
+  <rect x="150" y="92" width="16" height="18" rx="3" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
 
   <!-- Hals und Kopf -->
-  <rect x="180" y="234" width="42" height="54" rx="15" fill="#f2cdaa"/>
-  <ellipse cx="200" cy="194" rx="76" ry="88" fill="#f2cdaa" stroke="#78350f" stroke-width="3"/>
-  <ellipse cx="124" cy="198" rx="10" ry="16" fill="#f2cdaa" stroke="#78350f" stroke-width="2"/>
-  <ellipse cx="276" cy="198" rx="10" ry="16" fill="#f2cdaa" stroke="#78350f" stroke-width="2"/>
+  <rect x="88" y="100" width="24" height="28" rx="8" fill="#f2cdaa"/>
+  <ellipse cx="100" cy="70" rx="31" ry="35" fill="#f2cdaa" stroke="#78350f" stroke-width="2"/>
+  <ellipse cx="71" cy="72" rx="5" ry="8" fill="#f2cdaa" stroke="#78350f" stroke-width="2"/>
+  <ellipse cx="129" cy="72" rx="5" ry="8" fill="#f2cdaa" stroke="#78350f" stroke-width="2"/>
 
-  <!-- dunkelblondes Haar mit Pferdeschwanz -->
-  <path d="M122 180 Q118 100 200 96 Q282 100 278 180 Q266 132 200 128 Q134 132 122 180 Z" fill="#a16207"/>
-  <path d="M278 150 q34 20 30 76 q-4 44 -30 60 q18 -60 0 -136 Z" fill="#a16207" stroke="#854d0e" stroke-width="2"/>
-  <path d="M158 126 q30 -18 66 -8" fill="none" stroke="#ca8a04" stroke-width="7" stroke-linecap="round"/>
+  <!-- Haar mit Pferdeschwanz -->
+  <path d="M70 62 q-2 -30 30 -32 q32 2 30 32 q-6 -20 -30 -22 q-24 2 -30 22 Z" fill="#a16207"/>
+  <path d="M130 56 q14 10 12 32 q-2 18 -12 24 q8 -26 0 -56 Z" fill="#a16207" stroke="#854d0e" stroke-width="2"/>
+  <path d="M84 44 q12 -8 26 -4" fill="none" stroke="#ca8a04" stroke-width="5" stroke-linecap="round"/>
 
-  <!-- Augenbrauen, Augen -->
-  <path d="M154 174 Q172 166 190 172" fill="none" stroke="#854d0e" stroke-width="5" stroke-linecap="round"/>
-  <path d="M210 172 Q228 166 246 174" fill="none" stroke="#854d0e" stroke-width="5" stroke-linecap="round"/>
-  <ellipse cx="171" cy="198" rx="12" ry="10" fill="#ffffff" stroke="#44403c" stroke-width="3"/>
-  <ellipse cx="229" cy="198" rx="12" ry="10" fill="#ffffff" stroke="#44403c" stroke-width="3"/>
-  <circle cx="172" cy="199" r="4" fill="#1c1917"/>
-  <circle cx="230" cy="199" r="4" fill="#1c1917"/>
-
-  <!-- Nase und geduldiges Lächeln -->
-  <path d="M197 202 Q191 228 200 234 Q209 230 203 202" fill="#e3b78f" stroke="#78350f" stroke-width="2"/>
-  <path d="M178 256 Q200 272 222 256" fill="none" stroke="#9f1239" stroke-width="5" stroke-linecap="round"/>
+  <!-- Augen und geduldiges Laecheln -->
+  <path d="M80 60 q9 -5 18 -1" fill="none" stroke="#854d0e" stroke-width="4" stroke-linecap="round"/>
+  <path d="M104 59 q9 -4 17 1" fill="none" stroke="#854d0e" stroke-width="4" stroke-linecap="round"/>
+  <ellipse cx="88" cy="72" rx="6" ry="5" fill="#ffffff" stroke="#44403c" stroke-width="2"/>
+  <ellipse cx="112" cy="72" rx="6" ry="5" fill="#ffffff" stroke="#44403c" stroke-width="2"/>
+  <circle cx="89" cy="73" r="2.5" fill="#1c1917"/>
+  <circle cx="113" cy="73" r="2.5" fill="#1c1917"/>
+  <path d="M98 74 q-4 12 2 15 q6 -3 1 -15" fill="#e3b78f"/>
+  <path d="M89 96 q11 8 22 0" fill="none" stroke="#9f1239" stroke-width="4" stroke-linecap="round"/>
 </svg>

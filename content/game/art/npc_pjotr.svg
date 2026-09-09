@@ -1,52 +1,49 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" role="img">
-  <title>Пётр, der abends in der Bar sitzt</title>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 400" role="img">
+  <title>Пётр, sitzend am Tisch</title>
 
-  <rect width="400" height="400" fill="#44403c"/>
-  <circle cx="330" cy="70" r="16" fill="#fde68a" opacity="0.85"/>
+  <!-- Hocker: gehoert zur Figur, damit sie ueberall sitzen kann -->
+  <rect x="70" y="300" width="60" height="12" rx="4" fill="#57534e"/>
+  <line x1="80" y1="312" x2="72" y2="384" stroke="#44403c" stroke-width="9" stroke-linecap="round"/>
+  <line x1="120" y1="312" x2="128" y2="384" stroke="#44403c" stroke-width="9" stroke-linecap="round"/>
 
-  <!-- Schultern / Jacke -->
-  <path d="M60 400 Q200 260 340 400 Z" fill="#57534e" stroke="#292524" stroke-width="6"/>
-  <path d="M140 400 Q200 340 260 400 Z" fill="#78716c"/>
-  <rect x="182" y="330" width="36" height="70" fill="#d6d3d1"/>
+  <!-- Beine, sitzend: Oberschenkel nach vorn, Unterschenkel hinunter -->
+  <path d="M74 258 L74 300 L58 300 L58 258 Z" fill="#3f3f46"/>
+  <path d="M126 258 L126 300 L142 300 L142 258 Z" fill="#3f3f46"/>
+  <rect x="56" y="292" width="24" height="82" rx="8" fill="#3f3f46"/>
+  <rect x="120" y="292" width="24" height="82" rx="8" fill="#3f3f46"/>
+  <path d="M50 374 q-8 12 6 14 l30 0 l0 -14 Z" fill="#292524"/>
+  <path d="M150 374 q8 12 -6 14 l-30 0 l0 -14 Z" fill="#292524"/>
+
+  <!-- Rumpf in der braunen Jacke -->
+  <path d="M62 132 q38 -16 76 0 l10 130 l-96 0 Z" fill="#57534e" stroke="#292524" stroke-width="4"/>
+  <path d="M92 128 l0 134 l16 0 l0 -134 Z" fill="#d6d3d1"/>
+  <path d="M62 132 q-14 60 -6 104" fill="none" stroke="#292524" stroke-width="4"/>
+  <path d="M138 132 q14 60 6 104" fill="none" stroke="#292524" stroke-width="4"/>
+
+  <!-- Arme, die Haende auf dem Tisch -->
+  <path d="M64 146 q-24 40 -12 80" fill="none" stroke="#57534e" stroke-width="20" stroke-linecap="round"/>
+  <path d="M136 146 q24 40 12 80" fill="none" stroke="#57534e" stroke-width="20" stroke-linecap="round"/>
+  <circle cx="54" cy="232" r="11" fill="#e7bfa0"/>
+  <circle cx="146" cy="232" r="11" fill="#e7bfa0"/>
 
   <!-- Hals und Kopf -->
-  <rect x="176" y="230" width="48" height="60" rx="16" fill="#e7bfa0"/>
-  <ellipse cx="200" cy="190" rx="82" ry="94" fill="#e7bfa0" stroke="#78350f" stroke-width="3"/>
+  <rect x="88" y="96" width="24" height="30" rx="8" fill="#e7bfa0"/>
+  <ellipse cx="100" cy="66" rx="32" ry="36" fill="#e7bfa0" stroke="#78350f" stroke-width="2"/>
+  <ellipse cx="70" cy="68" rx="5" ry="8" fill="#e7bfa0" stroke="#78350f" stroke-width="2"/>
+  <ellipse cx="130" cy="68" rx="5" ry="8" fill="#e7bfa0" stroke="#78350f" stroke-width="2"/>
 
-  <!-- Ohren -->
-  <ellipse cx="118" cy="195" rx="12" ry="18" fill="#e7bfa0" stroke="#78350f" stroke-width="2"/>
-  <ellipse cx="282" cy="195" rx="12" ry="18" fill="#e7bfa0" stroke="#78350f" stroke-width="2"/>
+  <!-- graues Haar, Augen, Nase, Schnurrbart -->
+  <path d="M72 50 q6 -20 28 -22 q22 2 28 22 q-24 -8 -56 0 Z" fill="#e2e8f0"/>
+  <path d="M80 62 q8 -5 16 0" fill="none" stroke="#cbd5e1" stroke-width="4" stroke-linecap="round"/>
+  <path d="M104 62 q8 -5 16 0" fill="none" stroke="#cbd5e1" stroke-width="4" stroke-linecap="round"/>
+  <circle cx="88" cy="70" r="3" fill="#292524"/>
+  <circle cx="112" cy="70" r="3" fill="#292524"/>
+  <path d="M99 70 q-4 12 1 15 q5 -3 1 -15" fill="#d9a97e"/>
+  <path d="M84 88 q16 7 32 0 q-8 4 -16 3 q-8 1 -16 -3 Z" fill="#e2e8f0" stroke="#94a3b8" stroke-width="2"/>
+  <path d="M92 96 q8 3 16 0" fill="none" stroke="#78350f" stroke-width="2" stroke-linecap="round"/>
 
-  <!-- Graues, schütteres Haar -->
-  <path d="M122 150 Q140 100 200 96 Q260 100 278 150 Q260 130 200 128 Q140 130 122 150 Z" fill="#e2e8f0"/>
-  <path d="M118 160 Q112 140 128 118" fill="none" stroke="#e2e8f0" stroke-width="10" stroke-linecap="round"/>
-  <path d="M282 160 Q288 140 272 118" fill="none" stroke="#e2e8f0" stroke-width="10" stroke-linecap="round"/>
-
-  <!-- Faltige Stirn -->
-  <path d="M150 148 Q200 138 250 148" fill="none" stroke="#c98f6b" stroke-width="3" opacity="0.6"/>
-  <path d="M154 160 Q200 150 246 160" fill="none" stroke="#c98f6b" stroke-width="3" opacity="0.6"/>
-
-  <!-- buschige graue Augenbrauen -->
-  <path d="M148 178 Q168 166 190 176" fill="none" stroke="#cbd5e1" stroke-width="8" stroke-linecap="round"/>
-  <path d="M210 176 Q232 166 252 178" fill="none" stroke="#cbd5e1" stroke-width="8" stroke-linecap="round"/>
-
-  <!-- Augen, leicht müde -->
-  <path d="M158 196 Q170 190 184 196" fill="none" stroke="#44403c" stroke-width="4" stroke-linecap="round"/>
-  <path d="M216 196 Q230 190 242 196" fill="none" stroke="#44403c" stroke-width="4" stroke-linecap="round"/>
-  <circle cx="170" cy="200" r="4" fill="#292524"/>
-  <circle cx="230" cy="200" r="4" fill="#292524"/>
-
-  <!-- markante Nase -->
-  <path d="M197 195 Q188 230 200 238 Q212 230 203 195" fill="#d9a97e" stroke="#78350f" stroke-width="2"/>
-
-  <!-- grauer Schnurrbart -->
-  <path d="M160 246 Q200 262 240 246 Q220 254 200 250 Q180 254 160 246 Z" fill="#e2e8f0" stroke="#94a3b8" stroke-width="2"/>
-
-  <!-- Mund, ruhig -->
-  <path d="M182 262 Q200 268 218 262" fill="none" stroke="#78350f" stroke-width="3" stroke-linecap="round"/>
-
-  <!-- Schiebermütze -->
-  <path d="M112 148 Q120 92 200 88 Q280 92 288 148 Q240 118 200 116 Q160 118 112 148 Z" fill="#292524"/>
-  <path d="M104 150 Q150 128 200 126 Q250 128 296 150 Q252 142 200 140 Q148 142 104 150 Z" fill="#1c1917"/>
-  <path d="M96 152 q10 -16 34 -16 q4 12 -6 22 Z" fill="#1c1917"/>
+  <!-- Schiebermuetze -->
+  <path d="M66 48 q4 -22 34 -24 q30 2 34 24 q-34 -10 -68 0 Z" fill="#292524"/>
+  <path d="M60 50 q20 -8 40 -9 q20 1 40 9 q-20 -3 -40 -2 q-20 -1 -40 2 Z" fill="#1c1917"/>
+  <path d="M56 51 q6 -7 16 -7 q2 5 -3 10 Z" fill="#1c1917"/>
 </svg>
