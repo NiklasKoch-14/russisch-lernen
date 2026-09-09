@@ -9,8 +9,13 @@
  */
 const ROWS = ["йцукенгшщзхъ", "фывапролджэ", "ячсмитьбю"];
 
+/**
+ * Alle Tasten sind gleich breit, abgeleitet von der laengsten Reihe: zwoelf
+ * Tasten plus elf Abstaende von 0,25rem. Feste Mindestbreiten liessen die
+ * oberen Reihen aus der Dialogkarte laufen, sobald das Fenster kleiner wird.
+ */
 const KEY =
-  "min-w-9 rounded-lg border border-slate-300 bg-white px-2 py-2 text-lg leading-none hover:border-sky-400 disabled:opacity-40";
+  "w-[calc((100%-2.75rem)/12)] rounded-lg border border-slate-300 bg-white py-2 text-lg leading-none hover:border-sky-400 disabled:opacity-40";
 
 export default function CyrillicKeyboard({
   onKey,
@@ -45,7 +50,7 @@ export default function CyrillicKeyboard({
           tabIndex={-1}
           disabled={disabled}
           onClick={() => onKey(" ")}
-          className={`${KEY} w-40`}
+          className={`${KEY} !w-2/5`}
         >
           Leerzeichen
         </button>

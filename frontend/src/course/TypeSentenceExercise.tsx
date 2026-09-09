@@ -92,12 +92,8 @@ export default function TypeSentenceExercise({
         {exercise.word_count === 1 ? "ein Wort" : `${exercise.word_count} Wörter`}
       </p>
 
-      <CyrillicKeyboard
-        disabled={disabled}
-        onKey={(letter) => replaceSelection(letter)}
-        onBackspace={() => replaceSelection("", true)}
-      />
-
+      {/* Ueber der Tastatur: auf einem kleinen Fenster scrollt die Karte, und
+          dann rutschte der Knopf als Erstes aus dem Blick. */}
       <button
         type="button"
         disabled={disabled || text.trim() === ""}
@@ -106,6 +102,12 @@ export default function TypeSentenceExercise({
       >
         Prüfen
       </button>
+
+      <CyrillicKeyboard
+        disabled={disabled}
+        onKey={(letter) => replaceSelection(letter)}
+        onBackspace={() => replaceSelection("", true)}
+      />
     </div>
   );
 }

@@ -82,6 +82,9 @@ test.describe("Dorf", () => {
   });
 
   test("lässt die Antwort tippen und benennt den Fehler", async ({ page }) => {
+    // Bewusst schmaler als der Standard: die Tastatur steht in der Dialogkarte,
+    // und feste Tastenbreiten liefen dort bei kleineren Fenstern aus dem Rahmen.
+    await page.setViewportSize({ width: 1024, height: 700 });
     await page.goto("/dorf");
     await page.getByRole("button", { name: /бар/ }).click();
     await page.getByRole("button", { name: /Пётр/ }).click();
@@ -103,6 +106,13 @@ test.describe("Dorf", () => {
       }
     }
     await expect(field).toHaveValue(Array(count).fill("ква").join(" "));
+
+    const keysOverflow = await page
+      .getByTestId("cyrillic-keyboard")
+      .evaluate((keyboard) =>
+        [...keyboard.children].some((row) => row.scrollWidth > row.clientWidth),
+      );
+    expect(keysOverflow, "Die Tastatur passt nicht in die Karte").toBe(false);
 
     await page.getByRole("button", { name: "Prüfen" }).click();
 

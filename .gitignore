@@ -1,0 +1,6 @@
+# Aufzeichnungen des Browsers aus manuellen Durchsichten
+.playwright-mcp/
+*.png
+
+# Datenbanken aus lokalen Probeläufen
+backend/.look/
