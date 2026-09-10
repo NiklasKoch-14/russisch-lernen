@@ -210,3 +210,35 @@ export interface ListeningResult {
   title_de: string;
   translations_de: string[];
 }
+
+/** Welche Seite der Karteikarte die Frage ist. */
+export type FlashcardDirection = "ru_de" | "de_ru";
+
+export interface FlashcardWord {
+  text: string;
+  translit: string;
+}
+
+/** Eine Karteikarte ohne Lösung: gefragt ist die eine Seite, gewählt die andere. */
+export interface Flashcard {
+  lexeme_id: string;
+  direction: FlashcardDirection;
+  prompt_ru: FlashcardWord | null;
+  prompt_de: string | null;
+  options_de: string[];
+  options_ru: FlashcardWord[];
+}
+
+export interface FlashcardRound {
+  seed: string;
+  cards: Flashcard[];
+  known_words: number;
+}
+
+export interface FlashcardResult {
+  correct: boolean;
+  correct_index: number;
+  text: string;
+  translit: string;
+  gloss_de: string;
+}

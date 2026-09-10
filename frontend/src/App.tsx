@@ -6,6 +6,7 @@ import ChatView from "./ChatView";
 import { TransliterationProvider } from "./course/TransliterationContext";
 import ProfileView from "./ProfileView";
 import CourseView from "./views/CourseView";
+import FlashcardsView from "./views/FlashcardsView";
 import ListeningView from "./views/ListeningView";
 import PlaceView from "./views/PlaceView";
 import ReviewView from "./views/ReviewView";
@@ -18,6 +19,7 @@ const TABS = [
   { to: "/kurs", label: "Kurs" },
   { to: "/dorf", label: "Dorf" },
   { to: "/hoeren", label: "Hören" },
+  { to: "/karten", label: "Karten" },
   { to: "/wiederholen", label: "Wiederholen" },
   { to: "/profil", label: "Profil" },
 ];
@@ -95,6 +97,7 @@ export default function App() {
               <Route path="/kurs/:unitId" element={<UnitView />} />
               <Route path="/einstufung" element={<ScreeningView />} />
               <Route path="/hoeren" element={<ListeningView />} />
+              <Route path="/karten" element={<FlashcardsView />} />
               <Route path="/wiederholen" element={<ReviewView />} />
               <Route path="/profil" element={<ProfileView />} />
               <Route path="/gespraech" element={<ChatView />} />
