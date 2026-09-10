@@ -65,7 +65,7 @@ export default function App() {
                   : "mx-auto flex max-w-3xl items-center gap-6 px-4 py-3"
               }
             >
-              <span className="text-lg font-semibold">Speaker</span>
+              <span className="text-lg font-semibold">Russisch lernen</span>
               <nav className="flex gap-4">
                 {TABS.map((tab) => (
                   <NavLink

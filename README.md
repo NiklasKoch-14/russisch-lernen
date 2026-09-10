@@ -1,4 +1,4 @@
-# Speaker — Russisch für Anfänger
+# Russisch lernen
 
 Selbst-gehostete Sprachlern-App mit lokalem KI-Tutor. Zielsprache ist Russisch, Bedienung auf Deutsch.
 Der Lernpfad ist **klick-basiert**: Sätze werden aus vorgegebenen Wortkacheln gebaut, Wortformen aus

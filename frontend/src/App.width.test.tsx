@@ -43,7 +43,7 @@ describe("Kopfzeile im Dorf", () => {
     renderAt("/dorf");
     // Nutzeranforderung: die Kopfzeile mit Logo, Navigation und
     // Ton-Schalter darf im Dorf nicht verschwinden — sie waechst nur mit.
-    expect(screen.getByText("Speaker")).toBeVisible();
+    expect(screen.getByText("Russisch lernen")).toBeVisible();
     expect(screen.getByRole("navigation")).toBeVisible();
     expect(screen.getByRole("link", { name: "Dorf" })).toBeVisible();
     expect(screen.getByRole("switch")).toBeVisible();
