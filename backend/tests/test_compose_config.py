@@ -79,3 +79,39 @@ def test_beide_dienste_sprechen_mit_denselben_stimmen():
         assert backend[name] == tts[name], (
             f"{name}: backend {backend[name]!r} gegen tts {tts[name]!r}"
         )
+
+
+def _service_environment(name: str) -> dict[str, str]:
+    compose = yaml.safe_load((REPO / "docker-compose.yml").read_text(encoding="utf-8"))
+    entries = compose["services"][name].get("environment", [])
+    return dict(entry.split("=", 1) for entry in entries)
+
+
+def test_ein_dienst_zieht_das_sprachmodell():
+    """Ohne ihn startet Ollama leer.
+
+    Das Backend fängt den Fehler still auf und liefert statt der Erklärung die
+    Regel der Einheit — es sieht also aus, als liefe alles, und niemand merkt,
+    dass das Modell fehlt.
+    """
+    compose = yaml.safe_load((REPO / "docker-compose.yml").read_text(encoding="utf-8"))
+    assert "ollama-init" in compose["services"], (
+        "Kein Dienst zieht das Modell — nach einem frischen Clone bliebe Ollama leer"
+    )
+
+
+def test_backend_und_modell_zug_meinen_dasselbe_modell():
+    """Sonst zöge der eine Dienst ein Modell, das der andere nie anspricht."""
+    compose = yaml.safe_load((REPO / "docker-compose.yml").read_text(encoding="utf-8"))
+    gezogen = " ".join(compose["services"]["ollama-init"]["entrypoint"])
+    modell = _service_environment("backend")["OLLAMA_MODEL"]
+    assert modell in gezogen, f"backend will {modell}, gezogen wird: {gezogen}"
+
+
+def test_der_default_im_code_passt_zur_compose_datei():
+    """Wer ohne Compose startet, bekommt sonst ein anderes Modell als im Betrieb."""
+    from app.config import Settings
+
+    modell = _service_environment("backend")["OLLAMA_MODEL"]
+    vorgabe = modell.split(":-", 1)[1].rstrip("}")
+    assert Settings().ollama_model == vorgabe

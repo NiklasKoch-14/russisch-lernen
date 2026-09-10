@@ -5,6 +5,28 @@ services:
       - ollama_data:/root/.ollama
     ports:
       - "11434:11434"
+    healthcheck:
+      test: ["CMD", "ollama", "list"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+      start_period: 10s
+
+  # Zieht das Modell einmal beim Hochfahren und beendet sich wieder. Ohne diesen
+  # Dienst startet Ollama leer: das Backend faengt den Fehler still auf und
+  # liefert statt der Erklaerung die Regel der Einheit — es sieht also aus, als
+  # liefe alles. Ein zweiter Lauf kostet nichts, `pull` erkennt vorhandene
+  # Modelle. Bewusst hier statt im Makefile, damit auch `docker compose up`
+  # ohne make vollstaendig ist.
+  ollama-init:
+    image: ollama/ollama:latest
+    depends_on:
+      ollama:
+        condition: service_healthy
+    environment:
+      - OLLAMA_HOST=http://ollama:11434
+    entrypoint: ["ollama", "pull", "${OLLAMA_MODEL:-llama3.2:1b}"]
+    restart: "no"
 
   # Kein ports-Eintrag: der Dienst ist nur im Docker-Netz erreichbar, das
   # Frontend spricht ausschliesslich das Backend an.
@@ -26,7 +48,7 @@ services:
       dockerfile: backend/Dockerfile
     environment:
       - OLLAMA_HOST=http://ollama:11434
-      - OLLAMA_MODEL=${OLLAMA_MODEL:-llama3.2:3b}
+      - OLLAMA_MODEL=${OLLAMA_MODEL:-llama3.2:1b}
       - DB_PATH=/data/speaker.db
       - DEFAULT_LANGUAGE=russian
       - CONTENT_DIR=/app/content/ru

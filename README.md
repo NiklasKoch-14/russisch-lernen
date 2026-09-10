@@ -7,6 +7,15 @@ Optionen gewählt. Eine kyrillische Tastatur wird nie gebraucht.
 Es entstehen keine API-Kosten — Textgenerierung läuft lokal über Ollama, und die Lerninhalte selbst
 stammen aus einem kuratierten, maschinell geprüften Content-Paket statt aus dem Sprachmodell.
 
+## Voraussetzungen
+
+Nur **Docker mit Compose v2** (`docker compose version` muss antworten). Kein API-Key, keine
+Konfigurationsdatei, kein Konto irgendwo. `make` ist bequem, aber nicht nötig.
+
+Der erste Start braucht Platz und Geduld: rund 9 GB an Images — das Ollama-Image allein wiegt 8 GB —
+plus etwa 1,3 GB für das Sprachmodell. Frei sein müssen die Ports **3000**, **8000** und **11434**.
+Gebaut und getestet ist alles auf x86-64 unter Linux und WSL2; auf Apple Silicon ist es ungeprüft.
+
 ## Starten
 
 ```bash
@@ -21,10 +30,13 @@ Ohne `make` geht es genauso mit `docker compose up -d --build` beziehungsweise `
 |---|---|---|
 | frontend | 3000 | React-Oberfläche (nginx) |
 | backend | 8000 | FastAPI + SQLite |
-| ollama | 11434 | lokales Sprachmodell, Default `llama3.2:3b` |
+| ollama | 11434 | lokales Sprachmodell, Default `llama3.2:1b` |
 | tts | — | Piper-Sprachausgabe, nur intern erreichbar |
 
-Der erste Start dauert länger, weil das Modell heruntergeladen wird. Ein API-Key wird nie benötigt.
+Beim Hochfahren zieht der einmalige Dienst `ollama-init` das Sprachmodell und beendet sich wieder;
+`make logs` zeigt den Fortschritt. **Der Kurs läuft schon vorher vollständig** — das Modell erklärt
+nur, warum eine Antwort falsch war. Fehlt es, steht dort die Regel der Einheit. Ein anderes Modell
+wählt `OLLAMA_MODEL=… docker compose up -d`.
 
 ## Ton
 
