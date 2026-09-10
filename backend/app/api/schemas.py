@@ -108,3 +108,43 @@ class ExplainRequest(BaseModel):
 class ExplainResponse(BaseModel):
     explanation_de: str
     source: str
+
+
+class ListeningSpeaker(BaseModel):
+    name_ru: str
+    name_de: str
+    voice: str
+
+
+class ListeningLine(BaseModel):
+    speaker: int
+    text: str
+    translit: str
+
+
+class ListeningNextResponse(BaseModel):
+    """Genug zum Hören, nichts zum Antworten.
+
+    `dialog_id` ist None, solange keine Einheit weit genug ist; dann sagt
+    `next_unit`, welche das nächste Gespräch öffnet.
+    """
+
+    dialog_id: int | None = None
+    next_unit: int | None = None
+    seed: str = ""
+    speakers: list[ListeningSpeaker] = []
+    lines: list[ListeningLine] = []
+    question_de: str = ""
+    options_de: list[str] = []
+
+
+class ListeningAnswerRequest(BaseModel):
+    seed: str
+    option_index: int
+
+
+class ListeningAnswerResponse(BaseModel):
+    correct: bool
+    correct_index: int
+    title_de: str
+    translations_de: list[str]

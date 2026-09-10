@@ -14,6 +14,9 @@ from app.api.schemas import (
     ExplainRequest,
     ExplainResponse,
     LearningPlanResponse,
+    ListeningAnswerRequest,
+    ListeningAnswerResponse,
+    ListeningNextResponse,
     PlacementAnswerRequest,
     PlacementAnswerResponse,
     PlacementStartResponse,
@@ -31,6 +34,7 @@ from app.api.schemas import (
 from app.audio.cache import AudioCache, audio_key, strip_stress
 from app.config import settings
 from app.content.models import Course
+from app.course import listening as listening_module
 from app.course import review as review_module
 from app.course import service as course_service
 from app.course.review_index import ReviewIndex
@@ -48,7 +52,7 @@ from app.game import service as game_service
 from app.game.models import Village
 from app.ollama_client import OllamaClient
 from app.tts_client import TtsClient, TtsUnavailable
-from app.repositories import vocab_repo
+from app.repositories import listening_repo, vocab_repo
 from app.repositories.learning_plan_repo import get_latest_plan
 from app.repositories.profile_repo import get_or_create_profile, update_profile
 from app.screening import service as screening_service
@@ -455,3 +459,47 @@ def read_art(art_id: str) -> FileResponse:
     if path is None:
         raise HTTPException(status_code=404, detail=f"Bild {art_id} gibt es nicht")
     return FileResponse(path, media_type=game_art.MEDIA_TYPES[path.suffix])
+
+
+@router.get("/listening/next", response_model=ListeningNextResponse)
+def listening_next(
+    course: Course = Depends(get_course),
+    conn: Connection = Depends(get_db),
+) -> ListeningNextResponse:
+    """Das nächste Hörgespräch — oder die Einheit, die das erste öffnet."""
+    now = dt.datetime.now(dt.timezone.utc).isoformat()
+    picked = listening_module.pick_dialog(course, conn, now=now)
+    if picked is None:
+        reached = listening_module.reached_unit(conn)
+        return ListeningNextResponse(
+            dialog_id=None, next_unit=listening_module.first_locked_unit(course, reached)
+        )
+    dialog, seed = picked
+    return ListeningNextResponse(**listening_module.dialog_payload(course, dialog, seed))
+
+
+@router.post("/listening/{dialog_id}/answer", response_model=ListeningAnswerResponse)
+def listening_answer(
+    dialog_id: int,
+    payload: ListeningAnswerRequest,
+    course: Course = Depends(get_course),
+    conn: Connection = Depends(get_db),
+) -> ListeningAnswerResponse:
+    dialog = course.dialogs.get(dialog_id)
+    if dialog is None:
+        raise HTTPException(status_code=404, detail=f"Gespräch {dialog_id} gibt es nicht")
+    correct, correct_index = listening_module.check_answer(
+        dialog, payload.seed, payload.option_index
+    )
+    listening_repo.record_run(
+        conn,
+        dialog_id=dialog_id,
+        correct=correct,
+        played_at=dt.datetime.now(dt.timezone.utc).isoformat(),
+    )
+    return ListeningAnswerResponse(
+        correct=correct,
+        correct_index=correct_index,
+        title_de=dialog.title_de,
+        translations_de=[line.translation_de for line in dialog.lines],
+    )

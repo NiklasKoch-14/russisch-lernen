@@ -112,6 +112,13 @@ CREATE TABLE IF NOT EXISTS game_scene_runs (
     seed      TEXT NOT NULL,
     played_at TEXT NOT NULL
 );
+
+CREATE TABLE IF NOT EXISTS listening_runs (
+    id        INTEGER PRIMARY KEY AUTOINCREMENT,
+    dialog_id INTEGER NOT NULL,
+    correct   INTEGER NOT NULL,
+    played_at TEXT NOT NULL
+);
 """
 
 PROFILE_COLUMNS = {
