@@ -1,0 +1,93 @@
+{
+  "id": 1,
+  "min_unit": 12,
+  "title_de": "Zwei lernen sich kennen",
+  "speakers": [
+    {
+      "name_ru": "Пётр",
+      "name_de": "Pjotr",
+      "voice": "m"
+    },
+    {
+      "name_ru": "Ни́ка",
+      "name_de": "Nika",
+      "voice": "f"
+    }
+  ],
+  "lines": [
+    {
+      "speaker": 0,
+      "tokens": [
+        [
+          "privet",
+          "base"
+        ],
+        [
+          "kak",
+          "base"
+        ],
+        [
+          "ty",
+          "acc"
+        ],
+        [
+          "zvat",
+          "prs.3pl"
+        ]
+      ],
+      "translation_de": "Hallo! Wie heißt du?"
+    },
+    {
+      "speaker": 1,
+      "tokens": [
+        [
+          "ja",
+          "acc"
+        ],
+        [
+          "zvat",
+          "prs.3pl"
+        ],
+        [
+          "nika",
+          "nom.sg"
+        ],
+        [
+          "ja",
+          "nom"
+        ],
+        [
+          "iz",
+          "base"
+        ],
+        [
+          "rossija",
+          "gen.sg"
+        ]
+      ],
+      "translation_de": "Ich heiße Nika. Ich komme aus Russland."
+    },
+    {
+      "speaker": 0,
+      "tokens": [
+        [
+          "ochen",
+          "base"
+        ],
+        [
+          "prijatno",
+          "base"
+        ]
+      ],
+      "translation_de": "Sehr angenehm!"
+    }
+  ],
+  "question_de": "Worum ging es?",
+  "options_de": [
+    "Die beiden stellen sich einander vor.",
+    "Die beiden verabschieden sich.",
+    "Die beiden reden über ihre Familie.",
+    "Die beiden bestellen etwas."
+  ],
+  "correct_index": 0
+}

@@ -3,6 +3,7 @@ from app.content.models import (
     BuildSentenceExercise,
     ChooseFormExercise,
     Course,
+    Dialog,
     DialogReplyExercise,
     Exercise,
     ListenMeaningExercise,
@@ -15,6 +16,11 @@ from app.content.validation import check_token as _check_token
 STRESS = "́"
 VOWELS = set("аеёиоуыэюяАЕЁИОУЫЭЮЯ")
 MIN_EXERCISES = 6
+MIN_DIALOG_LINES = 3
+MIN_DIALOG_OPTIONS = 3
+MAX_DIALOG_LINE_CHARS = 200
+"""Der tts-Dienst nimmt 300 Zeichen; darunter bleibt Platz für die Umschrift."""
+VOICES = ("m", "f")
 
 STAGE_RANGES: dict[int, tuple[int, int]] = {
     0: (1, 4),
@@ -181,6 +187,96 @@ def _check_units(course: Course) -> list[str]:
     return errors
 
 
+def _introduced_by(course: Course) -> dict[int, set[str]]:
+    """Je Einheit: welche Lexeme sind bis dahin eingeführt?"""
+    seen: set[str] = set()
+    result: dict[int, set[str]] = {}
+    for unit in course.ordered_units():
+        seen.update(unit.new_lexemes)
+        result[unit.id] = set(seen)
+    return result
+
+
+def _check_dialog(course: Course, dialog: Dialog, known: dict[int, set[str]]) -> list[str]:
+    where = f"Gespräch {dialog.id}"
+    errors: list[str] = []
+
+    if not dialog.title_de.strip():
+        errors.append(f"{where}: title_de ist leer")
+    if not dialog.question_de.strip():
+        errors.append(f"{where}: question_de ist leer")
+
+    if not 2 <= len(dialog.speakers) <= 3:
+        errors.append(f"{where}: braucht zwei oder drei Sprecher, hat {len(dialog.speakers)}")
+    for index, speaker in enumerate(dialog.speakers):
+        if speaker.voice not in VOICES:
+            errors.append(
+                f"{where}, Sprecher {index}: Stimme {speaker.voice!r} gibt es nicht — "
+                "erlaubt sind 'm' und 'f'"
+            )
+        if not speaker.name_ru.strip() or not speaker.name_de.strip():
+            errors.append(f"{where}, Sprecher {index}: Name fehlt")
+
+    if dialog.min_unit not in course.units:
+        errors.append(f"{where}: min_unit {dialog.min_unit} verweist auf keine Einheit")
+    # Ohne diese Regel hört der Lernende Wörter, die er nicht haben kann.
+    erlaubt = known.get(dialog.min_unit, set())
+
+    if len(dialog.lines) < MIN_DIALOG_LINES:
+        errors.append(
+            f"{where}: braucht mindestens {MIN_DIALOG_LINES} Zeilen, hat {len(dialog.lines)}"
+        )
+    spricht: set[int] = set()
+    for number, line in enumerate(dialog.lines, start=1):
+        stelle = f"{where}, Zeile {number}"
+        if not 0 <= line.speaker < len(dialog.speakers):
+            errors.append(f"{stelle}: Sprecher {line.speaker} gibt es nicht")
+        else:
+            spricht.add(line.speaker)
+        if not line.translation_de.strip():
+            errors.append(f"{stelle}: translation_de ist leer")
+        for token in line.tokens:
+            errors.extend(_check_token(course, token, stelle))
+            lexeme_id, _ = token
+            if lexeme_id in course.lexemes and lexeme_id not in erlaubt:
+                errors.append(
+                    f"{stelle}: Lexem {lexeme_id!r} ist in Einheit {dialog.min_unit} "
+                    "noch nicht eingeführt"
+                )
+        text = " ".join(
+            course.form(token).text for token in line.tokens if token[0] in course.lexemes
+        )
+        if len(text) > MAX_DIALOG_LINE_CHARS:
+            errors.append(f"{stelle}: länger als {MAX_DIALOG_LINE_CHARS} Zeichen")
+    if not errors and len(spricht) < len(dialog.speakers):
+        errors.append(f"{where}: nicht jeder Sprecher kommt vor")
+
+    if len(dialog.options_de) < MIN_DIALOG_OPTIONS:
+        errors.append(f"{where}: braucht mindestens {MIN_DIALOG_OPTIONS} Optionen")
+    cleaned = [option.strip() for option in dialog.options_de]
+    if any(not option for option in cleaned):
+        errors.append(f"{where}: eine Option ist leer")
+    if len(set(cleaned)) != len(cleaned):
+        errors.append(f"{where}: zwei Optionen sind doppelt")
+    if not 0 <= dialog.correct_index < len(dialog.options_de):
+        errors.append(
+            f"{where}: correct_index {dialog.correct_index} liegt außerhalb der Optionen"
+        )
+    return errors
+
+
+def _check_dialogs(course: Course) -> list[str]:
+    errors: list[str] = []
+    known = _introduced_by(course)
+    for position, dialog_id in enumerate(sorted(course.dialogs), start=1):
+        if dialog_id != position:
+            errors.append(
+                f"Gespräch-IDs haben eine Lücke: erwartet {position}, gefunden {dialog_id}"
+            )
+        errors.extend(_check_dialog(course, course.dialogs[dialog_id], known))
+    return errors
+
+
 def _check_primers(course: Course) -> list[str]:
     errors: list[str] = []
     for primer in course.primers.values():
@@ -213,4 +309,5 @@ def validate_course(course: Course) -> list[str]:
         + _check_primers(course)
         + _check_units(course)
         + _check_screening(course)
+        + _check_dialogs(course)
     )

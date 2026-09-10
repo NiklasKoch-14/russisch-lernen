@@ -5,7 +5,10 @@ from app.content.models import (
     BuildSentenceExercise,
     ChooseFormExercise,
     Course,
+    Dialog,
+    DialogLine,
     DialogReplyExercise,
+    DialogSpeaker,
     Exercise,
     Form,
     GrammarFocus,
@@ -126,6 +129,34 @@ def _unit(raw: dict, source: Path) -> Unit:
         raise ContentError(f"{source.name}: Feld fehlt {exc}") from exc
 
 
+def _dialog(raw: dict, source: Path) -> Dialog:
+    try:
+        return Dialog(
+            id=int(raw["id"]),
+            min_unit=int(raw["min_unit"]),
+            title_de=raw["title_de"],
+            speakers=[
+                DialogSpeaker(
+                    name_ru=item["name_ru"], name_de=item["name_de"], voice=item["voice"]
+                )
+                for item in raw["speakers"]
+            ],
+            lines=[
+                DialogLine(
+                    speaker=int(item["speaker"]),
+                    tokens=_tokens(item["tokens"], f"{source.name}, Zeile {index}"),
+                    translation_de=item["translation_de"],
+                )
+                for index, item in enumerate(raw["lines"], start=1)
+            ],
+            question_de=raw["question_de"],
+            options_de=list(raw["options_de"]),
+            correct_index=int(raw["correct_index"]),
+        )
+    except (KeyError, TypeError) as exc:
+        raise ContentError(f"{source.name}: Gespräch unvollständig ({exc})") from exc
+
+
 def load_course(content_dir: str | Path, language: str = "russian") -> Course:
     """Load the whole content package from disk into an immutable Course."""
     root = Path(content_dir)
@@ -147,6 +178,14 @@ def load_course(content_dir: str | Path, language: str = "russian") -> Course:
         for item in raw_primers["primers"]
     }
 
+    # Ohne Verzeichnis bleibt es leer: Gespräche sind eine Zugabe, kein Kurs.
+    dialogs: dict[int, Dialog] = {}
+    for path in sorted((root / "dialogs").glob("*.json")):
+        dialog = _dialog(_read_json(path), path)
+        if dialog.id in dialogs:
+            raise ContentError(f"Gespräch-ID {dialog.id} kommt doppelt vor ({path.name})")
+        dialogs[dialog.id] = dialog
+
     raw_screening = _read_json(root / "screening.json")
     screening = [
         ScreeningProbe(
@@ -165,4 +204,5 @@ def load_course(content_dir: str | Path, language: str = "russian") -> Course:
         units=units,
         screening=screening,
         primers=primers,
+        dialogs=dialogs,
     )

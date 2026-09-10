@@ -1,0 +1,231 @@
+{
+  "id": 3,
+  "min_unit": 44,
+  "title_de": "Pjotrs Tag",
+  "speakers": [
+    {
+      "name_ru": "Ве́ра",
+      "name_de": "Vera",
+      "voice": "f"
+    },
+    {
+      "name_ru": "Пётр",
+      "name_de": "Pjotr",
+      "voice": "m"
+    }
+  ],
+  "lines": [
+    {
+      "speaker": 0,
+      "tokens": [
+        [
+          "kogda",
+          "base"
+        ],
+        [
+          "ty",
+          "nom"
+        ],
+        [
+          "vstavat",
+          "prs.2sg"
+        ]
+      ],
+      "translation_de": "Wann stehst du auf?"
+    },
+    {
+      "speaker": 1,
+      "tokens": [
+        [
+          "ja",
+          "nom"
+        ],
+        [
+          "vsegda",
+          "base"
+        ],
+        [
+          "vstavat",
+          "prs.1sg"
+        ],
+        [
+          "v",
+          "base"
+        ],
+        [
+          "sem",
+          "nom"
+        ],
+        [
+          "chas",
+          "gen.pl"
+        ]
+      ],
+      "translation_de": "Ich stehe immer um sieben Uhr auf."
+    },
+    {
+      "speaker": 0,
+      "tokens": [
+        [
+          "eto",
+          "base"
+        ],
+        [
+          "ochen",
+          "base"
+        ],
+        [
+          "rano",
+          "base"
+        ]
+      ],
+      "translation_de": "Das ist sehr früh."
+    },
+    {
+      "speaker": 1,
+      "tokens": [
+        [
+          "utrom",
+          "base"
+        ],
+        [
+          "ja",
+          "nom"
+        ],
+        [
+          "zavtrakat",
+          "prs.1sg"
+        ],
+        [
+          "i",
+          "base"
+        ],
+        [
+          "rabotat",
+          "prs.1sg"
+        ],
+        [
+          "v",
+          "base"
+        ],
+        [
+          "ofis",
+          "prp.sg"
+        ]
+      ],
+      "translation_de": "Morgens frühstücke ich und arbeite im Büro."
+    },
+    {
+      "speaker": 0,
+      "tokens": [
+        [
+          "gde",
+          "base"
+        ],
+        [
+          "ty",
+          "nom"
+        ],
+        [
+          "obedat",
+          "prs.2sg"
+        ]
+      ],
+      "translation_de": "Wo isst du zu Mittag?"
+    },
+    {
+      "speaker": 1,
+      "tokens": [
+        [
+          "v",
+          "base"
+        ],
+        [
+          "kafe",
+          "prp.sg"
+        ],
+        [
+          "obed",
+          "nom.sg"
+        ],
+        [
+          "v",
+          "base"
+        ],
+        [
+          "dva",
+          "nom.m"
+        ],
+        [
+          "chas",
+          "gen.sg"
+        ]
+      ],
+      "translation_de": "Im Café. Das Mittagessen ist um zwei Uhr."
+    },
+    {
+      "speaker": 0,
+      "tokens": [
+        [
+          "a",
+          "base"
+        ],
+        [
+          "vecherom",
+          "base"
+        ]
+      ],
+      "translation_de": "Und abends?"
+    },
+    {
+      "speaker": 1,
+      "tokens": [
+        [
+          "vecherom",
+          "base"
+        ],
+        [
+          "ja",
+          "nom"
+        ],
+        [
+          "smotret",
+          "prs.1sg"
+        ],
+        [
+          "televizor",
+          "acc.sg"
+        ],
+        [
+          "v",
+          "base"
+        ],
+        [
+          "subbota",
+          "acc.sg"
+        ],
+        [
+          "ja",
+          "nom"
+        ],
+        [
+          "spat",
+          "prs.1sg"
+        ],
+        [
+          "dolgo",
+          "base"
+        ]
+      ],
+      "translation_de": "Abends sehe ich fern. Am Samstag schlafe ich lange."
+    }
+  ],
+  "question_de": "Worum ging es?",
+  "options_de": [
+    "Um Pjotrs Tagesablauf.",
+    "Um Pjotrs Arbeit im Laden.",
+    "Um ein Essen im Restaurant.",
+    "Um Veras Wochenende."
+  ],
+  "correct_index": 0
+}

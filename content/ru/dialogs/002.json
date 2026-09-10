@@ -1,0 +1,111 @@
+{
+  "id": 2,
+  "min_unit": 25,
+  "title_de": "Im Café",
+  "speakers": [
+    {
+      "name_ru": "Ле́на",
+      "name_de": "Lena",
+      "voice": "f"
+    },
+    {
+      "name_ru": "Оле́г",
+      "name_de": "Oleg",
+      "voice": "m"
+    }
+  ],
+  "lines": [
+    {
+      "speaker": 0,
+      "tokens": [
+        [
+          "chto",
+          "acc"
+        ],
+        [
+          "ty",
+          "nom"
+        ],
+        [
+          "pit",
+          "prs.2sg"
+        ]
+      ],
+      "translation_de": "Was trinkst du?"
+    },
+    {
+      "speaker": 1,
+      "tokens": [
+        [
+          "ja",
+          "nom"
+        ],
+        [
+          "pit",
+          "prs.1sg"
+        ],
+        [
+          "kofe",
+          "acc.sg"
+        ],
+        [
+          "a",
+          "base"
+        ],
+        [
+          "ty",
+          "nom"
+        ]
+      ],
+      "translation_de": "Ich trinke Kaffee. Und du?"
+    },
+    {
+      "speaker": 0,
+      "tokens": [
+        [
+          "ja",
+          "nom"
+        ],
+        [
+          "pit",
+          "prs.1sg"
+        ],
+        [
+          "chaj",
+          "acc.sg"
+        ]
+      ],
+      "translation_de": "Ich trinke Tee."
+    },
+    {
+      "speaker": 1,
+      "tokens": [
+        [
+          "chaj",
+          "nom.sg"
+        ],
+        [
+          "zdes",
+          "base"
+        ],
+        [
+          "ochen",
+          "base"
+        ],
+        [
+          "khoroshij",
+          "nom.m"
+        ]
+      ],
+      "translation_de": "Der Tee ist hier sehr gut."
+    }
+  ],
+  "question_de": "Worum ging es?",
+  "options_de": [
+    "Was die beiden im Café trinken.",
+    "Wo das Café liegt.",
+    "Wer im Café arbeitet.",
+    "Was der Kaffee kostet."
+  ],
+  "correct_index": 0
+}

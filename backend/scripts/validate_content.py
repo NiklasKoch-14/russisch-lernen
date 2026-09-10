@@ -31,8 +31,8 @@ def main(argv: list[str]) -> int:
 
     print(
         f"OK — {len(course.units)} Einheiten, {len(course.lexemes)} Lexeme, "
-        f"{len(course.screening)} Sonden, {len(village.places)} Orte, "
-        f"{len(village.scenes)} Szenen"
+        f"{len(course.screening)} Sonden, {len(course.dialogs)} Gespräche, "
+        f"{len(village.places)} Orte, {len(village.scenes)} Szenen"
     )
     return 0
 

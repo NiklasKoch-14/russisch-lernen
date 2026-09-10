@@ -135,6 +135,43 @@ class Unit:
 
 
 @dataclass(frozen=True)
+class DialogSpeaker:
+    """Eine Figur im Hörgespräch.
+
+    Name und Rolle sind Anzeige und Ton, kein Lernstoff — deshalb rohe
+    Zeichenketten statt Lexeme. `voice` ist `m` oder `f`; welches Piper-Modell
+    dahintersteht, entscheidet die Konfiguration.
+    """
+
+    name_ru: str
+    name_de: str
+    voice: str
+
+
+@dataclass(frozen=True)
+class DialogLine:
+    speaker: int
+    tokens: list[TokenRef]
+    translation_de: str
+    """Erscheint erst nach der Antwort — vorher verriete sie die Lösung."""
+
+
+@dataclass(frozen=True)
+class Dialog:
+    """Zwei Figuren reden, der Lernende hört zu und sagt danach, worum es ging."""
+
+    id: int
+    min_unit: int
+    """Ab dieser Einheit freigeschaltet; bis dahin muss jedes Wort eingeführt sein."""
+    title_de: str
+    speakers: list[DialogSpeaker]
+    lines: list[DialogLine]
+    question_de: str
+    options_de: list[str]
+    correct_index: int
+
+
+@dataclass(frozen=True)
 class ScreeningProbe:
     id: str
     prompt_de: str
@@ -150,6 +187,7 @@ class Course:
     units: dict[int, Unit]
     screening: list[ScreeningProbe] = field(default_factory=list)
     primers: dict[str, Primer] = field(default_factory=dict)
+    dialogs: dict[int, Dialog] = field(default_factory=dict)
 
     def form(self, ref: TokenRef) -> Form:
         """Resolve a token reference to its concrete word form."""
