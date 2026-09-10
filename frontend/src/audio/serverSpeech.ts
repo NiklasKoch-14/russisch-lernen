@@ -38,12 +38,18 @@ export function stopAudio(): void {
   playing = null;
 }
 
-export function audioUrl(text: string): string {
-  return `${API_BASE_URL}/api/audio?text=${encodeURIComponent(text)}`;
+/** Welche Figur spricht. Das Modell dahinter kennt nur der Server. */
+export type Voice = "m" | "f";
+
+export function audioUrl(text: string, voice?: Voice): string {
+  const base = `${API_BASE_URL}/api/audio?text=${encodeURIComponent(text)}`;
+  // Ohne Angabe bleibt die Adresse, wie sie war: der Browser hat den Ton der
+  // Einzelsaetze schon abgelegt, und `immutable` gilt je Adresse.
+  return voice ? `${base}&voice=${voice}` : base;
 }
 
-function loadAudio(text: string): Promise<Blob> {
-  const url = audioUrl(text);
+function loadAudio(text: string, voice?: Voice): Promise<Blob> {
+  const url = audioUrl(text, voice);
   const known = pending.get(url);
   if (known) return known;
 
@@ -63,19 +69,22 @@ function loadAudio(text: string): Promise<Blob> {
 }
 
 /** Waermt den Speicher. Fehler sind hier bedeutungslos. */
-export async function prefetchAudio(text: string): Promise<void> {
+export async function prefetchAudio(text: string, voice?: Voice): Promise<void> {
   try {
-    await loadAudio(text);
+    await loadAudio(text, voice);
   } catch {
     // Vorladen ist Kuer — der Klick holt die Datei sonst eben selbst.
   }
 }
 
-export async function playAudio(text: string, options?: { slow?: boolean }): Promise<void> {
+export async function playAudio(
+  text: string,
+  options?: { slow?: boolean; voice?: Voice },
+): Promise<void> {
   // Vor dem Laden abbrechen: sonst laeuft die alte Ausgabe waehrend des
   // Abrufs weiter und die neue setzt sich darueber.
   stopAudio();
-  const blob = await loadAudio(text);
+  const blob = await loadAudio(text, options?.voice);
   const objectUrl = URL.createObjectURL(blob);
 
   const audio = new Audio(objectUrl);

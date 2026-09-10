@@ -190,3 +190,24 @@ describe("nur eine Wiedergabe zur Zeit", () => {
     expect(FakeAudio.lastInstance).not.toBe(erste);
   });
 });
+
+describe("Stimmen", () => {
+  it("hängt die Rolle an die Adresse", () => {
+    expect(audioUrl("дом")).not.toContain("voice=");
+    expect(audioUrl("дом", "f")).toContain("voice=f");
+  });
+
+  it("hält die Stimmen im Speicher auseinander", async () => {
+    // Sonst spraeche die zweite Figur mit dem Ton der ersten.
+    const fetchMock = stubBlobPlayback();
+    await prefetchAudio("дом", "m");
+    await prefetchAudio("дом", "f");
+    expect(fetchMock).toHaveBeenCalledTimes(2);
+  });
+
+  it("spielt mit der verlangten Stimme", async () => {
+    const fetchMock = stubBlobPlayback();
+    await playAudio("дом", { voice: "f" });
+    expect(fetchMock).toHaveBeenCalledWith(audioUrl("дом", "f"));
+  });
+});

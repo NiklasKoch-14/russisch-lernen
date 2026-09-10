@@ -2,6 +2,7 @@ import { createContext, useCallback, useContext, useEffect, useMemo, useState } 
 import type { ReactNode } from "react";
 
 import { getProfile, patchProfile } from "../courseApi";
+import type { Voice } from "./serverSpeech";
 import { playAudio, serverAudioAvailable } from "./serverSpeech";
 import { NORMAL_RATE, SLOW_RATE, loadVoices, pickRussianVoice, speak } from "./speech";
 
@@ -14,7 +15,8 @@ interface SpeechValue {
   source: SpeechSource;
   autoplay: boolean;
   setAutoplay: (value: boolean) => void;
-  say: (text: string, options?: { slow?: boolean }) => Promise<void>;
+  /** `voice` waehlt die Figur; ohne Server spricht dieselbe Browserstimme alle Rollen. */
+  say: (text: string, options?: { slow?: boolean; voice?: Voice }) => Promise<void>;
   /** Fehlercode der letzten Sprachausgabe, sonst null. */
   lastError: string | null;
   /** Welche Stimme tatsaechlich spricht — `local: false` heisst: aus dem Netz. */
@@ -83,14 +85,14 @@ export function SpeechProvider({ children }: { children: ReactNode }) {
   }, []);
 
   const say = useCallback(
-    async (text: string, options?: { slow?: boolean }) => {
+    async (text: string, options?: { slow?: boolean; voice?: Voice }) => {
       // Nur zuruecksetzen, wenn wirklich ein Fehler steht — sonst rendert jeder
       // Lautsprecherklick die ganze App neu.
       setLastError((previous) => (previous === null ? previous : null));
 
       if (serverOk) {
         try {
-          await playAudio(text, { slow: options?.slow ?? false });
+          await playAudio(text, { slow: options?.slow ?? false, voice: options?.voice });
           return;
         } catch {
           // Einmal als tot erkannt, nicht bei jedem Klick erneut probieren.
