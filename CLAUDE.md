@@ -61,6 +61,11 @@ speichert ausschließlich Fortschritt.
 - `units/NNN.json` — Alltagsszenario mit genau einem Grammatik-Fokus und 6–11 Aufgaben
 - `primers.json` — deutsche Grundbegriffe (was ein Akkusativ ist), von Einheiten referenziert
 - `screening.json` — die Sonden der Einstufung
+- `dialogs/NNN.json` — Hörgespräche: zwei Figuren reden, der Lernende hört blind zu und sagt
+  danach, worum es ging. `min_unit` ist die Einheit, ab der ein Gespräch offen ist; der Validator
+  erzwingt, dass jedes benutzte Wort bis dahin eingeführt wurde. **Gespräche führen selbst keine
+  Vokabeln ein.** Die Stimme einer Figur ist `m` oder `f` — welches Piper-Modell dahintersteht,
+  entscheidet die Konfiguration
 
 Sätze referenzieren **`(lexeme_id, form_key)`-Paare statt roher Zeichenketten**. Das ist die zentrale
 Entwurfsentscheidung: nur dadurch lassen sich Inhalte maschinell prüfen, und die Ablenker beim
@@ -98,6 +103,10 @@ Wiederholung nichts. Der Test
 wacht darüber (Schwelle 60 %).
 
 ### Ton
+
+Der `tts`-Dienst hält zwei Stimmen (`PIPER_VOICE` männlich, `PIPER_VOICE_FEMALE` weiblich) und
+nimmt die Rolle je Anfrage entgegen; `/api/audio?voice=m|f` reicht sie durch. Beide Namen müssen in
+`backend` und `tts` übereinstimmen — ein Test in `test_compose_config.py` wacht darüber.
 
 Das Frontend spricht nie direkt mit `tts`. Es holt Audio beim Backend, das intern erzeugen lässt und
 in `audio/cache.py` zwischenspeichert (Verdrängung nach längster Nichtbenutzung, nicht nach Alter).
