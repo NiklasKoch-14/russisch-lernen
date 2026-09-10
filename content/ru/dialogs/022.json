@@ -1,0 +1,211 @@
+{
+  "id": 22,
+  "min_unit": 48,
+  "title_de": "Mit dem Bus oder zu Fuß?",
+  "speakers": [
+    {
+      "name_ru": "Ве́ра",
+      "name_de": "Vera",
+      "voice": "f"
+    },
+    {
+      "name_ru": "Оле́г",
+      "name_de": "Oleg",
+      "voice": "m"
+    }
+  ],
+  "lines": [
+    {
+      "speaker": 0,
+      "tokens": [
+        [
+          "ty",
+          "nom"
+        ],
+        [
+          "na",
+          "base"
+        ],
+        [
+          "mashina",
+          "prp.sg"
+        ],
+        [
+          "ili",
+          "base"
+        ],
+        [
+          "peshkom",
+          "base"
+        ]
+      ],
+      "translation_de": "Bist du mit dem Auto oder zu Fuß?"
+    },
+    {
+      "speaker": 1,
+      "tokens": [
+        [
+          "ja",
+          "nom"
+        ],
+        [
+          "na",
+          "base"
+        ],
+        [
+          "avtobus",
+          "prp.sg"
+        ],
+        [
+          "ostanovka",
+          "nom.sg"
+        ],
+        [
+          "zdes",
+          "base"
+        ],
+        [
+          "rjadom",
+          "base"
+        ]
+      ],
+      "translation_de": "Ich fahre mit dem Bus. Die Haltestelle ist gleich hier."
+    },
+    {
+      "speaker": 0,
+      "tokens": [
+        [
+          "skolko",
+          "base"
+        ],
+        [
+          "stoit",
+          "prs.3sg"
+        ],
+        [
+          "bilet",
+          "nom.sg"
+        ]
+      ],
+      "translation_de": "Was kostet eine Fahrkarte?"
+    },
+    {
+      "speaker": 1,
+      "tokens": [
+        [
+          "dva",
+          "nom.m"
+        ],
+        [
+          "evro",
+          "gen.sg"
+        ]
+      ],
+      "translation_de": "Zwei Euro."
+    },
+    {
+      "speaker": 0,
+      "tokens": [
+        [
+          "ja",
+          "nom"
+        ],
+        [
+          "vsegda",
+          "base"
+        ],
+        [
+          "peshkom",
+          "base"
+        ],
+        [
+          "eto",
+          "base"
+        ],
+        [
+          "desjat",
+          "nom"
+        ],
+        [
+          "minuta",
+          "gen.pl"
+        ]
+      ],
+      "translation_de": "Ich gehe immer zu Fuß. Das sind zehn Minuten."
+    },
+    {
+      "speaker": 1,
+      "tokens": [
+        [
+          "vecherom",
+          "base"
+        ],
+        [
+          "my",
+          "nom"
+        ],
+        [
+          "v",
+          "base"
+        ],
+        [
+          "teatr",
+          "prp.sg"
+        ]
+      ],
+      "translation_de": "Abends sind wir im Theater."
+    },
+    {
+      "speaker": 0,
+      "tokens": [
+        [
+          "teatr",
+          "nom.sg"
+        ],
+        [
+          "na",
+          "base"
+        ],
+        [
+          "ploshchad",
+          "prp.sg"
+        ]
+      ],
+      "translation_de": "Das Theater ist am Platz."
+    },
+    {
+      "speaker": 1,
+      "tokens": [
+        [
+          "da",
+          "base"
+        ],
+        [
+          "na",
+          "base"
+        ],
+        [
+          "metro",
+          "prp.sg"
+        ],
+        [
+          "pjat",
+          "nom"
+        ],
+        [
+          "minuta",
+          "gen.pl"
+        ]
+      ],
+      "translation_de": "Ja. Mit der Metro sind es fünf Minuten."
+    }
+  ],
+  "question_de": "Worum ging es?",
+  "options_de": [
+    "Wie die beiden unterwegs sind.",
+    "Was eine Theaterkarte kostet.",
+    "Wo die beiden wohnen.",
+    "Wann das Theater anfängt."
+  ],
+  "correct_index": 0
+}

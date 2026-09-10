@@ -1,0 +1,199 @@
+{
+  "id": 21,
+  "min_unit": 46,
+  "title_de": "Nach dem Weg gefragt",
+  "speakers": [
+    {
+      "name_ru": "Са́ша",
+      "name_de": "Sascha",
+      "voice": "m"
+    },
+    {
+      "name_ru": "Ни́на",
+      "name_de": "Nina",
+      "voice": "f"
+    }
+  ],
+  "lines": [
+    {
+      "speaker": 0,
+      "tokens": [
+        [
+          "izvinit",
+          "imp.pl"
+        ],
+        [
+          "gde",
+          "base"
+        ],
+        [
+          "zdes",
+          "base"
+        ],
+        [
+          "apteka",
+          "nom.sg"
+        ]
+      ],
+      "translation_de": "Entschuldigung, wo ist hier eine Apotheke?"
+    },
+    {
+      "speaker": 1,
+      "tokens": [
+        [
+          "apteka",
+          "nom.sg"
+        ],
+        [
+          "prjamo",
+          "base"
+        ],
+        [
+          "i",
+          "base"
+        ],
+        [
+          "napravo",
+          "base"
+        ]
+      ],
+      "translation_de": "Die Apotheke ist geradeaus und dann rechts."
+    },
+    {
+      "speaker": 0,
+      "tokens": [
+        [
+          "eto",
+          "base"
+        ],
+        [
+          "daleko",
+          "base"
+        ]
+      ],
+      "translation_de": "Ist das weit?"
+    },
+    {
+      "speaker": 1,
+      "tokens": [
+        [
+          "net",
+          "base"
+        ],
+        [
+          "eto",
+          "base"
+        ],
+        [
+          "zdes",
+          "base"
+        ],
+        [
+          "rjadom",
+          "base"
+        ]
+      ],
+      "translation_de": "Nein, das ist gleich hier."
+    },
+    {
+      "speaker": 0,
+      "tokens": [
+        [
+          "a",
+          "base"
+        ],
+        [
+          "gde",
+          "base"
+        ],
+        [
+          "muzej",
+          "nom.sg"
+        ]
+      ],
+      "translation_de": "Und wo ist das Museum?"
+    },
+    {
+      "speaker": 1,
+      "tokens": [
+        [
+          "muzej",
+          "nom.sg"
+        ],
+        [
+          "v",
+          "base"
+        ],
+        [
+          "tsentr",
+          "prp.sg"
+        ],
+        [
+          "eto",
+          "base"
+        ],
+        [
+          "ne",
+          "base"
+        ],
+        [
+          "blizko",
+          "base"
+        ]
+      ],
+      "translation_de": "Das Museum ist im Zentrum. Das ist nicht nah."
+    },
+    {
+      "speaker": 0,
+      "tokens": [
+        [
+          "tam",
+          "base"
+        ],
+        [
+          "est",
+          "prs.3sg"
+        ],
+        [
+          "gostinitsa",
+          "nom.sg"
+        ]
+      ],
+      "translation_de": "Gibt es dort ein Hotel?"
+    },
+    {
+      "speaker": 1,
+      "tokens": [
+        [
+          "da",
+          "base"
+        ],
+        [
+          "gostinitsa",
+          "nom.sg"
+        ],
+        [
+          "nalevo",
+          "base"
+        ],
+        [
+          "tam",
+          "base"
+        ],
+        [
+          "svetofor",
+          "nom.sg"
+        ]
+      ],
+      "translation_de": "Ja, das Hotel ist links. Dort ist eine Ampel."
+    }
+  ],
+  "question_de": "Worum ging es?",
+  "options_de": [
+    "Sascha fragt nach dem Weg.",
+    "Sascha kauft etwas in der Apotheke.",
+    "Die beiden verabreden sich im Museum.",
+    "Nina sucht ihr Hotelzimmer."
+  ],
+  "correct_index": 0
+}
