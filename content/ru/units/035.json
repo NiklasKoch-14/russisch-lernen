@@ -1,0 +1,394 @@
+{
+  "id": 35,
+  "stage": 2,
+  "title_de": "Die neue Tasche",
+  "scenario_de": "Im Laden sagst du, welches Stück du willst.",
+  "grammar_focus": {
+    "id": "adj-accusative",
+    "title_de": "Das Adjektiv geht mit: но́вая су́мка → но́вую су́мку",
+    "explanation_de": "Ein Adjektiv steht nie für sich allein — es macht immer mit, was sein Substantiv macht. Wird die Sache zum Objekt, rutschen beide zusammen in den Akkusativ: но́вая су́мка → я беру́ но́вую су́мку. Bei den weiblichen Wörtern siehst du es an beiden Enden: -а wird zu -у, und -ая wird zu -ую. Männliche Sachen und sächliche Wörter bleiben, wie sie sind: я беру́ дешёвый телеви́зор, я беру́ вку́сное мя́со. Merke dir die Frage dazu: was nehme ich? — dann steht alles im Akkusativ.",
+    "primer": "akkusativ"
+  },
+  "new_lexemes": [
+    "vkusnyj",
+    "krasivyj",
+    "dorogoj",
+    "deshjovyj",
+    "rubashka",
+    "futbolka"
+  ],
+  "exercises": [
+    {
+      "id": "35-1",
+      "type": "match_pairs",
+      "prompt_de": "Vier Eigenschaften.",
+      "pairs": [
+        [
+          "vkusnyj",
+          "nom.m"
+        ],
+        [
+          "krasivyj",
+          "nom.m"
+        ],
+        [
+          "dorogoj",
+          "nom.m"
+        ],
+        [
+          "deshjovyj",
+          "nom.m"
+        ]
+      ]
+    },
+    {
+      "id": "35-2",
+      "type": "match_pairs",
+      "prompt_de": "Zwei Kleidungsstücke und zwei alte Bekannte.",
+      "pairs": [
+        [
+          "rubashka",
+          "nom.sg"
+        ],
+        [
+          "futbolka",
+          "nom.sg"
+        ],
+        [
+          "sumka",
+          "nom.sg"
+        ],
+        [
+          "magazin",
+          "nom.sg"
+        ]
+      ]
+    },
+    {
+      "id": "35-3",
+      "type": "build_sentence",
+      "prompt_de": "Ich nehme die neue Tasche.",
+      "solution": [
+        [
+          "ja",
+          "nom"
+        ],
+        [
+          "brat_vzjat",
+          "prs.1sg"
+        ],
+        [
+          "novyj",
+          "acc.f"
+        ],
+        [
+          "sumka",
+          "acc.sg"
+        ]
+      ],
+      "distractors": [
+        [
+          "novyj",
+          "nom.f"
+        ],
+        [
+          "sumka",
+          "nom.sg"
+        ]
+      ]
+    },
+    {
+      "id": "35-4",
+      "type": "build_sentence",
+      "prompt_de": "Ich kaufe das schöne Hemd.",
+      "solution": [
+        [
+          "ja",
+          "nom"
+        ],
+        [
+          "pokupat",
+          "prs.1sg"
+        ],
+        [
+          "krasivyj",
+          "acc.f"
+        ],
+        [
+          "rubashka",
+          "acc.sg"
+        ]
+      ],
+      "distractors": [
+        [
+          "krasivyj",
+          "nom.f"
+        ],
+        [
+          "rubashka",
+          "nom.sg"
+        ]
+      ]
+    },
+    {
+      "id": "35-5",
+      "type": "build_sentence",
+      "prompt_de": "Ich nehme den billigen Fernseher.",
+      "solution": [
+        [
+          "ja",
+          "nom"
+        ],
+        [
+          "brat_vzjat",
+          "prs.1sg"
+        ],
+        [
+          "deshjovyj",
+          "acc.m"
+        ],
+        [
+          "televizor",
+          "acc.sg"
+        ]
+      ],
+      "distractors": [
+        [
+          "deshjovyj",
+          "acc.f"
+        ],
+        [
+          "dorogoj",
+          "acc.m"
+        ]
+      ]
+    },
+    {
+      "id": "35-6",
+      "type": "choose_form",
+      "prompt_de": "Ich möchte die leckere Pizza.",
+      "sentence": [
+        [
+          "ja",
+          "nom"
+        ],
+        [
+          "khotet",
+          "prs.1sg"
+        ],
+        "___",
+        [
+          "pitstsa",
+          "acc.sg"
+        ]
+      ],
+      "answer": [
+        "vkusnyj",
+        "acc.f"
+      ],
+      "distractor_forms": [
+        "nom.f",
+        "acc.m",
+        "nom.pl"
+      ]
+    },
+    {
+      "id": "35-7",
+      "type": "choose_form",
+      "prompt_de": "Ich nehme das leckere Fleisch.",
+      "sentence": [
+        [
+          "ja",
+          "nom"
+        ],
+        [
+          "brat_vzjat",
+          "prs.1sg"
+        ],
+        "___",
+        [
+          "mjaso",
+          "acc.sg"
+        ]
+      ],
+      "answer": [
+        "vkusnyj",
+        "acc.n"
+      ],
+      "distractor_forms": [
+        "acc.f",
+        "acc.m",
+        "nom.pl"
+      ],
+      "audio_prompt": true
+    },
+    {
+      "id": "35-8",
+      "type": "build_sentence",
+      "prompt_de": "Die Wurst ist lecker.",
+      "solution": [
+        [
+          "kolbasa",
+          "nom.sg"
+        ],
+        [
+          "vkusnyj",
+          "nom.f"
+        ]
+      ],
+      "distractors": [
+        [
+          "vkusnyj",
+          "nom.m"
+        ],
+        [
+          "kolbasa",
+          "acc.sg"
+        ]
+      ]
+    },
+    {
+      "id": "35-9",
+      "type": "build_sentence",
+      "prompt_de": "Das ist ein teurer Laden.",
+      "solution": [
+        [
+          "eto",
+          "base"
+        ],
+        [
+          "dorogoj",
+          "nom.m"
+        ],
+        [
+          "magazin",
+          "nom.sg"
+        ]
+      ],
+      "distractors": [
+        [
+          "dorogoj",
+          "nom.f"
+        ],
+        [
+          "deshjovyj",
+          "nom.m"
+        ]
+      ]
+    },
+    {
+      "id": "35-10",
+      "type": "dialog_reply",
+      "prompt_de": "Die Verkäuferin fragt, was du kaufst.",
+      "tutor_line": [
+        [
+          "chto",
+          "acc"
+        ],
+        [
+          "vy",
+          "nom"
+        ],
+        [
+          "pokupat",
+          "prs.2pl"
+        ]
+      ],
+      "correct_index": 0,
+      "options": [
+        {
+          "tokens": [
+            [
+              "ja",
+              "nom"
+            ],
+            [
+              "pokupat",
+              "prs.1sg"
+            ],
+            [
+              "krasivyj",
+              "acc.f"
+            ],
+            [
+              "futbolka",
+              "acc.sg"
+            ]
+          ],
+          "why_de": ""
+        },
+        {
+          "tokens": [
+            [
+              "ja",
+              "nom"
+            ],
+            [
+              "pokupat",
+              "prs.1sg"
+            ],
+            [
+              "krasivyj",
+              "nom.f"
+            ],
+            [
+              "futbolka",
+              "nom.sg"
+            ]
+          ],
+          "why_de": "Nach покупа́ю steht der Akkusativ, und zwar bei beiden Wörtern: краси́вую футбо́лку."
+        },
+        {
+          "tokens": [
+            [
+              "ja",
+              "nom"
+            ],
+            [
+              "pokupat",
+              "prs.1sg"
+            ],
+            [
+              "krasivyj",
+              "nom.f"
+            ],
+            [
+              "futbolka",
+              "acc.sg"
+            ]
+          ],
+          "why_de": "Das Substantiv steht schon richtig; das Adjektiv muss mitgehen: краси́вую футбо́лку."
+        }
+      ]
+    },
+    {
+      "id": "35-11",
+      "type": "listen_meaning",
+      "prompt_de": "Hör zu. Was wird gesagt?",
+      "sentence": [
+        [
+          "ja",
+          "nom"
+        ],
+        [
+          "brat_vzjat",
+          "prs.1sg"
+        ],
+        [
+          "deshjovyj",
+          "acc.f"
+        ],
+        [
+          "rubashka",
+          "acc.sg"
+        ]
+      ],
+      "correct_index": 0,
+      "options_de": [
+        "Ich nehme das billige Hemd.",
+        "Ich nehme das teure Hemd.",
+        "Ich kaufe das billige Hemd."
+      ]
+    }
+  ]
+}

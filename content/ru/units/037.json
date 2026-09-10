@@ -1,0 +1,366 @@
+{
+  "id": 37,
+  "stage": 2,
+  "title_de": "An der Kasse",
+  "scenario_de": "Karte oder bar — und wo man überhaupt zahlt.",
+  "grammar_focus": {
+    "id": "verbs-it-class",
+    "title_de": "плати́ть und die -ить-Klasse: плачу́, пла́тишь",
+    "explanation_de": "говори́ть kennst du schon: говорю́, говори́шь, говори́т. плати́ть gehört zur selben Klasse und bekommt dieselben Endungen: -ю, -ишь, -ит, -им, -ите, -ят. Zwei Dinge fallen trotzdem auf. Erstens wird in der ich-Form das т zu ч: плачу́, nicht пла́тю. Zweitens sitzt die Betonung nur dort auf der Endung; ab der du-Form rutscht sie auf den Stamm zurück: пла́тишь, пла́тит, пла́тим, пла́тите, пла́тят. Genau so geht auch люби́ть — люблю́, лю́бишь.",
+    "primer": "konjugation"
+  },
+  "new_lexemes": [
+    "platit",
+    "ili",
+    "sdacha",
+    "chek",
+    "nalichnye",
+    "bank"
+  ],
+  "exercises": [
+    {
+      "id": "37-1",
+      "type": "match_pairs",
+      "prompt_de": "Vier Wörter rund ums Zahlen.",
+      "pairs": [
+        [
+          "platit",
+          "inf"
+        ],
+        [
+          "sdacha",
+          "nom.sg"
+        ],
+        [
+          "chek",
+          "nom.sg"
+        ],
+        [
+          "nalichnye",
+          "nom.pl"
+        ]
+      ]
+    },
+    {
+      "id": "37-2",
+      "type": "match_pairs",
+      "prompt_de": "Ein kleines Wort und drei Orte fürs Geld.",
+      "pairs": [
+        [
+          "ili",
+          "base"
+        ],
+        [
+          "bank",
+          "nom.sg"
+        ],
+        [
+          "kassa",
+          "nom.sg"
+        ],
+        [
+          "karta",
+          "nom.sg"
+        ]
+      ]
+    },
+    {
+      "id": "37-3",
+      "type": "choose_form",
+      "prompt_de": "Ich zahle hier.",
+      "sentence": [
+        [
+          "ja",
+          "nom"
+        ],
+        "___",
+        [
+          "zdes",
+          "base"
+        ]
+      ],
+      "answer": [
+        "platit",
+        "prs.1sg"
+      ],
+      "distractor_forms": [
+        "prs.2sg",
+        "prs.3sg",
+        "inf"
+      ]
+    },
+    {
+      "id": "37-4",
+      "type": "choose_form",
+      "prompt_de": "Wo bezahlst du?",
+      "sentence": [
+        [
+          "gde",
+          "base"
+        ],
+        [
+          "ty",
+          "nom"
+        ],
+        "___"
+      ],
+      "answer": [
+        "platit",
+        "prs.2sg"
+      ],
+      "distractor_forms": [
+        "prs.1sg",
+        "prs.3sg",
+        "prs.3pl"
+      ],
+      "audio_prompt": true
+    },
+    {
+      "id": "37-5",
+      "type": "build_sentence",
+      "prompt_de": "Wir zahlen an der Kasse.",
+      "solution": [
+        [
+          "my",
+          "nom"
+        ],
+        [
+          "platit",
+          "prs.1pl"
+        ],
+        [
+          "na",
+          "base"
+        ],
+        [
+          "kassa",
+          "prp.sg"
+        ]
+      ],
+      "distractors": [
+        [
+          "platit",
+          "prs.3pl"
+        ],
+        [
+          "kassa",
+          "nom.sg"
+        ]
+      ]
+    },
+    {
+      "id": "37-6",
+      "type": "build_sentence",
+      "prompt_de": "Karte oder bar?",
+      "solution": [
+        [
+          "karta",
+          "nom.sg"
+        ],
+        [
+          "ili",
+          "base"
+        ],
+        [
+          "nalichnye",
+          "nom.pl"
+        ]
+      ],
+      "distractors": [
+        [
+          "chek",
+          "nom.sg"
+        ],
+        [
+          "dengi",
+          "nom.pl"
+        ]
+      ]
+    },
+    {
+      "id": "37-7",
+      "type": "build_sentence",
+      "prompt_de": "Hier darf man bezahlen.",
+      "solution": [
+        [
+          "zdes",
+          "base"
+        ],
+        [
+          "mozhno",
+          "base"
+        ],
+        [
+          "platit",
+          "inf"
+        ]
+      ],
+      "distractors": [
+        [
+          "platit",
+          "prs.1sg"
+        ],
+        [
+          "nelzja",
+          "base"
+        ]
+      ]
+    },
+    {
+      "id": "37-8",
+      "type": "build_sentence",
+      "prompt_de": "Das ist Ihr Kassenbon.",
+      "solution": [
+        [
+          "eto",
+          "base"
+        ],
+        [
+          "vash",
+          "nom.m"
+        ],
+        [
+          "chek",
+          "nom.sg"
+        ]
+      ],
+      "distractors": [
+        [
+          "vash",
+          "nom.f"
+        ],
+        [
+          "etot",
+          "nom.m"
+        ]
+      ]
+    },
+    {
+      "id": "37-9",
+      "type": "build_sentence",
+      "prompt_de": "Wo ist hier eine Bank?",
+      "solution": [
+        [
+          "gde",
+          "base"
+        ],
+        [
+          "zdes",
+          "base"
+        ],
+        [
+          "bank",
+          "nom.sg"
+        ]
+      ],
+      "distractors": [
+        [
+          "bank",
+          "prp.sg"
+        ],
+        [
+          "tam",
+          "base"
+        ]
+      ]
+    },
+    {
+      "id": "37-10",
+      "type": "dialog_reply",
+      "prompt_de": "Du fragst, wo man zahlen kann.",
+      "tutor_line": [
+        [
+          "gde",
+          "base"
+        ],
+        [
+          "mozhno",
+          "base"
+        ],
+        [
+          "platit",
+          "inf"
+        ]
+      ],
+      "correct_index": 0,
+      "options": [
+        {
+          "tokens": [
+            [
+              "zdes",
+              "base"
+            ],
+            [
+              "na",
+              "base"
+            ],
+            [
+              "kassa",
+              "prp.sg"
+            ]
+          ],
+          "why_de": ""
+        },
+        {
+          "tokens": [
+            [
+              "zdes",
+              "base"
+            ],
+            [
+              "na",
+              "base"
+            ],
+            [
+              "kassa",
+              "nom.sg"
+            ]
+          ],
+          "why_de": "Nach на steht der Ort im Präpositiv: на ка́ссе."
+        },
+        {
+          "tokens": [
+            [
+              "zdes",
+              "base"
+            ],
+            [
+              "v",
+              "base"
+            ],
+            [
+              "kassa",
+              "prp.sg"
+            ]
+          ],
+          "why_de": "Bei ка́сса heißt es на ка́ссе — в ка́ссе sagt man nicht."
+        }
+      ]
+    },
+    {
+      "id": "37-11",
+      "type": "listen_meaning",
+      "prompt_de": "Hör zu. Was wird gesagt?",
+      "sentence": [
+        [
+          "eto",
+          "base"
+        ],
+        [
+          "vash",
+          "nom.f"
+        ],
+        [
+          "sdacha",
+          "nom.sg"
+        ]
+      ],
+      "correct_index": 0,
+      "options_de": [
+        "Das ist Ihr Wechselgeld.",
+        "Das ist Ihr Kassenbon.",
+        "Das ist meine Karte."
+      ]
+    }
+  ]
+}

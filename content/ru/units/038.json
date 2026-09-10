@@ -1,0 +1,406 @@
+{
+  "id": 38,
+  "stage": 2,
+  "title_de": "Der ganze Einkauf",
+  "scenario_de": "Ein Einkauf von der Tür bis zur Kasse.",
+  "grammar_focus": {
+    "id": "shopping-mixed",
+    "title_de": "Alles zusammen: Akkusativ, Adjektiv, э́тот und die Grundform",
+    "explanation_de": "Diese Einheit bringt keine neue Regel, sie mischt die aus dem ganzen Block. Drei Dinge kehren wieder. Nach покупа́ю, беру́ und хочу́ steht das Objekt im Akkusativ, und Adjektiv wie Zeigewort gehen mit: я покупа́ю э́ту вку́сную колбасу́. Nach мо́жно, нельзя́ und хоте́ть steht die Grundform des zweiten Verbs. Und люби́ть geht wie плати́ть: люблю́ mit eingeschobenem л, danach lieber auf dem Stamm betont — лю́бишь, лю́бит, лю́бят.",
+    "primer": "akkusativ"
+  },
+  "new_lexemes": [
+    "tort",
+    "vino",
+    "butylka",
+    "konfety",
+    "ljubit",
+    "tolko"
+  ],
+  "exercises": [
+    {
+      "id": "38-1",
+      "type": "match_pairs",
+      "prompt_de": "Vier Dinge für den Abend.",
+      "pairs": [
+        [
+          "tort",
+          "nom.sg"
+        ],
+        [
+          "vino",
+          "nom.sg"
+        ],
+        [
+          "butylka",
+          "nom.sg"
+        ],
+        [
+          "konfety",
+          "nom.pl"
+        ]
+      ]
+    },
+    {
+      "id": "38-2",
+      "type": "match_pairs",
+      "prompt_de": "Ein neues Verb, ein kleines Wort und zwei alte Bekannte.",
+      "pairs": [
+        [
+          "ljubit",
+          "inf"
+        ],
+        [
+          "tolko",
+          "base"
+        ],
+        [
+          "pokupat",
+          "inf"
+        ],
+        [
+          "platit",
+          "inf"
+        ]
+      ]
+    },
+    {
+      "id": "38-3",
+      "type": "choose_form",
+      "prompt_de": "Ich mag Wein.",
+      "sentence": [
+        [
+          "ja",
+          "nom"
+        ],
+        "___",
+        [
+          "vino",
+          "acc.sg"
+        ]
+      ],
+      "answer": [
+        "ljubit",
+        "prs.1sg"
+      ],
+      "distractor_forms": [
+        "prs.2sg",
+        "prs.3sg",
+        "inf"
+      ]
+    },
+    {
+      "id": "38-4",
+      "type": "build_sentence",
+      "prompt_de": "Ich kaufe die leckere Torte.",
+      "solution": [
+        [
+          "ja",
+          "nom"
+        ],
+        [
+          "pokupat",
+          "prs.1sg"
+        ],
+        [
+          "vkusnyj",
+          "acc.m"
+        ],
+        [
+          "tort",
+          "acc.sg"
+        ]
+      ],
+      "distractors": [
+        [
+          "vkusnyj",
+          "acc.f"
+        ],
+        [
+          "pitstsa",
+          "acc.sg"
+        ]
+      ]
+    },
+    {
+      "id": "38-5",
+      "type": "build_sentence",
+      "prompt_de": "Diese Pralinen sind sehr lecker.",
+      "solution": [
+        [
+          "etot",
+          "nom.pl"
+        ],
+        [
+          "konfety",
+          "nom.pl"
+        ],
+        [
+          "ochen",
+          "base"
+        ],
+        [
+          "vkusnyj",
+          "nom.pl"
+        ]
+      ],
+      "distractors": [
+        [
+          "etot",
+          "nom.f"
+        ],
+        [
+          "vkusnyj",
+          "nom.f"
+        ]
+      ]
+    },
+    {
+      "id": "38-6",
+      "type": "choose_form",
+      "prompt_de": "Was magst du?",
+      "sentence": [
+        [
+          "chto",
+          "acc"
+        ],
+        [
+          "ty",
+          "nom"
+        ],
+        "___"
+      ],
+      "answer": [
+        "ljubit",
+        "prs.2sg"
+      ],
+      "distractor_forms": [
+        "prs.1sg",
+        "prs.3sg",
+        "prs.3pl"
+      ],
+      "audio_prompt": true
+    },
+    {
+      "id": "38-7",
+      "type": "build_sentence",
+      "prompt_de": "Ich habe nur eine Karte.",
+      "solution": [
+        [
+          "u",
+          "base"
+        ],
+        [
+          "ja",
+          "gen"
+        ],
+        [
+          "tolko",
+          "base"
+        ],
+        [
+          "karta",
+          "nom.sg"
+        ]
+      ],
+      "distractors": [
+        [
+          "karta",
+          "acc.sg"
+        ],
+        [
+          "nalichnye",
+          "nom.pl"
+        ]
+      ]
+    },
+    {
+      "id": "38-8",
+      "type": "build_sentence",
+      "prompt_de": "Meine Frau mag diesen Käse.",
+      "solution": [
+        [
+          "moj",
+          "nom.f"
+        ],
+        [
+          "zhena",
+          "nom.sg"
+        ],
+        [
+          "ljubit",
+          "prs.3sg"
+        ],
+        [
+          "etot",
+          "acc.m"
+        ],
+        [
+          "syr",
+          "acc.sg"
+        ]
+      ],
+      "distractors": [
+        [
+          "ljubit",
+          "prs.1sg"
+        ],
+        [
+          "etot",
+          "acc.f"
+        ]
+      ]
+    },
+    {
+      "id": "38-9",
+      "type": "build_sentence",
+      "prompt_de": "Was kostet diese Flasche?",
+      "solution": [
+        [
+          "skolko",
+          "base"
+        ],
+        [
+          "stoit",
+          "prs.3sg"
+        ],
+        [
+          "etot",
+          "nom.f"
+        ],
+        [
+          "butylka",
+          "nom.sg"
+        ]
+      ],
+      "distractors": [
+        [
+          "etot",
+          "nom.m"
+        ],
+        [
+          "stoit",
+          "prs.3pl"
+        ]
+      ]
+    },
+    {
+      "id": "38-10",
+      "type": "dialog_reply",
+      "prompt_de": "Die Verkäuferin fragt, ob das alles war.",
+      "tutor_line": [
+        [
+          "eto",
+          "base"
+        ],
+        [
+          "vsjo",
+          "nom"
+        ]
+      ],
+      "correct_index": 0,
+      "options": [
+        {
+          "tokens": [
+            [
+              "da",
+              "base"
+            ],
+            [
+              "eto",
+              "base"
+            ],
+            [
+              "vsjo",
+              "nom"
+            ]
+          ],
+          "why_de": ""
+        },
+        {
+          "tokens": [
+            [
+              "da",
+              "base"
+            ],
+            [
+              "ja",
+              "nom"
+            ],
+            [
+              "brat_vzjat",
+              "prs.3sg"
+            ],
+            [
+              "tort",
+              "acc.sg"
+            ]
+          ],
+          "why_de": "берёт gehört zu он und она́. Von dir selbst sprichst du mit беру́."
+        },
+        {
+          "tokens": [
+            [
+              "net",
+              "base"
+            ],
+            [
+              "ja",
+              "nom"
+            ],
+            [
+              "khotet",
+              "prs.1sg"
+            ],
+            [
+              "eshchjo",
+              "base"
+            ],
+            [
+              "butylka",
+              "nom.sg"
+            ]
+          ],
+          "why_de": "Nach хочу́ steht der Akkusativ: ещё буты́лку."
+        }
+      ]
+    },
+    {
+      "id": "38-11",
+      "type": "listen_meaning",
+      "prompt_de": "Hör zu. Was wird gesagt?",
+      "sentence": [
+        [
+          "ja",
+          "nom"
+        ],
+        [
+          "pokupat",
+          "prs.1sg"
+        ],
+        [
+          "tolko",
+          "base"
+        ],
+        [
+          "khleb",
+          "acc.sg"
+        ],
+        [
+          "i",
+          "base"
+        ],
+        [
+          "moloko",
+          "acc.sg"
+        ]
+      ],
+      "correct_index": 0,
+      "options_de": [
+        "Ich kaufe nur Brot und Milch.",
+        "Ich kaufe Brot und Milch.",
+        "Ich kaufe nur Brot und Käse."
+      ]
+    }
+  ]
+}

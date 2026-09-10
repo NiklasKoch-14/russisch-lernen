@@ -1,0 +1,390 @@
+{
+  "id": 36,
+  "stage": 2,
+  "title_de": "Dieses hier",
+  "scenario_de": "Du zeigst, welches Stück du meinst.",
+  "grammar_focus": {
+    "id": "etot-demonstrative",
+    "title_de": "э́тот, э́та, э́то, э́ти — dieses hier",
+    "explanation_de": "Bis jetzt hattest du nur э́то im Sinn von das ist: э́то су́мка — das ist eine Tasche. Willst du dagegen auf ein bestimmtes Stück zeigen, gehört das Wort zum Substantiv und richtet sich nach ihm: э́тот паке́т, э́та су́мка, э́то я́блоко, э́ти конфе́ты. Man hört den Unterschied am Satzbau: nach э́то su. folgt eine Aussage (э́то су́мка), bei э́та su. geht der Satz weiter (э́та су́мка краси́вая — diese Tasche ist schön). Und wie jedes Adjektiv macht es den Akkusativ mit: я беру́ э́ту футбо́лку.",
+    "primer": "akkusativ"
+  },
+  "new_lexemes": [
+    "etot",
+    "paket",
+    "kassa",
+    "tsena",
+    "produkty",
+    "razmer"
+  ],
+  "exercises": [
+    {
+      "id": "36-1",
+      "type": "match_pairs",
+      "prompt_de": "Vier Wörter aus dem Laden.",
+      "pairs": [
+        [
+          "paket",
+          "nom.sg"
+        ],
+        [
+          "kassa",
+          "nom.sg"
+        ],
+        [
+          "tsena",
+          "nom.sg"
+        ],
+        [
+          "razmer",
+          "nom.sg"
+        ]
+      ]
+    },
+    {
+      "id": "36-2",
+      "type": "match_pairs",
+      "prompt_de": "Das Zeigewort und drei alte Bekannte.",
+      "pairs": [
+        [
+          "etot",
+          "nom.m"
+        ],
+        [
+          "produkty",
+          "nom.pl"
+        ],
+        [
+          "magazin",
+          "nom.sg"
+        ],
+        [
+          "dengi",
+          "nom.pl"
+        ]
+      ]
+    },
+    {
+      "id": "36-3",
+      "type": "build_sentence",
+      "prompt_de": "Diese Tasche ist schön.",
+      "solution": [
+        [
+          "etot",
+          "nom.f"
+        ],
+        [
+          "sumka",
+          "nom.sg"
+        ],
+        [
+          "krasivyj",
+          "nom.f"
+        ]
+      ],
+      "distractors": [
+        [
+          "eto",
+          "base"
+        ],
+        [
+          "krasivyj",
+          "nom.m"
+        ]
+      ]
+    },
+    {
+      "id": "36-4",
+      "type": "build_sentence",
+      "prompt_de": "Das ist eine Tasche.",
+      "solution": [
+        [
+          "eto",
+          "base"
+        ],
+        [
+          "sumka",
+          "nom.sg"
+        ]
+      ],
+      "distractors": [
+        [
+          "etot",
+          "nom.f"
+        ],
+        [
+          "sumka",
+          "acc.sg"
+        ]
+      ]
+    },
+    {
+      "id": "36-5",
+      "type": "choose_form",
+      "prompt_de": "Ich nehme diese Tüte.",
+      "sentence": [
+        [
+          "ja",
+          "nom"
+        ],
+        [
+          "brat_vzjat",
+          "prs.1sg"
+        ],
+        "___",
+        [
+          "paket",
+          "acc.sg"
+        ]
+      ],
+      "answer": [
+        "etot",
+        "acc.m"
+      ],
+      "distractor_forms": [
+        "acc.f",
+        "nom.f",
+        "nom.pl"
+      ]
+    },
+    {
+      "id": "36-6",
+      "type": "choose_form",
+      "prompt_de": "Ich nehme dieses T-Shirt.",
+      "sentence": [
+        [
+          "ja",
+          "nom"
+        ],
+        [
+          "brat_vzjat",
+          "prs.1sg"
+        ],
+        "___",
+        [
+          "futbolka",
+          "acc.sg"
+        ]
+      ],
+      "answer": [
+        "etot",
+        "acc.f"
+      ],
+      "distractor_forms": [
+        "nom.f",
+        "acc.m",
+        "nom.pl"
+      ],
+      "audio_prompt": true
+    },
+    {
+      "id": "36-7",
+      "type": "build_sentence",
+      "prompt_de": "Was kostet dieser Apfel?",
+      "solution": [
+        [
+          "skolko",
+          "base"
+        ],
+        [
+          "stoit",
+          "prs.3sg"
+        ],
+        [
+          "etot",
+          "nom.n"
+        ],
+        [
+          "jabloko",
+          "nom.sg"
+        ]
+      ],
+      "distractors": [
+        [
+          "etot",
+          "nom.m"
+        ],
+        [
+          "stoit",
+          "prs.3pl"
+        ]
+      ]
+    },
+    {
+      "id": "36-8",
+      "type": "build_sentence",
+      "prompt_de": "Das ist meine Größe.",
+      "solution": [
+        [
+          "eto",
+          "base"
+        ],
+        [
+          "moj",
+          "nom.m"
+        ],
+        [
+          "razmer",
+          "nom.sg"
+        ]
+      ],
+      "distractors": [
+        [
+          "moj",
+          "nom.f"
+        ],
+        [
+          "etot",
+          "nom.m"
+        ]
+      ]
+    },
+    {
+      "id": "36-9",
+      "type": "build_sentence",
+      "prompt_de": "Ich kaufe Lebensmittel im Laden.",
+      "solution": [
+        [
+          "ja",
+          "nom"
+        ],
+        [
+          "pokupat",
+          "prs.1sg"
+        ],
+        [
+          "produkty",
+          "acc.pl"
+        ],
+        [
+          "v",
+          "base"
+        ],
+        [
+          "magazin",
+          "prp.sg"
+        ]
+      ],
+      "distractors": [
+        [
+          "magazin",
+          "nom.sg"
+        ],
+        [
+          "na",
+          "base"
+        ]
+      ]
+    },
+    {
+      "id": "36-10",
+      "type": "dialog_reply",
+      "prompt_de": "Die Verkäuferin fragt, was du nimmst.",
+      "tutor_line": [
+        [
+          "chto",
+          "acc"
+        ],
+        [
+          "vy",
+          "nom"
+        ],
+        [
+          "brat_vzjat",
+          "prs.2pl"
+        ]
+      ],
+      "correct_index": 0,
+      "options": [
+        {
+          "tokens": [
+            [
+              "ja",
+              "nom"
+            ],
+            [
+              "brat_vzjat",
+              "prs.1sg"
+            ],
+            [
+              "etot",
+              "acc.f"
+            ],
+            [
+              "futbolka",
+              "acc.sg"
+            ]
+          ],
+          "why_de": ""
+        },
+        {
+          "tokens": [
+            [
+              "ja",
+              "nom"
+            ],
+            [
+              "brat_vzjat",
+              "prs.1sg"
+            ],
+            [
+              "etot",
+              "nom.f"
+            ],
+            [
+              "futbolka",
+              "nom.sg"
+            ]
+          ],
+          "why_de": "Nach беру́ steht der Akkusativ — auch das Zeigewort geht mit: э́ту футбо́лку."
+        },
+        {
+          "tokens": [
+            [
+              "ja",
+              "nom"
+            ],
+            [
+              "brat_vzjat",
+              "prs.1sg"
+            ],
+            [
+              "etot",
+              "acc.m"
+            ],
+            [
+              "futbolka",
+              "acc.sg"
+            ]
+          ],
+          "why_de": "футбо́лка ist weiblich, also э́ту und nicht э́тот."
+        }
+      ]
+    },
+    {
+      "id": "36-11",
+      "type": "listen_meaning",
+      "prompt_de": "Hör zu. Was wird gesagt?",
+      "sentence": [
+        [
+          "eto",
+          "base"
+        ],
+        [
+          "khoroshij",
+          "nom.f"
+        ],
+        [
+          "tsena",
+          "nom.sg"
+        ]
+      ],
+      "correct_index": 0,
+      "options_de": [
+        "Das ist ein guter Preis.",
+        "Das ist ein guter Laden.",
+        "Das ist ein teurer Preis."
+      ]
+    }
+  ]
+}

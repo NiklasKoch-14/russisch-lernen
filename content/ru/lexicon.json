@@ -514,6 +514,18 @@
         "nom.pl": {
           "text": "больши́е",
           "translit": "bol'šíje"
+        },
+        "acc.m": {
+          "text": "большо́й",
+          "translit": "bol'šój"
+        },
+        "acc.f": {
+          "text": "большу́ю",
+          "translit": "bol'šúju"
+        },
+        "acc.n": {
+          "text": "большо́е",
+          "translit": "bol'šóje"
         }
       }
     },
@@ -1628,6 +1640,18 @@
         "nom.pl": {
           "text": "хоро́шие",
           "translit": "choróšije"
+        },
+        "acc.m": {
+          "text": "хоро́ший",
+          "translit": "choróšij"
+        },
+        "acc.f": {
+          "text": "хоро́шую",
+          "translit": "choróšuju"
+        },
+        "acc.n": {
+          "text": "хоро́шее",
+          "translit": "choróšeje"
         }
       }
     },
@@ -1652,6 +1676,18 @@
         "nom.pl": {
           "text": "но́вые",
           "translit": "nóvyje"
+        },
+        "acc.m": {
+          "text": "но́вый",
+          "translit": "nóvyj"
+        },
+        "acc.f": {
+          "text": "но́вую",
+          "translit": "nóvuju"
+        },
+        "acc.n": {
+          "text": "но́вое",
+          "translit": "nóvoje"
         }
       }
     },
@@ -1676,6 +1712,18 @@
         "nom.pl": {
           "text": "ста́рые",
           "translit": "stáryje"
+        },
+        "acc.m": {
+          "text": "ста́рый",
+          "translit": "stáryj"
+        },
+        "acc.f": {
+          "text": "ста́рую",
+          "translit": "stáruju"
+        },
+        "acc.n": {
+          "text": "ста́рое",
+          "translit": "stároje"
         }
       }
     },
@@ -1700,6 +1748,18 @@
         "nom.pl": {
           "text": "ма́ленькие",
           "translit": "málen'kije"
+        },
+        "acc.m": {
+          "text": "ма́ленький",
+          "translit": "málen'kij"
+        },
+        "acc.f": {
+          "text": "ма́ленькую",
+          "translit": "málen'kuju"
+        },
+        "acc.n": {
+          "text": "ма́ленькое",
+          "translit": "málen'koje"
         }
       }
     },
@@ -3141,6 +3201,786 @@
         "nom.sg": {
           "text": "де́вушка",
           "translit": "dévuška"
+        }
+      }
+    },
+    {
+      "id": "khleb",
+      "lemma": "хлеб",
+      "pos": "noun",
+      "gloss_de": "das Brot",
+      "forms": {
+        "nom.sg": {
+          "text": "хлеб",
+          "translit": "chleb"
+        },
+        "acc.sg": {
+          "text": "хлеб",
+          "translit": "chleb"
+        }
+      }
+    },
+    {
+      "id": "syr",
+      "lemma": "сыр",
+      "pos": "noun",
+      "gloss_de": "der Käse",
+      "forms": {
+        "nom.sg": {
+          "text": "сыр",
+          "translit": "syr"
+        },
+        "acc.sg": {
+          "text": "сыр",
+          "translit": "syr"
+        }
+      }
+    },
+    {
+      "id": "kolbasa",
+      "lemma": "колбаса́",
+      "pos": "noun",
+      "gloss_de": "die Wurst",
+      "forms": {
+        "nom.sg": {
+          "text": "колбаса́",
+          "translit": "kolbasá"
+        },
+        "acc.sg": {
+          "text": "колбасу́",
+          "translit": "kolbasú"
+        }
+      }
+    },
+    {
+      "id": "jabloko",
+      "lemma": "я́блоко",
+      "pos": "noun",
+      "gloss_de": "der Apfel",
+      "forms": {
+        "nom.sg": {
+          "text": "я́блоко",
+          "translit": "jábloko"
+        },
+        "acc.sg": {
+          "text": "я́блоко",
+          "translit": "jábloko"
+        }
+      }
+    },
+    {
+      "id": "pokupat",
+      "lemma": "покупа́ть",
+      "pos": "verb",
+      "gloss_de": "kaufen",
+      "forms": {
+        "inf": {
+          "text": "покупа́ть",
+          "translit": "pokupát'"
+        },
+        "prs.1sg": {
+          "text": "покупа́ю",
+          "translit": "pokupáju"
+        },
+        "prs.2sg": {
+          "text": "покупа́ешь",
+          "translit": "pokupáješ'"
+        },
+        "prs.3sg": {
+          "text": "покупа́ет",
+          "translit": "pokupájet"
+        },
+        "prs.1pl": {
+          "text": "покупа́ем",
+          "translit": "pokupájem"
+        },
+        "prs.2pl": {
+          "text": "покупа́ете",
+          "translit": "pokupájete"
+        },
+        "prs.3pl": {
+          "text": "покупа́ют",
+          "translit": "pokupájut"
+        }
+      }
+    },
+    {
+      "id": "prodavets",
+      "lemma": "продаве́ц",
+      "pos": "noun",
+      "gloss_de": "der Verkäufer",
+      "forms": {
+        "nom.sg": {
+          "text": "продаве́ц",
+          "translit": "prodavéc"
+        }
+      }
+    },
+    {
+      "id": "i",
+      "lemma": "и",
+      "pos": "conj",
+      "gloss_de": "und",
+      "forms": {
+        "base": {
+          "text": "и",
+          "translit": "i"
+        }
+      }
+    },
+    {
+      "id": "mozhno",
+      "lemma": "мо́жно",
+      "pos": "adv",
+      "gloss_de": "man darf, man kann",
+      "forms": {
+        "base": {
+          "text": "мо́жно",
+          "translit": "móžno"
+        }
+      }
+    },
+    {
+      "id": "nelzja",
+      "lemma": "нельзя́",
+      "pos": "adv",
+      "gloss_de": "man darf nicht",
+      "forms": {
+        "base": {
+          "text": "нельзя́",
+          "translit": "nel'zjá"
+        }
+      }
+    },
+    {
+      "id": "kurit",
+      "lemma": "кури́ть",
+      "pos": "verb",
+      "gloss_de": "rauchen",
+      "forms": {
+        "inf": {
+          "text": "кури́ть",
+          "translit": "kurít'"
+        },
+        "prs.1sg": {
+          "text": "курю́",
+          "translit": "kurjú"
+        },
+        "prs.2sg": {
+          "text": "ку́ришь",
+          "translit": "kúriš'"
+        },
+        "prs.3sg": {
+          "text": "ку́рит",
+          "translit": "kúrit"
+        },
+        "prs.3pl": {
+          "text": "ку́рят",
+          "translit": "kúrjat"
+        }
+      }
+    },
+    {
+      "id": "guljat",
+      "lemma": "гуля́ть",
+      "pos": "verb",
+      "gloss_de": "spazieren gehen",
+      "forms": {
+        "inf": {
+          "text": "гуля́ть",
+          "translit": "gulját'"
+        },
+        "prs.1sg": {
+          "text": "гуля́ю",
+          "translit": "guljáju"
+        },
+        "prs.2sg": {
+          "text": "гуля́ешь",
+          "translit": "guljáješ'"
+        },
+        "prs.3sg": {
+          "text": "гуля́ет",
+          "translit": "guljájet"
+        },
+        "prs.1pl": {
+          "text": "гуля́ем",
+          "translit": "guljájem"
+        },
+        "prs.2pl": {
+          "text": "гуля́ете",
+          "translit": "guljájete"
+        },
+        "prs.3pl": {
+          "text": "гуля́ют",
+          "translit": "guljájut"
+        }
+      }
+    },
+    {
+      "id": "smotret",
+      "lemma": "смотре́ть",
+      "pos": "verb",
+      "gloss_de": "schauen, ansehen",
+      "forms": {
+        "inf": {
+          "text": "смотре́ть",
+          "translit": "smotrét'"
+        },
+        "prs.1sg": {
+          "text": "смотрю́",
+          "translit": "smotrjú"
+        },
+        "prs.2sg": {
+          "text": "смо́тришь",
+          "translit": "smótriš'"
+        },
+        "prs.3sg": {
+          "text": "смо́трит",
+          "translit": "smótrit"
+        },
+        "prs.1pl": {
+          "text": "смо́трим",
+          "translit": "smótrim"
+        },
+        "prs.2pl": {
+          "text": "смо́трите",
+          "translit": "smótrite"
+        },
+        "prs.3pl": {
+          "text": "смо́трят",
+          "translit": "smótrjat"
+        }
+      }
+    },
+    {
+      "id": "televizor",
+      "lemma": "телеви́зор",
+      "pos": "noun",
+      "gloss_de": "der Fernseher",
+      "forms": {
+        "nom.sg": {
+          "text": "телеви́зор",
+          "translit": "televízor"
+        },
+        "acc.sg": {
+          "text": "телеви́зор",
+          "translit": "televízor"
+        }
+      }
+    },
+    {
+      "id": "vkusnyj",
+      "lemma": "вку́сный",
+      "pos": "adj",
+      "gloss_de": "lecker",
+      "forms": {
+        "nom.m": {
+          "text": "вку́сный",
+          "translit": "vkúsnyj"
+        },
+        "nom.f": {
+          "text": "вку́сная",
+          "translit": "vkúsnaja"
+        },
+        "nom.n": {
+          "text": "вку́сное",
+          "translit": "vkúsnoje"
+        },
+        "nom.pl": {
+          "text": "вку́сные",
+          "translit": "vkúsnyje"
+        },
+        "acc.m": {
+          "text": "вку́сный",
+          "translit": "vkúsnyj"
+        },
+        "acc.f": {
+          "text": "вку́сную",
+          "translit": "vkúsnuju"
+        },
+        "acc.n": {
+          "text": "вку́сное",
+          "translit": "vkúsnoje"
+        }
+      }
+    },
+    {
+      "id": "krasivyj",
+      "lemma": "краси́вый",
+      "pos": "adj",
+      "gloss_de": "schön",
+      "forms": {
+        "nom.m": {
+          "text": "краси́вый",
+          "translit": "krasívyj"
+        },
+        "nom.f": {
+          "text": "краси́вая",
+          "translit": "krasívaja"
+        },
+        "nom.n": {
+          "text": "краси́вое",
+          "translit": "krasívoje"
+        },
+        "nom.pl": {
+          "text": "краси́вые",
+          "translit": "krasívyje"
+        },
+        "acc.m": {
+          "text": "краси́вый",
+          "translit": "krasívyj"
+        },
+        "acc.f": {
+          "text": "краси́вую",
+          "translit": "krasívuju"
+        },
+        "acc.n": {
+          "text": "краси́вое",
+          "translit": "krasívoje"
+        }
+      }
+    },
+    {
+      "id": "dorogoj",
+      "lemma": "дорого́й",
+      "pos": "adj",
+      "gloss_de": "teuer (was für einer?)",
+      "forms": {
+        "nom.m": {
+          "text": "дорого́й",
+          "translit": "dorogój"
+        },
+        "nom.f": {
+          "text": "дорога́я",
+          "translit": "dorogája"
+        },
+        "nom.n": {
+          "text": "дорого́е",
+          "translit": "dorogóje"
+        },
+        "nom.pl": {
+          "text": "дороги́е",
+          "translit": "dorogíje"
+        },
+        "acc.m": {
+          "text": "дорого́й",
+          "translit": "dorogój"
+        },
+        "acc.f": {
+          "text": "дорогу́ю",
+          "translit": "dorogúju"
+        },
+        "acc.n": {
+          "text": "дорого́е",
+          "translit": "dorogóje"
+        }
+      }
+    },
+    {
+      "id": "deshjovyj",
+      "lemma": "дешёвый",
+      "pos": "adj",
+      "gloss_de": "billig (was für einer?)",
+      "forms": {
+        "nom.m": {
+          "text": "дешёвый",
+          "translit": "dešjovyj"
+        },
+        "nom.f": {
+          "text": "дешёвая",
+          "translit": "dešjovaja"
+        },
+        "nom.n": {
+          "text": "дешёвое",
+          "translit": "dešjovoje"
+        },
+        "nom.pl": {
+          "text": "дешёвые",
+          "translit": "dešjovyje"
+        },
+        "acc.m": {
+          "text": "дешёвый",
+          "translit": "dešjovyj"
+        },
+        "acc.f": {
+          "text": "дешёвую",
+          "translit": "dešjovuju"
+        },
+        "acc.n": {
+          "text": "дешёвое",
+          "translit": "dešjovoje"
+        }
+      }
+    },
+    {
+      "id": "rubashka",
+      "lemma": "руба́шка",
+      "pos": "noun",
+      "gloss_de": "das Hemd",
+      "forms": {
+        "nom.sg": {
+          "text": "руба́шка",
+          "translit": "rubáška"
+        },
+        "acc.sg": {
+          "text": "руба́шку",
+          "translit": "rubášku"
+        }
+      }
+    },
+    {
+      "id": "futbolka",
+      "lemma": "футбо́лка",
+      "pos": "noun",
+      "gloss_de": "das T-Shirt",
+      "forms": {
+        "nom.sg": {
+          "text": "футбо́лка",
+          "translit": "futbólka"
+        },
+        "acc.sg": {
+          "text": "футбо́лку",
+          "translit": "futbólku"
+        }
+      }
+    },
+    {
+      "id": "etot",
+      "lemma": "э́тот",
+      "pos": "adj",
+      "gloss_de": "dieser, diese, dieses (hier)",
+      "forms": {
+        "nom.m": {
+          "text": "э́тот",
+          "translit": "étot"
+        },
+        "nom.f": {
+          "text": "э́та",
+          "translit": "éta"
+        },
+        "nom.n": {
+          "text": "э́то",
+          "translit": "éto"
+        },
+        "nom.pl": {
+          "text": "э́ти",
+          "translit": "éti"
+        },
+        "acc.m": {
+          "text": "э́тот",
+          "translit": "étot"
+        },
+        "acc.f": {
+          "text": "э́ту",
+          "translit": "étu"
+        },
+        "acc.n": {
+          "text": "э́то",
+          "translit": "éto"
+        },
+        "acc.pl": {
+          "text": "э́ти",
+          "translit": "éti"
+        }
+      }
+    },
+    {
+      "id": "paket",
+      "lemma": "паке́т",
+      "pos": "noun",
+      "gloss_de": "die Tüte",
+      "forms": {
+        "nom.sg": {
+          "text": "паке́т",
+          "translit": "pakét"
+        },
+        "acc.sg": {
+          "text": "паке́т",
+          "translit": "pakét"
+        }
+      }
+    },
+    {
+      "id": "kassa",
+      "lemma": "ка́сса",
+      "pos": "noun",
+      "gloss_de": "die Kasse",
+      "forms": {
+        "nom.sg": {
+          "text": "ка́сса",
+          "translit": "kássa"
+        },
+        "prp.sg": {
+          "text": "ка́ссе",
+          "translit": "kásse"
+        }
+      }
+    },
+    {
+      "id": "tsena",
+      "lemma": "цена́",
+      "pos": "noun",
+      "gloss_de": "der Preis",
+      "forms": {
+        "nom.sg": {
+          "text": "цена́",
+          "translit": "cená"
+        },
+        "acc.sg": {
+          "text": "це́ну",
+          "translit": "cénu"
+        }
+      }
+    },
+    {
+      "id": "produkty",
+      "lemma": "проду́кты",
+      "pos": "noun",
+      "gloss_de": "die Lebensmittel",
+      "forms": {
+        "nom.pl": {
+          "text": "проду́кты",
+          "translit": "prodúkty"
+        },
+        "acc.pl": {
+          "text": "проду́кты",
+          "translit": "prodúkty"
+        }
+      }
+    },
+    {
+      "id": "razmer",
+      "lemma": "разме́р",
+      "pos": "noun",
+      "gloss_de": "die Größe",
+      "forms": {
+        "nom.sg": {
+          "text": "разме́р",
+          "translit": "razmér"
+        },
+        "acc.sg": {
+          "text": "разме́р",
+          "translit": "razmér"
+        }
+      }
+    },
+    {
+      "id": "platit",
+      "lemma": "плати́ть",
+      "pos": "verb",
+      "gloss_de": "bezahlen",
+      "forms": {
+        "inf": {
+          "text": "плати́ть",
+          "translit": "platít'"
+        },
+        "prs.1sg": {
+          "text": "плачу́",
+          "translit": "plačú"
+        },
+        "prs.2sg": {
+          "text": "пла́тишь",
+          "translit": "plátiš'"
+        },
+        "prs.3sg": {
+          "text": "пла́тит",
+          "translit": "plátit"
+        },
+        "prs.1pl": {
+          "text": "пла́тим",
+          "translit": "plátim"
+        },
+        "prs.2pl": {
+          "text": "пла́тите",
+          "translit": "plátite"
+        },
+        "prs.3pl": {
+          "text": "пла́тят",
+          "translit": "plátjat"
+        }
+      }
+    },
+    {
+      "id": "ili",
+      "lemma": "и́ли",
+      "pos": "conj",
+      "gloss_de": "oder",
+      "forms": {
+        "base": {
+          "text": "и́ли",
+          "translit": "íli"
+        }
+      }
+    },
+    {
+      "id": "sdacha",
+      "lemma": "сда́ча",
+      "pos": "noun",
+      "gloss_de": "das Wechselgeld",
+      "forms": {
+        "nom.sg": {
+          "text": "сда́ча",
+          "translit": "sdáča"
+        }
+      }
+    },
+    {
+      "id": "chek",
+      "lemma": "чек",
+      "pos": "noun",
+      "gloss_de": "der Kassenbon",
+      "forms": {
+        "nom.sg": {
+          "text": "чек",
+          "translit": "ček"
+        },
+        "acc.sg": {
+          "text": "чек",
+          "translit": "ček"
+        }
+      }
+    },
+    {
+      "id": "nalichnye",
+      "lemma": "нали́чные",
+      "pos": "noun",
+      "gloss_de": "das Bargeld",
+      "forms": {
+        "nom.pl": {
+          "text": "нали́чные",
+          "translit": "nalíčnyje"
+        },
+        "acc.pl": {
+          "text": "нали́чные",
+          "translit": "nalíčnyje"
+        }
+      }
+    },
+    {
+      "id": "bank",
+      "lemma": "банк",
+      "pos": "noun",
+      "gloss_de": "die Bank (fürs Geld)",
+      "forms": {
+        "nom.sg": {
+          "text": "банк",
+          "translit": "bank"
+        },
+        "prp.sg": {
+          "text": "ба́нке",
+          "translit": "bánke"
+        }
+      }
+    },
+    {
+      "id": "tort",
+      "lemma": "торт",
+      "pos": "noun",
+      "gloss_de": "die Torte",
+      "forms": {
+        "nom.sg": {
+          "text": "торт",
+          "translit": "tort"
+        },
+        "acc.sg": {
+          "text": "торт",
+          "translit": "tort"
+        }
+      }
+    },
+    {
+      "id": "vino",
+      "lemma": "вино́",
+      "pos": "noun",
+      "gloss_de": "der Wein",
+      "forms": {
+        "nom.sg": {
+          "text": "вино́",
+          "translit": "vinó"
+        },
+        "acc.sg": {
+          "text": "вино́",
+          "translit": "vinó"
+        }
+      }
+    },
+    {
+      "id": "butylka",
+      "lemma": "буты́лка",
+      "pos": "noun",
+      "gloss_de": "die Flasche",
+      "forms": {
+        "nom.sg": {
+          "text": "буты́лка",
+          "translit": "butýlka"
+        },
+        "acc.sg": {
+          "text": "буты́лку",
+          "translit": "butýlku"
+        }
+      }
+    },
+    {
+      "id": "konfety",
+      "lemma": "конфе́ты",
+      "pos": "noun",
+      "gloss_de": "die Pralinen",
+      "forms": {
+        "nom.pl": {
+          "text": "конфе́ты",
+          "translit": "konféty"
+        },
+        "acc.pl": {
+          "text": "конфе́ты",
+          "translit": "konféty"
+        }
+      }
+    },
+    {
+      "id": "ljubit",
+      "lemma": "люби́ть",
+      "pos": "verb",
+      "gloss_de": "mögen, lieben",
+      "forms": {
+        "inf": {
+          "text": "люби́ть",
+          "translit": "ljubít'"
+        },
+        "prs.1sg": {
+          "text": "люблю́",
+          "translit": "ljubljú"
+        },
+        "prs.2sg": {
+          "text": "лю́бишь",
+          "translit": "ljúbiš'"
+        },
+        "prs.3sg": {
+          "text": "лю́бит",
+          "translit": "ljúbit"
+        },
+        "prs.1pl": {
+          "text": "лю́бим",
+          "translit": "ljúbim"
+        },
+        "prs.2pl": {
+          "text": "лю́бите",
+          "translit": "ljúbite"
+        },
+        "prs.3pl": {
+          "text": "лю́бят",
+          "translit": "ljúbjat"
+        }
+      }
+    },
+    {
+      "id": "tolko",
+      "lemma": "то́лько",
+      "pos": "adv",
+      "gloss_de": "nur",
+      "forms": {
+        "base": {
+          "text": "то́лько",
+          "translit": "tól'ko"
         }
       }
     }

@@ -1,0 +1,386 @@
+{
+  "id": 34,
+  "stage": 2,
+  "title_de": "Darf ich?",
+  "scenario_de": "Was du tun willst und was hier erlaubt ist.",
+  "grammar_focus": {
+    "id": "infinitive-after-modals",
+    "title_de": "Nach хоте́ть, мо́жно und нельзя́ steht die Grundform",
+    "explanation_de": "Treffen zwei Verben aufeinander, wird nur das erste an die Person angepasst; das zweite bleibt in der Grundform stehen: я хочу́ гуля́ть, она́ хо́чет смотре́ть телеви́зор. Genau wie im Deutschen — ich will spazieren gehen. мо́жно und нельзя́ haben überhaupt keine Person. Sie sagen nur, dass etwas erlaubt oder verboten ist, und auch nach ihnen steht die Grundform: здесь мо́жно кури́ть, здесь нельзя́ кури́ть. Wer es tut, sagt der Satz gar nicht — deshalb steht auch kein я oder ты darin.",
+    "primer": "konjugation"
+  },
+  "new_lexemes": [
+    "mozhno",
+    "nelzja",
+    "kurit",
+    "guljat",
+    "smotret",
+    "televizor"
+  ],
+  "exercises": [
+    {
+      "id": "34-1",
+      "type": "match_pairs",
+      "prompt_de": "Erlaubt, verboten — und zwei Dinge, die man tut.",
+      "pairs": [
+        [
+          "mozhno",
+          "base"
+        ],
+        [
+          "nelzja",
+          "base"
+        ],
+        [
+          "kurit",
+          "inf"
+        ],
+        [
+          "guljat",
+          "inf"
+        ]
+      ]
+    },
+    {
+      "id": "34-2",
+      "type": "match_pairs",
+      "prompt_de": "Ein neues Verb, ein Gerät und zwei alte Bekannte.",
+      "pairs": [
+        [
+          "smotret",
+          "inf"
+        ],
+        [
+          "televizor",
+          "nom.sg"
+        ],
+        [
+          "park",
+          "nom.sg"
+        ],
+        [
+          "pokupat",
+          "inf"
+        ]
+      ]
+    },
+    {
+      "id": "34-3",
+      "type": "build_sentence",
+      "prompt_de": "Hier darf man rauchen.",
+      "solution": [
+        [
+          "zdes",
+          "base"
+        ],
+        [
+          "mozhno",
+          "base"
+        ],
+        [
+          "kurit",
+          "inf"
+        ]
+      ],
+      "distractors": [
+        [
+          "nelzja",
+          "base"
+        ],
+        [
+          "kurit",
+          "prs.1sg"
+        ]
+      ]
+    },
+    {
+      "id": "34-4",
+      "type": "build_sentence",
+      "prompt_de": "Im Park darf man nicht rauchen.",
+      "solution": [
+        [
+          "v",
+          "base"
+        ],
+        [
+          "park",
+          "prp.sg"
+        ],
+        [
+          "nelzja",
+          "base"
+        ],
+        [
+          "kurit",
+          "inf"
+        ]
+      ],
+      "distractors": [
+        [
+          "mozhno",
+          "base"
+        ],
+        [
+          "park",
+          "nom.sg"
+        ]
+      ]
+    },
+    {
+      "id": "34-5",
+      "type": "choose_form",
+      "prompt_de": "Ich will fernsehen.",
+      "sentence": [
+        [
+          "ja",
+          "nom"
+        ],
+        [
+          "khotet",
+          "prs.1sg"
+        ],
+        "___",
+        [
+          "televizor",
+          "acc.sg"
+        ]
+      ],
+      "answer": [
+        "smotret",
+        "inf"
+      ],
+      "distractor_forms": [
+        "prs.1sg",
+        "prs.2sg",
+        "prs.3sg"
+      ]
+    },
+    {
+      "id": "34-6",
+      "type": "build_sentence",
+      "prompt_de": "Wir wollen im Park spazieren gehen.",
+      "solution": [
+        [
+          "my",
+          "nom"
+        ],
+        [
+          "khotet",
+          "prs.1pl"
+        ],
+        [
+          "guljat",
+          "inf"
+        ],
+        [
+          "v",
+          "base"
+        ],
+        [
+          "park",
+          "prp.sg"
+        ]
+      ],
+      "distractors": [
+        [
+          "guljat",
+          "prs.1pl"
+        ],
+        [
+          "park",
+          "nom.sg"
+        ]
+      ]
+    },
+    {
+      "id": "34-7",
+      "type": "choose_form",
+      "prompt_de": "Was schaust du?",
+      "sentence": [
+        [
+          "chto",
+          "acc"
+        ],
+        [
+          "ty",
+          "nom"
+        ],
+        "___"
+      ],
+      "answer": [
+        "smotret",
+        "prs.2sg"
+      ],
+      "distractor_forms": [
+        "prs.1sg",
+        "prs.3sg",
+        "inf"
+      ],
+      "audio_prompt": true
+    },
+    {
+      "id": "34-8",
+      "type": "build_sentence",
+      "prompt_de": "Meine Frau sieht fern.",
+      "solution": [
+        [
+          "moj",
+          "nom.f"
+        ],
+        [
+          "zhena",
+          "nom.sg"
+        ],
+        [
+          "smotret",
+          "prs.3sg"
+        ],
+        [
+          "televizor",
+          "acc.sg"
+        ]
+      ],
+      "distractors": [
+        [
+          "smotret",
+          "prs.1sg"
+        ],
+        [
+          "moj",
+          "nom.m"
+        ]
+      ]
+    },
+    {
+      "id": "34-9",
+      "type": "build_sentence",
+      "prompt_de": "Hier darf man arbeiten.",
+      "solution": [
+        [
+          "zdes",
+          "base"
+        ],
+        [
+          "mozhno",
+          "base"
+        ],
+        [
+          "rabotat",
+          "inf"
+        ]
+      ],
+      "distractors": [
+        [
+          "rabotat",
+          "prs.1sg"
+        ],
+        [
+          "nelzja",
+          "base"
+        ]
+      ]
+    },
+    {
+      "id": "34-10",
+      "type": "dialog_reply",
+      "prompt_de": "Eine Freundin fragt, was du machen willst.",
+      "tutor_line": [
+        [
+          "chto",
+          "acc"
+        ],
+        [
+          "ty",
+          "nom"
+        ],
+        [
+          "khotet",
+          "prs.2sg"
+        ],
+        [
+          "delat",
+          "inf"
+        ]
+      ],
+      "correct_index": 0,
+      "options": [
+        {
+          "tokens": [
+            [
+              "ja",
+              "nom"
+            ],
+            [
+              "khotet",
+              "prs.1sg"
+            ],
+            [
+              "guljat",
+              "inf"
+            ]
+          ],
+          "why_de": ""
+        },
+        {
+          "tokens": [
+            [
+              "ja",
+              "nom"
+            ],
+            [
+              "khotet",
+              "prs.1sg"
+            ],
+            [
+              "guljat",
+              "prs.1sg"
+            ]
+          ],
+          "why_de": "Nach хочу́ steht die Grundform: я хочу́ гуля́ть."
+        },
+        {
+          "tokens": [
+            [
+              "ja",
+              "nom"
+            ],
+            [
+              "khotet",
+              "prs.2sg"
+            ],
+            [
+              "guljat",
+              "inf"
+            ]
+          ],
+          "why_de": "хо́чешь gehört zu ты. Von dir selbst sprichst du mit хочу́."
+        }
+      ]
+    },
+    {
+      "id": "34-11",
+      "type": "listen_meaning",
+      "prompt_de": "Hör zu. Was wird gesagt?",
+      "sentence": [
+        [
+          "zdes",
+          "base"
+        ],
+        [
+          "nelzja",
+          "base"
+        ],
+        [
+          "kurit",
+          "inf"
+        ]
+      ],
+      "correct_index": 0,
+      "options_de": [
+        "Hier darf man nicht rauchen.",
+        "Hier darf man rauchen.",
+        "Hier darf man nicht spazieren gehen."
+      ]
+    }
+  ]
+}

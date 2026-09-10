@@ -1,0 +1,391 @@
+{
+  "id": 33,
+  "stage": 2,
+  "title_de": "Im Laden",
+  "scenario_de": "Du stehst im Laden und fragst, ob es etwas gibt.",
+  "grammar_focus": {
+    "id": "u-vas-est-shopping",
+    "title_de": "У вас есть …? — und was danach für eine Form kommt",
+    "explanation_de": "У вас есть хлеб? heißt wörtlich: Bei euch ist Brot? — und das ist die normale Frage im Laden. Nach есть steht die Ware in ihrer Grundform, genau wie bei у меня́ есть маши́на. Sobald du aber sagst, was du kaufst, wird die Ware zum Objekt und steht im Akkusativ: я покупа́ю колбасу́. Bei хлеб, сыр und я́блоко merkst du davon nichts — männliche Sachen und sächliche Wörter ändern sich nicht. Nur die weiblichen zeigen es: колбаса́ → колбасу́.",
+    "primer": "akkusativ"
+  },
+  "new_lexemes": [
+    "khleb",
+    "syr",
+    "kolbasa",
+    "jabloko",
+    "pokupat",
+    "prodavets",
+    "i"
+  ],
+  "exercises": [
+    {
+      "id": "33-1",
+      "type": "match_pairs",
+      "prompt_de": "Vier Dinge aus dem Laden.",
+      "pairs": [
+        [
+          "khleb",
+          "nom.sg"
+        ],
+        [
+          "syr",
+          "nom.sg"
+        ],
+        [
+          "kolbasa",
+          "nom.sg"
+        ],
+        [
+          "jabloko",
+          "nom.sg"
+        ]
+      ]
+    },
+    {
+      "id": "33-2",
+      "type": "match_pairs",
+      "prompt_de": "Ein Verb, ein Mensch und zwei alte Bekannte.",
+      "pairs": [
+        [
+          "pokupat",
+          "inf"
+        ],
+        [
+          "prodavets",
+          "nom.sg"
+        ],
+        [
+          "magazin",
+          "nom.sg"
+        ],
+        [
+          "dengi",
+          "nom.pl"
+        ]
+      ]
+    },
+    {
+      "id": "33-3",
+      "type": "build_sentence",
+      "prompt_de": "Haben Sie Brot?",
+      "solution": [
+        [
+          "u",
+          "base"
+        ],
+        [
+          "vy",
+          "gen"
+        ],
+        [
+          "est",
+          "prs.3sg"
+        ],
+        [
+          "khleb",
+          "nom.sg"
+        ]
+      ],
+      "distractors": [
+        [
+          "syr",
+          "nom.sg"
+        ],
+        [
+          "kolbasa",
+          "nom.sg"
+        ]
+      ]
+    },
+    {
+      "id": "33-4",
+      "type": "choose_form",
+      "prompt_de": "Ich kaufe Brot.",
+      "sentence": [
+        [
+          "ja",
+          "nom"
+        ],
+        "___",
+        [
+          "khleb",
+          "acc.sg"
+        ]
+      ],
+      "answer": [
+        "pokupat",
+        "prs.1sg"
+      ],
+      "distractor_forms": [
+        "prs.2sg",
+        "prs.3sg",
+        "inf"
+      ]
+    },
+    {
+      "id": "33-5",
+      "type": "build_sentence",
+      "prompt_de": "Ich kaufe die Wurst.",
+      "solution": [
+        [
+          "ja",
+          "nom"
+        ],
+        [
+          "pokupat",
+          "prs.1sg"
+        ],
+        [
+          "kolbasa",
+          "acc.sg"
+        ]
+      ],
+      "distractors": [
+        [
+          "kolbasa",
+          "nom.sg"
+        ],
+        [
+          "pokupat",
+          "prs.3sg"
+        ]
+      ]
+    },
+    {
+      "id": "33-6",
+      "type": "build_sentence",
+      "prompt_de": "Haben Sie Wurst?",
+      "solution": [
+        [
+          "u",
+          "base"
+        ],
+        [
+          "vy",
+          "gen"
+        ],
+        [
+          "est",
+          "prs.3sg"
+        ],
+        [
+          "kolbasa",
+          "nom.sg"
+        ]
+      ],
+      "distractors": [
+        [
+          "kolbasa",
+          "acc.sg"
+        ],
+        [
+          "khleb",
+          "nom.sg"
+        ]
+      ]
+    },
+    {
+      "id": "33-7",
+      "type": "choose_form",
+      "prompt_de": "Was kaufst du?",
+      "sentence": [
+        [
+          "chto",
+          "acc"
+        ],
+        [
+          "ty",
+          "nom"
+        ],
+        "___"
+      ],
+      "answer": [
+        "pokupat",
+        "prs.2sg"
+      ],
+      "distractor_forms": [
+        "prs.1sg",
+        "prs.3sg",
+        "prs.3pl"
+      ],
+      "audio_prompt": true
+    },
+    {
+      "id": "33-8",
+      "type": "build_sentence",
+      "prompt_de": "Im Laden gibt es Käse.",
+      "solution": [
+        [
+          "v",
+          "base"
+        ],
+        [
+          "magazin",
+          "prp.sg"
+        ],
+        [
+          "est",
+          "prs.3sg"
+        ],
+        [
+          "syr",
+          "nom.sg"
+        ]
+      ],
+      "distractors": [
+        [
+          "magazin",
+          "nom.sg"
+        ],
+        [
+          "na",
+          "base"
+        ]
+      ]
+    },
+    {
+      "id": "33-9",
+      "type": "build_sentence",
+      "prompt_de": "Ich kaufe einen Apfel.",
+      "solution": [
+        [
+          "ja",
+          "nom"
+        ],
+        [
+          "pokupat",
+          "prs.1sg"
+        ],
+        [
+          "jabloko",
+          "acc.sg"
+        ]
+      ],
+      "distractors": [
+        [
+          "pokupat",
+          "prs.3pl"
+        ],
+        [
+          "syr",
+          "acc.sg"
+        ]
+      ]
+    },
+    {
+      "id": "33-10",
+      "type": "dialog_reply",
+      "prompt_de": "Der Verkäufer fragt, was du kaufst.",
+      "tutor_line": [
+        [
+          "chto",
+          "acc"
+        ],
+        [
+          "vy",
+          "nom"
+        ],
+        [
+          "pokupat",
+          "prs.2pl"
+        ]
+      ],
+      "correct_index": 0,
+      "options": [
+        {
+          "tokens": [
+            [
+              "ja",
+              "nom"
+            ],
+            [
+              "pokupat",
+              "prs.1sg"
+            ],
+            [
+              "khleb",
+              "acc.sg"
+            ],
+            [
+              "i",
+              "base"
+            ],
+            [
+              "syr",
+              "acc.sg"
+            ]
+          ],
+          "why_de": ""
+        },
+        {
+          "tokens": [
+            [
+              "ja",
+              "nom"
+            ],
+            [
+              "pokupat",
+              "prs.1sg"
+            ],
+            [
+              "kolbasa",
+              "nom.sg"
+            ]
+          ],
+          "why_de": "Nach покупа́ю steht der Akkusativ: я покупа́ю колбасу́."
+        },
+        {
+          "tokens": [
+            [
+              "ja",
+              "nom"
+            ],
+            [
+              "pokupat",
+              "prs.2pl"
+            ],
+            [
+              "khleb",
+              "acc.sg"
+            ]
+          ],
+          "why_de": "покупа́ете gehört zu вы. Von dir selbst sprichst du mit покупа́ю."
+        }
+      ]
+    },
+    {
+      "id": "33-11",
+      "type": "listen_meaning",
+      "prompt_de": "Hör zu. Was wird gesagt?",
+      "sentence": [
+        [
+          "ja",
+          "nom"
+        ],
+        [
+          "pokupat",
+          "prs.1sg"
+        ],
+        [
+          "khleb",
+          "acc.sg"
+        ],
+        [
+          "i",
+          "base"
+        ],
+        [
+          "moloko",
+          "acc.sg"
+        ]
+      ],
+      "correct_index": 0,
+      "options_de": [
+        "Ich kaufe Brot und Milch.",
+        "Ich kaufe Brot und Käse.",
+        "Ich möchte Brot und Milch."
+      ]
+    }
+  ]
+}
