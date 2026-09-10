@@ -13,6 +13,9 @@ from app.api.schemas import (
     AnswerResponse,
     ExplainRequest,
     ExplainResponse,
+    FlashcardAnswerRequest,
+    FlashcardAnswerResponse,
+    FlashcardRoundResponse,
     LearningPlanResponse,
     ListeningAnswerRequest,
     ListeningAnswerResponse,
@@ -34,6 +37,7 @@ from app.api.schemas import (
 from app.audio.cache import AudioCache, audio_key, strip_stress
 from app.config import settings
 from app.content.models import Course
+from app.course import flashcards as flashcards_module
 from app.course import listening as listening_module
 from app.course import review as review_module
 from app.course import service as course_service
@@ -52,7 +56,7 @@ from app.game import service as game_service
 from app.game.models import Village
 from app.ollama_client import OllamaClient
 from app.tts_client import TtsClient, TtsUnavailable
-from app.repositories import listening_repo, vocab_repo
+from app.repositories import flashcard_repo, listening_repo, vocab_repo
 from app.repositories.learning_plan_repo import get_latest_plan
 from app.repositories.profile_repo import get_or_create_profile, update_profile
 from app.screening import service as screening_service
@@ -502,4 +506,41 @@ def listening_answer(
         correct_index=correct_index,
         title_de=dialog.title_de,
         translations_de=[line.translation_de for line in dialog.lines],
+    )
+
+
+@router.get("/flashcards/round", response_model=FlashcardRoundResponse)
+def flashcards_round(
+    direction: Literal["ru_de", "de_ru", "mixed"] = Query("mixed"),
+    course: Course = Depends(get_course),
+    conn: Connection = Depends(get_db),
+) -> FlashcardRoundResponse:
+    """Eine Runde Karteikarten aus den bisher gelernten Wörtern."""
+    seed = dt.datetime.now(dt.timezone.utc).isoformat()
+    cards = flashcards_module.build_round(course, conn, direction=direction, seed=seed)
+    known = len(flashcards_module.known_lexemes(course, flashcards_module.reached_unit(conn)))
+    return FlashcardRoundResponse(seed=seed, cards=cards, known_words=known)
+
+
+@router.post("/flashcards/answer", response_model=FlashcardAnswerResponse)
+def flashcards_answer(
+    payload: FlashcardAnswerRequest,
+    course: Course = Depends(get_course),
+    conn: Connection = Depends(get_db),
+) -> FlashcardAnswerResponse:
+    if payload.lexeme_id not in course.lexemes:
+        raise HTTPException(status_code=404, detail=f"Wort {payload.lexeme_id} gibt es nicht")
+    correct, correct_index = flashcards_module.check_answer(
+        course, conn, payload.lexeme_id, seed=payload.seed, option_index=payload.option_index
+    )
+    flashcard_repo.record(
+        conn,
+        lexeme_id=payload.lexeme_id,
+        correct=correct,
+        answered_at=dt.datetime.now(dt.timezone.utc).isoformat(),
+    )
+    return FlashcardAnswerResponse(
+        correct=correct,
+        correct_index=correct_index,
+        **flashcards_module.solution(course, payload.lexeme_id),
     )

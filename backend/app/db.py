@@ -113,6 +113,13 @@ CREATE TABLE IF NOT EXISTS game_scene_runs (
     played_at TEXT NOT NULL
 );
 
+CREATE TABLE IF NOT EXISTS flashcard_runs (
+    id          INTEGER PRIMARY KEY AUTOINCREMENT,
+    lexeme_id   TEXT NOT NULL,
+    correct     INTEGER NOT NULL,
+    answered_at TEXT NOT NULL
+);
+
 CREATE TABLE IF NOT EXISTS listening_runs (
     id        INTEGER PRIMARY KEY AUTOINCREMENT,
     dialog_id INTEGER NOT NULL,

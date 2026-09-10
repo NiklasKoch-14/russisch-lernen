@@ -148,3 +148,43 @@ class ListeningAnswerResponse(BaseModel):
     correct_index: int
     title_de: str
     translations_de: list[str]
+
+
+class FlashcardWord(BaseModel):
+    text: str
+    translit: str
+
+
+class Flashcard(BaseModel):
+    """Eine Karte ohne Lösung.
+
+    Je nach Richtung ist entweder die russische oder die deutsche Seite die
+    Frage; die jeweils andere steht in den Optionen.
+    """
+
+    lexeme_id: str
+    direction: str
+    prompt_ru: FlashcardWord | None = None
+    prompt_de: str | None = None
+    options_de: list[str] = []
+    options_ru: list[FlashcardWord] = []
+
+
+class FlashcardRoundResponse(BaseModel):
+    seed: str
+    cards: list[Flashcard] = []
+    known_words: int = 0
+
+
+class FlashcardAnswerRequest(BaseModel):
+    lexeme_id: str
+    seed: str
+    option_index: int
+
+
+class FlashcardAnswerResponse(BaseModel):
+    correct: bool
+    correct_index: int
+    text: str
+    translit: str
+    gloss_de: str
