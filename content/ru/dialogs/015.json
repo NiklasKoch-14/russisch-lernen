@@ -1,0 +1,159 @@
+{
+  "id": 15,
+  "min_unit": 33,
+  "title_de": "Im Laden",
+  "speakers": [
+    {
+      "name_ru": "Са́ша",
+      "name_de": "Sascha",
+      "voice": "m"
+    },
+    {
+      "name_ru": "Ни́на",
+      "name_de": "Nina",
+      "voice": "f"
+    }
+  ],
+  "lines": [
+    {
+      "speaker": 0,
+      "tokens": [
+        [
+          "u",
+          "base"
+        ],
+        [
+          "vy",
+          "gen"
+        ],
+        [
+          "est",
+          "prs.3sg"
+        ],
+        [
+          "khleb",
+          "nom.sg"
+        ]
+      ],
+      "translation_de": "Haben Sie Brot?"
+    },
+    {
+      "speaker": 1,
+      "tokens": [
+        [
+          "da",
+          "base"
+        ],
+        [
+          "est",
+          "prs.3sg"
+        ],
+        [
+          "khleb",
+          "nom.sg"
+        ],
+        [
+          "i",
+          "base"
+        ],
+        [
+          "syr",
+          "nom.sg"
+        ],
+        [
+          "zdes",
+          "base"
+        ]
+      ],
+      "translation_de": "Ja, haben wir. Brot und Käse sind hier."
+    },
+    {
+      "speaker": 0,
+      "tokens": [
+        [
+          "ja",
+          "nom"
+        ],
+        [
+          "pokupat",
+          "prs.1sg"
+        ],
+        [
+          "khleb",
+          "acc.sg"
+        ],
+        [
+          "i",
+          "base"
+        ],
+        [
+          "kolbasa",
+          "acc.sg"
+        ]
+      ],
+      "translation_de": "Ich kaufe Brot und Wurst."
+    },
+    {
+      "speaker": 1,
+      "tokens": [
+        [
+          "eshchjo",
+          "base"
+        ],
+        [
+          "syr",
+          "nom.sg"
+        ]
+      ],
+      "translation_de": "Noch Käse?"
+    },
+    {
+      "speaker": 0,
+      "tokens": [
+        [
+          "net",
+          "base"
+        ],
+        [
+          "spasibo",
+          "base"
+        ],
+        [
+          "skolko",
+          "base"
+        ],
+        [
+          "eto",
+          "base"
+        ],
+        [
+          "stoit",
+          "prs.3sg"
+        ]
+      ],
+      "translation_de": "Nein, danke. Was kostet das?"
+    },
+    {
+      "speaker": 1,
+      "tokens": [
+        [
+          "desjat",
+          "nom"
+        ],
+        [
+          "evro",
+          "gen.pl"
+        ]
+      ],
+      "translation_de": "Zehn Euro."
+    }
+  ],
+  "question_de": "Worum ging es?",
+  "options_de": [
+    "Ein Einkauf im Laden.",
+    "Ein Essen im Restaurant.",
+    "Ein Gespräch über die Arbeit.",
+    "Eine Frage nach dem Weg."
+  ],
+  "correct_index": 0
+}

@@ -1,0 +1,155 @@
+{
+  "id": 14,
+  "min_unit": 32,
+  "title_de": "Die Rechnung, bitte",
+  "speakers": [
+    {
+      "name_ru": "Ле́на",
+      "name_de": "Lena",
+      "voice": "f"
+    },
+    {
+      "name_ru": "Пётр",
+      "name_de": "Pjotr",
+      "voice": "m"
+    }
+  ],
+  "lines": [
+    {
+      "speaker": 1,
+      "tokens": [
+        [
+          "chto",
+          "acc"
+        ],
+        [
+          "ty",
+          "nom"
+        ],
+        [
+          "brat_vzjat",
+          "prs.2sg"
+        ]
+      ],
+      "translation_de": "Was nimmst du?"
+    },
+    {
+      "speaker": 0,
+      "tokens": [
+        [
+          "ja",
+          "nom"
+        ],
+        [
+          "brat_vzjat",
+          "prs.1sg"
+        ],
+        [
+          "salat",
+          "acc.sg"
+        ],
+        [
+          "a",
+          "base"
+        ],
+        [
+          "ty",
+          "nom"
+        ]
+      ],
+      "translation_de": "Ich nehme den Salat. Und du?"
+    },
+    {
+      "speaker": 1,
+      "tokens": [
+        [
+          "ja",
+          "nom"
+        ],
+        [
+          "brat_vzjat",
+          "prs.1sg"
+        ],
+        [
+          "ryba",
+          "acc.sg"
+        ],
+        [
+          "eshchjo",
+          "base"
+        ],
+        [
+          "pivo",
+          "acc.sg"
+        ],
+        [
+          "pozhalujsta",
+          "base"
+        ]
+      ],
+      "translation_de": "Ich nehme den Fisch. Und noch ein Bier, bitte."
+    },
+    {
+      "speaker": 0,
+      "tokens": [
+        [
+          "devushka",
+          "nom.sg"
+        ],
+        [
+          "schjot",
+          "acc.sg"
+        ],
+        [
+          "pozhalujsta",
+          "base"
+        ]
+      ],
+      "translation_de": "Entschuldigung, die Rechnung bitte!"
+    },
+    {
+      "speaker": 1,
+      "tokens": [
+        [
+          "u",
+          "base"
+        ],
+        [
+          "ja",
+          "gen"
+        ],
+        [
+          "est",
+          "prs.3sg"
+        ],
+        [
+          "karta",
+          "nom.sg"
+        ]
+      ],
+      "translation_de": "Ich habe eine Karte."
+    },
+    {
+      "speaker": 0,
+      "tokens": [
+        [
+          "khorosho",
+          "base"
+        ],
+        [
+          "spasibo",
+          "base"
+        ]
+      ],
+      "translation_de": "Gut, danke."
+    }
+  ],
+  "question_de": "Worum ging es?",
+  "options_de": [
+    "Bestellen und bezahlen im Café.",
+    "Der Weg zum Restaurant.",
+    "Die Arbeit des Kellners.",
+    "Ein Geschenk für Lena."
+  ],
+  "correct_index": 0
+}

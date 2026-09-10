@@ -1,0 +1,173 @@
+{
+  "id": 19,
+  "min_unit": 41,
+  "title_de": "Früh und spät",
+  "speakers": [
+    {
+      "name_ru": "Ве́ра",
+      "name_de": "Vera",
+      "voice": "f"
+    },
+    {
+      "name_ru": "Пётр",
+      "name_de": "Pjotr",
+      "voice": "m"
+    }
+  ],
+  "lines": [
+    {
+      "speaker": 0,
+      "tokens": [
+        [
+          "ty",
+          "nom"
+        ],
+        [
+          "rano",
+          "base"
+        ],
+        [
+          "vstavat",
+          "prs.2sg"
+        ]
+      ],
+      "translation_de": "Stehst du früh auf?"
+    },
+    {
+      "speaker": 1,
+      "tokens": [
+        [
+          "obychno",
+          "base"
+        ],
+        [
+          "v",
+          "base"
+        ],
+        [
+          "shest",
+          "nom"
+        ],
+        [
+          "chas",
+          "gen.pl"
+        ]
+      ],
+      "translation_de": "Normalerweise um sechs Uhr."
+    },
+    {
+      "speaker": 0,
+      "tokens": [
+        [
+          "eto",
+          "base"
+        ],
+        [
+          "ochen",
+          "base"
+        ],
+        [
+          "rano",
+          "base"
+        ]
+      ],
+      "translation_de": "Das ist sehr früh."
+    },
+    {
+      "speaker": 1,
+      "tokens": [
+        [
+          "utrom",
+          "base"
+        ],
+        [
+          "ja",
+          "nom"
+        ],
+        [
+          "zavtrakat",
+          "prs.1sg"
+        ],
+        [
+          "v",
+          "base"
+        ],
+        [
+          "sem",
+          "nom"
+        ],
+        [
+          "chas",
+          "gen.pl"
+        ]
+      ],
+      "translation_de": "Morgens frühstücke ich um sieben Uhr."
+    },
+    {
+      "speaker": 0,
+      "tokens": [
+        [
+          "ja",
+          "nom"
+        ],
+        [
+          "vstavat",
+          "prs.1sg"
+        ],
+        [
+          "pozdno",
+          "base"
+        ],
+        [
+          "nochju",
+          "base"
+        ],
+        [
+          "ja",
+          "nom"
+        ],
+        [
+          "chitat",
+          "prs.1sg"
+        ]
+      ],
+      "translation_de": "Ich stehe spät auf. Nachts lese ich."
+    },
+    {
+      "speaker": 1,
+      "tokens": [
+        [
+          "kogda",
+          "base"
+        ],
+        [
+          "ty",
+          "nom"
+        ],
+        [
+          "spat",
+          "prs.2sg"
+        ]
+      ],
+      "translation_de": "Wann schläfst du?"
+    },
+    {
+      "speaker": 0,
+      "tokens": [
+        [
+          "dnjom",
+          "base"
+        ]
+      ],
+      "translation_de": "Tagsüber!"
+    }
+  ],
+  "question_de": "Worum ging es?",
+  "options_de": [
+    "Wann die beiden aufstehen und schlafen.",
+    "Was die beiden zum Frühstück essen.",
+    "Wann die beiden arbeiten.",
+    "Wie spät es gerade ist."
+  ],
+  "correct_index": 0
+}

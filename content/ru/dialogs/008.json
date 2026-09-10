@@ -1,0 +1,149 @@
+{
+  "id": 8,
+  "min_unit": 24,
+  "title_de": "Wo wohnst du?",
+  "speakers": [
+    {
+      "name_ru": "Ле́на",
+      "name_de": "Lena",
+      "voice": "f"
+    },
+    {
+      "name_ru": "Пётр",
+      "name_de": "Pjotr",
+      "voice": "m"
+    }
+  ],
+  "lines": [
+    {
+      "speaker": 0,
+      "tokens": [
+        [
+          "gde",
+          "base"
+        ],
+        [
+          "ty",
+          "nom"
+        ],
+        [
+          "zhit",
+          "prs.2sg"
+        ]
+      ],
+      "translation_de": "Wo wohnst du?"
+    },
+    {
+      "speaker": 1,
+      "tokens": [
+        [
+          "ja",
+          "nom"
+        ],
+        [
+          "zhit",
+          "prs.1sg"
+        ],
+        [
+          "zdes",
+          "base"
+        ],
+        [
+          "a",
+          "base"
+        ],
+        [
+          "ty",
+          "nom"
+        ]
+      ],
+      "translation_de": "Ich wohne hier. Und du?"
+    },
+    {
+      "speaker": 0,
+      "tokens": [
+        [
+          "my",
+          "nom"
+        ],
+        [
+          "zhit",
+          "prs.1pl"
+        ],
+        [
+          "tam",
+          "base"
+        ],
+        [
+          "u",
+          "base"
+        ],
+        [
+          "my",
+          "gen"
+        ],
+        [
+          "novyj",
+          "nom.m"
+        ],
+        [
+          "dom",
+          "nom.sg"
+        ]
+      ],
+      "translation_de": "Wir wohnen dort. Wir haben ein neues Haus."
+    },
+    {
+      "speaker": 1,
+      "tokens": [
+        [
+          "nash",
+          "nom.f"
+        ],
+        [
+          "sosedka",
+          "nom.sg"
+        ],
+        [
+          "tozhe",
+          "base"
+        ],
+        [
+          "zhit",
+          "prs.3sg"
+        ],
+        [
+          "tam",
+          "base"
+        ]
+      ],
+      "translation_de": "Unsere Nachbarin wohnt auch dort."
+    },
+    {
+      "speaker": 0,
+      "tokens": [
+        [
+          "eto",
+          "base"
+        ],
+        [
+          "khoroshij",
+          "nom.f"
+        ],
+        [
+          "ulitsa",
+          "nom.sg"
+        ]
+      ],
+      "translation_de": "Das ist eine gute Straße."
+    }
+  ],
+  "question_de": "Worum ging es?",
+  "options_de": [
+    "Wo die beiden wohnen.",
+    "Wem das Auto gehört.",
+    "Wie alt das Haus ist.",
+    "Wo die Schule liegt."
+  ],
+  "correct_index": 0
+}

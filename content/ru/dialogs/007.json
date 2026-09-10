@@ -1,0 +1,157 @@
+{
+  "id": 7,
+  "min_unit": 23,
+  "title_de": "Katze, Hund und ein altes Auto",
+  "speakers": [
+    {
+      "name_ru": "Ни́на",
+      "name_de": "Nina",
+      "voice": "f"
+    },
+    {
+      "name_ru": "Са́ша",
+      "name_de": "Sascha",
+      "voice": "m"
+    }
+  ],
+  "lines": [
+    {
+      "speaker": 0,
+      "tokens": [
+        [
+          "u",
+          "base"
+        ],
+        [
+          "ty",
+          "gen"
+        ],
+        [
+          "est",
+          "prs.3sg"
+        ],
+        [
+          "sobaka",
+          "nom.sg"
+        ]
+      ],
+      "translation_de": "Hast du einen Hund?"
+    },
+    {
+      "speaker": 1,
+      "tokens": [
+        [
+          "net",
+          "base"
+        ],
+        [
+          "u",
+          "base"
+        ],
+        [
+          "ja",
+          "gen"
+        ],
+        [
+          "est",
+          "prs.3sg"
+        ],
+        [
+          "koshka",
+          "nom.sg"
+        ]
+      ],
+      "translation_de": "Nein, ich habe eine Katze."
+    },
+    {
+      "speaker": 0,
+      "tokens": [
+        [
+          "u",
+          "base"
+        ],
+        [
+          "ja",
+          "gen"
+        ],
+        [
+          "tozhe",
+          "base"
+        ],
+        [
+          "est",
+          "prs.3sg"
+        ],
+        [
+          "koshka",
+          "nom.sg"
+        ],
+        [
+          "a",
+          "base"
+        ],
+        [
+          "mashina",
+          "nom.sg"
+        ]
+      ],
+      "translation_de": "Ich habe auch eine Katze! Und ein Auto?"
+    },
+    {
+      "speaker": 1,
+      "tokens": [
+        [
+          "u",
+          "base"
+        ],
+        [
+          "ja",
+          "gen"
+        ],
+        [
+          "staryj",
+          "nom.f"
+        ],
+        [
+          "mashina",
+          "nom.sg"
+        ]
+      ],
+      "translation_de": "Ich habe ein altes Auto."
+    },
+    {
+      "speaker": 0,
+      "tokens": [
+        [
+          "u",
+          "base"
+        ],
+        [
+          "my",
+          "gen"
+        ],
+        [
+          "tozhe",
+          "base"
+        ],
+        [
+          "staryj",
+          "nom.f"
+        ],
+        [
+          "mashina",
+          "nom.sg"
+        ]
+      ],
+      "translation_de": "Wir haben auch ein altes Auto."
+    }
+  ],
+  "question_de": "Worum ging es?",
+  "options_de": [
+    "Um Katzen, Hunde und Autos.",
+    "Um die Familie.",
+    "Um die Arbeit.",
+    "Um ein neues Telefon."
+  ],
+  "correct_index": 0
+}

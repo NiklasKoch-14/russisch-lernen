@@ -1,0 +1,141 @@
+{
+  "id": 10,
+  "min_unit": 27,
+  "title_de": "Zwei bestellen",
+  "speakers": [
+    {
+      "name_ru": "Оле́г",
+      "name_de": "Oleg",
+      "voice": "m"
+    },
+    {
+      "name_ru": "Ни́ка",
+      "name_de": "Nika",
+      "voice": "f"
+    }
+  ],
+  "lines": [
+    {
+      "speaker": 0,
+      "tokens": [
+        [
+          "chto",
+          "acc"
+        ],
+        [
+          "ty",
+          "nom"
+        ],
+        [
+          "khotet",
+          "prs.2sg"
+        ]
+      ],
+      "translation_de": "Was möchtest du?"
+    },
+    {
+      "speaker": 1,
+      "tokens": [
+        [
+          "ja",
+          "nom"
+        ],
+        [
+          "khotet",
+          "prs.1sg"
+        ],
+        [
+          "sup",
+          "acc.sg"
+        ]
+      ],
+      "translation_de": "Ich möchte eine Suppe."
+    },
+    {
+      "speaker": 0,
+      "tokens": [
+        [
+          "a",
+          "base"
+        ],
+        [
+          "ja",
+          "nom"
+        ],
+        [
+          "khotet",
+          "prs.1sg"
+        ],
+        [
+          "pitstsa",
+          "acc.sg"
+        ],
+        [
+          "eshchjo",
+          "base"
+        ],
+        [
+          "voda",
+          "acc.sg"
+        ],
+        [
+          "pozhalujsta",
+          "base"
+        ]
+      ],
+      "translation_de": "Und ich möchte eine Pizza. Außerdem Wasser, bitte."
+    },
+    {
+      "speaker": 1,
+      "tokens": [
+        [
+          "ty",
+          "nom"
+        ],
+        [
+          "khotet",
+          "prs.2sg"
+        ],
+        [
+          "pivo",
+          "acc.sg"
+        ]
+      ],
+      "translation_de": "Möchtest du ein Bier?"
+    },
+    {
+      "speaker": 0,
+      "tokens": [
+        [
+          "net",
+          "base"
+        ],
+        [
+          "spasibo",
+          "base"
+        ],
+        [
+          "ja",
+          "nom"
+        ],
+        [
+          "khotet",
+          "prs.1sg"
+        ],
+        [
+          "voda",
+          "acc.sg"
+        ]
+      ],
+      "translation_de": "Nein, danke. Ich möchte Wasser."
+    }
+  ],
+  "question_de": "Worum ging es?",
+  "options_de": [
+    "Was die beiden zu essen bestellen.",
+    "Wer die Rechnung bezahlt.",
+    "Wo das Restaurant liegt.",
+    "Wann sie essen gehen."
+  ],
+  "correct_index": 0
+}

@@ -1,0 +1,125 @@
+{
+  "id": 11,
+  "min_unit": 28,
+  "title_de": "Was machst du gerade?",
+  "speakers": [
+    {
+      "name_ru": "Ве́ра",
+      "name_de": "Vera",
+      "voice": "f"
+    },
+    {
+      "name_ru": "Пётр",
+      "name_de": "Pjotr",
+      "voice": "m"
+    }
+  ],
+  "lines": [
+    {
+      "speaker": 0,
+      "tokens": [
+        [
+          "chto",
+          "acc"
+        ],
+        [
+          "ty",
+          "nom"
+        ],
+        [
+          "delat",
+          "prs.2sg"
+        ]
+      ],
+      "translation_de": "Was machst du?"
+    },
+    {
+      "speaker": 1,
+      "tokens": [
+        [
+          "ja",
+          "nom"
+        ],
+        [
+          "chitat",
+          "prs.1sg"
+        ],
+        [
+          "gazeta",
+          "acc.sg"
+        ]
+      ],
+      "translation_de": "Ich lese die Zeitung."
+    },
+    {
+      "speaker": 0,
+      "tokens": [
+        [
+          "khoroshij",
+          "nom.f"
+        ],
+        [
+          "gazeta",
+          "nom.sg"
+        ]
+      ],
+      "translation_de": "Eine gute Zeitung?"
+    },
+    {
+      "speaker": 1,
+      "tokens": [
+        [
+          "ne",
+          "base"
+        ],
+        [
+          "znat",
+          "prs.1sg"
+        ],
+        [
+          "ja",
+          "nom"
+        ],
+        [
+          "tozhe",
+          "base"
+        ],
+        [
+          "chitat",
+          "prs.1sg"
+        ],
+        [
+          "zhurnal",
+          "acc.sg"
+        ]
+      ],
+      "translation_de": "Weiß ich nicht. Ich lese auch eine Zeitschrift."
+    },
+    {
+      "speaker": 0,
+      "tokens": [
+        [
+          "a",
+          "base"
+        ],
+        [
+          "ja",
+          "nom"
+        ],
+        [
+          "rabotat",
+          "prs.1sg"
+        ]
+      ],
+      "translation_de": "Und ich arbeite."
+    }
+  ],
+  "question_de": "Worum ging es?",
+  "options_de": [
+    "Was die beiden gerade tun.",
+    "Was die beiden essen.",
+    "Wo die beiden arbeiten.",
+    "Was die Zeitung kostet."
+  ],
+  "correct_index": 0
+}

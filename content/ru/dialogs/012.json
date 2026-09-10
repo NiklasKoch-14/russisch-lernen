@@ -1,0 +1,179 @@
+{
+  "id": 12,
+  "min_unit": 29,
+  "title_de": "Wo arbeitest du?",
+  "speakers": [
+    {
+      "name_ru": "На́дя",
+      "name_de": "Nadja",
+      "voice": "f"
+    },
+    {
+      "name_ru": "Са́ша",
+      "name_de": "Sascha",
+      "voice": "m"
+    }
+  ],
+  "lines": [
+    {
+      "speaker": 0,
+      "tokens": [
+        [
+          "gde",
+          "base"
+        ],
+        [
+          "ty",
+          "nom"
+        ],
+        [
+          "rabotat",
+          "prs.2sg"
+        ]
+      ],
+      "translation_de": "Wo arbeitest du?"
+    },
+    {
+      "speaker": 1,
+      "tokens": [
+        [
+          "ja",
+          "nom"
+        ],
+        [
+          "rabotat",
+          "prs.1sg"
+        ],
+        [
+          "v",
+          "base"
+        ],
+        [
+          "magazin",
+          "prp.sg"
+        ],
+        [
+          "a",
+          "base"
+        ],
+        [
+          "ty",
+          "nom"
+        ]
+      ],
+      "translation_de": "Ich arbeite in einem Laden. Und du?"
+    },
+    {
+      "speaker": 0,
+      "tokens": [
+        [
+          "ja",
+          "nom"
+        ],
+        [
+          "rabotat",
+          "prs.1sg"
+        ],
+        [
+          "v",
+          "base"
+        ],
+        [
+          "shkola",
+          "prp.sg"
+        ]
+      ],
+      "translation_de": "Ich arbeite in einer Schule."
+    },
+    {
+      "speaker": 1,
+      "tokens": [
+        [
+          "tvoj",
+          "nom.f"
+        ],
+        [
+          "sestra",
+          "nom.sg"
+        ],
+        [
+          "tozhe",
+          "base"
+        ],
+        [
+          "rabotat",
+          "prs.3sg"
+        ],
+        [
+          "v",
+          "base"
+        ],
+        [
+          "shkola",
+          "prp.sg"
+        ]
+      ],
+      "translation_de": "Arbeitet deine Schwester auch in der Schule?"
+    },
+    {
+      "speaker": 0,
+      "tokens": [
+        [
+          "net",
+          "base"
+        ],
+        [
+          "ona",
+          "nom"
+        ],
+        [
+          "rabotat",
+          "prs.3sg"
+        ],
+        [
+          "v",
+          "base"
+        ],
+        [
+          "ofis",
+          "prp.sg"
+        ]
+      ],
+      "translation_de": "Nein, sie arbeitet in einem Büro."
+    },
+    {
+      "speaker": 1,
+      "tokens": [
+        [
+          "moj",
+          "nom.m"
+        ],
+        [
+          "brat",
+          "nom.sg"
+        ],
+        [
+          "rabotat",
+          "prs.3sg"
+        ],
+        [
+          "v",
+          "base"
+        ],
+        [
+          "restoran",
+          "prp.sg"
+        ]
+      ],
+      "translation_de": "Mein Bruder arbeitet in einem Restaurant."
+    }
+  ],
+  "question_de": "Worum ging es?",
+  "options_de": [
+    "Wo die beiden und ihre Geschwister arbeiten.",
+    "Was die beiden im Laden kaufen.",
+    "Wo die Schule liegt.",
+    "Wann die beiden Feierabend haben."
+  ],
+  "correct_index": 0
+}

@@ -1,0 +1,119 @@
+{
+  "id": 4,
+  "min_unit": 18,
+  "title_de": "Wer ist das?",
+  "speakers": [
+    {
+      "name_ru": "Ни́на",
+      "name_de": "Nina",
+      "voice": "f"
+    },
+    {
+      "name_ru": "Са́ша",
+      "name_de": "Sascha",
+      "voice": "m"
+    }
+  ],
+  "lines": [
+    {
+      "speaker": 0,
+      "tokens": [
+        [
+          "kto",
+          "nom"
+        ],
+        [
+          "eto",
+          "base"
+        ]
+      ],
+      "translation_de": "Wer ist das?"
+    },
+    {
+      "speaker": 1,
+      "tokens": [
+        [
+          "eto",
+          "base"
+        ],
+        [
+          "moj",
+          "nom.f"
+        ],
+        [
+          "sestra",
+          "nom.sg"
+        ],
+        [
+          "nika",
+          "nom.sg"
+        ]
+      ],
+      "translation_de": "Das ist meine Schwester Nika."
+    },
+    {
+      "speaker": 0,
+      "tokens": [
+        [
+          "ochen",
+          "base"
+        ],
+        [
+          "prijatno",
+          "base"
+        ],
+        [
+          "a",
+          "base"
+        ],
+        [
+          "eto",
+          "base"
+        ],
+        [
+          "tvoj",
+          "nom.m"
+        ],
+        [
+          "brat",
+          "nom.sg"
+        ]
+      ],
+      "translation_de": "Sehr angenehm! Und das ist dein Bruder?"
+    },
+    {
+      "speaker": 1,
+      "tokens": [
+        [
+          "da",
+          "base"
+        ],
+        [
+          "on",
+          "nom"
+        ],
+        [
+          "ne",
+          "base"
+        ],
+        [
+          "ponimat",
+          "prs.3sg"
+        ],
+        [
+          "po_nemetski",
+          "base"
+        ]
+      ],
+      "translation_de": "Ja. Er versteht kein Deutsch."
+    }
+  ],
+  "question_de": "Worum ging es?",
+  "options_de": [
+    "Sascha stellt seine Geschwister vor.",
+    "Nina stellt ihre Eltern vor.",
+    "Die beiden reden über die Arbeit.",
+    "Die beiden suchen ein Telefon."
+  ],
+  "correct_index": 0
+}

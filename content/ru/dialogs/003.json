@@ -1,7 +1,7 @@
 {
   "id": 3,
-  "min_unit": 44,
-  "title_de": "Pjotrs Tag",
+  "min_unit": 16,
+  "title_de": "Wie geht's?",
   "speakers": [
     {
       "name_ru": "Ве́ра",
@@ -19,213 +19,81 @@
       "speaker": 0,
       "tokens": [
         [
-          "kogda",
+          "privet",
           "base"
         ],
         [
-          "ty",
-          "nom"
+          "kak",
+          "base"
         ],
         [
-          "vstavat",
-          "prs.2sg"
+          "dela",
+          "nom.pl"
         ]
       ],
-      "translation_de": "Wann stehst du auf?"
+      "translation_de": "Hallo! Wie geht's?"
     },
     {
       "speaker": 1,
       "tokens": [
         [
-          "ja",
-          "nom"
-        ],
-        [
-          "vsegda",
+          "normalno",
           "base"
         ],
-        [
-          "vstavat",
-          "prs.1sg"
-        ],
-        [
-          "v",
-          "base"
-        ],
-        [
-          "sem",
-          "nom"
-        ],
-        [
-          "chas",
-          "gen.pl"
-        ]
-      ],
-      "translation_de": "Ich stehe immer um sieben Uhr auf."
-    },
-    {
-      "speaker": 0,
-      "tokens": [
-        [
-          "eto",
-          "base"
-        ],
-        [
-          "ochen",
-          "base"
-        ],
-        [
-          "rano",
-          "base"
-        ]
-      ],
-      "translation_de": "Das ist sehr früh."
-    },
-    {
-      "speaker": 1,
-      "tokens": [
-        [
-          "utrom",
-          "base"
-        ],
-        [
-          "ja",
-          "nom"
-        ],
-        [
-          "zavtrakat",
-          "prs.1sg"
-        ],
-        [
-          "i",
-          "base"
-        ],
-        [
-          "rabotat",
-          "prs.1sg"
-        ],
-        [
-          "v",
-          "base"
-        ],
-        [
-          "ofis",
-          "prp.sg"
-        ]
-      ],
-      "translation_de": "Morgens frühstücke ich und arbeite im Büro."
-    },
-    {
-      "speaker": 0,
-      "tokens": [
-        [
-          "gde",
-          "base"
-        ],
-        [
-          "ty",
-          "nom"
-        ],
-        [
-          "obedat",
-          "prs.2sg"
-        ]
-      ],
-      "translation_de": "Wo isst du zu Mittag?"
-    },
-    {
-      "speaker": 1,
-      "tokens": [
-        [
-          "v",
-          "base"
-        ],
-        [
-          "kafe",
-          "prp.sg"
-        ],
-        [
-          "obed",
-          "nom.sg"
-        ],
-        [
-          "v",
-          "base"
-        ],
-        [
-          "dva",
-          "nom.m"
-        ],
-        [
-          "chas",
-          "gen.sg"
-        ]
-      ],
-      "translation_de": "Im Café. Das Mittagessen ist um zwei Uhr."
-    },
-    {
-      "speaker": 0,
-      "tokens": [
         [
           "a",
           "base"
         ],
         [
-          "vecherom",
+          "ty",
+          "nom"
+        ]
+      ],
+      "translation_de": "Geht so. Und du?"
+    },
+    {
+      "speaker": 0,
+      "tokens": [
+        [
+          "vsjo",
+          "nom"
+        ],
+        [
+          "khorosho",
+          "base"
+        ],
+        [
+          "spasibo",
           "base"
         ]
       ],
-      "translation_de": "Und abends?"
+      "translation_de": "Alles gut, danke."
     },
     {
       "speaker": 1,
       "tokens": [
         [
-          "vecherom",
+          "kak",
           "base"
         ],
         [
-          "ja",
-          "nom"
+          "vash",
+          "nom.pl"
         ],
         [
-          "smotret",
-          "prs.1sg"
-        ],
-        [
-          "televizor",
-          "acc.sg"
-        ],
-        [
-          "v",
-          "base"
-        ],
-        [
-          "subbota",
-          "acc.sg"
-        ],
-        [
-          "ja",
-          "nom"
-        ],
-        [
-          "spat",
-          "prs.1sg"
-        ],
-        [
-          "dolgo",
-          "base"
+          "roditeli",
+          "nom.pl"
         ]
       ],
-      "translation_de": "Abends sehe ich fern. Am Samstag schlafe ich lange."
+      "translation_de": "Wie geht es euren Eltern?"
     }
   ],
   "question_de": "Worum ging es?",
   "options_de": [
-    "Um Pjotrs Tagesablauf.",
-    "Um Pjotrs Arbeit im Laden.",
-    "Um ein Essen im Restaurant.",
-    "Um Veras Wochenende."
+    "Wie es den beiden geht.",
+    "Woher die beiden kommen.",
+    "Wie die beiden heißen.",
+    "Wie alt die Eltern sind."
   ],
   "correct_index": 0
 }

@@ -138,3 +138,35 @@ def test_buchstaben_haben_keine_kontext_aufgabe():
         if course.lexemes[ref[0]].pos == "letter"
     }
     assert buchstaben == set()
+
+
+def test_jedes_gespraech_benutzt_nur_woerter_seiner_einheit():
+    # Der Validator prüft es; hier steht es noch einmal für die echten Inhalte,
+    # damit ein neues Gespräch nicht still an der Freischaltung vorbeirutscht.
+    course = load_course(CONTENT_DIR)
+    assert validate_course(course) == []
+    assert len(course.dialogs) >= 20
+
+
+def test_gespraeche_werden_mit_der_einheit_laenger():
+    # Wer gerade erst anfängt, soll kein achtzeiliges Gespräch hören.
+    course = load_course(CONTENT_DIR)
+    nach_einheit = sorted(course.dialogs.values(), key=lambda dialog: dialog.min_unit)
+    laengen = [len(dialog.lines) for dialog in nach_einheit]
+    assert laengen == sorted(laengen), laengen
+
+
+def test_jedes_gespraech_hat_vier_optionen_und_zwei_stimmen():
+    course = load_course(CONTENT_DIR)
+    for dialog in course.dialogs.values():
+        assert len(dialog.options_de) == 4, dialog.id
+        assert {speaker.voice for speaker in dialog.speakers} == {"m", "f"}, dialog.id
+
+
+def test_kein_gespraech_faengt_wie_ein_anderes_an():
+    # Zwei gleiche Anfänge lassen den Lernenden glauben, er kenne das Gespräch schon.
+    course = load_course(CONTENT_DIR)
+    anfaenge = [
+        tuple(dialog.lines[0].tokens) for dialog in course.dialogs.values()
+    ]
+    assert len(set(anfaenge)) == len(anfaenge)

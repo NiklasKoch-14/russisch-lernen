@@ -1,0 +1,175 @@
+{
+  "id": 16,
+  "min_unit": 34,
+  "title_de": "Was machen wir heute Abend?",
+  "speakers": [
+    {
+      "name_ru": "Ве́ра",
+      "name_de": "Vera",
+      "voice": "f"
+    },
+    {
+      "name_ru": "Оле́г",
+      "name_de": "Oleg",
+      "voice": "m"
+    }
+  ],
+  "lines": [
+    {
+      "speaker": 0,
+      "tokens": [
+        [
+          "chto",
+          "acc"
+        ],
+        [
+          "ty",
+          "nom"
+        ],
+        [
+          "khotet",
+          "prs.2sg"
+        ],
+        [
+          "delat",
+          "inf"
+        ]
+      ],
+      "translation_de": "Was willst du machen?"
+    },
+    {
+      "speaker": 1,
+      "tokens": [
+        [
+          "ja",
+          "nom"
+        ],
+        [
+          "khotet",
+          "prs.1sg"
+        ],
+        [
+          "guljat",
+          "inf"
+        ],
+        [
+          "v",
+          "base"
+        ],
+        [
+          "park",
+          "prp.sg"
+        ]
+      ],
+      "translation_de": "Ich will im Park spazieren gehen."
+    },
+    {
+      "speaker": 0,
+      "tokens": [
+        [
+          "a",
+          "base"
+        ],
+        [
+          "ja",
+          "nom"
+        ],
+        [
+          "khotet",
+          "prs.1sg"
+        ],
+        [
+          "smotret",
+          "inf"
+        ],
+        [
+          "televizor",
+          "acc.sg"
+        ]
+      ],
+      "translation_de": "Und ich will fernsehen."
+    },
+    {
+      "speaker": 1,
+      "tokens": [
+        [
+          "v",
+          "base"
+        ],
+        [
+          "park",
+          "prp.sg"
+        ],
+        [
+          "ochen",
+          "base"
+        ],
+        [
+          "khorosho",
+          "base"
+        ]
+      ],
+      "translation_de": "Im Park ist es sehr schön."
+    },
+    {
+      "speaker": 0,
+      "tokens": [
+        [
+          "ladno",
+          "base"
+        ],
+        [
+          "ja",
+          "nom"
+        ],
+        [
+          "tozhe",
+          "base"
+        ],
+        [
+          "khotet",
+          "prs.1sg"
+        ],
+        [
+          "guljat",
+          "inf"
+        ]
+      ],
+      "translation_de": "Okay, ich will auch spazieren gehen."
+    },
+    {
+      "speaker": 1,
+      "tokens": [
+        [
+          "konechno",
+          "base"
+        ],
+        [
+          "park",
+          "nom.sg"
+        ],
+        [
+          "zdes",
+          "base"
+        ],
+        [
+          "ochen",
+          "base"
+        ],
+        [
+          "khoroshij",
+          "nom.m"
+        ]
+      ],
+      "translation_de": "Klar! Der Park hier ist sehr schön."
+    }
+  ],
+  "question_de": "Worum ging es?",
+  "options_de": [
+    "Was die beiden am Abend machen wollen.",
+    "Wo man rauchen darf.",
+    "Was im Fernsehen läuft.",
+    "Wann der Park schließt."
+  ],
+  "correct_index": 0
+}

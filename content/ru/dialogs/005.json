@@ -1,0 +1,123 @@
+{
+  "id": 5,
+  "min_unit": 19,
+  "title_de": "Das neue Telefon",
+  "speakers": [
+    {
+      "name_ru": "Ле́на",
+      "name_de": "Lena",
+      "voice": "f"
+    },
+    {
+      "name_ru": "Оле́г",
+      "name_de": "Oleg",
+      "voice": "m"
+    }
+  ],
+  "lines": [
+    {
+      "speaker": 0,
+      "tokens": [
+        [
+          "chto",
+          "nom"
+        ],
+        [
+          "eto",
+          "base"
+        ]
+      ],
+      "translation_de": "Was ist das?"
+    },
+    {
+      "speaker": 1,
+      "tokens": [
+        [
+          "eto",
+          "base"
+        ],
+        [
+          "moj",
+          "nom.m"
+        ],
+        [
+          "novyj",
+          "nom.m"
+        ],
+        [
+          "telefon",
+          "nom.sg"
+        ]
+      ],
+      "translation_de": "Das ist mein neues Telefon."
+    },
+    {
+      "speaker": 0,
+      "tokens": [
+        [
+          "ochen",
+          "base"
+        ],
+        [
+          "khoroshij",
+          "nom.m"
+        ],
+        [
+          "telefon",
+          "nom.sg"
+        ],
+        [
+          "a",
+          "base"
+        ],
+        [
+          "eto",
+          "base"
+        ],
+        [
+          "tvoj",
+          "nom.f"
+        ],
+        [
+          "sumka",
+          "nom.sg"
+        ]
+      ],
+      "translation_de": "Ein sehr gutes Telefon! Und das ist deine Tasche?"
+    },
+    {
+      "speaker": 1,
+      "tokens": [
+        [
+          "net",
+          "base"
+        ],
+        [
+          "eto",
+          "base"
+        ],
+        [
+          "ne",
+          "base"
+        ],
+        [
+          "moj",
+          "nom.f"
+        ],
+        [
+          "sumka",
+          "nom.sg"
+        ]
+      ],
+      "translation_de": "Nein, das ist nicht meine Tasche."
+    }
+  ],
+  "question_de": "Worum ging es?",
+  "options_de": [
+    "Um Olegs neues Telefon.",
+    "Um ein altes Haus.",
+    "Um Lenas Familie.",
+    "Um eine verlorene Tasche."
+  ],
+  "correct_index": 0
+}

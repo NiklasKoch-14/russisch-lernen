@@ -1,0 +1,127 @@
+{
+  "id": 6,
+  "min_unit": 22,
+  "title_de": "Wie alt bist du?",
+  "speakers": [
+    {
+      "name_ru": "Ве́ра",
+      "name_de": "Vera",
+      "voice": "f"
+    },
+    {
+      "name_ru": "Пётр",
+      "name_de": "Pjotr",
+      "voice": "m"
+    }
+  ],
+  "lines": [
+    {
+      "speaker": 0,
+      "tokens": [
+        [
+          "skolko",
+          "base"
+        ],
+        [
+          "ty",
+          "dat"
+        ],
+        [
+          "god",
+          "gen.pl"
+        ]
+      ],
+      "translation_de": "Wie alt bist du?"
+    },
+    {
+      "speaker": 1,
+      "tokens": [
+        [
+          "ja",
+          "dat"
+        ],
+        [
+          "tridtsat",
+          "nom"
+        ],
+        [
+          "god",
+          "gen.pl"
+        ],
+        [
+          "a",
+          "base"
+        ],
+        [
+          "ty",
+          "dat"
+        ]
+      ],
+      "translation_de": "Ich bin dreißig. Und du?"
+    },
+    {
+      "speaker": 0,
+      "tokens": [
+        [
+          "ja",
+          "dat"
+        ],
+        [
+          "dvadtsat",
+          "nom"
+        ],
+        [
+          "pjat",
+          "nom"
+        ],
+        [
+          "god",
+          "gen.pl"
+        ]
+      ],
+      "translation_de": "Ich bin fünfundzwanzig."
+    },
+    {
+      "speaker": 1,
+      "tokens": [
+        [
+          "a",
+          "base"
+        ],
+        [
+          "tvoj",
+          "nom.f"
+        ],
+        [
+          "sestra",
+          "nom.sg"
+        ],
+        [
+          "ona",
+          "dat"
+        ],
+        [
+          "tozhe",
+          "base"
+        ],
+        [
+          "dvadtsat",
+          "nom"
+        ],
+        [
+          "pjat",
+          "nom"
+        ]
+      ],
+      "translation_de": "Und deine Schwester? Ist sie auch fünfundzwanzig?"
+    }
+  ],
+  "question_de": "Worum ging es?",
+  "options_de": [
+    "Wie alt die beiden sind.",
+    "Wie viele Geschwister sie haben.",
+    "Wo die beiden wohnen.",
+    "Wie die Eltern heißen."
+  ],
+  "correct_index": 0
+}

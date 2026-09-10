@@ -1,11 +1,11 @@
 {
   "id": 2,
-  "min_unit": 25,
-  "title_de": "Im Café",
+  "min_unit": 14,
+  "title_de": "Woher kommst du?",
   "speakers": [
     {
-      "name_ru": "Ле́на",
-      "name_de": "Lena",
+      "name_ru": "На́дя",
+      "name_de": "Nadja",
       "voice": "f"
     },
     {
@@ -19,19 +19,15 @@
       "speaker": 0,
       "tokens": [
         [
-          "chto",
-          "acc"
-        ],
-        [
           "ty",
           "nom"
         ],
         [
-          "pit",
-          "prs.2sg"
+          "otkuda",
+          "base"
         ]
       ],
-      "translation_de": "Was trinkst du?"
+      "translation_de": "Woher kommst du?"
     },
     {
       "speaker": 1,
@@ -41,71 +37,65 @@
           "nom"
         ],
         [
-          "pit",
-          "prs.1sg"
-        ],
-        [
-          "kofe",
-          "acc.sg"
-        ],
-        [
-          "a",
+          "iz",
           "base"
         ],
         [
-          "ty",
+          "avstrija",
+          "gen.sg"
+        ],
+        [
+          "ja",
           "nom"
+        ],
+        [
+          "nemnogo",
+          "base"
+        ],
+        [
+          "govorit",
+          "prs.1sg"
+        ],
+        [
+          "po_russki",
+          "base"
         ]
       ],
-      "translation_de": "Ich trinke Kaffee. Und du?"
+      "translation_de": "Ich komme aus Österreich. Ich spreche ein bisschen Russisch."
     },
     {
       "speaker": 0,
       "tokens": [
         [
+          "konechno",
+          "base"
+        ],
+        [
           "ja",
           "nom"
         ],
         [
-          "pit",
+          "tozhe",
+          "base"
+        ],
+        [
+          "govorit",
           "prs.1sg"
         ],
         [
-          "chaj",
-          "acc.sg"
+          "po_nemetski",
+          "base"
         ]
       ],
-      "translation_de": "Ich trinke Tee."
-    },
-    {
-      "speaker": 1,
-      "tokens": [
-        [
-          "chaj",
-          "nom.sg"
-        ],
-        [
-          "zdes",
-          "base"
-        ],
-        [
-          "ochen",
-          "base"
-        ],
-        [
-          "khoroshij",
-          "nom.m"
-        ]
-      ],
-      "translation_de": "Der Tee ist hier sehr gut."
+      "translation_de": "Natürlich! Ich spreche auch Deutsch."
     }
   ],
   "question_de": "Worum ging es?",
   "options_de": [
-    "Was die beiden im Café trinken.",
-    "Wo das Café liegt.",
-    "Wer im Café arbeitet.",
-    "Was der Kaffee kostet."
+    "Woher Oleg kommt und welche Sprache er spricht.",
+    "Wie Oleg heißt.",
+    "Wo Oleg wohnt.",
+    "Wie alt Oleg ist."
   ],
   "correct_index": 0
 }

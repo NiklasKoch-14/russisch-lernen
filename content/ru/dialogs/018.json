@@ -1,0 +1,161 @@
+{
+  "id": 18,
+  "min_unit": 37,
+  "title_de": "An der Kasse",
+  "speakers": [
+    {
+      "name_ru": "Са́ша",
+      "name_de": "Sascha",
+      "voice": "m"
+    },
+    {
+      "name_ru": "Ни́на",
+      "name_de": "Nina",
+      "voice": "f"
+    }
+  ],
+  "lines": [
+    {
+      "speaker": 0,
+      "tokens": [
+        [
+          "gde",
+          "base"
+        ],
+        [
+          "mozhno",
+          "base"
+        ],
+        [
+          "platit",
+          "inf"
+        ]
+      ],
+      "translation_de": "Wo kann man bezahlen?"
+    },
+    {
+      "speaker": 1,
+      "tokens": [
+        [
+          "zdes",
+          "base"
+        ],
+        [
+          "na",
+          "base"
+        ],
+        [
+          "kassa",
+          "prp.sg"
+        ]
+      ],
+      "translation_de": "Hier, an der Kasse."
+    },
+    {
+      "speaker": 0,
+      "tokens": [
+        [
+          "eto",
+          "base"
+        ],
+        [
+          "vsjo",
+          "nom"
+        ],
+        [
+          "skolko",
+          "base"
+        ]
+      ],
+      "translation_de": "Das ist alles. Wie viel?"
+    },
+    {
+      "speaker": 1,
+      "tokens": [
+        [
+          "dvadtsat",
+          "nom"
+        ],
+        [
+          "evro",
+          "gen.pl"
+        ],
+        [
+          "karta",
+          "nom.sg"
+        ],
+        [
+          "ili",
+          "base"
+        ],
+        [
+          "nalichnye",
+          "nom.pl"
+        ]
+      ],
+      "translation_de": "Zwanzig Euro. Karte oder bar?"
+    },
+    {
+      "speaker": 0,
+      "tokens": [
+        [
+          "karta",
+          "nom.sg"
+        ],
+        [
+          "pozhalujsta",
+          "base"
+        ]
+      ],
+      "translation_de": "Karte, bitte."
+    },
+    {
+      "speaker": 1,
+      "tokens": [
+        [
+          "eto",
+          "base"
+        ],
+        [
+          "vash",
+          "nom.m"
+        ],
+        [
+          "chek",
+          "nom.sg"
+        ]
+      ],
+      "translation_de": "Das ist Ihr Kassenbon."
+    },
+    {
+      "speaker": 0,
+      "tokens": [
+        [
+          "spasibo",
+          "base"
+        ],
+        [
+          "eshchjo",
+          "base"
+        ],
+        [
+          "paket",
+          "acc.sg"
+        ],
+        [
+          "pozhalujsta",
+          "base"
+        ]
+      ],
+      "translation_de": "Danke. Noch eine Tüte, bitte."
+    }
+  ],
+  "question_de": "Worum ging es?",
+  "options_de": [
+    "Bezahlen an der Kasse.",
+    "Ein Gespräch in der Bank.",
+    "Die Frage nach dem Preis eines Hemdes.",
+    "Eine Bestellung im Café."
+  ],
+  "correct_index": 0
+}

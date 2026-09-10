@@ -1,0 +1,165 @@
+{
+  "id": 17,
+  "min_unit": 35,
+  "title_de": "Das schöne Hemd",
+  "speakers": [
+    {
+      "name_ru": "Ле́на",
+      "name_de": "Lena",
+      "voice": "f"
+    },
+    {
+      "name_ru": "Пётр",
+      "name_de": "Pjotr",
+      "voice": "m"
+    }
+  ],
+  "lines": [
+    {
+      "speaker": 0,
+      "tokens": [
+        [
+          "ja",
+          "nom"
+        ],
+        [
+          "pokupat",
+          "prs.1sg"
+        ],
+        [
+          "novyj",
+          "acc.f"
+        ],
+        [
+          "rubashka",
+          "acc.sg"
+        ]
+      ],
+      "translation_de": "Ich kaufe ein neues Hemd."
+    },
+    {
+      "speaker": 1,
+      "tokens": [
+        [
+          "rubashka",
+          "nom.sg"
+        ],
+        [
+          "ochen",
+          "base"
+        ],
+        [
+          "krasivyj",
+          "nom.f"
+        ]
+      ],
+      "translation_de": "Das Hemd ist sehr schön."
+    },
+    {
+      "speaker": 0,
+      "tokens": [
+        [
+          "da",
+          "base"
+        ],
+        [
+          "novyj",
+          "nom.f"
+        ],
+        [
+          "rubashka",
+          "nom.sg"
+        ],
+        [
+          "dorogoj",
+          "nom.f"
+        ]
+      ],
+      "translation_de": "Ja. Ein neues Hemd ist teuer."
+    },
+    {
+      "speaker": 1,
+      "tokens": [
+        [
+          "skolko",
+          "base"
+        ],
+        [
+          "ona",
+          "nom"
+        ],
+        [
+          "stoit",
+          "prs.3sg"
+        ]
+      ],
+      "translation_de": "Wie viel kostet es?"
+    },
+    {
+      "speaker": 0,
+      "tokens": [
+        [
+          "tridtsat",
+          "nom"
+        ],
+        [
+          "evro",
+          "gen.pl"
+        ]
+      ],
+      "translation_de": "Dreißig Euro."
+    },
+    {
+      "speaker": 1,
+      "tokens": [
+        [
+          "eto",
+          "base"
+        ],
+        [
+          "ne",
+          "base"
+        ],
+        [
+          "ochen",
+          "base"
+        ],
+        [
+          "dorogo",
+          "base"
+        ]
+      ],
+      "translation_de": "Das ist nicht sehr teuer."
+    },
+    {
+      "speaker": 0,
+      "tokens": [
+        [
+          "ja",
+          "nom"
+        ],
+        [
+          "brat_vzjat",
+          "prs.1sg"
+        ],
+        [
+          "krasivyj",
+          "acc.f"
+        ],
+        [
+          "rubashka",
+          "acc.sg"
+        ]
+      ],
+      "translation_de": "Ich nehme das schöne Hemd."
+    }
+  ],
+  "question_de": "Worum ging es?",
+  "options_de": [
+    "Lena kauft ein Hemd.",
+    "Pjotr kauft ein T-Shirt.",
+    "Die beiden reden über das Essen.",
+    "Die beiden suchen einen Laden."
+  ],
+  "correct_index": 0
+}

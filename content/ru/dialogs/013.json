@@ -1,0 +1,127 @@
+{
+  "id": 13,
+  "min_unit": 31,
+  "title_de": "Auf dem Markt",
+  "speakers": [
+    {
+      "name_ru": "Оле́г",
+      "name_de": "Oleg",
+      "voice": "m"
+    },
+    {
+      "name_ru": "Ни́на",
+      "name_de": "Nina",
+      "voice": "f"
+    }
+  ],
+  "lines": [
+    {
+      "speaker": 0,
+      "tokens": [
+        [
+          "skolko",
+          "base"
+        ],
+        [
+          "stoit",
+          "prs.3sg"
+        ],
+        [
+          "ryba",
+          "nom.sg"
+        ]
+      ],
+      "translation_de": "Was kostet der Fisch?"
+    },
+    {
+      "speaker": 1,
+      "tokens": [
+        [
+          "pjat",
+          "nom"
+        ],
+        [
+          "evro",
+          "gen.pl"
+        ]
+      ],
+      "translation_de": "Fünf Euro."
+    },
+    {
+      "speaker": 0,
+      "tokens": [
+        [
+          "eto",
+          "base"
+        ],
+        [
+          "dorogo",
+          "base"
+        ]
+      ],
+      "translation_de": "Das ist teuer!"
+    },
+    {
+      "speaker": 1,
+      "tokens": [
+        [
+          "na",
+          "base"
+        ],
+        [
+          "rynok",
+          "prp.sg"
+        ],
+        [
+          "deshjovo",
+          "base"
+        ]
+      ],
+      "translation_de": "Auf dem Markt ist es billig."
+    },
+    {
+      "speaker": 0,
+      "tokens": [
+        [
+          "a",
+          "base"
+        ],
+        [
+          "skolko",
+          "base"
+        ],
+        [
+          "stoit",
+          "prs.3sg"
+        ],
+        [
+          "mjaso",
+          "nom.sg"
+        ]
+      ],
+      "translation_de": "Und was kostet das Fleisch?"
+    },
+    {
+      "speaker": 1,
+      "tokens": [
+        [
+          "dvadtsat",
+          "nom"
+        ],
+        [
+          "rubl",
+          "gen.pl"
+        ]
+      ],
+      "translation_de": "Zwanzig Rubel."
+    }
+  ],
+  "question_de": "Worum ging es?",
+  "options_de": [
+    "Was Fisch und Fleisch kosten.",
+    "Wo der Markt liegt.",
+    "Was die beiden essen wollen.",
+    "Wie viel Geld Oleg dabei hat."
+  ],
+  "correct_index": 0
+}
