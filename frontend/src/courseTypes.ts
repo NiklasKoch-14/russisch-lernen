@@ -175,3 +175,38 @@ export interface Profile {
   placement_unit: number | null;
   audio_autoplay: boolean;
 }
+
+/** Wer im Hörgespräch spricht. `voice` waehlt das Stimmmodell auf dem Server. */
+export interface ListeningSpeaker {
+  name_ru: string;
+  name_de: string;
+  voice: "m" | "f";
+}
+
+export interface ListeningLine {
+  speaker: number;
+  text: string;
+  translit: string;
+}
+
+/**
+ * Ein Hörgespräch, wie es beim Client ankommt: genug zum Hören, nichts zum
+ * Antworten. `dialog_id: null` heisst, dass noch keine Einheit weit genug ist —
+ * dann sagt `next_unit`, welche das erste Gespräch öffnet.
+ */
+export interface ListeningDialog {
+  dialog_id: number | null;
+  next_unit: number | null;
+  seed: string;
+  speakers: ListeningSpeaker[];
+  lines: ListeningLine[];
+  question_de: string;
+  options_de: string[];
+}
+
+export interface ListeningResult {
+  correct: boolean;
+  correct_index: number;
+  title_de: string;
+  translations_de: string[];
+}
