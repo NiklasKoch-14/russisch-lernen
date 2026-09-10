@@ -1,0 +1,342 @@
+{
+  "id": 46,
+  "stage": 2,
+  "title_de": "Links oder rechts?",
+  "scenario_de": "Du bekommst den Weg beschrieben und musst ihn verstehen.",
+  "grammar_focus": {
+    "id": "direction-adverbs",
+    "title_de": "нале́во, напра́во, пря́мо — die Richtung in einem Wort",
+    "explanation_de": "Wie bei у́тром und ве́чером steckt die Präposition schon im Wort: нале́во heißt nach links, напра́во nach rechts, пря́мо geradeaus. Vor ihnen steht nie ein в oder на, und sie ändern sich nie. Der Satz dazu ist so einfach, wie er aussieht: апте́ка напра́во — die Apotheke ist rechts. Wie weit es ist, sagen далеко́ und бли́зко: э́то не далеко́.",
+    "primer": null
+  },
+  "new_lexemes": [
+    "nalevo",
+    "napravo",
+    "prjamo",
+    "daleko",
+    "blizko",
+    "svetofor"
+  ],
+  "exercises": [
+    {
+      "id": "46-1",
+      "type": "match_pairs",
+      "prompt_de": "Drei Richtungen und ein Anhaltspunkt.",
+      "pairs": [
+        [
+          "nalevo",
+          "base"
+        ],
+        [
+          "napravo",
+          "base"
+        ],
+        [
+          "prjamo",
+          "base"
+        ],
+        [
+          "svetofor",
+          "nom.sg"
+        ]
+      ]
+    },
+    {
+      "id": "46-2",
+      "type": "match_pairs",
+      "prompt_de": "Wie weit es ist.",
+      "pairs": [
+        [
+          "daleko",
+          "base"
+        ],
+        [
+          "blizko",
+          "base"
+        ],
+        [
+          "rjadom",
+          "base"
+        ],
+        [
+          "tam",
+          "base"
+        ]
+      ]
+    },
+    {
+      "id": "46-3",
+      "type": "build_sentence",
+      "prompt_de": "Die Apotheke ist rechts.",
+      "solution": [
+        [
+          "apteka",
+          "nom.sg"
+        ],
+        [
+          "napravo",
+          "base"
+        ]
+      ],
+      "distractors": [
+        [
+          "nalevo",
+          "base"
+        ],
+        [
+          "apteka",
+          "prp.sg"
+        ]
+      ]
+    },
+    {
+      "id": "46-4",
+      "type": "build_sentence",
+      "prompt_de": "Der Laden ist links.",
+      "solution": [
+        [
+          "magazin",
+          "nom.sg"
+        ],
+        [
+          "nalevo",
+          "base"
+        ]
+      ],
+      "distractors": [
+        [
+          "napravo",
+          "base"
+        ],
+        [
+          "prjamo",
+          "base"
+        ]
+      ]
+    },
+    {
+      "id": "46-5",
+      "type": "build_sentence",
+      "prompt_de": "Das Museum ist geradeaus.",
+      "solution": [
+        [
+          "muzej",
+          "nom.sg"
+        ],
+        [
+          "prjamo",
+          "base"
+        ]
+      ],
+      "distractors": [
+        [
+          "nalevo",
+          "base"
+        ],
+        [
+          "muzej",
+          "prp.sg"
+        ]
+      ]
+    },
+    {
+      "id": "46-6",
+      "type": "build_sentence",
+      "prompt_de": "Dort ist eine Ampel.",
+      "solution": [
+        [
+          "tam",
+          "base"
+        ],
+        [
+          "svetofor",
+          "nom.sg"
+        ]
+      ],
+      "distractors": [
+        [
+          "zdes",
+          "base"
+        ],
+        [
+          "apteka",
+          "nom.sg"
+        ]
+      ]
+    },
+    {
+      "id": "46-7",
+      "type": "build_sentence",
+      "prompt_de": "Das ist nicht weit.",
+      "solution": [
+        [
+          "eto",
+          "base"
+        ],
+        [
+          "ne",
+          "base"
+        ],
+        [
+          "daleko",
+          "base"
+        ]
+      ],
+      "distractors": [
+        [
+          "blizko",
+          "base"
+        ],
+        [
+          "ochen",
+          "base"
+        ]
+      ]
+    },
+    {
+      "id": "46-8",
+      "type": "choose_form",
+      "prompt_de": "Weißt du, wo die Apotheke ist?",
+      "sentence": [
+        [
+          "ty",
+          "nom"
+        ],
+        "___",
+        [
+          "gde",
+          "base"
+        ],
+        [
+          "apteka",
+          "nom.sg"
+        ]
+      ],
+      "answer": [
+        "znat",
+        "prs.2sg"
+      ],
+      "distractor_forms": [
+        "prs.1sg",
+        "prs.3sg",
+        "inf"
+      ],
+      "audio_prompt": true
+    },
+    {
+      "id": "46-9",
+      "type": "build_sentence",
+      "prompt_de": "Das Hotel ist hier ganz nah.",
+      "solution": [
+        [
+          "gostinitsa",
+          "nom.sg"
+        ],
+        [
+          "zdes",
+          "base"
+        ],
+        [
+          "blizko",
+          "base"
+        ]
+      ],
+      "distractors": [
+        [
+          "daleko",
+          "base"
+        ],
+        [
+          "gostinitsa",
+          "prp.sg"
+        ]
+      ]
+    },
+    {
+      "id": "46-10",
+      "type": "dialog_reply",
+      "prompt_de": "Du hast nach dem Museum gefragt.",
+      "tutor_line": [
+        [
+          "izvinit",
+          "imp.pl"
+        ],
+        [
+          "gde",
+          "base"
+        ],
+        [
+          "muzej",
+          "nom.sg"
+        ]
+      ],
+      "correct_index": 0,
+      "options": [
+        {
+          "tokens": [
+            [
+              "prjamo",
+              "base"
+            ],
+            [
+              "i",
+              "base"
+            ],
+            [
+              "napravo",
+              "base"
+            ]
+          ],
+          "why_de": ""
+        },
+        {
+          "tokens": [
+            [
+              "v",
+              "base"
+            ],
+            [
+              "prjamo",
+              "base"
+            ]
+          ],
+          "why_de": "пря́мо heißt schon geradeaus — ein в davor braucht es nicht."
+        },
+        {
+          "tokens": [
+            [
+              "muzej",
+              "prp.sg"
+            ],
+            [
+              "napravo",
+              "base"
+            ]
+          ],
+          "why_de": "Am Satzanfang steht die Grundform: музе́й напра́во."
+        }
+      ]
+    },
+    {
+      "id": "46-11",
+      "type": "listen_meaning",
+      "prompt_de": "Hör zu. Was wird gesagt?",
+      "sentence": [
+        [
+          "apteka",
+          "nom.sg"
+        ],
+        [
+          "nalevo",
+          "base"
+        ]
+      ],
+      "correct_index": 0,
+      "options_de": [
+        "Die Apotheke ist links.",
+        "Die Apotheke ist rechts.",
+        "Die Apotheke ist geradeaus."
+      ]
+    }
+  ]
+}

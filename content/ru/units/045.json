@@ -1,0 +1,378 @@
+{
+  "id": 45,
+  "stage": 2,
+  "title_de": "Wo ist die Apotheke?",
+  "scenario_de": "Du hältst jemanden auf der Straße an und fragst nach einem Ort.",
+  "grammar_focus": {
+    "id": "prp-city-places",
+    "title_de": "в + Ort: в апте́ке, в це́нтре, в музе́е",
+    "explanation_de": "Die Frage ist kurz und immer gleich gebaut: Извини́те, где здесь апте́ка? — erst die Entschuldigung, dann где, dann das Wort in seiner Grundform. Sobald du aber sagst, wo jemand oder etwas ist, kommt der Präpositiv, den du schon kennst: в апте́ке, в це́нтре, в гости́нице. Ein Wort verhält sich neu: bei музе́й wird das -й zu -е, also в музе́е. Und ря́дом braucht überhaupt keine Präposition — магази́н здесь ря́дом heißt: der Laden ist gleich hier.",
+    "primer": "praepositiv"
+  },
+  "new_lexemes": [
+    "apteka",
+    "tsentr",
+    "muzej",
+    "gostinitsa",
+    "tualet",
+    "rjadom"
+  ],
+  "exercises": [
+    {
+      "id": "45-1",
+      "type": "match_pairs",
+      "prompt_de": "Vier Orte in der Stadt.",
+      "pairs": [
+        [
+          "apteka",
+          "nom.sg"
+        ],
+        [
+          "tsentr",
+          "nom.sg"
+        ],
+        [
+          "muzej",
+          "nom.sg"
+        ],
+        [
+          "gostinitsa",
+          "nom.sg"
+        ]
+      ]
+    },
+    {
+      "id": "45-2",
+      "type": "match_pairs",
+      "prompt_de": "Ein stilles Örtchen, ein kleines Wort und zwei alte Bekannte.",
+      "pairs": [
+        [
+          "tualet",
+          "nom.sg"
+        ],
+        [
+          "rjadom",
+          "base"
+        ],
+        [
+          "vokzal",
+          "nom.sg"
+        ],
+        [
+          "pochta",
+          "nom.sg"
+        ]
+      ]
+    },
+    {
+      "id": "45-3",
+      "type": "build_sentence",
+      "prompt_de": "Entschuldigung, wo ist hier eine Apotheke?",
+      "solution": [
+        [
+          "izvinit",
+          "imp.pl"
+        ],
+        [
+          "gde",
+          "base"
+        ],
+        [
+          "zdes",
+          "base"
+        ],
+        [
+          "apteka",
+          "nom.sg"
+        ]
+      ],
+      "distractors": [
+        [
+          "apteka",
+          "prp.sg"
+        ],
+        [
+          "tam",
+          "base"
+        ]
+      ]
+    },
+    {
+      "id": "45-4",
+      "type": "build_sentence",
+      "prompt_de": "Meine Frau ist in der Apotheke.",
+      "solution": [
+        [
+          "moj",
+          "nom.f"
+        ],
+        [
+          "zhena",
+          "nom.sg"
+        ],
+        [
+          "v",
+          "base"
+        ],
+        [
+          "apteka",
+          "prp.sg"
+        ]
+      ],
+      "distractors": [
+        [
+          "apteka",
+          "nom.sg"
+        ],
+        [
+          "na",
+          "base"
+        ]
+      ]
+    },
+    {
+      "id": "45-5",
+      "type": "build_sentence",
+      "prompt_de": "Das Hotel ist im Zentrum.",
+      "solution": [
+        [
+          "gostinitsa",
+          "nom.sg"
+        ],
+        [
+          "v",
+          "base"
+        ],
+        [
+          "tsentr",
+          "prp.sg"
+        ]
+      ],
+      "distractors": [
+        [
+          "tsentr",
+          "nom.sg"
+        ],
+        [
+          "gostinitsa",
+          "prp.sg"
+        ]
+      ]
+    },
+    {
+      "id": "45-6",
+      "type": "build_sentence",
+      "prompt_de": "Wir sind im Museum.",
+      "solution": [
+        [
+          "my",
+          "nom"
+        ],
+        [
+          "v",
+          "base"
+        ],
+        [
+          "muzej",
+          "prp.sg"
+        ]
+      ],
+      "distractors": [
+        [
+          "muzej",
+          "nom.sg"
+        ],
+        [
+          "na",
+          "base"
+        ]
+      ]
+    },
+    {
+      "id": "45-7",
+      "type": "build_sentence",
+      "prompt_de": "Wo ist hier eine Toilette?",
+      "solution": [
+        [
+          "gde",
+          "base"
+        ],
+        [
+          "zdes",
+          "base"
+        ],
+        [
+          "tualet",
+          "nom.sg"
+        ]
+      ],
+      "distractors": [
+        [
+          "tualet",
+          "prp.sg"
+        ],
+        [
+          "gostinitsa",
+          "nom.sg"
+        ]
+      ]
+    },
+    {
+      "id": "45-8",
+      "type": "choose_form",
+      "prompt_de": "Sie arbeitet im Museum.",
+      "sentence": [
+        [
+          "ona",
+          "nom"
+        ],
+        "___",
+        [
+          "v",
+          "base"
+        ],
+        [
+          "muzej",
+          "prp.sg"
+        ]
+      ],
+      "answer": [
+        "rabotat",
+        "prs.3sg"
+      ],
+      "distractor_forms": [
+        "prs.1sg",
+        "prs.2sg",
+        "prs.3pl"
+      ],
+      "audio_prompt": true
+    },
+    {
+      "id": "45-9",
+      "type": "build_sentence",
+      "prompt_de": "Der Laden ist gleich hier.",
+      "solution": [
+        [
+          "magazin",
+          "nom.sg"
+        ],
+        [
+          "zdes",
+          "base"
+        ],
+        [
+          "rjadom",
+          "base"
+        ]
+      ],
+      "distractors": [
+        [
+          "tam",
+          "base"
+        ],
+        [
+          "apteka",
+          "nom.sg"
+        ]
+      ]
+    },
+    {
+      "id": "45-10",
+      "type": "dialog_reply",
+      "prompt_de": "Jemand fragt dich nach der Apotheke.",
+      "tutor_line": [
+        [
+          "izvinit",
+          "imp.pl"
+        ],
+        [
+          "gde",
+          "base"
+        ],
+        [
+          "zdes",
+          "base"
+        ],
+        [
+          "apteka",
+          "nom.sg"
+        ]
+      ],
+      "correct_index": 0,
+      "options": [
+        {
+          "tokens": [
+            [
+              "apteka",
+              "nom.sg"
+            ],
+            [
+              "zdes",
+              "base"
+            ],
+            [
+              "rjadom",
+              "base"
+            ]
+          ],
+          "why_de": ""
+        },
+        {
+          "tokens": [
+            [
+              "v",
+              "base"
+            ],
+            [
+              "apteka",
+              "prp.sg"
+            ]
+          ],
+          "why_de": "в апте́ке heißt in der Apotheke — gefragt war, wo sie ist."
+        },
+        {
+          "tokens": [
+            [
+              "apteka",
+              "prp.sg"
+            ],
+            [
+              "zdes",
+              "base"
+            ],
+            [
+              "rjadom",
+              "base"
+            ]
+          ],
+          "why_de": "Am Satzanfang steht die Grundform: апте́ка здесь ря́дом."
+        }
+      ]
+    },
+    {
+      "id": "45-11",
+      "type": "listen_meaning",
+      "prompt_de": "Hör zu. Was wird gesagt?",
+      "sentence": [
+        [
+          "muzej",
+          "nom.sg"
+        ],
+        [
+          "v",
+          "base"
+        ],
+        [
+          "tsentr",
+          "prp.sg"
+        ]
+      ],
+      "correct_index": 0,
+      "options_de": [
+        "Das Museum ist im Zentrum.",
+        "Das Museum ist gleich hier.",
+        "Das Hotel ist im Zentrum."
+      ]
+    }
+  ]
+}

@@ -1,0 +1,393 @@
+{
+  "id": 48,
+  "stage": 2,
+  "title_de": "Von hier nach dort",
+  "scenario_de": "Ein Nachmittag in der Stadt: hin, dort und zurück.",
+  "grammar_focus": {
+    "id": "city-mixed",
+    "title_de": "Alles zusammen: wo es ist und wie du hinkommst",
+    "explanation_de": "Diese Einheit bringt keine neue Regel, sie mischt die aus dem ganzen Block. Drei Dinge kehren wieder. Gebäude bekommen в: в теа́тре, в библиоте́ке, в кино́. Freie Flächen und Verkehrsmittel bekommen на: на пло́щади, на остано́вке, на авто́бусе. Die Richtungswörter нале́во, напра́во und пря́мо stehen für sich allein, genau wie пешко́м — пешко́м де́сять мину́т heißt: zu Fuß sind es zehn Minuten.",
+    "primer": "praepositiv"
+  },
+  "new_lexemes": [
+    "teatr",
+    "kino",
+    "biblioteka",
+    "ploshchad",
+    "peshkom",
+    "nomer"
+  ],
+  "exercises": [
+    {
+      "id": "48-1",
+      "type": "match_pairs",
+      "prompt_de": "Vier Ziele für einen Nachmittag.",
+      "pairs": [
+        [
+          "teatr",
+          "nom.sg"
+        ],
+        [
+          "kino",
+          "nom.sg"
+        ],
+        [
+          "biblioteka",
+          "nom.sg"
+        ],
+        [
+          "ploshchad",
+          "nom.sg"
+        ]
+      ]
+    },
+    {
+      "id": "48-2",
+      "type": "match_pairs",
+      "prompt_de": "Zu Fuß, ein Zimmer und zwei alte Bekannte.",
+      "pairs": [
+        [
+          "peshkom",
+          "base"
+        ],
+        [
+          "nomer",
+          "nom.sg"
+        ],
+        [
+          "gostinitsa",
+          "nom.sg"
+        ],
+        [
+          "bilet",
+          "nom.sg"
+        ]
+      ]
+    },
+    {
+      "id": "48-3",
+      "type": "build_sentence",
+      "prompt_de": "Das Theater ist am Platz.",
+      "solution": [
+        [
+          "teatr",
+          "nom.sg"
+        ],
+        [
+          "na",
+          "base"
+        ],
+        [
+          "ploshchad",
+          "prp.sg"
+        ]
+      ],
+      "distractors": [
+        [
+          "ploshchad",
+          "nom.sg"
+        ],
+        [
+          "v",
+          "base"
+        ]
+      ]
+    },
+    {
+      "id": "48-4",
+      "type": "build_sentence",
+      "prompt_de": "Abends sind wir im Kino.",
+      "solution": [
+        [
+          "vecherom",
+          "base"
+        ],
+        [
+          "my",
+          "nom"
+        ],
+        [
+          "v",
+          "base"
+        ],
+        [
+          "kino",
+          "prp.sg"
+        ]
+      ],
+      "distractors": [
+        [
+          "utrom",
+          "base"
+        ],
+        [
+          "teatr",
+          "nom.sg"
+        ]
+      ]
+    },
+    {
+      "id": "48-5",
+      "type": "build_sentence",
+      "prompt_de": "Ich arbeite in der Bibliothek.",
+      "solution": [
+        [
+          "ja",
+          "nom"
+        ],
+        [
+          "rabotat",
+          "prs.1sg"
+        ],
+        [
+          "v",
+          "base"
+        ],
+        [
+          "biblioteka",
+          "prp.sg"
+        ]
+      ],
+      "distractors": [
+        [
+          "biblioteka",
+          "nom.sg"
+        ],
+        [
+          "na",
+          "base"
+        ]
+      ]
+    },
+    {
+      "id": "48-6",
+      "type": "build_sentence",
+      "prompt_de": "Zu Fuß sind es zehn Minuten.",
+      "solution": [
+        [
+          "peshkom",
+          "base"
+        ],
+        [
+          "desjat",
+          "nom"
+        ],
+        [
+          "minuta",
+          "gen.pl"
+        ]
+      ],
+      "distractors": [
+        [
+          "na",
+          "base"
+        ],
+        [
+          "chas",
+          "gen.pl"
+        ]
+      ]
+    },
+    {
+      "id": "48-7",
+      "type": "choose_form",
+      "prompt_de": "Was kostet eine Karte fürs Kino?",
+      "sentence": [
+        [
+          "skolko",
+          "base"
+        ],
+        "___",
+        [
+          "bilet",
+          "nom.sg"
+        ],
+        [
+          "v",
+          "base"
+        ],
+        [
+          "kino",
+          "prp.sg"
+        ]
+      ],
+      "answer": [
+        "stoit",
+        "prs.3sg"
+      ],
+      "distractor_forms": [
+        "prs.3pl",
+        "inf"
+      ],
+      "audio_prompt": true
+    },
+    {
+      "id": "48-8",
+      "type": "build_sentence",
+      "prompt_de": "Das ist mein Zimmer.",
+      "solution": [
+        [
+          "eto",
+          "base"
+        ],
+        [
+          "moj",
+          "nom.m"
+        ],
+        [
+          "nomer",
+          "nom.sg"
+        ]
+      ],
+      "distractors": [
+        [
+          "moj",
+          "nom.f"
+        ],
+        [
+          "bilet",
+          "nom.sg"
+        ]
+      ]
+    },
+    {
+      "id": "48-9",
+      "type": "build_sentence",
+      "prompt_de": "Das Kino ist nicht weit.",
+      "solution": [
+        [
+          "kino",
+          "nom.sg"
+        ],
+        [
+          "ne",
+          "base"
+        ],
+        [
+          "daleko",
+          "base"
+        ]
+      ],
+      "distractors": [
+        [
+          "blizko",
+          "base"
+        ],
+        [
+          "teatr",
+          "nom.sg"
+        ]
+      ]
+    },
+    {
+      "id": "48-10",
+      "type": "dialog_reply",
+      "prompt_de": "Jemand fragt, wie du unterwegs bist.",
+      "tutor_line": [
+        [
+          "ty",
+          "nom"
+        ],
+        [
+          "na",
+          "base"
+        ],
+        [
+          "mashina",
+          "prp.sg"
+        ],
+        [
+          "ili",
+          "base"
+        ],
+        [
+          "peshkom",
+          "base"
+        ]
+      ],
+      "correct_index": 0,
+      "options": [
+        {
+          "tokens": [
+            [
+              "ja",
+              "nom"
+            ],
+            [
+              "na",
+              "base"
+            ],
+            [
+              "avtobus",
+              "prp.sg"
+            ]
+          ],
+          "why_de": ""
+        },
+        {
+          "tokens": [
+            [
+              "ja",
+              "nom"
+            ],
+            [
+              "na",
+              "base"
+            ],
+            [
+              "avtobus",
+              "nom.sg"
+            ]
+          ],
+          "why_de": "Nach на steht der Präpositiv: на авто́бусе."
+        },
+        {
+          "tokens": [
+            [
+              "ja",
+              "nom"
+            ],
+            [
+              "v",
+              "base"
+            ],
+            [
+              "mashina",
+              "prp.sg"
+            ]
+          ],
+          "why_de": "в маши́не heißt: drinnen im Auto. Womit du unterwegs bist, sagt на: на маши́не."
+        }
+      ]
+    },
+    {
+      "id": "48-11",
+      "type": "listen_meaning",
+      "prompt_de": "Hör zu. Was wird gesagt?",
+      "sentence": [
+        [
+          "teatr",
+          "nom.sg"
+        ],
+        [
+          "na",
+          "base"
+        ],
+        [
+          "ploshchad",
+          "prp.sg"
+        ],
+        [
+          "napravo",
+          "base"
+        ]
+      ],
+      "correct_index": 0,
+      "options_de": [
+        "Das Theater ist rechts am Platz.",
+        "Das Theater ist links am Platz.",
+        "Das Kino ist rechts am Platz."
+      ]
+    }
+  ]
+}

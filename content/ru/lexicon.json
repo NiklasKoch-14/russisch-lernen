@@ -2140,6 +2140,10 @@
         "acc.sg": {
           "text": "маши́ну",
           "translit": "mašínu"
+        },
+        "prp.sg": {
+          "text": "маши́не",
+          "translit": "mašíne"
         }
       }
     },
@@ -4657,6 +4661,366 @@
         "acc.n": {
           "text": "ка́ждое",
           "translit": "káždoje"
+        }
+      }
+    },
+    {
+      "id": "apteka",
+      "lemma": "апте́ка",
+      "pos": "noun",
+      "gloss_de": "die Apotheke",
+      "forms": {
+        "nom.sg": {
+          "text": "апте́ка",
+          "translit": "aptéka"
+        },
+        "prp.sg": {
+          "text": "апте́ке",
+          "translit": "aptéke"
+        }
+      }
+    },
+    {
+      "id": "tsentr",
+      "lemma": "центр",
+      "pos": "noun",
+      "gloss_de": "das Zentrum",
+      "forms": {
+        "nom.sg": {
+          "text": "центр",
+          "translit": "centr"
+        },
+        "prp.sg": {
+          "text": "це́нтре",
+          "translit": "céntre"
+        }
+      }
+    },
+    {
+      "id": "muzej",
+      "lemma": "музе́й",
+      "pos": "noun",
+      "gloss_de": "das Museum",
+      "forms": {
+        "nom.sg": {
+          "text": "музе́й",
+          "translit": "muzéj"
+        },
+        "prp.sg": {
+          "text": "музе́е",
+          "translit": "muzéje"
+        }
+      }
+    },
+    {
+      "id": "gostinitsa",
+      "lemma": "гости́ница",
+      "pos": "noun",
+      "gloss_de": "das Hotel",
+      "forms": {
+        "nom.sg": {
+          "text": "гости́ница",
+          "translit": "gostínica"
+        },
+        "prp.sg": {
+          "text": "гости́нице",
+          "translit": "gostínice"
+        }
+      }
+    },
+    {
+      "id": "tualet",
+      "lemma": "туале́т",
+      "pos": "noun",
+      "gloss_de": "die Toilette",
+      "forms": {
+        "nom.sg": {
+          "text": "туале́т",
+          "translit": "tualét"
+        },
+        "prp.sg": {
+          "text": "туале́те",
+          "translit": "tualéte"
+        }
+      }
+    },
+    {
+      "id": "rjadom",
+      "lemma": "ря́дом",
+      "pos": "adv",
+      "gloss_de": "in der Nähe, gleich daneben",
+      "forms": {
+        "base": {
+          "text": "ря́дом",
+          "translit": "rjádom"
+        }
+      }
+    },
+    {
+      "id": "nalevo",
+      "lemma": "нале́во",
+      "pos": "adv",
+      "gloss_de": "links, nach links",
+      "forms": {
+        "base": {
+          "text": "нале́во",
+          "translit": "nalévo"
+        }
+      }
+    },
+    {
+      "id": "napravo",
+      "lemma": "напра́во",
+      "pos": "adv",
+      "gloss_de": "rechts, nach rechts",
+      "forms": {
+        "base": {
+          "text": "напра́во",
+          "translit": "naprávo"
+        }
+      }
+    },
+    {
+      "id": "prjamo",
+      "lemma": "пря́мо",
+      "pos": "adv",
+      "gloss_de": "geradeaus",
+      "forms": {
+        "base": {
+          "text": "пря́мо",
+          "translit": "prjámo"
+        }
+      }
+    },
+    {
+      "id": "daleko",
+      "lemma": "далеко́",
+      "pos": "adv",
+      "gloss_de": "weit",
+      "forms": {
+        "base": {
+          "text": "далеко́",
+          "translit": "dalekó"
+        }
+      }
+    },
+    {
+      "id": "blizko",
+      "lemma": "бли́зко",
+      "pos": "adv",
+      "gloss_de": "nah",
+      "forms": {
+        "base": {
+          "text": "бли́зко",
+          "translit": "blízko"
+        }
+      }
+    },
+    {
+      "id": "svetofor",
+      "lemma": "светофо́р",
+      "pos": "noun",
+      "gloss_de": "die Ampel",
+      "forms": {
+        "nom.sg": {
+          "text": "светофо́р",
+          "translit": "svetofór"
+        },
+        "prp.sg": {
+          "text": "светофо́ре",
+          "translit": "svetofóre"
+        }
+      }
+    },
+    {
+      "id": "avtobus",
+      "lemma": "авто́бус",
+      "pos": "noun",
+      "gloss_de": "der Bus",
+      "forms": {
+        "nom.sg": {
+          "text": "авто́бус",
+          "translit": "avtóbus"
+        },
+        "prp.sg": {
+          "text": "авто́бусе",
+          "translit": "avtóbuse"
+        }
+      }
+    },
+    {
+      "id": "tramvaj",
+      "lemma": "трамва́й",
+      "pos": "noun",
+      "gloss_de": "die Straßenbahn",
+      "forms": {
+        "nom.sg": {
+          "text": "трамва́й",
+          "translit": "tramváj"
+        },
+        "prp.sg": {
+          "text": "трамва́е",
+          "translit": "tramváje"
+        },
+        "acc.sg": {
+          "text": "трамва́й",
+          "translit": "tramváj"
+        }
+      }
+    },
+    {
+      "id": "metro",
+      "lemma": "метро́",
+      "pos": "noun",
+      "gloss_de": "die Metro",
+      "forms": {
+        "nom.sg": {
+          "text": "метро́",
+          "translit": "metró"
+        },
+        "prp.sg": {
+          "text": "метро́",
+          "translit": "metró"
+        }
+      }
+    },
+    {
+      "id": "taksi",
+      "lemma": "такси́",
+      "pos": "noun",
+      "gloss_de": "das Taxi",
+      "forms": {
+        "nom.sg": {
+          "text": "такси́",
+          "translit": "taksí"
+        },
+        "prp.sg": {
+          "text": "такси́",
+          "translit": "taksí"
+        }
+      }
+    },
+    {
+      "id": "ostanovka",
+      "lemma": "остано́вка",
+      "pos": "noun",
+      "gloss_de": "die Haltestelle",
+      "forms": {
+        "nom.sg": {
+          "text": "остано́вка",
+          "translit": "ostanóvka"
+        },
+        "prp.sg": {
+          "text": "остано́вке",
+          "translit": "ostanóvke"
+        }
+      }
+    },
+    {
+      "id": "bilet",
+      "lemma": "биле́т",
+      "pos": "noun",
+      "gloss_de": "die Fahrkarte",
+      "forms": {
+        "nom.sg": {
+          "text": "биле́т",
+          "translit": "bilét"
+        },
+        "acc.sg": {
+          "text": "биле́т",
+          "translit": "bilét"
+        }
+      }
+    },
+    {
+      "id": "teatr",
+      "lemma": "теа́тр",
+      "pos": "noun",
+      "gloss_de": "das Theater",
+      "forms": {
+        "nom.sg": {
+          "text": "теа́тр",
+          "translit": "teátr"
+        },
+        "prp.sg": {
+          "text": "теа́тре",
+          "translit": "teátre"
+        }
+      }
+    },
+    {
+      "id": "kino",
+      "lemma": "кино́",
+      "pos": "noun",
+      "gloss_de": "das Kino",
+      "forms": {
+        "nom.sg": {
+          "text": "кино́",
+          "translit": "kinó"
+        },
+        "prp.sg": {
+          "text": "кино́",
+          "translit": "kinó"
+        }
+      }
+    },
+    {
+      "id": "biblioteka",
+      "lemma": "библиоте́ка",
+      "pos": "noun",
+      "gloss_de": "die Bibliothek",
+      "forms": {
+        "nom.sg": {
+          "text": "библиоте́ка",
+          "translit": "bibliotéka"
+        },
+        "prp.sg": {
+          "text": "библиоте́ке",
+          "translit": "bibliotéke"
+        }
+      }
+    },
+    {
+      "id": "ploshchad",
+      "lemma": "пло́щадь",
+      "pos": "noun",
+      "gloss_de": "der Platz",
+      "forms": {
+        "nom.sg": {
+          "text": "пло́щадь",
+          "translit": "plóščad'"
+        },
+        "prp.sg": {
+          "text": "пло́щади",
+          "translit": "plóščadi"
+        }
+      }
+    },
+    {
+      "id": "peshkom",
+      "lemma": "пешко́м",
+      "pos": "adv",
+      "gloss_de": "zu Fuß",
+      "forms": {
+        "base": {
+          "text": "пешко́м",
+          "translit": "peškóm"
+        }
+      }
+    },
+    {
+      "id": "nomer",
+      "lemma": "но́мер",
+      "pos": "noun",
+      "gloss_de": "die Nummer, das Hotelzimmer",
+      "forms": {
+        "nom.sg": {
+          "text": "но́мер",
+          "translit": "nómer"
+        },
+        "acc.sg": {
+          "text": "но́мер",
+          "translit": "nómer"
         }
       }
     }

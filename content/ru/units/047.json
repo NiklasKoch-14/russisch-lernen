@@ -1,0 +1,389 @@
+{
+  "id": 47,
+  "stage": 2,
+  "title_de": "Mit dem Bus",
+  "scenario_de": "Du sagst, womit du unterwegs bist.",
+  "grammar_focus": {
+    "id": "na-transport",
+    "title_de": "на + Verkehrsmittel: на авто́бусе, на метро́",
+    "explanation_de": "Womit du fährst, sagt на mit dem Präpositiv — dasselbe на wie bei на рабо́те, nur diesmal für Fahrzeuge: на авто́бусе, на трамва́е, на маши́не. Ein в wäre hier falsch. Zwei Wörter machen es dir leicht, weil sie aus dem Französischen kommen und sich nie ändern: метро́ und такси́ bleiben immer gleich — на метро́, на такси́. Und ein Verb brauchst du gar nicht: Я на авто́бусе genügt.",
+    "primer": "praepositiv"
+  },
+  "new_lexemes": [
+    "avtobus",
+    "tramvaj",
+    "metro",
+    "taksi",
+    "ostanovka",
+    "bilet"
+  ],
+  "exercises": [
+    {
+      "id": "47-1",
+      "type": "match_pairs",
+      "prompt_de": "Vier Wege durch die Stadt.",
+      "pairs": [
+        [
+          "avtobus",
+          "nom.sg"
+        ],
+        [
+          "tramvaj",
+          "nom.sg"
+        ],
+        [
+          "metro",
+          "nom.sg"
+        ],
+        [
+          "taksi",
+          "nom.sg"
+        ]
+      ]
+    },
+    {
+      "id": "47-2",
+      "type": "match_pairs",
+      "prompt_de": "Wo man wartet, was man löst — und zwei alte Bekannte.",
+      "pairs": [
+        [
+          "ostanovka",
+          "nom.sg"
+        ],
+        [
+          "bilet",
+          "nom.sg"
+        ],
+        [
+          "vokzal",
+          "nom.sg"
+        ],
+        [
+          "mashina",
+          "nom.sg"
+        ]
+      ]
+    },
+    {
+      "id": "47-3",
+      "type": "build_sentence",
+      "prompt_de": "Ich fahre mit dem Bus.",
+      "solution": [
+        [
+          "ja",
+          "nom"
+        ],
+        [
+          "na",
+          "base"
+        ],
+        [
+          "avtobus",
+          "prp.sg"
+        ]
+      ],
+      "distractors": [
+        [
+          "avtobus",
+          "nom.sg"
+        ],
+        [
+          "v",
+          "base"
+        ]
+      ]
+    },
+    {
+      "id": "47-4",
+      "type": "build_sentence",
+      "prompt_de": "Wir nehmen ein Taxi.",
+      "solution": [
+        [
+          "my",
+          "nom"
+        ],
+        [
+          "na",
+          "base"
+        ],
+        [
+          "taksi",
+          "prp.sg"
+        ]
+      ],
+      "distractors": [
+        [
+          "metro",
+          "prp.sg"
+        ],
+        [
+          "v",
+          "base"
+        ]
+      ]
+    },
+    {
+      "id": "47-5",
+      "type": "build_sentence",
+      "prompt_de": "Bist du mit dem Auto da?",
+      "solution": [
+        [
+          "ty",
+          "nom"
+        ],
+        [
+          "na",
+          "base"
+        ],
+        [
+          "mashina",
+          "prp.sg"
+        ]
+      ],
+      "distractors": [
+        [
+          "mashina",
+          "nom.sg"
+        ],
+        [
+          "v",
+          "base"
+        ]
+      ]
+    },
+    {
+      "id": "47-6",
+      "type": "build_sentence",
+      "prompt_de": "Mit der Metro sind es fünf Minuten.",
+      "solution": [
+        [
+          "na",
+          "base"
+        ],
+        [
+          "metro",
+          "prp.sg"
+        ],
+        [
+          "pjat",
+          "nom"
+        ],
+        [
+          "minuta",
+          "gen.pl"
+        ]
+      ],
+      "distractors": [
+        [
+          "v",
+          "base"
+        ],
+        [
+          "chas",
+          "gen.pl"
+        ]
+      ]
+    },
+    {
+      "id": "47-7",
+      "type": "build_sentence",
+      "prompt_de": "Die Haltestelle ist rechts.",
+      "solution": [
+        [
+          "ostanovka",
+          "nom.sg"
+        ],
+        [
+          "napravo",
+          "base"
+        ]
+      ],
+      "distractors": [
+        [
+          "ostanovka",
+          "prp.sg"
+        ],
+        [
+          "nalevo",
+          "base"
+        ]
+      ]
+    },
+    {
+      "id": "47-8",
+      "type": "choose_form",
+      "prompt_de": "Was kostet eine Fahrkarte?",
+      "sentence": [
+        [
+          "skolko",
+          "base"
+        ],
+        "___",
+        [
+          "bilet",
+          "nom.sg"
+        ]
+      ],
+      "answer": [
+        "stoit",
+        "prs.3sg"
+      ],
+      "distractor_forms": [
+        "prs.3pl",
+        "inf"
+      ],
+      "audio_prompt": true
+    },
+    {
+      "id": "47-9",
+      "type": "build_sentence",
+      "prompt_de": "Die Fahrkarte für die Straßenbahn kostet zwei Euro.",
+      "solution": [
+        [
+          "bilet",
+          "nom.sg"
+        ],
+        [
+          "na",
+          "base"
+        ],
+        [
+          "tramvaj",
+          "acc.sg"
+        ],
+        [
+          "stoit",
+          "prs.3sg"
+        ],
+        [
+          "dva",
+          "nom.m"
+        ],
+        [
+          "evro",
+          "gen.sg"
+        ]
+      ],
+      "distractors": [
+        [
+          "tramvaj",
+          "prp.sg"
+        ],
+        [
+          "stoit",
+          "prs.3pl"
+        ]
+      ]
+    },
+    {
+      "id": "47-10",
+      "type": "dialog_reply",
+      "prompt_de": "Eine Bekannte fragt, ob du mit dem Auto da bist.",
+      "tutor_line": [
+        [
+          "ty",
+          "nom"
+        ],
+        [
+          "na",
+          "base"
+        ],
+        [
+          "mashina",
+          "prp.sg"
+        ]
+      ],
+      "correct_index": 0,
+      "options": [
+        {
+          "tokens": [
+            [
+              "net",
+              "base"
+            ],
+            [
+              "ja",
+              "nom"
+            ],
+            [
+              "na",
+              "base"
+            ],
+            [
+              "avtobus",
+              "prp.sg"
+            ]
+          ],
+          "why_de": ""
+        },
+        {
+          "tokens": [
+            [
+              "net",
+              "base"
+            ],
+            [
+              "ja",
+              "nom"
+            ],
+            [
+              "na",
+              "base"
+            ],
+            [
+              "avtobus",
+              "nom.sg"
+            ]
+          ],
+          "why_de": "Nach на steht der Präpositiv: на авто́бусе."
+        },
+        {
+          "tokens": [
+            [
+              "net",
+              "base"
+            ],
+            [
+              "ja",
+              "nom"
+            ],
+            [
+              "v",
+              "base"
+            ],
+            [
+              "avtobus",
+              "prp.sg"
+            ]
+          ],
+          "why_de": "в авто́бусе heißt: drinnen im Bus. Womit du unterwegs bist, sagt на: на авто́бусе."
+        }
+      ]
+    },
+    {
+      "id": "47-11",
+      "type": "listen_meaning",
+      "prompt_de": "Hör zu. Was wird gesagt?",
+      "sentence": [
+        [
+          "ja",
+          "nom"
+        ],
+        [
+          "na",
+          "base"
+        ],
+        [
+          "tramvaj",
+          "prp.sg"
+        ]
+      ],
+      "correct_index": 0,
+      "options_de": [
+        "Ich fahre mit der Straßenbahn.",
+        "Ich fahre mit dem Bus.",
+        "Ich bin an der Haltestelle."
+      ]
+    }
+  ]
+}
