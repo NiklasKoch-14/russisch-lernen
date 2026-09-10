@@ -1,0 +1,438 @@
+{
+  "id": 44,
+  "stage": 2,
+  "title_de": "Von morgens bis abends",
+  "scenario_de": "Eine ganze Woche im Überblick — und wann es was zu essen gibt.",
+  "grammar_focus": {
+    "id": "day-mixed",
+    "title_de": "Alles zusammen: Uhrzeit, Tageszeit und Wochentag",
+    "explanation_de": "Diese Einheit bringt keine neue Regel, sie mischt die aus dem ganzen Block. Drei Dinge kehren wieder. Die Stunde zählt wie der Preis: час, два часа́, пять часо́в. Wann etwas passiert, sagt в — в семь часо́в, в суббо́ту, во вто́рник —, aber niemals vor у́тром, днём, ве́чером und но́чью, denn die tragen ihr wann schon in sich. Und ка́ждый geht wie jedes Adjektiv mit seinem Substantiv mit: ка́ждый день, ка́ждую суббо́ту.",
+    "primer": "genitiv"
+  },
+  "new_lexemes": [
+    "zavtrak",
+    "obed",
+    "uzhin",
+    "vykhodnoj",
+    "skoro",
+    "kazhdyj"
+  ],
+  "exercises": [
+    {
+      "id": "44-1",
+      "type": "match_pairs",
+      "prompt_de": "Drei Mahlzeiten und ein freier Tag.",
+      "pairs": [
+        [
+          "zavtrak",
+          "nom.sg"
+        ],
+        [
+          "obed",
+          "nom.sg"
+        ],
+        [
+          "uzhin",
+          "nom.sg"
+        ],
+        [
+          "vykhodnoj",
+          "nom.sg"
+        ]
+      ]
+    },
+    {
+      "id": "44-2",
+      "type": "match_pairs",
+      "prompt_de": "Wie bald, wie oft.",
+      "pairs": [
+        [
+          "skoro",
+          "base"
+        ],
+        [
+          "kazhdyj",
+          "nom.m"
+        ],
+        [
+          "vsegda",
+          "base"
+        ],
+        [
+          "obychno",
+          "base"
+        ]
+      ]
+    },
+    {
+      "id": "44-3",
+      "type": "build_sentence",
+      "prompt_de": "Jeden Tag stehe ich um sieben Uhr auf.",
+      "solution": [
+        [
+          "kazhdyj",
+          "acc.m"
+        ],
+        [
+          "den",
+          "acc.sg"
+        ],
+        [
+          "ja",
+          "nom"
+        ],
+        [
+          "vstavat",
+          "prs.1sg"
+        ],
+        [
+          "v",
+          "base"
+        ],
+        [
+          "sem",
+          "nom"
+        ],
+        [
+          "chas",
+          "gen.pl"
+        ]
+      ],
+      "distractors": [
+        [
+          "kazhdyj",
+          "acc.f"
+        ],
+        [
+          "chas",
+          "gen.sg"
+        ]
+      ]
+    },
+    {
+      "id": "44-4",
+      "type": "build_sentence",
+      "prompt_de": "Das Frühstück ist um acht Uhr.",
+      "solution": [
+        [
+          "zavtrak",
+          "nom.sg"
+        ],
+        [
+          "v",
+          "base"
+        ],
+        [
+          "vosem",
+          "nom"
+        ],
+        [
+          "chas",
+          "gen.pl"
+        ]
+      ],
+      "distractors": [
+        [
+          "chas",
+          "gen.sg"
+        ],
+        [
+          "chas",
+          "nom.sg"
+        ]
+      ]
+    },
+    {
+      "id": "44-5",
+      "type": "build_sentence",
+      "prompt_de": "Am Samstag habe ich frei.",
+      "solution": [
+        [
+          "v",
+          "base"
+        ],
+        [
+          "subbota",
+          "acc.sg"
+        ],
+        [
+          "u",
+          "base"
+        ],
+        [
+          "ja",
+          "gen"
+        ],
+        [
+          "vykhodnoj",
+          "nom.sg"
+        ]
+      ],
+      "distractors": [
+        [
+          "subbota",
+          "nom.sg"
+        ],
+        [
+          "segodnja",
+          "base"
+        ]
+      ]
+    },
+    {
+      "id": "44-6",
+      "type": "build_sentence",
+      "prompt_de": "Das Mittagessen ist um zwei Uhr.",
+      "solution": [
+        [
+          "obed",
+          "nom.sg"
+        ],
+        [
+          "v",
+          "base"
+        ],
+        [
+          "dva",
+          "nom.m"
+        ],
+        [
+          "chas",
+          "gen.sg"
+        ]
+      ],
+      "distractors": [
+        [
+          "chas",
+          "gen.pl"
+        ],
+        [
+          "uzhin",
+          "nom.sg"
+        ]
+      ]
+    },
+    {
+      "id": "44-7",
+      "type": "choose_form",
+      "prompt_de": "Wann isst du zu Abend?",
+      "sentence": [
+        [
+          "kogda",
+          "base"
+        ],
+        [
+          "ty",
+          "nom"
+        ],
+        "___"
+      ],
+      "answer": [
+        "uzhinat",
+        "prs.2sg"
+      ],
+      "distractor_forms": [
+        "prs.1sg",
+        "prs.3sg",
+        "inf"
+      ],
+      "audio_prompt": true
+    },
+    {
+      "id": "44-8",
+      "type": "build_sentence",
+      "prompt_de": "Bald gibt es Abendessen.",
+      "solution": [
+        [
+          "skoro",
+          "base"
+        ],
+        [
+          "uzhin",
+          "nom.sg"
+        ]
+      ],
+      "distractors": [
+        [
+          "obed",
+          "nom.sg"
+        ],
+        [
+          "pozdno",
+          "base"
+        ]
+      ]
+    },
+    {
+      "id": "44-9",
+      "type": "build_sentence",
+      "prompt_de": "Am Dienstag esse ich immer im Café zu Mittag.",
+      "solution": [
+        [
+          "vo",
+          "base"
+        ],
+        [
+          "vtornik",
+          "acc.sg"
+        ],
+        [
+          "ja",
+          "nom"
+        ],
+        [
+          "vsegda",
+          "base"
+        ],
+        [
+          "obedat",
+          "prs.1sg"
+        ],
+        [
+          "v",
+          "base"
+        ],
+        [
+          "kafe",
+          "prp.sg"
+        ]
+      ],
+      "distractors": [
+        [
+          "sreda",
+          "acc.sg"
+        ],
+        [
+          "obedat",
+          "prs.3sg"
+        ]
+      ]
+    },
+    {
+      "id": "44-10",
+      "type": "dialog_reply",
+      "prompt_de": "Ein Kollege fragt, wann du frei hast.",
+      "tutor_line": [
+        [
+          "kogda",
+          "base"
+        ],
+        [
+          "u",
+          "base"
+        ],
+        [
+          "ty",
+          "gen"
+        ],
+        [
+          "vykhodnoj",
+          "nom.sg"
+        ]
+      ],
+      "correct_index": 0,
+      "options": [
+        {
+          "tokens": [
+            [
+              "v",
+              "base"
+            ],
+            [
+              "subbota",
+              "acc.sg"
+            ],
+            [
+              "i",
+              "base"
+            ],
+            [
+              "v",
+              "base"
+            ],
+            [
+              "voskresene",
+              "acc.sg"
+            ]
+          ],
+          "why_de": ""
+        },
+        {
+          "tokens": [
+            [
+              "v",
+              "base"
+            ],
+            [
+              "subbota",
+              "nom.sg"
+            ],
+            [
+              "i",
+              "base"
+            ],
+            [
+              "v",
+              "base"
+            ],
+            [
+              "voskresene",
+              "acc.sg"
+            ]
+          ],
+          "why_de": "Nach в steht der Wochentag im Akkusativ: в суббо́ту."
+        },
+        {
+          "tokens": [
+            [
+              "v",
+              "base"
+            ],
+            [
+              "vtornik",
+              "acc.sg"
+            ]
+          ],
+          "why_de": "Vor вто́рник wird в zu во: во вто́рник."
+        }
+      ]
+    },
+    {
+      "id": "44-11",
+      "type": "listen_meaning",
+      "prompt_de": "Hör zu. Was wird gesagt?",
+      "sentence": [
+        [
+          "kazhdyj",
+          "acc.m"
+        ],
+        [
+          "den",
+          "acc.sg"
+        ],
+        [
+          "ja",
+          "nom"
+        ],
+        [
+          "obedat",
+          "prs.1sg"
+        ],
+        [
+          "v",
+          "base"
+        ],
+        [
+          "kafe",
+          "prp.sg"
+        ]
+      ],
+      "correct_index": 0,
+      "options_de": [
+        "Jeden Tag esse ich im Café zu Mittag.",
+        "Jeden Tag esse ich im Café zu Abend.",
+        "Manchmal esse ich im Café zu Mittag."
+      ]
+    }
+  ]
+}

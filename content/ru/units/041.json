@@ -1,0 +1,435 @@
+{
+  "id": 41,
+  "stage": 2,
+  "title_de": "Wann stehst du auf?",
+  "scenario_de": "Dein Tag in Uhrzeiten: aufstehen, essen, schlafen.",
+  "grammar_focus": {
+    "id": "v-plus-clock",
+    "title_de": "в + Uhrzeit: в семь часо́в",
+    "explanation_de": "Die Uhrzeit allein sagt, wie spät es ist: сейча́с семь часо́в. Willst du sagen, wann etwas passiert, stellst du в davor: я встаю́ в семь часо́в. Die Stundenform bleibt dabei genau dieselbe — в час, в два часа́, в семь часо́в. Gefragt wird mit Когда́? Zwei der neuen Verben sind unregelmäßig: встава́ть verliert im Präsens sein -ва- (встаю́, встаёшь, встаёт), und спать bekommt in der ich-Form ein л dazwischen (сплю, aber спишь, спит).",
+    "primer": null
+  },
+  "new_lexemes": [
+    "kogda",
+    "vstavat",
+    "spat",
+    "zavtrakat",
+    "obedat",
+    "uzhinat",
+    "obychno"
+  ],
+  "exercises": [
+    {
+      "id": "41-1",
+      "type": "match_pairs",
+      "prompt_de": "Aufstehen, schlafen — und wie oft.",
+      "pairs": [
+        [
+          "vstavat",
+          "inf"
+        ],
+        [
+          "spat",
+          "inf"
+        ],
+        [
+          "zavtrakat",
+          "inf"
+        ],
+        [
+          "obychno",
+          "base"
+        ]
+      ]
+    },
+    {
+      "id": "41-2",
+      "type": "match_pairs",
+      "prompt_de": "Zwei Mahlzeiten und zwei Fragewörter.",
+      "pairs": [
+        [
+          "obedat",
+          "inf"
+        ],
+        [
+          "uzhinat",
+          "inf"
+        ],
+        [
+          "kogda",
+          "base"
+        ],
+        [
+          "skolko",
+          "base"
+        ]
+      ]
+    },
+    {
+      "id": "41-3",
+      "type": "choose_form",
+      "prompt_de": "Ich stehe um sieben Uhr auf.",
+      "sentence": [
+        [
+          "ja",
+          "nom"
+        ],
+        "___",
+        [
+          "v",
+          "base"
+        ],
+        [
+          "sem",
+          "nom"
+        ],
+        [
+          "chas",
+          "gen.pl"
+        ]
+      ],
+      "answer": [
+        "vstavat",
+        "prs.1sg"
+      ],
+      "distractor_forms": [
+        "prs.2sg",
+        "prs.3sg",
+        "inf"
+      ]
+    },
+    {
+      "id": "41-4",
+      "type": "build_sentence",
+      "prompt_de": "Wann stehst du auf?",
+      "solution": [
+        [
+          "kogda",
+          "base"
+        ],
+        [
+          "ty",
+          "nom"
+        ],
+        [
+          "vstavat",
+          "prs.2sg"
+        ]
+      ],
+      "distractors": [
+        [
+          "vstavat",
+          "prs.1sg"
+        ],
+        [
+          "skolko",
+          "base"
+        ]
+      ]
+    },
+    {
+      "id": "41-5",
+      "type": "build_sentence",
+      "prompt_de": "Ich stehe normalerweise um sechs Uhr auf.",
+      "solution": [
+        [
+          "ja",
+          "nom"
+        ],
+        [
+          "obychno",
+          "base"
+        ],
+        [
+          "vstavat",
+          "prs.1sg"
+        ],
+        [
+          "v",
+          "base"
+        ],
+        [
+          "shest",
+          "nom"
+        ],
+        [
+          "chas",
+          "gen.pl"
+        ]
+      ],
+      "distractors": [
+        [
+          "chas",
+          "gen.sg"
+        ],
+        [
+          "vstavat",
+          "prs.3sg"
+        ]
+      ]
+    },
+    {
+      "id": "41-6",
+      "type": "build_sentence",
+      "prompt_de": "Wir frühstücken um acht Uhr.",
+      "solution": [
+        [
+          "my",
+          "nom"
+        ],
+        [
+          "zavtrakat",
+          "prs.1pl"
+        ],
+        [
+          "v",
+          "base"
+        ],
+        [
+          "vosem",
+          "nom"
+        ],
+        [
+          "chas",
+          "gen.pl"
+        ]
+      ],
+      "distractors": [
+        [
+          "zavtrakat",
+          "prs.1sg"
+        ],
+        [
+          "chas",
+          "nom.sg"
+        ]
+      ]
+    },
+    {
+      "id": "41-7",
+      "type": "choose_form",
+      "prompt_de": "Nachts schläft sie.",
+      "sentence": [
+        [
+          "nochju",
+          "base"
+        ],
+        [
+          "ona",
+          "nom"
+        ],
+        "___"
+      ],
+      "answer": [
+        "spat",
+        "prs.3sg"
+      ],
+      "distractor_forms": [
+        "prs.1sg",
+        "prs.2sg",
+        "prs.3pl"
+      ],
+      "audio_prompt": true
+    },
+    {
+      "id": "41-8",
+      "type": "build_sentence",
+      "prompt_de": "Ich esse um zwei Uhr zu Mittag.",
+      "solution": [
+        [
+          "ja",
+          "nom"
+        ],
+        [
+          "obedat",
+          "prs.1sg"
+        ],
+        [
+          "v",
+          "base"
+        ],
+        [
+          "dva",
+          "nom.m"
+        ],
+        [
+          "chas",
+          "gen.sg"
+        ]
+      ],
+      "distractors": [
+        [
+          "chas",
+          "gen.pl"
+        ],
+        [
+          "obedat",
+          "prs.3sg"
+        ]
+      ]
+    },
+    {
+      "id": "41-9",
+      "type": "build_sentence",
+      "prompt_de": "Wir essen um sieben Uhr zu Abend.",
+      "solution": [
+        [
+          "my",
+          "nom"
+        ],
+        [
+          "uzhinat",
+          "prs.1pl"
+        ],
+        [
+          "v",
+          "base"
+        ],
+        [
+          "sem",
+          "nom"
+        ],
+        [
+          "chas",
+          "gen.pl"
+        ]
+      ],
+      "distractors": [
+        [
+          "uzhinat",
+          "prs.3pl"
+        ],
+        [
+          "chas",
+          "gen.sg"
+        ]
+      ]
+    },
+    {
+      "id": "41-10",
+      "type": "dialog_reply",
+      "prompt_de": "Ein Kollege fragt, wann du aufstehst.",
+      "tutor_line": [
+        [
+          "kogda",
+          "base"
+        ],
+        [
+          "ty",
+          "nom"
+        ],
+        [
+          "vstavat",
+          "prs.2sg"
+        ]
+      ],
+      "correct_index": 0,
+      "options": [
+        {
+          "tokens": [
+            [
+              "ja",
+              "nom"
+            ],
+            [
+              "vstavat",
+              "prs.1sg"
+            ],
+            [
+              "v",
+              "base"
+            ],
+            [
+              "shest",
+              "nom"
+            ],
+            [
+              "chas",
+              "gen.pl"
+            ]
+          ],
+          "why_de": ""
+        },
+        {
+          "tokens": [
+            [
+              "ja",
+              "nom"
+            ],
+            [
+              "vstavat",
+              "prs.2sg"
+            ],
+            [
+              "v",
+              "base"
+            ],
+            [
+              "shest",
+              "nom"
+            ],
+            [
+              "chas",
+              "gen.pl"
+            ]
+          ],
+          "why_de": "встаёшь gehört zu ты. Von dir selbst sprichst du mit встаю́."
+        },
+        {
+          "tokens": [
+            [
+              "ja",
+              "nom"
+            ],
+            [
+              "vstavat",
+              "prs.1sg"
+            ],
+            [
+              "v",
+              "base"
+            ],
+            [
+              "shest",
+              "nom"
+            ],
+            [
+              "chas",
+              "gen.sg"
+            ]
+          ],
+          "why_de": "Ab пять heißt es часо́в: в шесть часо́в."
+        }
+      ]
+    },
+    {
+      "id": "41-11",
+      "type": "listen_meaning",
+      "prompt_de": "Hör zu. Was wird gesagt?",
+      "sentence": [
+        [
+          "ja",
+          "nom"
+        ],
+        [
+          "obychno",
+          "base"
+        ],
+        [
+          "vstavat",
+          "prs.1sg"
+        ],
+        [
+          "rano",
+          "base"
+        ]
+      ],
+      "correct_index": 0,
+      "options_de": [
+        "Ich stehe normalerweise früh auf.",
+        "Ich stehe normalerweise spät auf.",
+        "Ich frühstücke normalerweise früh."
+      ]
+    }
+  ]
+}

@@ -1,0 +1,460 @@
+{
+  "id": 42,
+  "stage": 2,
+  "title_de": "Am Montag",
+  "scenario_de": "Du verabredest dich auf einen Wochentag.",
+  "grammar_focus": {
+    "id": "weekdays-v-acc",
+    "title_de": "в понеде́льник, во вто́рник — der Wochentag mit в",
+    "explanation_de": "Wann etwas stattfindet, sagst du mit в plus Wochentag, und der steht im Akkusativ. Bei den männlichen Tagen ist davon nichts zu sehen: в понеде́льник, в четве́рг. Die weiblichen zeigen es am Ende: среда́ → в сре́ду, пя́тница → в пя́тницу, суббо́та → в суббо́ту. Воскресе́нье bleibt, wie es ist. Ein Sonderfall ist der Dienstag: vor вто́рник stoßen zu viele Konsonanten aufeinander, deshalb wird в zu во — во вто́рник. Übrigens schreibt man die Wochentage im Russischen klein.",
+    "primer": "akkusativ"
+  },
+  "new_lexemes": [
+    "ponedelnik",
+    "vtornik",
+    "sreda",
+    "chetverg",
+    "pjatnitsa",
+    "subbota",
+    "voskresene",
+    "vo"
+  ],
+  "exercises": [
+    {
+      "id": "42-1",
+      "type": "match_pairs",
+      "prompt_de": "Die erste Hälfte der Woche.",
+      "pairs": [
+        [
+          "ponedelnik",
+          "nom.sg"
+        ],
+        [
+          "vtornik",
+          "nom.sg"
+        ],
+        [
+          "sreda",
+          "nom.sg"
+        ],
+        [
+          "chetverg",
+          "nom.sg"
+        ]
+      ]
+    },
+    {
+      "id": "42-2",
+      "type": "match_pairs",
+      "prompt_de": "Der Rest der Woche — und wann das alles ist.",
+      "pairs": [
+        [
+          "pjatnitsa",
+          "nom.sg"
+        ],
+        [
+          "subbota",
+          "nom.sg"
+        ],
+        [
+          "voskresene",
+          "nom.sg"
+        ],
+        [
+          "segodnja",
+          "base"
+        ]
+      ]
+    },
+    {
+      "id": "42-3",
+      "type": "build_sentence",
+      "prompt_de": "Am Montag arbeite ich.",
+      "solution": [
+        [
+          "v",
+          "base"
+        ],
+        [
+          "ponedelnik",
+          "acc.sg"
+        ],
+        [
+          "ja",
+          "nom"
+        ],
+        [
+          "rabotat",
+          "prs.1sg"
+        ]
+      ],
+      "distractors": [
+        [
+          "vo",
+          "base"
+        ],
+        [
+          "subbota",
+          "acc.sg"
+        ]
+      ]
+    },
+    {
+      "id": "42-4",
+      "type": "build_sentence",
+      "prompt_de": "Am Dienstag arbeite ich nicht.",
+      "solution": [
+        [
+          "vo",
+          "base"
+        ],
+        [
+          "vtornik",
+          "acc.sg"
+        ],
+        [
+          "ja",
+          "nom"
+        ],
+        [
+          "ne",
+          "base"
+        ],
+        [
+          "rabotat",
+          "prs.1sg"
+        ]
+      ],
+      "distractors": [
+        [
+          "v",
+          "base"
+        ],
+        [
+          "segodnja",
+          "base"
+        ]
+      ]
+    },
+    {
+      "id": "42-5",
+      "type": "build_sentence",
+      "prompt_de": "Am Mittwoch gehe ich spazieren.",
+      "solution": [
+        [
+          "v",
+          "base"
+        ],
+        [
+          "sreda",
+          "acc.sg"
+        ],
+        [
+          "ja",
+          "nom"
+        ],
+        [
+          "guljat",
+          "prs.1sg"
+        ]
+      ],
+      "distractors": [
+        [
+          "sreda",
+          "nom.sg"
+        ],
+        [
+          "vo",
+          "base"
+        ]
+      ]
+    },
+    {
+      "id": "42-6",
+      "type": "build_sentence",
+      "prompt_de": "Am Freitag kaufe ich Lebensmittel.",
+      "solution": [
+        [
+          "v",
+          "base"
+        ],
+        [
+          "pjatnitsa",
+          "acc.sg"
+        ],
+        [
+          "ja",
+          "nom"
+        ],
+        [
+          "pokupat",
+          "prs.1sg"
+        ],
+        [
+          "produkty",
+          "acc.pl"
+        ]
+      ],
+      "distractors": [
+        [
+          "pjatnitsa",
+          "nom.sg"
+        ],
+        [
+          "magazin",
+          "nom.sg"
+        ]
+      ]
+    },
+    {
+      "id": "42-7",
+      "type": "build_sentence",
+      "prompt_de": "Am Samstag stehe ich spät auf.",
+      "solution": [
+        [
+          "v",
+          "base"
+        ],
+        [
+          "subbota",
+          "acc.sg"
+        ],
+        [
+          "ja",
+          "nom"
+        ],
+        [
+          "vstavat",
+          "prs.1sg"
+        ],
+        [
+          "pozdno",
+          "base"
+        ]
+      ],
+      "distractors": [
+        [
+          "subbota",
+          "nom.sg"
+        ],
+        [
+          "rano",
+          "base"
+        ]
+      ]
+    },
+    {
+      "id": "42-8",
+      "type": "build_sentence",
+      "prompt_de": "Am Sonntag gehen wir im Park spazieren.",
+      "solution": [
+        [
+          "v",
+          "base"
+        ],
+        [
+          "voskresene",
+          "acc.sg"
+        ],
+        [
+          "my",
+          "nom"
+        ],
+        [
+          "guljat",
+          "prs.1pl"
+        ],
+        [
+          "v",
+          "base"
+        ],
+        [
+          "park",
+          "prp.sg"
+        ]
+      ],
+      "distractors": [
+        [
+          "guljat",
+          "prs.1sg"
+        ],
+        [
+          "park",
+          "nom.sg"
+        ]
+      ]
+    },
+    {
+      "id": "42-9",
+      "type": "build_sentence",
+      "prompt_de": "Am Donnerstag arbeite ich im Büro.",
+      "solution": [
+        [
+          "v",
+          "base"
+        ],
+        [
+          "chetverg",
+          "acc.sg"
+        ],
+        [
+          "ja",
+          "nom"
+        ],
+        [
+          "rabotat",
+          "prs.1sg"
+        ],
+        [
+          "v",
+          "base"
+        ],
+        [
+          "ofis",
+          "prp.sg"
+        ]
+      ],
+      "distractors": [
+        [
+          "vo",
+          "base"
+        ],
+        [
+          "ofis",
+          "nom.sg"
+        ]
+      ],
+      "audio_prompt": true
+    },
+    {
+      "id": "42-10",
+      "type": "dialog_reply",
+      "prompt_de": "Jemand fragt, wann du arbeitest.",
+      "tutor_line": [
+        [
+          "kogda",
+          "base"
+        ],
+        [
+          "ty",
+          "nom"
+        ],
+        [
+          "rabotat",
+          "prs.2sg"
+        ]
+      ],
+      "correct_index": 0,
+      "options": [
+        {
+          "tokens": [
+            [
+              "v",
+              "base"
+            ],
+            [
+              "ponedelnik",
+              "acc.sg"
+            ],
+            [
+              "i",
+              "base"
+            ],
+            [
+              "v",
+              "base"
+            ],
+            [
+              "sreda",
+              "acc.sg"
+            ]
+          ],
+          "why_de": ""
+        },
+        {
+          "tokens": [
+            [
+              "v",
+              "base"
+            ],
+            [
+              "ponedelnik",
+              "acc.sg"
+            ],
+            [
+              "i",
+              "base"
+            ],
+            [
+              "v",
+              "base"
+            ],
+            [
+              "sreda",
+              "nom.sg"
+            ]
+          ],
+          "why_de": "Nach в steht der Wochentag im Akkusativ: в сре́ду."
+        },
+        {
+          "tokens": [
+            [
+              "v",
+              "base"
+            ],
+            [
+              "vtornik",
+              "acc.sg"
+            ],
+            [
+              "i",
+              "base"
+            ],
+            [
+              "v",
+              "base"
+            ],
+            [
+              "sreda",
+              "acc.sg"
+            ]
+          ],
+          "why_de": "Vor вто́рник wird в zu во: во вто́рник."
+        }
+      ]
+    },
+    {
+      "id": "42-11",
+      "type": "listen_meaning",
+      "prompt_de": "Hör zu. Was wird gesagt?",
+      "sentence": [
+        [
+          "v",
+          "base"
+        ],
+        [
+          "subbota",
+          "acc.sg"
+        ],
+        [
+          "ja",
+          "nom"
+        ],
+        [
+          "ne",
+          "base"
+        ],
+        [
+          "rabotat",
+          "prs.1sg"
+        ]
+      ],
+      "correct_index": 0,
+      "options_de": [
+        "Am Samstag arbeite ich nicht.",
+        "Am Sonntag arbeite ich nicht.",
+        "Am Samstag arbeite ich."
+      ]
+    }
+  ]
+}

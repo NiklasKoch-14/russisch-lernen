@@ -1,0 +1,426 @@
+{
+  "id": 43,
+  "stage": 2,
+  "title_de": "Mein Tag",
+  "scenario_de": "Du erzählst der Reihe nach, wie dein Tag aussieht.",
+  "grammar_focus": {
+    "id": "time-word-order",
+    "title_de": "Die Zeit steht vorn: у́тром я за́втракаю, пото́м рабо́таю",
+    "explanation_de": "Im Russischen ist die Wortstellung freier als im Deutschen, aber eine Gewohnheit lohnt sich: Was den Zeitpunkt angibt, steht am Satzanfang — у́тром, ве́чером, в суббо́ту, снача́ла, пото́м. Wörter wie всегда́, иногда́ und обы́чно stehen dagegen direkt vor dem Verb: я всегда́ встаю́ ра́но. Und noch etwas: hängst du zwei Sätze mit пото́м aneinander, kannst du das я im zweiten weglassen, weil die Verbform es ohnehin verrät — снача́ла я за́втракаю, пото́м рабо́таю.",
+    "primer": null
+  },
+  "new_lexemes": [
+    "den",
+    "snachala",
+    "potom",
+    "vsegda",
+    "inogda",
+    "dolgo"
+  ],
+  "exercises": [
+    {
+      "id": "43-1",
+      "type": "match_pairs",
+      "prompt_de": "Zuerst, dann — und wie oft.",
+      "pairs": [
+        [
+          "snachala",
+          "base"
+        ],
+        [
+          "potom",
+          "base"
+        ],
+        [
+          "vsegda",
+          "base"
+        ],
+        [
+          "inogda",
+          "base"
+        ]
+      ]
+    },
+    {
+      "id": "43-2",
+      "type": "match_pairs",
+      "prompt_de": "Ein Tag, eine Dauer und zwei alte Bekannte.",
+      "pairs": [
+        [
+          "den",
+          "nom.sg"
+        ],
+        [
+          "dolgo",
+          "base"
+        ],
+        [
+          "obychno",
+          "base"
+        ],
+        [
+          "segodnja",
+          "base"
+        ]
+      ]
+    },
+    {
+      "id": "43-3",
+      "type": "build_sentence",
+      "prompt_de": "Zuerst frühstücke ich, dann arbeite ich.",
+      "solution": [
+        [
+          "snachala",
+          "base"
+        ],
+        [
+          "ja",
+          "nom"
+        ],
+        [
+          "zavtrakat",
+          "prs.1sg"
+        ],
+        [
+          "potom",
+          "base"
+        ],
+        [
+          "rabotat",
+          "prs.1sg"
+        ]
+      ],
+      "distractors": [
+        [
+          "inogda",
+          "base"
+        ],
+        [
+          "zavtrakat",
+          "prs.3sg"
+        ]
+      ]
+    },
+    {
+      "id": "43-4",
+      "type": "build_sentence",
+      "prompt_de": "Ich stehe immer früh auf.",
+      "solution": [
+        [
+          "ja",
+          "nom"
+        ],
+        [
+          "vsegda",
+          "base"
+        ],
+        [
+          "vstavat",
+          "prs.1sg"
+        ],
+        [
+          "rano",
+          "base"
+        ]
+      ],
+      "distractors": [
+        [
+          "inogda",
+          "base"
+        ],
+        [
+          "pozdno",
+          "base"
+        ]
+      ]
+    },
+    {
+      "id": "43-5",
+      "type": "build_sentence",
+      "prompt_de": "Manchmal sehe ich abends fern.",
+      "solution": [
+        [
+          "inogda",
+          "base"
+        ],
+        [
+          "vecherom",
+          "base"
+        ],
+        [
+          "ja",
+          "nom"
+        ],
+        [
+          "smotret",
+          "prs.1sg"
+        ],
+        [
+          "televizor",
+          "acc.sg"
+        ]
+      ],
+      "distractors": [
+        [
+          "vsegda",
+          "base"
+        ],
+        [
+          "smotret",
+          "prs.3pl"
+        ]
+      ]
+    },
+    {
+      "id": "43-6",
+      "type": "choose_form",
+      "prompt_de": "Abends esse ich zu Abend und lese.",
+      "sentence": [
+        [
+          "vecherom",
+          "base"
+        ],
+        [
+          "ja",
+          "nom"
+        ],
+        "___",
+        [
+          "i",
+          "base"
+        ],
+        [
+          "chitat",
+          "prs.1sg"
+        ]
+      ],
+      "answer": [
+        "uzhinat",
+        "prs.1sg"
+      ],
+      "distractor_forms": [
+        "prs.2sg",
+        "prs.3sg",
+        "inf"
+      ]
+    },
+    {
+      "id": "43-7",
+      "type": "choose_form",
+      "prompt_de": "Wann frühstückst du?",
+      "sentence": [
+        [
+          "kogda",
+          "base"
+        ],
+        [
+          "ty",
+          "nom"
+        ],
+        "___"
+      ],
+      "answer": [
+        "zavtrakat",
+        "prs.2sg"
+      ],
+      "distractor_forms": [
+        "prs.1sg",
+        "prs.3sg",
+        "prs.3pl"
+      ],
+      "audio_prompt": true
+    },
+    {
+      "id": "43-8",
+      "type": "build_sentence",
+      "prompt_de": "Am Samstag schlafe ich lange.",
+      "solution": [
+        [
+          "v",
+          "base"
+        ],
+        [
+          "subbota",
+          "acc.sg"
+        ],
+        [
+          "ja",
+          "nom"
+        ],
+        [
+          "spat",
+          "prs.1sg"
+        ],
+        [
+          "dolgo",
+          "base"
+        ]
+      ],
+      "distractors": [
+        [
+          "rano",
+          "base"
+        ],
+        [
+          "spat",
+          "prs.3sg"
+        ]
+      ]
+    },
+    {
+      "id": "43-9",
+      "type": "build_sentence",
+      "prompt_de": "Heute ist ein guter Tag.",
+      "solution": [
+        [
+          "segodnja",
+          "base"
+        ],
+        [
+          "khoroshij",
+          "nom.m"
+        ],
+        [
+          "den",
+          "nom.sg"
+        ]
+      ],
+      "distractors": [
+        [
+          "khoroshij",
+          "nom.f"
+        ],
+        [
+          "zavtra",
+          "base"
+        ]
+      ]
+    },
+    {
+      "id": "43-10",
+      "type": "dialog_reply",
+      "prompt_de": "Eine Nachbarin fragt, was du morgens machst.",
+      "tutor_line": [
+        [
+          "chto",
+          "acc"
+        ],
+        [
+          "ty",
+          "nom"
+        ],
+        [
+          "delat",
+          "prs.2sg"
+        ],
+        [
+          "utrom",
+          "base"
+        ]
+      ],
+      "correct_index": 0,
+      "options": [
+        {
+          "tokens": [
+            [
+              "utrom",
+              "base"
+            ],
+            [
+              "ja",
+              "nom"
+            ],
+            [
+              "zavtrakat",
+              "prs.1sg"
+            ],
+            [
+              "i",
+              "base"
+            ],
+            [
+              "rabotat",
+              "prs.1sg"
+            ]
+          ],
+          "why_de": ""
+        },
+        {
+          "tokens": [
+            [
+              "v",
+              "base"
+            ],
+            [
+              "utrom",
+              "base"
+            ],
+            [
+              "ja",
+              "nom"
+            ],
+            [
+              "zavtrakat",
+              "prs.1sg"
+            ]
+          ],
+          "why_de": "у́тром heißt schon am Morgen — ein в davor braucht es nicht."
+        },
+        {
+          "tokens": [
+            [
+              "utrom",
+              "base"
+            ],
+            [
+              "ja",
+              "nom"
+            ],
+            [
+              "zavtrakat",
+              "prs.3sg"
+            ],
+            [
+              "i",
+              "base"
+            ],
+            [
+              "rabotat",
+              "prs.1sg"
+            ]
+          ],
+          "why_de": "за́втракает gehört zu он und она́. Von dir selbst: я за́втракаю."
+        }
+      ]
+    },
+    {
+      "id": "43-11",
+      "type": "listen_meaning",
+      "prompt_de": "Hör zu. Was wird gesagt?",
+      "sentence": [
+        [
+          "inogda",
+          "base"
+        ],
+        [
+          "ja",
+          "nom"
+        ],
+        [
+          "vstavat",
+          "prs.1sg"
+        ],
+        [
+          "pozdno",
+          "base"
+        ]
+      ],
+      "correct_index": 0,
+      "options_de": [
+        "Manchmal stehe ich spät auf.",
+        "Ich stehe immer spät auf.",
+        "Manchmal stehe ich früh auf."
+      ]
+    }
+  ]
+}

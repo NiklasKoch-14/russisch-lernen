@@ -3983,6 +3983,682 @@
           "translit": "tól'ko"
         }
       }
+    },
+    {
+      "id": "vremja",
+      "lemma": "вре́мя",
+      "pos": "noun",
+      "gloss_de": "die Zeit",
+      "forms": {
+        "nom.sg": {
+          "text": "вре́мя",
+          "translit": "vrémja"
+        },
+        "gen.sg": {
+          "text": "вре́мени",
+          "translit": "vrémeni"
+        }
+      }
+    },
+    {
+      "id": "chas",
+      "lemma": "час",
+      "pos": "noun",
+      "gloss_de": "die Stunde, Uhr (bei der Uhrzeit)",
+      "forms": {
+        "nom.sg": {
+          "text": "час",
+          "translit": "čas"
+        },
+        "gen.sg": {
+          "text": "часа́",
+          "translit": "časá"
+        },
+        "gen.pl": {
+          "text": "часо́в",
+          "translit": "časóv"
+        }
+      }
+    },
+    {
+      "id": "sejchas",
+      "lemma": "сейча́с",
+      "pos": "adv",
+      "gloss_de": "jetzt",
+      "forms": {
+        "base": {
+          "text": "сейча́с",
+          "translit": "sejčás"
+        }
+      }
+    },
+    {
+      "id": "minuta",
+      "lemma": "мину́та",
+      "pos": "noun",
+      "gloss_de": "die Minute",
+      "forms": {
+        "nom.sg": {
+          "text": "мину́та",
+          "translit": "minúta"
+        },
+        "gen.sg": {
+          "text": "мину́ты",
+          "translit": "minúty"
+        },
+        "gen.pl": {
+          "text": "мину́т",
+          "translit": "minút"
+        }
+      }
+    },
+    {
+      "id": "rano",
+      "lemma": "ра́но",
+      "pos": "adv",
+      "gloss_de": "früh",
+      "forms": {
+        "base": {
+          "text": "ра́но",
+          "translit": "ráno"
+        }
+      }
+    },
+    {
+      "id": "pozdno",
+      "lemma": "по́здно",
+      "pos": "adv",
+      "gloss_de": "spät",
+      "forms": {
+        "base": {
+          "text": "по́здно",
+          "translit": "pózdno"
+        }
+      }
+    },
+    {
+      "id": "utrom",
+      "lemma": "у́тром",
+      "pos": "adv",
+      "gloss_de": "morgens, am Morgen",
+      "forms": {
+        "base": {
+          "text": "у́тром",
+          "translit": "útrom"
+        }
+      }
+    },
+    {
+      "id": "dnjom",
+      "lemma": "днём",
+      "pos": "adv",
+      "gloss_de": "tagsüber, mittags",
+      "forms": {
+        "base": {
+          "text": "днём",
+          "translit": "dnjom"
+        }
+      }
+    },
+    {
+      "id": "vecherom",
+      "lemma": "ве́чером",
+      "pos": "adv",
+      "gloss_de": "abends, am Abend",
+      "forms": {
+        "base": {
+          "text": "ве́чером",
+          "translit": "véčerom"
+        }
+      }
+    },
+    {
+      "id": "nochju",
+      "lemma": "но́чью",
+      "pos": "adv",
+      "gloss_de": "nachts, in der Nacht",
+      "forms": {
+        "base": {
+          "text": "но́чью",
+          "translit": "nóčju"
+        }
+      }
+    },
+    {
+      "id": "segodnja",
+      "lemma": "сего́дня",
+      "pos": "adv",
+      "gloss_de": "heute",
+      "forms": {
+        "base": {
+          "text": "сего́дня",
+          "translit": "sevódnja"
+        }
+      }
+    },
+    {
+      "id": "zavtra",
+      "lemma": "за́втра",
+      "pos": "adv",
+      "gloss_de": "morgen (der Tag danach)",
+      "forms": {
+        "base": {
+          "text": "за́втра",
+          "translit": "závtra"
+        }
+      }
+    },
+    {
+      "id": "kogda",
+      "lemma": "когда́",
+      "pos": "adv",
+      "gloss_de": "wann",
+      "forms": {
+        "base": {
+          "text": "когда́",
+          "translit": "kogdá"
+        }
+      }
+    },
+    {
+      "id": "vstavat",
+      "lemma": "встава́ть",
+      "pos": "verb",
+      "gloss_de": "aufstehen",
+      "forms": {
+        "inf": {
+          "text": "встава́ть",
+          "translit": "vstavát'"
+        },
+        "prs.1sg": {
+          "text": "встаю́",
+          "translit": "vstajú"
+        },
+        "prs.2sg": {
+          "text": "встаёшь",
+          "translit": "vstaješ'"
+        },
+        "prs.3sg": {
+          "text": "встаёт",
+          "translit": "vstajot"
+        },
+        "prs.1pl": {
+          "text": "встаём",
+          "translit": "vstajom"
+        },
+        "prs.2pl": {
+          "text": "встаёте",
+          "translit": "vstajote"
+        },
+        "prs.3pl": {
+          "text": "встаю́т",
+          "translit": "vstajút"
+        }
+      }
+    },
+    {
+      "id": "spat",
+      "lemma": "спать",
+      "pos": "verb",
+      "gloss_de": "schlafen",
+      "forms": {
+        "inf": {
+          "text": "спать",
+          "translit": "spat'"
+        },
+        "prs.1sg": {
+          "text": "сплю",
+          "translit": "splju"
+        },
+        "prs.2sg": {
+          "text": "спишь",
+          "translit": "spiš'"
+        },
+        "prs.3sg": {
+          "text": "спит",
+          "translit": "spit"
+        },
+        "prs.1pl": {
+          "text": "спим",
+          "translit": "spim"
+        },
+        "prs.2pl": {
+          "text": "спи́те",
+          "translit": "spíte"
+        },
+        "prs.3pl": {
+          "text": "спят",
+          "translit": "spjat"
+        }
+      }
+    },
+    {
+      "id": "zavtrakat",
+      "lemma": "за́втракать",
+      "pos": "verb",
+      "gloss_de": "frühstücken",
+      "forms": {
+        "inf": {
+          "text": "за́втракать",
+          "translit": "závtrakat'"
+        },
+        "prs.1sg": {
+          "text": "за́втракаю",
+          "translit": "závtrakaju"
+        },
+        "prs.2sg": {
+          "text": "за́втракаешь",
+          "translit": "závtrakaješ'"
+        },
+        "prs.3sg": {
+          "text": "за́втракает",
+          "translit": "závtrakajet"
+        },
+        "prs.1pl": {
+          "text": "за́втракаем",
+          "translit": "závtrakajem"
+        },
+        "prs.2pl": {
+          "text": "за́втракаете",
+          "translit": "závtrakajete"
+        },
+        "prs.3pl": {
+          "text": "за́втракают",
+          "translit": "závtrakajut"
+        }
+      }
+    },
+    {
+      "id": "obedat",
+      "lemma": "обе́дать",
+      "pos": "verb",
+      "gloss_de": "zu Mittag essen",
+      "forms": {
+        "inf": {
+          "text": "обе́дать",
+          "translit": "obédat'"
+        },
+        "prs.1sg": {
+          "text": "обе́даю",
+          "translit": "obédaju"
+        },
+        "prs.2sg": {
+          "text": "обе́даешь",
+          "translit": "obédaješ'"
+        },
+        "prs.3sg": {
+          "text": "обе́дает",
+          "translit": "obédajet"
+        },
+        "prs.1pl": {
+          "text": "обе́даем",
+          "translit": "obédajem"
+        },
+        "prs.2pl": {
+          "text": "обе́даете",
+          "translit": "obédajete"
+        },
+        "prs.3pl": {
+          "text": "обе́дают",
+          "translit": "obédajut"
+        }
+      }
+    },
+    {
+      "id": "uzhinat",
+      "lemma": "у́жинать",
+      "pos": "verb",
+      "gloss_de": "zu Abend essen",
+      "forms": {
+        "inf": {
+          "text": "у́жинать",
+          "translit": "úžinat'"
+        },
+        "prs.1sg": {
+          "text": "у́жинаю",
+          "translit": "úžinaju"
+        },
+        "prs.2sg": {
+          "text": "у́жинаешь",
+          "translit": "úžinaješ'"
+        },
+        "prs.3sg": {
+          "text": "у́жинает",
+          "translit": "úžinajet"
+        },
+        "prs.1pl": {
+          "text": "у́жинаем",
+          "translit": "úžinajem"
+        },
+        "prs.2pl": {
+          "text": "у́жинаете",
+          "translit": "úžinajete"
+        },
+        "prs.3pl": {
+          "text": "у́жинают",
+          "translit": "úžinajut"
+        }
+      }
+    },
+    {
+      "id": "obychno",
+      "lemma": "обы́чно",
+      "pos": "adv",
+      "gloss_de": "normalerweise",
+      "forms": {
+        "base": {
+          "text": "обы́чно",
+          "translit": "obýčno"
+        }
+      }
+    },
+    {
+      "id": "ponedelnik",
+      "lemma": "понеде́льник",
+      "pos": "noun",
+      "gloss_de": "der Montag",
+      "forms": {
+        "nom.sg": {
+          "text": "понеде́льник",
+          "translit": "ponedél'nik"
+        },
+        "acc.sg": {
+          "text": "понеде́льник",
+          "translit": "ponedél'nik"
+        }
+      }
+    },
+    {
+      "id": "vtornik",
+      "lemma": "вто́рник",
+      "pos": "noun",
+      "gloss_de": "der Dienstag",
+      "forms": {
+        "nom.sg": {
+          "text": "вто́рник",
+          "translit": "vtórnik"
+        },
+        "acc.sg": {
+          "text": "вто́рник",
+          "translit": "vtórnik"
+        }
+      }
+    },
+    {
+      "id": "sreda",
+      "lemma": "среда́",
+      "pos": "noun",
+      "gloss_de": "der Mittwoch",
+      "forms": {
+        "nom.sg": {
+          "text": "среда́",
+          "translit": "sredá"
+        },
+        "acc.sg": {
+          "text": "сре́ду",
+          "translit": "srédu"
+        }
+      }
+    },
+    {
+      "id": "chetverg",
+      "lemma": "четве́рг",
+      "pos": "noun",
+      "gloss_de": "der Donnerstag",
+      "forms": {
+        "nom.sg": {
+          "text": "четве́рг",
+          "translit": "četvérg"
+        },
+        "acc.sg": {
+          "text": "четве́рг",
+          "translit": "četvérg"
+        }
+      }
+    },
+    {
+      "id": "pjatnitsa",
+      "lemma": "пя́тница",
+      "pos": "noun",
+      "gloss_de": "der Freitag",
+      "forms": {
+        "nom.sg": {
+          "text": "пя́тница",
+          "translit": "pjátnica"
+        },
+        "acc.sg": {
+          "text": "пя́тницу",
+          "translit": "pjátnicu"
+        }
+      }
+    },
+    {
+      "id": "subbota",
+      "lemma": "суббо́та",
+      "pos": "noun",
+      "gloss_de": "der Samstag",
+      "forms": {
+        "nom.sg": {
+          "text": "суббо́та",
+          "translit": "subbóta"
+        },
+        "acc.sg": {
+          "text": "суббо́ту",
+          "translit": "subbótu"
+        }
+      }
+    },
+    {
+      "id": "voskresene",
+      "lemma": "воскресе́нье",
+      "pos": "noun",
+      "gloss_de": "der Sonntag",
+      "forms": {
+        "nom.sg": {
+          "text": "воскресе́нье",
+          "translit": "voskresén'je"
+        },
+        "acc.sg": {
+          "text": "воскресе́нье",
+          "translit": "voskresén'je"
+        }
+      }
+    },
+    {
+      "id": "vo",
+      "lemma": "во",
+      "pos": "prep",
+      "gloss_de": "in, an (vor вто́рник und Ähnlichem)",
+      "forms": {
+        "base": {
+          "text": "во",
+          "translit": "vo"
+        }
+      }
+    },
+    {
+      "id": "den",
+      "lemma": "день",
+      "pos": "noun",
+      "gloss_de": "der Tag",
+      "forms": {
+        "nom.sg": {
+          "text": "день",
+          "translit": "den'"
+        },
+        "acc.sg": {
+          "text": "день",
+          "translit": "den'"
+        }
+      }
+    },
+    {
+      "id": "snachala",
+      "lemma": "снача́ла",
+      "pos": "adv",
+      "gloss_de": "zuerst",
+      "forms": {
+        "base": {
+          "text": "снача́ла",
+          "translit": "snačála"
+        }
+      }
+    },
+    {
+      "id": "potom",
+      "lemma": "пото́м",
+      "pos": "adv",
+      "gloss_de": "dann, danach",
+      "forms": {
+        "base": {
+          "text": "пото́м",
+          "translit": "potóm"
+        }
+      }
+    },
+    {
+      "id": "vsegda",
+      "lemma": "всегда́",
+      "pos": "adv",
+      "gloss_de": "immer",
+      "forms": {
+        "base": {
+          "text": "всегда́",
+          "translit": "vsegdá"
+        }
+      }
+    },
+    {
+      "id": "inogda",
+      "lemma": "иногда́",
+      "pos": "adv",
+      "gloss_de": "manchmal",
+      "forms": {
+        "base": {
+          "text": "иногда́",
+          "translit": "inogdá"
+        }
+      }
+    },
+    {
+      "id": "dolgo",
+      "lemma": "до́лго",
+      "pos": "adv",
+      "gloss_de": "lange",
+      "forms": {
+        "base": {
+          "text": "до́лго",
+          "translit": "dólgo"
+        }
+      }
+    },
+    {
+      "id": "zavtrak",
+      "lemma": "за́втрак",
+      "pos": "noun",
+      "gloss_de": "das Frühstück",
+      "forms": {
+        "nom.sg": {
+          "text": "за́втрак",
+          "translit": "závtrak"
+        },
+        "acc.sg": {
+          "text": "за́втрак",
+          "translit": "závtrak"
+        }
+      }
+    },
+    {
+      "id": "obed",
+      "lemma": "обе́д",
+      "pos": "noun",
+      "gloss_de": "das Mittagessen",
+      "forms": {
+        "nom.sg": {
+          "text": "обе́д",
+          "translit": "obéd"
+        },
+        "acc.sg": {
+          "text": "обе́д",
+          "translit": "obéd"
+        }
+      }
+    },
+    {
+      "id": "uzhin",
+      "lemma": "у́жин",
+      "pos": "noun",
+      "gloss_de": "das Abendessen",
+      "forms": {
+        "nom.sg": {
+          "text": "у́жин",
+          "translit": "úžin"
+        },
+        "acc.sg": {
+          "text": "у́жин",
+          "translit": "úžin"
+        }
+      }
+    },
+    {
+      "id": "vykhodnoj",
+      "lemma": "выходно́й",
+      "pos": "noun",
+      "gloss_de": "der freie Tag",
+      "forms": {
+        "nom.sg": {
+          "text": "выходно́й",
+          "translit": "vychodnój"
+        },
+        "acc.sg": {
+          "text": "выходно́й",
+          "translit": "vychodnój"
+        }
+      }
+    },
+    {
+      "id": "skoro",
+      "lemma": "ско́ро",
+      "pos": "adv",
+      "gloss_de": "bald",
+      "forms": {
+        "base": {
+          "text": "ско́ро",
+          "translit": "skóro"
+        }
+      }
+    },
+    {
+      "id": "kazhdyj",
+      "lemma": "ка́ждый",
+      "pos": "adj",
+      "gloss_de": "jeder",
+      "forms": {
+        "nom.m": {
+          "text": "ка́ждый",
+          "translit": "káždyj"
+        },
+        "nom.f": {
+          "text": "ка́ждая",
+          "translit": "káždaja"
+        },
+        "nom.n": {
+          "text": "ка́ждое",
+          "translit": "káždoje"
+        },
+        "acc.m": {
+          "text": "ка́ждый",
+          "translit": "káždyj"
+        },
+        "acc.f": {
+          "text": "ка́ждую",
+          "translit": "kážduju"
+        },
+        "acc.n": {
+          "text": "ка́ждое",
+          "translit": "káždoje"
+        }
+      }
     }
   ]
 }

@@ -1,0 +1,344 @@
+{
+  "id": 39,
+  "stage": 2,
+  "title_de": "Wie spät ist es?",
+  "scenario_de": "Du fragst jemanden auf der Straße nach der Uhrzeit.",
+  "grammar_focus": {
+    "id": "clock-hours",
+    "title_de": "час, часа́, часо́в — die volle Stunde",
+    "explanation_de": "Die Frage lautet Ско́лько вре́мени? — wörtlich: wie viel Zeit. Die Antwort ist die Zahl plus час, und dabei kehrt das Muster wieder, das du von den Preisen und vom Alter kennst. Nach 1 steht час (сейча́с час — es ist ein Uhr), nach 2, 3 und 4 часа́, ab 5 часо́в. Also: два часа́, четы́ре часа́, пять часо́в, во́семь часо́в. Genau wie рубль, рубля́, рубле́й und год, го́да, лет. Die Minuten gehen mit demselben Muster: две мину́ты, пять мину́т.",
+    "primer": "genitiv"
+  },
+  "new_lexemes": [
+    "vremja",
+    "chas",
+    "sejchas",
+    "minuta",
+    "rano",
+    "pozdno"
+  ],
+  "exercises": [
+    {
+      "id": "39-1",
+      "type": "match_pairs",
+      "prompt_de": "Vier Wörter für die Uhrzeit.",
+      "pairs": [
+        [
+          "chas",
+          "nom.sg"
+        ],
+        [
+          "minuta",
+          "nom.sg"
+        ],
+        [
+          "vremja",
+          "nom.sg"
+        ],
+        [
+          "sejchas",
+          "base"
+        ]
+      ]
+    },
+    {
+      "id": "39-2",
+      "type": "match_pairs",
+      "prompt_de": "Früh, spät — und zwei alte Bekannte.",
+      "pairs": [
+        [
+          "rano",
+          "base"
+        ],
+        [
+          "pozdno",
+          "base"
+        ],
+        [
+          "uzhe",
+          "base"
+        ],
+        [
+          "ochen",
+          "base"
+        ]
+      ]
+    },
+    {
+      "id": "39-3",
+      "type": "build_sentence",
+      "prompt_de": "Wie spät ist es?",
+      "solution": [
+        [
+          "skolko",
+          "base"
+        ],
+        [
+          "vremja",
+          "gen.sg"
+        ]
+      ],
+      "distractors": [
+        [
+          "vremja",
+          "nom.sg"
+        ],
+        [
+          "chas",
+          "nom.sg"
+        ]
+      ]
+    },
+    {
+      "id": "39-4",
+      "type": "build_sentence",
+      "prompt_de": "Es ist jetzt zwei Uhr.",
+      "solution": [
+        [
+          "sejchas",
+          "base"
+        ],
+        [
+          "dva",
+          "nom.m"
+        ],
+        [
+          "chas",
+          "gen.sg"
+        ]
+      ],
+      "distractors": [
+        [
+          "chas",
+          "nom.sg"
+        ],
+        [
+          "chas",
+          "gen.pl"
+        ]
+      ]
+    },
+    {
+      "id": "39-5",
+      "type": "build_sentence",
+      "prompt_de": "Es ist jetzt fünf Uhr.",
+      "solution": [
+        [
+          "sejchas",
+          "base"
+        ],
+        [
+          "pjat",
+          "nom"
+        ],
+        [
+          "chas",
+          "gen.pl"
+        ]
+      ],
+      "distractors": [
+        [
+          "chas",
+          "gen.sg"
+        ],
+        [
+          "chas",
+          "nom.sg"
+        ]
+      ]
+    },
+    {
+      "id": "39-6",
+      "type": "choose_form",
+      "prompt_de": "Es ist jetzt ein Uhr.",
+      "sentence": [
+        [
+          "sejchas",
+          "base"
+        ],
+        "___"
+      ],
+      "answer": [
+        "chas",
+        "nom.sg"
+      ],
+      "distractor_forms": [
+        "gen.sg",
+        "gen.pl"
+      ]
+    },
+    {
+      "id": "39-7",
+      "type": "choose_form",
+      "prompt_de": "Es ist jetzt acht Uhr.",
+      "sentence": [
+        [
+          "sejchas",
+          "base"
+        ],
+        [
+          "vosem",
+          "nom"
+        ],
+        "___"
+      ],
+      "answer": [
+        "chas",
+        "gen.pl"
+      ],
+      "distractor_forms": [
+        "nom.sg",
+        "gen.sg"
+      ],
+      "audio_prompt": true
+    },
+    {
+      "id": "39-8",
+      "type": "build_sentence",
+      "prompt_de": "Es ist schon spät.",
+      "solution": [
+        [
+          "uzhe",
+          "base"
+        ],
+        [
+          "pozdno",
+          "base"
+        ]
+      ],
+      "distractors": [
+        [
+          "rano",
+          "base"
+        ],
+        [
+          "sejchas",
+          "base"
+        ]
+      ]
+    },
+    {
+      "id": "39-9",
+      "type": "build_sentence",
+      "prompt_de": "Fünf Minuten, bitte.",
+      "solution": [
+        [
+          "pjat",
+          "nom"
+        ],
+        [
+          "minuta",
+          "gen.pl"
+        ],
+        [
+          "pozhalujsta",
+          "base"
+        ]
+      ],
+      "distractors": [
+        [
+          "minuta",
+          "nom.sg"
+        ],
+        [
+          "chas",
+          "gen.pl"
+        ]
+      ]
+    },
+    {
+      "id": "39-10",
+      "type": "dialog_reply",
+      "prompt_de": "Jemand fragt dich nach der Uhrzeit.",
+      "tutor_line": [
+        [
+          "skolko",
+          "base"
+        ],
+        [
+          "vremja",
+          "gen.sg"
+        ]
+      ],
+      "correct_index": 0,
+      "options": [
+        {
+          "tokens": [
+            [
+              "sejchas",
+              "base"
+            ],
+            [
+              "tri",
+              "nom"
+            ],
+            [
+              "chas",
+              "gen.sg"
+            ]
+          ],
+          "why_de": ""
+        },
+        {
+          "tokens": [
+            [
+              "sejchas",
+              "base"
+            ],
+            [
+              "tri",
+              "nom"
+            ],
+            [
+              "chas",
+              "gen.pl"
+            ]
+          ],
+          "why_de": "часо́в kommt erst ab пять. Nach три heißt es часа́."
+        },
+        {
+          "tokens": [
+            [
+              "sejchas",
+              "base"
+            ],
+            [
+              "tri",
+              "nom"
+            ],
+            [
+              "chas",
+              "nom.sg"
+            ]
+          ],
+          "why_de": "Nach 2, 3 und 4 steht часа́ — три часа́."
+        }
+      ]
+    },
+    {
+      "id": "39-11",
+      "type": "listen_meaning",
+      "prompt_de": "Hör zu. Was wird gesagt?",
+      "sentence": [
+        [
+          "sejchas",
+          "base"
+        ],
+        [
+          "eshchjo",
+          "base"
+        ],
+        [
+          "rano",
+          "base"
+        ]
+      ],
+      "correct_index": 0,
+      "options_de": [
+        "Es ist jetzt noch früh.",
+        "Es ist jetzt schon spät.",
+        "Es ist jetzt fünf Uhr."
+      ]
+    }
+  ]
+}
