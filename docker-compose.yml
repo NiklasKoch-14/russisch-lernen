@@ -13,8 +13,10 @@ services:
       context: ./tts
       args:
         PIPER_VOICE: ${PIPER_VOICE:-ru_RU-denis-medium}
+        PIPER_VOICE_FEMALE: ${PIPER_VOICE_FEMALE:-ru_RU-irina-medium}
     environment:
       - PIPER_VOICE=${PIPER_VOICE:-ru_RU-denis-medium}
+      - PIPER_VOICE_FEMALE=${PIPER_VOICE_FEMALE:-ru_RU-irina-medium}
       - PIPER_LENGTH_SCALE=${PIPER_LENGTH_SCALE:-1.15}
       - PIPER_VOLUME=${PIPER_VOLUME:-1.0}
 
@@ -30,9 +32,11 @@ services:
       - CONTENT_DIR=/app/content/ru
       - GAME_DIR=/app/content/game
       - TTS_HOST=http://tts:5001
-      # Muss mit der Stimme des tts-Dienstes uebereinstimmen: der Wert geht in
-      # den Zwischenspeicher-Schluessel ein.
+      # Muessen mit den Stimmen des tts-Dienstes uebereinstimmen: die Werte gehen
+      # in den Zwischenspeicher-Schluessel ein. Zwei Stimmen, weil in den
+      # Hoergespraechen zwei Figuren miteinander reden.
       - PIPER_VOICE=${PIPER_VOICE:-ru_RU-denis-medium}
+      - PIPER_VOICE_FEMALE=${PIPER_VOICE_FEMALE:-ru_RU-irina-medium}
       - PIPER_LENGTH_SCALE=${PIPER_LENGTH_SCALE:-1.15}
       - AUDIO_CACHE_DIR=/data/audio
       - AUDIO_CACHE_MAX_MB=${AUDIO_CACHE_MAX_MB:-50}
