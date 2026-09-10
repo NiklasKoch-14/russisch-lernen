@@ -25,6 +25,12 @@ def _backend_environment() -> dict[str, str]:
     return dict(entry.split("=", 1) for entry in entries)
 
 
+def _tts_environment() -> dict[str, str]:
+    compose = yaml.safe_load((REPO / "docker-compose.yml").read_text(encoding="utf-8"))
+    entries = compose["services"]["tts"]["environment"]
+    return dict(entry.split("=", 1) for entry in entries)
+
+
 def _image_content_dir() -> str:
     """Wohin das Dockerfile `content/` kopiert — absolut, vom WORKDIR aus."""
     dockerfile = (REPO / "backend" / "Dockerfile").read_text(encoding="utf-8")
@@ -57,3 +63,19 @@ def test_die_gesetzten_verzeichnisse_gibt_es_auch_im_repo():
             assert (REPO / "content" / relative).is_dir(), (
                 f"{name}={value} zeigt auf content/{relative}, das es im Repo nicht gibt"
             )
+
+
+def test_beide_dienste_sprechen_mit_denselben_stimmen():
+    """Der Stimmname geht in den Zwischenspeicher-Schlüssel ein.
+
+    Laufen backend und tts auseinander, liefert der Zwischenspeicher Ton, der
+    mit einer anderen Stimme erzeugt wurde — und niemand merkt es, weil der
+    Schlüssel passt.
+    """
+    backend = _backend_environment()
+    tts = _tts_environment()
+    for name in ("PIPER_VOICE", "PIPER_VOICE_FEMALE"):
+        assert name in backend and name in tts, f"{name} fehlt bei einem der beiden Dienste"
+        assert backend[name] == tts[name], (
+            f"{name}: backend {backend[name]!r} gegen tts {tts[name]!r}"
+        )

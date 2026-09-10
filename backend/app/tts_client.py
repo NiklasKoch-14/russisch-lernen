@@ -24,10 +24,13 @@ class TtsClient:
         with httpx.Client(transport=self._transport, timeout=timeout) as client:
             return client.request(method, f"{self._host}{path}", **kwargs)
 
-    def synthesize(self, text: str) -> bytes:
+    def synthesize(self, text: str, voice: str = "m") -> bytes:
         try:
             response = self._request(
-                "POST", "/synthesize", timeout=self._timeout, json={"text": text}
+                "POST",
+                "/synthesize",
+                timeout=self._timeout,
+                json={"text": text, "voice": voice},
             )
             response.raise_for_status()
         except httpx.HTTPError as exc:

@@ -1,6 +1,7 @@
 import datetime as dt
 from pathlib import Path
 from sqlite3 import Connection
+from typing import Literal
 
 from fastapi import APIRouter, Depends, HTTPException, Query, Response
 from fastapi.responses import FileResponse
@@ -304,6 +305,11 @@ def explain(
 AUDIO_MAX_CHARS = 300
 AUDIO_CACHE_HEADER = "public, max-age=31536000, immutable"
 
+# Welche Rolle welches Piper-Modell spricht. Der Inhalt kennt nur `m` und `f`;
+# das Modell steht in der Konfiguration und muss mit dem tts-Dienst
+# uebereinstimmen, weil es in den Zwischenspeicher-Schluessel eingeht.
+VOICE_MODELS = {"m": settings.piper_voice, "f": settings.piper_voice_female}
+
 
 @router.get("/audio/health")
 def audio_health(tts: TtsClient = Depends(get_tts)) -> dict:
@@ -314,6 +320,7 @@ def audio_health(tts: TtsClient = Depends(get_tts)) -> dict:
 @router.get("/audio")
 def audio(
     text: str = Query(...),
+    voice: Literal["m", "f"] = Query("m"),
     tts: TtsClient = Depends(get_tts),
     cache: AudioCache = Depends(get_audio_cache),
 ) -> Response:
@@ -332,13 +339,13 @@ def audio(
 
     key = audio_key(
         cleaned,
-        voice=settings.piper_voice,
+        voice=VOICE_MODELS[voice],
         length_scale=settings.piper_length_scale,
     )
     data = cache.get(key)
     if data is None:
         try:
-            data = tts.synthesize(cleaned)
+            data = tts.synthesize(cleaned, voice=voice)
         except TtsUnavailable as exc:
             raise HTTPException(
                 status_code=503, detail="Sprachdienst nicht erreichbar"

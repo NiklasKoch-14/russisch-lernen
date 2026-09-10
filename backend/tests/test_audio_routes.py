@@ -13,9 +13,11 @@ class FakeTts:
         self._healthy = healthy
         self._fail = fail
         self.texts: list[str] = []
+        self.voices: list[str] = []
 
-    def synthesize(self, text: str) -> bytes:
+    def synthesize(self, text: str, voice: str = "m") -> bytes:
         self.texts.append(text)
+        self.voices.append(voice)
         if self._fail:
             raise TtsUnavailable("kein Dienst")
         return b"RIFF" + text.encode("utf-8")
@@ -106,3 +108,40 @@ def test_health_meldet_verfuegbar(client):
 def test_health_meldet_nicht_verfuegbar(client):
     _use(FakeTts(healthy=False))
     assert client.get("/api/audio/health").json() == {"available": False}
+
+
+def test_reicht_die_stimme_an_den_dienst_weiter(client):
+    tts = FakeTts()
+    _use(tts)
+    client.get("/api/audio", params={"text": "дом", "voice": "f"})
+    assert tts.voices == ["f"]
+
+
+def test_ohne_angabe_spricht_die_maennliche_stimme(client):
+    tts = FakeTts()
+    _use(tts)
+    client.get("/api/audio", params={"text": "дом"})
+    assert tts.voices == ["m"]
+
+
+def test_die_stimmen_teilen_sich_den_zwischenspeicher_nicht(client):
+    # Sonst antwortete die zweite Figur mit der Stimme der ersten.
+    tts = FakeTts()
+    _use(tts)
+    client.get("/api/audio", params={"text": "дом", "voice": "m"})
+    client.get("/api/audio", params={"text": "дом", "voice": "f"})
+    assert len(tts.texts) == 2
+
+
+def test_der_schluessel_traegt_das_modell_der_stimme(client, cache):
+    _use(FakeTts())
+    client.get("/api/audio", params={"text": "дом", "voice": "f"})
+    key = audio_key(
+        "дом", voice=settings.piper_voice_female, length_scale=settings.piper_length_scale
+    )
+    assert cache.get(key) is not None
+
+
+def test_unbekannte_stimme_wird_abgelehnt(client):
+    _use(FakeTts())
+    assert client.get("/api/audio", params={"text": "дом", "voice": "x"}).status_code == 422

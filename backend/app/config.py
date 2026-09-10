@@ -21,6 +21,7 @@ class Settings:
     # Gehen in den Zwischenspeicher-Schluessel ein und muessen deshalb mit den
     # Werten des tts-Dienstes uebereinstimmen.
     piper_voice: str = os.environ.get("PIPER_VOICE", "ru_RU-denis-medium")
+    piper_voice_female: str = os.environ.get("PIPER_VOICE_FEMALE", "ru_RU-irina-medium")
     piper_length_scale: float = float(os.environ.get("PIPER_LENGTH_SCALE", "1.15"))
 
 
