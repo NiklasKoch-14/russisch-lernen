@@ -103,6 +103,9 @@ Das ist die zentrale Designentscheidung, weil sie drei Dinge gleichzeitig ermög
 }
 ```
 
+Optional ist `"morph_check": false` für Wörter, die das russische Wörterbuch nicht kennt (Namen,
+seltene Lehnwörter) — sie sind dann von Regel 12 in Abschnitt 9 ausgenommen.
+
 Erlaubte `form_key`-Werte je Wortart (kontrolliertes Vokabular, vom Validator erzwungen):
 
 | Wortart | Schlüssel |
@@ -346,6 +349,13 @@ lokale Testläufe Inhaltsfehler fangen. Geprüfte Regeln:
 10. Jede `screening.json`-Sonde verweist auf eine existierende Einheit.
 11. Jeder in `grammar_focus.primer` genannte Primer existiert in `primers.json`, und jeder
     Primer hat einen nichtleeren Titel und Text.
+12. Jede Form eines Substantivs, Verbs, Adjektivs, Pronomens oder Zahlworts steht so im
+    russischen Wörterbuch (pymorphy3 mit OpenCorpora): mit den Merkmalen ihres Schlüssels und als
+    Form desselben Wortes wie die Grundform. Die Meldung nennt, was das Wörterbuch stattdessen
+    bilden würde. Mehrwortformen („бу́ду де́лать") bleiben ungeprüft, die Betonung ebenso. Wörter,
+    die das Wörterbuch nicht kennt, bekommen im Lexikon `"morph_check": false`. Die Prüfung steckt
+    in `content/morphology.py` und läuft in `make validate` und `test_real_content.py`, nicht in
+    `validate_course` — die Tests mit erfundenen Mini-Lexika kennt kein Wörterbuch.
 
 ## 10. Testing
 

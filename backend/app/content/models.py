@@ -21,6 +21,8 @@ class Lexeme:
     forms: dict[str, Form]
     aspect: str | None = None
     aspect_pair: str | None = None
+    morph_check: bool = True
+    """False für Wörter, die das Wörterbuch nicht kennt — Namen, seltene Lehnwörter."""
 
 
 @dataclass(frozen=True)

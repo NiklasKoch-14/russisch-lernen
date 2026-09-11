@@ -35,6 +35,11 @@ def _lexeme(raw: dict) -> Lexeme:
             )
             for key, value in raw["forms"].items()
         }
+        morph_check = raw.get("morph_check", True)
+        if not isinstance(morph_check, bool):
+            raise ContentError(
+                f"Lexem {raw['id']!r}: morph_check muss true oder false sein, nicht {morph_check!r}"
+            )
         return Lexeme(
             id=raw["id"],
             lemma=raw["lemma"],
@@ -43,6 +48,7 @@ def _lexeme(raw: dict) -> Lexeme:
             forms=forms,
             aspect=raw.get("aspect"),
             aspect_pair=raw.get("aspect_pair"),
+            morph_check=morph_check,
         )
     except (KeyError, TypeError) as exc:
         raise ContentError(f"Lexem unvollständig: {raw.get('id', raw)!r} ({exc})") from exc

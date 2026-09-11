@@ -1,6 +1,7 @@
 from pathlib import Path
 
 from app.content.loader import load_course
+from app.content.morphology import check_morphology
 from app.content.validator import validate_course
 
 CONTENT_DIR = Path(__file__).resolve().parents[2] / "content" / "ru"
@@ -8,6 +9,12 @@ CONTENT_DIR = Path(__file__).resolve().parents[2] / "content" / "ru"
 
 def test_shipped_content_passes_every_validation_rule():
     assert validate_course(load_course(CONTENT_DIR)) == []
+
+
+def test_jede_wortform_steht_so_im_woerterbuch():
+    # Eigene Pruefung neben dem Validator: der laeuft auch auf den erfundenen
+    # Mini-Lexika der anderen Tests, und die kennt kein Woerterbuch.
+    assert check_morphology(load_course(CONTENT_DIR)) == []
 
 
 def test_shipped_content_has_gapless_unit_ids():

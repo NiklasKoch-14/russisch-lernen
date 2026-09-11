@@ -3,6 +3,7 @@ import sys
 from pathlib import Path
 
 from app.content.loader import ContentError, load_course
+from app.content.morphology import check_morphology
 from app.content.validator import validate_course
 from app.game.loader import load_village
 from app.game.validator import validate_village
@@ -22,7 +23,11 @@ def main(argv: list[str]) -> int:
         print(f"FEHLER beim Laden: {exc}")
         return 2
 
-    errors = validate_course(course) + validate_village(course, village, game_dir / "art")
+    errors = (
+        validate_course(course)
+        + check_morphology(course)
+        + validate_village(course, village, game_dir / "art")
+    )
     if errors:
         print(f"{len(errors)} Problem(e) in {content_dir.parent}:")
         for error in errors:

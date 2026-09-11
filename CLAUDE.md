@@ -79,7 +79,9 @@ Pfad durch den Code: `content/loader.py` → `content/models.py` (eingefrorene D
 Verstöße als deutsche Meldungen ein, statt beim ersten abzubrechen.
 
 **Der Validator prüft Struktur, Betonung und Vokabelreihenfolge — nicht, ob ein russischer Satz
-grammatisch stimmt.** Das bleibt Handarbeit. Nach dem Schreiben neuer Einheiten die Sätze im
+grammatisch stimmt.** Das bleibt Handarbeit. Ob die einzelnen Formen im Lexikon richtig gebildet
+sind, prüft `content/morphology.py` gegen das Wörterbuch von pymorphy3 (in `make validate`, nicht
+in `validate_course`); unbekannte Namen bekommen `"morph_check": false`. Nach dem Schreiben neuer Einheiten die Sätze im
 Klartext rendern und Form für Form gegenlesen.
 
 ### Aufgaben: Lösungen verlassen den Server nie
