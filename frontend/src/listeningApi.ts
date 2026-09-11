@@ -23,3 +23,26 @@ export const answerDialog = (dialogId: number, seed: string, optionIndex: number
     method: "POST",
     body: JSON.stringify({ seed, option_index: optionIndex }),
   });
+
+/** Das Gespräch als eine fertig geladene Tonspur. */
+export interface DialogTrack {
+  /** Blob-URL — der Aufrufer gibt sie mit `URL.revokeObjectURL` wieder frei. */
+  url: string;
+  /** Wann jede Zeile beginnt, in Sekunden. */
+  starts: number[];
+}
+
+/**
+ * Lädt das ganze Gespräch als eine Datei, bevor es spielt. Aus einem fertigen
+ * Blob gespielt, reißt nichts ab, und die Länge steht vorab fest.
+ */
+export async function loadDialogTrack(dialogId: number): Promise<DialogTrack> {
+  const response = await fetch(`${API_BASE_URL}/api/listening/${dialogId}/audio`);
+  if (!response.ok) throw new Error(`Tonspur nicht verfügbar: ${response.status}`);
+  const starts = (response.headers.get("X-Line-Starts") ?? "")
+    .split(",")
+    .filter((value) => value.trim() !== "")
+    .map(Number);
+  const blob = await response.blob();
+  return { url: URL.createObjectURL(blob), starts };
+}

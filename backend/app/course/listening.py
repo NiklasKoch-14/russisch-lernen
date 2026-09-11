@@ -72,6 +72,12 @@ def shuffled_options(dialog: Dialog, seed: str) -> list[str]:
     return [dialog.options_de[position] for position in _option_order(dialog, seed)]
 
 
+def line_text(course: Course, line) -> str:
+    """Der Satz einer Zeile — derselbe für Anzeige und Ton, damit der
+    Zwischenspeicher die Sätze wiedererkennt."""
+    return " ".join(course.form(token).text for token in line.tokens)
+
+
 def dialog_payload(course: Course, dialog: Dialog, seed: str) -> dict:
     """Was der Client bekommt: genug zum Hören, nichts zum Antworten."""
     return {
@@ -84,7 +90,7 @@ def dialog_payload(course: Course, dialog: Dialog, seed: str) -> dict:
         "lines": [
             {
                 "speaker": line.speaker,
-                "text": " ".join(course.form(token).text for token in line.tokens),
+                "text": line_text(course, line),
                 "translit": " ".join(course.form(token).translit for token in line.tokens),
             }
             for line in dialog.lines

@@ -77,6 +77,11 @@ export async function prefetchAudio(text: string, voice?: Voice): Promise<void> 
   }
 }
 
+/**
+ * Spielt einen Satz und kehrt zurück, wenn er zu Ende ist — oder abgebrochen
+ * wurde. Früher meldete sie sich schon beim Start (so hält es `audio.play()`);
+ * wer Zeilen nacheinander abspielte, brach damit jede durch die nächste ab.
+ */
 export async function playAudio(
   text: string,
   options?: { slow?: boolean; voice?: Voice },
@@ -99,6 +104,13 @@ export async function playAudio(
   audio.addEventListener("ended", release);
   audio.addEventListener("error", release);
 
+  // Auch ein Abbruch beendet den Satz — sonst wartete, wer auf ihn wartet, ewig.
+  const finished = new Promise<void>((resolve) => {
+    for (const type of ["ended", "pause", "error"]) {
+      audio.addEventListener(type, () => resolve());
+    }
+  });
+
   stopAudio();
   playing = audio;
 
@@ -108,6 +120,7 @@ export async function playAudio(
     release();
     throw error;
   }
+  await finished;
 }
 
 export async function serverAudioAvailable(): Promise<boolean> {

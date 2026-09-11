@@ -28,6 +28,8 @@ test.describe("Hörgespräche", () => {
     await expect(page.getByText("Sehr angenehm!")).toHaveCount(0);
     await expect(page.getByText("Worum ging es?")).toHaveCount(0);
 
+    // Das Gespräch kommt als eine vorab geladene Spur, mit Balken für die Restzeit.
+    await expect(page.getByRole("progressbar", { name: "Fortschritt des Gesprächs" })).toBeVisible();
     await page.getByRole("button", { name: /Abspielen/ }).click();
     await expect(page.getByText("Worum ging es?")).toBeVisible();
 

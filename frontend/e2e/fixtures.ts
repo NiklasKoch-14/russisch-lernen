@@ -76,6 +76,20 @@ export async function stubServerAudio(page: Page, available: boolean): Promise<v
       ? route.fulfill({ body: TINY_WAV, contentType: "audio/wav" })
       : route.fulfill({ status: 503, json: { detail: "Sprachdienst nicht erreichbar" } }),
   );
+  // Hörgespräche kommen als eine Spur. Drei Startzeiten passen zu den
+  // Gesprächen der Suite; wer spricht, zeigt der Player danach.
+  await page.route("**/api/listening/*/audio", (route) =>
+    available
+      ? route.fulfill({
+          body: TINY_WAV,
+          contentType: "audio/wav",
+          headers: {
+            "X-Line-Starts": "0,0.01,0.02",
+            "Access-Control-Expose-Headers": "X-Line-Starts",
+          },
+        })
+      : route.fulfill({ status: 503, json: { detail: "Sprachdienst nicht erreichbar" } }),
+  );
 }
 
 /**

@@ -63,16 +63,22 @@ export function speak(
   voice: SpeechSynthesisVoice,
   rate: number = NORMAL_RATE,
   onError?: (code: string) => void,
-): void {
+): Promise<void> {
   speechSynthesis.cancel();
   const utterance = new SpeechSynthesisUtterance(stripStress(text));
   utterance.voice = voice;
   utterance.lang = voice.lang;
   utterance.rate = rate;
-  utterance.onerror = (event) => {
-    const code = event.error ?? "unbekannt";
-    if (HARMLESS_ERRORS.has(code)) return;
-    onError?.(code);
-  };
-  speechSynthesis.speak(utterance);
+  // Zurück erst am Ende des Satzes (oder bei Abbruch/Fehler) — wer Zeilen
+  // nacheinander spricht, muss darauf warten koennen.
+  return new Promise<void>((resolve) => {
+    utterance.onend = () => resolve();
+    utterance.onerror = (event) => {
+      resolve();
+      const code = event.error ?? "unbekannt";
+      if (HARMLESS_ERRORS.has(code)) return;
+      onError?.(code);
+    };
+    speechSynthesis.speak(utterance);
+  });
 }

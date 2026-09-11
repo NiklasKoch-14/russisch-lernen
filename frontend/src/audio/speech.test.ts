@@ -164,3 +164,40 @@ describe("speak meldet Fehler", () => {
     expect(onError).toHaveBeenCalledWith("synthesis-failed");
   });
 });
+
+describe("speak wartet auf das Ende", () => {
+  const stubSynthesis = () => {
+    let spoken: { onend?: () => void; onerror?: (e: { error: string }) => void } | null = null;
+    vi.stubGlobal("speechSynthesis", {
+      cancel: vi.fn(),
+      speak: (u: typeof spoken) => {
+        spoken = u;
+      },
+      getVoices: () => [],
+    });
+    vi.stubGlobal("SpeechSynthesisUtterance", FakeUtterance);
+    return () => spoken!;
+  };
+
+  it("kehrt erst zurück, wenn der Satz gesprochen ist", async () => {
+    const spoken = stubSynthesis();
+    let fertig = false;
+    const ausgabe = speak("дом", voice("ru-RU")).then(() => {
+      fertig = true;
+    });
+    await Promise.resolve();
+    expect(fertig).toBe(false);
+
+    spoken().onend!();
+    await ausgabe;
+    expect(fertig).toBe(true);
+  });
+
+  it("kehrt auch nach einem Abbruch zurück — sonst hinge das Gespräch", async () => {
+    const spoken = stubSynthesis();
+    const ausgabe = speak("дом", voice("ru-RU"));
+    spoken().onerror!({ error: "interrupted" });
+    await expect(ausgabe).resolves.toBeUndefined();
+  });
+});
+

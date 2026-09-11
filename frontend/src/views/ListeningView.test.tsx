@@ -73,6 +73,9 @@ describe("ListeningView", () => {
     stimme(true);
     vi.spyOn(api, "getNextDialog").mockResolvedValue(gespraech);
     vi.spyOn(api, "answerDialog").mockResolvedValue(ergebnis);
+    // Die Tonspur prüft DialogPlayer.test.tsx; hier läuft das Gespräch Zeile
+    // für Zeile, damit die Tests sehen, was gesprochen wird.
+    vi.spyOn(api, "loadDialogTrack").mockRejectedValue(new Error("keine Spur im Test"));
   });
 
   it("zeigt vor der Antwort keinen russischen Text", async () => {

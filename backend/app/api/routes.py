@@ -35,6 +35,7 @@ from app.api.schemas import (
     VocabCardResponse,
 )
 from app.audio.cache import AudioCache, audio_key, strip_stress
+from app.audio.track import join_wavs
 from app.config import settings
 from app.content.models import Course
 from app.course import flashcards as flashcards_module
@@ -327,6 +328,24 @@ def audio_health(tts: TtsClient = Depends(get_tts)) -> dict:
     return {"available": tts.healthy()}
 
 
+def _sentence_audio(text: str, voice: str, tts: TtsClient, cache: AudioCache) -> bytes:
+    """Ein Satz als WAV — aus dem Zwischenspeicher oder frisch von Piper."""
+    # Gemessen: derselbe Satz mit U+0301 ergibt bei Piper eine andere, laengere
+    # Ausgabe. Entfernen macht ausserdem den Schluessel unabhaengig davon, ob der
+    # Client die Zeichen mitschickt.
+    cleaned = strip_stress(text)
+    key = audio_key(cleaned, voice=VOICE_MODELS[voice], length_scale=settings.piper_length_scale)
+    data = cache.get(key)
+    if data is None:
+        data = tts.synthesize(cleaned, voice=voice)
+        cache.put(key, data)
+    return data
+
+
+DIALOG_PAUSE_SECONDS = 0.6
+"""Stille zwischen zwei Zeilen eines Hörgesprächs — Zeit für den Sprecherwechsel."""
+
+
 @router.get("/audio")
 def audio(
     text: str = Query(...),
@@ -341,26 +360,10 @@ def audio(
         raise HTTPException(
             status_code=400, detail=f"Text länger als {AUDIO_MAX_CHARS} Zeichen"
         )
-
-    # Gemessen: derselbe Satz mit U+0301 ergibt bei Piper eine andere, laengere
-    # Ausgabe. Entfernen macht ausserdem den Schluessel unabhaengig davon, ob der
-    # Client die Zeichen mitschickt.
-    cleaned = strip_stress(cleaned)
-
-    key = audio_key(
-        cleaned,
-        voice=VOICE_MODELS[voice],
-        length_scale=settings.piper_length_scale,
-    )
-    data = cache.get(key)
-    if data is None:
-        try:
-            data = tts.synthesize(cleaned, voice=voice)
-        except TtsUnavailable as exc:
-            raise HTTPException(
-                status_code=503, detail="Sprachdienst nicht erreichbar"
-            ) from exc
-        cache.put(key, data)
+    try:
+        data = _sentence_audio(cleaned, voice, tts, cache)
+    except TtsUnavailable as exc:
+        raise HTTPException(status_code=503, detail="Sprachdienst nicht erreichbar") from exc
 
     return Response(
         content=data,
@@ -500,6 +503,41 @@ def listening_next(
         )
     dialog, seed = picked
     return ListeningNextResponse(**listening_module.dialog_payload(course, dialog, seed))
+
+
+@router.get("/listening/{dialog_id}/audio")
+def listening_audio(
+    dialog_id: int,
+    course: Course = Depends(get_course),
+    tts: TtsClient = Depends(get_tts),
+    cache: AudioCache = Depends(get_audio_cache),
+) -> Response:
+    """Das ganze Gespräch als eine Tonspur, jede Zeile in der Stimme ihrer Figur.
+
+    `X-Line-Starts` sagt, bei welcher Sekunde jede Zeile beginnt — daran sieht
+    der Player, wer gerade spricht. Den Text verrät die Spur nicht.
+    """
+    dialog = course.dialogs.get(dialog_id)
+    if dialog is None:
+        raise HTTPException(status_code=404, detail=f"Gespräch {dialog_id} gibt es nicht")
+    try:
+        parts = [
+            _sentence_audio(
+                listening_module.line_text(course, line),
+                dialog.speakers[line.speaker].voice,
+                tts,
+                cache,
+            )
+            for line in dialog.lines
+        ]
+    except TtsUnavailable as exc:
+        raise HTTPException(status_code=503, detail="Sprachdienst nicht erreichbar") from exc
+    track, starts = join_wavs(parts, pause_seconds=DIALOG_PAUSE_SECONDS)
+    return Response(
+        content=track,
+        media_type="audio/wav",
+        headers={"X-Line-Starts": ",".join(f"{start:.3f}" for start in starts)},
+    )
 
 
 @router.post("/listening/{dialog_id}/answer", response_model=ListeningAnswerResponse)

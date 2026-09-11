@@ -12,6 +12,8 @@ app.add_middleware(
     allow_origins=["*"],
     allow_methods=["*"],
     allow_headers=["*"],
+    # Sonst sieht fetch() im Browser die Startzeiten der Gesprächszeilen nicht.
+    expose_headers=["X-Line-Starts"],
 )
 
 app.include_router(router)

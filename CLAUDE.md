@@ -117,6 +117,12 @@ in `audio/cache.py` zwischenspeichert (Verdrängung nach längster Nichtbenutzun
 Stimme und Tempo gehen in den Zwischenspeicher-Schlüssel ein — `PIPER_VOICE` und
 `PIPER_LENGTH_SCALE` müssen deshalb in `backend` und `tts` übereinstimmen, siehe `docker-compose.yml`.
 
+Hörgespräche kommen als **eine** Tonspur (`GET /api/listening/{id}/audio`, `audio/track.py`): der
+Server setzt die Zeilen in den Stimmen ihrer Figuren mit kurzer Pause zusammen, `X-Line-Starts`
+sagt, wann jede beginnt. Der Player lädt sie vorab und zeigt die Restzeit. Ohne Piper spricht die
+Browserstimme Zeile für Zeile — `say()` kehrt erst am Ende eines Satzes zurück; meldete es sich
+schon beim Start, bräche jede Zeile die vorige ab.
+
 Der Richtig-Klang (`audio/chime.ts`, über `useChime()`) erzeugt der Browser per Web Audio und
 hängt nicht an Piper; der Ton-Schalter in der Kopfzeile schaltet Vorlesen und Klang gemeinsam.
 

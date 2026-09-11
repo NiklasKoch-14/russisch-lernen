@@ -15,6 +15,9 @@ class FakeAudio {
   preservesPitch = true;
   static lastInstance: FakeAudio | null = null;
   static shouldFail = false;
+  /** Spielt von selbst zu Ende — wie ein kurzer Satz. Aus, wenn ein Test den
+   *  Satz mitten im Abspielen braucht. */
+  static autoEnd = true;
 
   constructor(src: string) {
     this.src = src;
@@ -27,8 +30,12 @@ class FakeAudio {
     (this.handlers[type] ??= []).push(handler);
   }
 
+  private fire(type: string) {
+    (this.handlers[type] ?? []).forEach((handler) => handler());
+  }
+
   fireEnded() {
-    (this.handlers.ended ?? []).forEach((handler) => handler());
+    this.fire("ended");
   }
 
   paused = false;
@@ -36,16 +43,20 @@ class FakeAudio {
 
   pause() {
     this.paused = true;
+    this.fire("pause");
   }
 
   play(): Promise<void> {
-    return FakeAudio.shouldFail ? Promise.reject(new Error("blockiert")) : Promise.resolve();
+    if (FakeAudio.shouldFail) return Promise.reject(new Error("blockiert"));
+    if (FakeAudio.autoEnd) queueMicrotask(() => this.fireEnded());
+    return Promise.resolve();
   }
 }
 
 afterEach(() => {
   vi.unstubAllGlobals();
   FakeAudio.shouldFail = false;
+  FakeAudio.autoEnd = true;
   FakeAudio.lastInstance = null;
   // Die Ablage liegt auf Modulebene und wuerde sonst in den naechsten Test lecken.
   clearAudioCache();
@@ -163,7 +174,6 @@ describe("ein Abruf statt zwei", () => {
     vi.stubGlobal("URL", { createObjectURL: () => "blob:x", revokeObjectURL: revoke });
 
     await playAudio("дом");
-    FakeAudio.lastInstance?.fireEnded();
 
     expect(revoke).toHaveBeenCalledWith("blob:x");
   });
@@ -178,16 +188,38 @@ describe("ein Abruf statt zwei", () => {
 describe("nur eine Wiedergabe zur Zeit", () => {
   it("stoppt die laufende Ausgabe, bevor die nächste startet", async () => {
     stubBlobPlayback();
-    await playAudio("дом");
+    FakeAudio.autoEnd = false;
+    const ersteAusgabe = playAudio("дом");
+    await vi.waitFor(() => expect(FakeAudio.lastInstance).not.toBeNull());
     const erste = FakeAudio.lastInstance!;
 
-    await playAudio("дом");
+    void playAudio("дом");
+    // Die abgebrochene Ausgabe meldet sich als beendet — sonst hinge, wer auf sie wartet.
+    await ersteAusgabe;
 
     // Ohne das ueberlagern sich Autoplay und Lautsprecherklick — das klingt
     // wie Stocken mitten im Satz.
     expect(erste.paused).toBe(true);
     expect(erste.currentTime).toBe(0);
-    expect(FakeAudio.lastInstance).not.toBe(erste);
+    await vi.waitFor(() => expect(FakeAudio.lastInstance).not.toBe(erste));
+  });
+
+  it("kehrt erst zurück, wenn der Satz zu Ende ist", async () => {
+    // Genau das fehlte beim Hörgespräch: meldete sich playAudio schon beim
+    // Start, brach jede Zeile die vorige ab, und nur die letzte war zu hören.
+    stubBlobPlayback();
+    FakeAudio.autoEnd = false;
+    let fertig = false;
+    const ausgabe = playAudio("дом").then(() => {
+      fertig = true;
+    });
+    await vi.waitFor(() => expect(FakeAudio.lastInstance).not.toBeNull());
+    await Promise.resolve();
+    expect(fertig).toBe(false);
+
+    FakeAudio.lastInstance!.fireEnded();
+    await ausgabe;
+    expect(fertig).toBe(true);
   });
 });
 

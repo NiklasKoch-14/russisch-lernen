@@ -15,7 +15,8 @@ interface SpeechValue {
   source: SpeechSource;
   autoplay: boolean;
   setAutoplay: (value: boolean) => void;
-  /** `voice` waehlt die Figur; ohne Server spricht dieselbe Browserstimme alle Rollen. */
+  /** `voice` waehlt die Figur; ohne Server spricht dieselbe Browserstimme alle Rollen.
+   *  Kehrt zurueck, wenn der Satz zu Ende ist oder abgebrochen wurde. */
   say: (text: string, options?: { slow?: boolean; voice?: Voice }) => Promise<void>;
   /** Fehlercode der letzten Sprachausgabe, sonst null. */
   lastError: string | null;
@@ -101,7 +102,7 @@ export function SpeechProvider({ children }: { children: ReactNode }) {
       }
 
       if (!voice) return;
-      speak(text, voice, options?.slow ? SLOW_RATE : NORMAL_RATE, setLastError);
+      await speak(text, voice, options?.slow ? SLOW_RATE : NORMAL_RATE, setLastError);
     },
     [serverOk, voice],
   );

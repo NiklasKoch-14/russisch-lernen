@@ -61,6 +61,9 @@ Wiederholung sie am häufigsten braucht.
 Antwortet der Piper-Container nicht, spricht die Stimme des Browsers; fehlt auch die, zeigen
 Hör-Aufgaben ihre Textfassung. Keine Einheit wird dadurch unlösbar.
 
+Hörgespräche kommen als eine durchgehende Tonspur, die vorab ganz geladen wird; ein Balken zeigt,
+wie lange das Gespräch noch dauert.
+
 Nach einer richtigen Antwort klingt ein kurzer Zweiklang, den der Browser selbst erzeugt (Web Audio,
 keine Tondatei). Bei falschen Antworten bleibt es bewusst still. Der 🔊-Schalter in der Kopfzeile
 steuert Vorlesen und Klang zusammen.

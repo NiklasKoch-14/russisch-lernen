@@ -85,6 +85,7 @@ export default function ListeningView() {
       </div>
 
       <DialogPlayer
+        dialogId={dialog.dialog_id}
         speakers={dialog.speakers}
         lines={dialog.lines}
         onFinished={() => setGehoert(true)}
