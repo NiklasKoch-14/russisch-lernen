@@ -2,14 +2,19 @@ import { useSpeech } from "./SpeechContext";
 
 /**
  * Sitzt in der Kopfzeile, weil man ihn situativ braucht: im Zug still lernen,
- * zu Hause mit Ton. Er steuert nur das automatische Abspielen — Hör-Aufgaben
+ * zu Hause mit Ton. Er steuert das automatische Vorlesen und den Richtig-Klang
+ * zusammen — „App ist still" soll ein einziger Griff sein. Hör-Aufgaben
  * bleiben Hör-Aufgaben und lassen sich weiter über den Lautsprecher anhören.
+ *
+ * Gesperrt wird er nie: den Klang erzeugt der Browser selbst, auch wenn keine
+ * russische Stimme da ist — dann muss er sich trotzdem abschalten lassen.
  */
 export default function AutoplayToggle() {
   const { available, autoplay, setAutoplay } = useSpeech();
-  const label = autoplay
-    ? "Automatisches Vorlesen ausschalten"
-    : "Automatisches Vorlesen einschalten";
+  const label = autoplay ? "Ton ausschalten" : "Ton einschalten";
+  const title = available
+    ? `${label} — Vorlesen und Klänge`
+    : `${label} — Keine russische Stimme gefunden, es geht nur um die Klänge`;
 
   return (
     <button
@@ -19,10 +24,9 @@ export default function AutoplayToggle() {
       role="switch"
       aria-label={label}
       aria-checked={autoplay}
-      title={available ? label : "Keine russische Stimme gefunden"}
-      disabled={!available}
+      title={title}
       onClick={() => setAutoplay(!autoplay)}
-      className="rounded-full border border-slate-300 px-2 py-1 transition hover:border-sky-400 disabled:opacity-40"
+      className="rounded-full border border-slate-300 px-2 py-1 transition hover:border-sky-400"
     >
       {autoplay ? "🔊" : "🔇"}
     </button>

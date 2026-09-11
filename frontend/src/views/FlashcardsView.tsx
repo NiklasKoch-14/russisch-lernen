@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useState } from "react";
 
+import { useChime } from "../audio/useChime";
 import type { FlashcardResult, FlashcardRound } from "../courseTypes";
 import Flashcard from "../flashcards/Flashcard";
 import { answerFlashcard, getFlashcardRound } from "../flashcardsApi";
@@ -25,6 +26,7 @@ export default function FlashcardsView() {
   const [result, setResult] = useState<FlashcardResult | null>(null);
   const [treffer, setTreffer] = useState(0);
   const [error, setError] = useState(false);
+  const chime = useChime();
 
   const laden = useCallback((gewaehlt: string) => {
     setRound(null);
@@ -103,7 +105,10 @@ export default function FlashcardsView() {
     answerFlashcard(card.lexeme_id, round.seed, index)
       .then((antwort) => {
         setResult(antwort);
-        if (antwort.correct) setTreffer((bisher) => bisher + 1);
+        if (antwort.correct) {
+          setTreffer((bisher) => bisher + 1);
+          chime();
+        }
       })
       .catch(() => setError(true));
   };

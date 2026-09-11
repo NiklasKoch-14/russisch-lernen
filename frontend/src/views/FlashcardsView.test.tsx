@@ -2,6 +2,7 @@ import { act, fireEvent, render, screen, waitFor } from "@testing-library/react"
 import { beforeEach, describe, expect, it, vi } from "vitest";
 
 import * as speech from "../audio/SpeechContext";
+import * as chimeHook from "../audio/useChime";
 import type { FlashcardRound } from "../courseTypes";
 import * as api from "../flashcardsApi";
 import FlashcardsView from "./FlashcardsView";
@@ -138,5 +139,30 @@ describe("FlashcardsView", () => {
     render(<FlashcardsView />);
 
     expect(await screen.findByRole("heading", { name: "Noch keine Wörter" })).toBeInTheDocument();
+  });
+
+  it("klingt bei einer richtigen Karte", async () => {
+    const chime = vi.fn();
+    vi.spyOn(chimeHook, "useChime").mockReturnValue(chime);
+    render(<FlashcardsView />);
+    await waehle("die Flasche");
+    await screen.findByText("Richtig.");
+    expect(chime).toHaveBeenCalledTimes(1);
+  });
+
+  it("bleibt bei einer falschen Karte still", async () => {
+    const chime = vi.fn();
+    vi.spyOn(chimeHook, "useChime").mockReturnValue(chime);
+    vi.spyOn(api, "answerFlashcard").mockResolvedValue({
+      correct: false,
+      correct_index: 1,
+      text: "буты́лка",
+      translit: "butýlka",
+      gloss_de: "die Flasche",
+    });
+    render(<FlashcardsView />);
+    await waehle("die Tüte");
+    await screen.findByText(/Richtig wäre/);
+    expect(chime).not.toHaveBeenCalled();
   });
 });

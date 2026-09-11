@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 
+import { useChime } from "../audio/useChime";
 import ExerciseRunner from "../course/ExerciseRunner";
 import NewWords from "../course/NewWords";
 import { getUnit, submitAnswer } from "../courseApi";
@@ -29,6 +30,7 @@ export default function UnitView() {
   const [missed, setMissed] = useState<Set<string>>(new Set());
   const [result, setResult] = useState<AnswerResult | null>(null);
   const [error, setError] = useState(false);
+  const chime = useChime();
 
   useEffect(() => {
     getUnit(id)
@@ -110,7 +112,8 @@ export default function UnitView() {
     submitAnswer(id, exercise.id, submission)
       .then((answer) => {
         setResult(answer);
-        if (!answer.correct) setMissed((current) => new Set(current).add(exercise.id));
+        if (answer.correct) chime();
+        else setMissed((current) => new Set(current).add(exercise.id));
       })
       .catch(() => setError(true));
   };

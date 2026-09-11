@@ -2,6 +2,7 @@ import { act, fireEvent, render, screen, within } from "@testing-library/react";
 import { MemoryRouter, Route, Routes } from "react-router-dom";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 
+import * as chimeHook from "../audio/useChime";
 import * as courseApi from "../courseApi";
 import * as api from "../gameApi";
 import SceneView from "./SceneView";
@@ -383,5 +384,29 @@ describe("SceneView — tippen statt klicken", () => {
     expect(await screen.findByText("Geschafft!")).toBeInTheDocument();
     expect(screen.getByRole("link", { name: "Zurück zu Heute" })).toHaveAttribute("href", "/");
     expect(screen.getByRole("button", { name: "Zurück in den Raum" })).toBeInTheDocument();
+  });
+
+  it("klingt bei einem richtigen Gesprächszug", async () => {
+    const chime = vi.fn();
+    vi.spyOn(chimeHook, "useChime").mockReturnValue(chime);
+    vi.spyOn(api, "getTurn").mockResolvedValue(turn(0));
+    vi.spyOn(api, "answerTurn").mockResolvedValue(right);
+    renderScene();
+    fireEvent.click(await screen.findByRole("button", { name: /хорошо́/ }));
+    fireEvent.click(screen.getByRole("button", { name: "Prüfen" }));
+    await screen.findByText("Richtig!");
+    expect(chime).toHaveBeenCalledTimes(1);
+  });
+
+  it("bleibt bei einem falschen Gesprächszug still", async () => {
+    const chime = vi.fn();
+    vi.spyOn(chimeHook, "useChime").mockReturnValue(chime);
+    vi.spyOn(api, "getTurn").mockResolvedValue(turn(0));
+    vi.spyOn(api, "answerTurn").mockResolvedValue(wrong);
+    renderScene();
+    fireEvent.click(await screen.findByRole("button", { name: /хорошо́/ }));
+    fireEvent.click(screen.getByRole("button", { name: "Prüfen" }));
+    await screen.findByText("Nicht ganz.");
+    expect(chime).not.toHaveBeenCalled();
   });
 });

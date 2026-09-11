@@ -3,6 +3,7 @@ import { MemoryRouter } from "react-router-dom";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 
 import * as speech from "../audio/SpeechContext";
+import * as chimeHook from "../audio/useChime";
 import * as api from "../courseApi";
 import ReviewView from "./ReviewView";
 
@@ -148,5 +149,61 @@ describe("ReviewView", () => {
     expect(await screen.findByRole("link", { name: "Zurück zu Heute" })).toHaveAttribute("href", "/");
     fireEvent.click(screen.getByRole("button", { name: "Weiter auffrischen" }));
     await waitFor(() => expect(round).toHaveBeenCalledTimes(2));
+  });
+
+  it("klingt nach einer richtig gelösten Kursaufgabe", async () => {
+    const chime = vi.fn();
+    vi.spyOn(chimeHook, "useChime").mockReturnValue(chime);
+    vi.spyOn(api, "getReviewRound").mockResolvedValue({ items: [kursaufgabe] });
+    vi.spyOn(api, "submitReviewExercise").mockResolvedValue({
+      correct: true,
+      solution_text: "говорю́",
+      solution_translit: "govorjú",
+      solution_audio: [],
+      explanation_de: "",
+      unit_completed: false,
+      correct_count: 0,
+      total_count: 0,
+    });
+    renderReview();
+    fireEvent.click(await screen.findByRole("button", { name: /говорю́/ }));
+    await screen.findByText("1 von 1 richtig");
+    expect(chime).toHaveBeenCalledTimes(1);
+  });
+
+  const zuordnen = async () => {
+    renderReview();
+    fireEvent.click(await screen.findByRole("button", { name: /приве́т/ }));
+    fireEvent.click(screen.getByRole("button", { name: "hallo (locker)" }));
+    fireEvent.click(screen.getByRole("button", { name: /пока́/ }));
+    fireEvent.click(screen.getByRole("button", { name: "tschüss (locker)" }));
+  };
+
+  it("klingt, wenn alle Paare der Zuordnung stimmen", async () => {
+    const chime = vi.fn();
+    vi.spyOn(chimeHook, "useChime").mockReturnValue(chime);
+    vi.spyOn(api, "getReviewRound").mockResolvedValue({ items: [zuordnung] });
+    vi.spyOn(api, "submitReviewRound").mockResolvedValue({
+      correct_count: 2,
+      total_count: 2,
+      results: [],
+    });
+    await zuordnen();
+    await screen.findByText("0 von 0 richtig");
+    expect(chime).toHaveBeenCalledTimes(1);
+  });
+
+  it("bleibt still, wenn ein Paar nicht stimmt", async () => {
+    const chime = vi.fn();
+    vi.spyOn(chimeHook, "useChime").mockReturnValue(chime);
+    vi.spyOn(api, "getReviewRound").mockResolvedValue({ items: [zuordnung] });
+    vi.spyOn(api, "submitReviewRound").mockResolvedValue({
+      correct_count: 1,
+      total_count: 2,
+      results: [],
+    });
+    await zuordnen();
+    await screen.findByText("0 von 0 richtig");
+    expect(chime).not.toHaveBeenCalled();
   });
 });

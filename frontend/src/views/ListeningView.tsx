@@ -2,6 +2,7 @@ import { useCallback, useEffect, useState } from "react";
 import { Link, useSearchParams } from "react-router-dom";
 
 import { useSpeech } from "../audio/SpeechContext";
+import { useChime } from "../audio/useChime";
 import type { ListeningDialog, ListeningResult } from "../courseTypes";
 import { answerDialog, getNextDialog } from "../listeningApi";
 import DialogPlayer from "../listening/DialogPlayer";
@@ -17,6 +18,7 @@ import DialogTranscript from "../listening/DialogTranscript";
  */
 export default function ListeningView() {
   const { available } = useSpeech();
+  const chime = useChime();
   const [dialog, setDialog] = useState<ListeningDialog | null>(null);
   const [chosen, setChosen] = useState<number | null>(null);
   const [result, setResult] = useState<ListeningResult | null>(null);
@@ -62,7 +64,10 @@ export default function ListeningView() {
   const antworten = (index: number) => {
     setChosen(index);
     answerDialog(dialog.dialog_id as number, dialog.seed, index)
-      .then(setResult)
+      .then((answer) => {
+        setResult(answer);
+        if (answer.correct) chime();
+      })
       .catch(() => setError(true));
   };
 
@@ -112,10 +117,17 @@ export default function ListeningView() {
 
       {result ? (
         <div className="flex flex-wrap items-center gap-4">
-          <Link to="/" className="inline-block rounded-xl bg-sky-600 px-5 py-2 font-medium text-white">
+          <Link
+            to="/"
+            className="inline-block rounded-xl bg-sky-600 px-5 py-2 font-medium text-white"
+          >
             Zurück zu Heute
           </Link>
-          <button type="button" onClick={() => laden()} className="rounded-xl border-2 border-slate-300 bg-white px-4 py-2 transition hover:border-sky-400">
+          <button
+            type="button"
+            onClick={() => laden()}
+            className="rounded-xl border-2 border-slate-300 bg-white px-4 py-2 transition hover:border-sky-400"
+          >
             Nächstes Gespräch
           </button>
         </div>

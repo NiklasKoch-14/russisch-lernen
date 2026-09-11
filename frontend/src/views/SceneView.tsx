@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useState } from "react";
 import { Link, useNavigate, useParams, useSearchParams } from "react-router-dom";
 
+import { useChime } from "../audio/useChime";
 import BuildSentenceExercise from "../course/BuildSentenceExercise";
 import TypeSentenceExercise from "../course/TypeSentenceExercise";
 import { getProfile, patchProfile } from "../courseApi";
@@ -24,6 +25,7 @@ export default function SceneView() {
   const [retried, setRetried] = useState(false);
   const [done, setDone] = useState<TurnResult | null>(null);
   const [error, setError] = useState(false);
+  const chime = useChime();
   /** Tippen statt Kacheln. null, solange das Profil noch nicht da ist. */
   const [typed, setTyped] = useState<boolean | null>(null);
 
@@ -57,10 +59,13 @@ export default function SceneView() {
     (submission: Submission) => {
       if (!sceneId) return;
       answerTurn(sceneId, index, seed, submission)
-        .then(setResult)
+        .then((answer) => {
+          setResult(answer);
+          if (answer.correct) chime();
+        })
         .catch(() => setError(true));
     },
-    [sceneId, index, seed],
+    [sceneId, index, seed, chime],
   );
 
   const leave = () => navigate(`/dorf/${placeId}`);
@@ -113,10 +118,17 @@ export default function SceneView() {
           <h2 className="text-2xl font-semibold">Geschafft!</h2>
           <p>{done.outro_de}</p>
           <div className="flex flex-wrap items-center gap-4">
-            <Link to="/" className="inline-block rounded-xl bg-sky-600 px-5 py-2 font-medium text-white">
+            <Link
+              to="/"
+              className="inline-block rounded-xl bg-sky-600 px-5 py-2 font-medium text-white"
+            >
               Zurück zu Heute
             </Link>
-            <button type="button" onClick={leave} className="rounded-xl border-2 border-slate-300 bg-white px-4 py-2 transition hover:border-sky-400">
+            <button
+              type="button"
+              onClick={leave}
+              className="rounded-xl border-2 border-slate-300 bg-white px-4 py-2 transition hover:border-sky-400"
+            >
               Zurück in den Raum
             </button>
           </div>

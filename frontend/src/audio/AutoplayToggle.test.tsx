@@ -21,24 +21,37 @@ const mockSpeech = (available: boolean | null, autoplay: boolean) => {
 afterEach(() => vi.restoreAllMocks());
 
 describe("AutoplayToggle", () => {
-  it("schaltet die Automatik aus", () => {
+  it("schaltet den Ton aus", () => {
     const setAutoplay = mockSpeech(true, true);
     render(<AutoplayToggle />);
-    fireEvent.click(screen.getByRole("switch", { name: "Automatisches Vorlesen ausschalten" }));
+    fireEvent.click(screen.getByRole("switch", { name: "Ton ausschalten" }));
     expect(setAutoplay).toHaveBeenCalledWith(false);
   });
 
-  it("schaltet die Automatik wieder ein", () => {
+  it("schaltet den Ton wieder ein", () => {
     const setAutoplay = mockSpeech(true, false);
     render(<AutoplayToggle />);
-    fireEvent.click(screen.getByRole("switch", { name: "Automatisches Vorlesen einschalten" }));
+    fireEvent.click(screen.getByRole("switch", { name: "Ton einschalten" }));
     expect(setAutoplay).toHaveBeenCalledWith(true);
   });
 
-  it("ist ohne Stimme deaktiviert", () => {
+  it("bleibt ohne Stimme bedienbar, weil er auch den Richtig-Klang steuert", () => {
+    // Den Klang erzeugt der Browser selbst — er geht auch ohne russische Stimme.
+    // Ein gesperrter Schalter liesse sich dann nicht mehr leise stellen.
     mockSpeech(false, true);
     render(<AutoplayToggle />);
-    expect(screen.getByRole("switch")).toBeDisabled();
+    const toggle = screen.getByRole("switch", { name: "Ton ausschalten" });
+    expect(toggle).toBeEnabled();
+    expect(toggle).toHaveAttribute("title", expect.stringMatching(/Keine russische Stimme/));
+  });
+
+  it("sagt, was er steuert", () => {
+    mockSpeech(true, true);
+    render(<AutoplayToggle />);
+    expect(screen.getByRole("switch")).toHaveAttribute(
+      "title",
+      "Ton ausschalten — Vorlesen und Klänge",
+    );
   });
 });
 

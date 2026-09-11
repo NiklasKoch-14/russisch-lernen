@@ -61,6 +61,10 @@ Wiederholung sie am häufigsten braucht.
 Antwortet der Piper-Container nicht, spricht die Stimme des Browsers; fehlt auch die, zeigen
 Hör-Aufgaben ihre Textfassung. Keine Einheit wird dadurch unlösbar.
 
+Nach einer richtigen Antwort klingt ein kurzer Zweiklang, den der Browser selbst erzeugt (Web Audio,
+keine Tondatei). Bei falschen Antworten bleibt es bewusst still. Der 🔊-Schalter in der Kopfzeile
+steuert Vorlesen und Klang zusammen.
+
 ## Lernablauf
 
 Die App beginnt mit **Heute** (`/`): einem Plan für den Tag in der Reihenfolge einer guten Stunde —

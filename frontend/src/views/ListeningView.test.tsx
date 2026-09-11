@@ -3,6 +3,7 @@ import { MemoryRouter } from "react-router-dom";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 
 import * as speech from "../audio/SpeechContext";
+import * as chimeHook from "../audio/useChime";
 import type { ListeningDialog, ListeningResult } from "../courseTypes";
 import * as api from "../listeningApi";
 import ListeningView from "./ListeningView";
@@ -178,5 +179,30 @@ describe("ListeningView", () => {
       fireEvent.click(await screen.findByRole("button", { name: "Nächstes Gespräch" }));
     });
     await waitFor(() => expect(api.getNextDialog).toHaveBeenLastCalledWith(undefined));
+  });
+
+  it("klingt, wenn die Frage zum Gespräch richtig beantwortet ist", async () => {
+    const chime = vi.fn();
+    vi.spyOn(chimeHook, "useChime").mockReturnValue(chime);
+    renderListening();
+    await abspielen();
+    await act(async () => {
+      fireEvent.click(await screen.findByRole("button", { name: "Was die beiden trinken." }));
+    });
+    await screen.findByText("Im Café");
+    expect(chime).toHaveBeenCalledTimes(1);
+  });
+
+  it("bleibt bei einer falschen Antwort still", async () => {
+    const chime = vi.fn();
+    vi.spyOn(chimeHook, "useChime").mockReturnValue(chime);
+    vi.spyOn(api, "answerDialog").mockResolvedValue({ ...ergebnis, correct: false });
+    renderListening();
+    await abspielen();
+    await act(async () => {
+      fireEvent.click(await screen.findByRole("button", { name: "Was die beiden trinken." }));
+    });
+    await screen.findByText("Im Café");
+    expect(chime).not.toHaveBeenCalled();
   });
 });

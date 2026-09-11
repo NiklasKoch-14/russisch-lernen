@@ -3,6 +3,7 @@ import { MemoryRouter, Route, Routes } from "react-router-dom";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 
 import * as speech from "../audio/SpeechContext";
+import * as chimeHook from "../audio/useChime";
 import * as api from "../courseApi";
 import UnitView from "./UnitView";
 
@@ -361,5 +362,46 @@ describe("UnitView — Fehler-Nachlauf", () => {
     await loese(/спаси́бо/);
 
     expect(await screen.findByText("Einheit geschafft!")).toBeInTheDocument();
+  });
+});
+
+describe("UnitView klingt bei richtig", () => {
+  beforeEach(() => vi.restoreAllMocks());
+
+  const answer = (correct: boolean) => ({
+    correct,
+    solution_text: "спаси́бо",
+    solution_translit: "spasíbo",
+    solution_audio: ["спаси́бо"],
+    explanation_de: "",
+    unit_completed: false,
+    correct_count: 1,
+    total_count: 1,
+  });
+
+  it("spielt den Klang nach einer richtigen Antwort", async () => {
+    const chime = vi.fn();
+    vi.spyOn(chimeHook, "useChime").mockReturnValue(chime);
+    vi.spyOn(api, "getUnit").mockResolvedValue({ ...unit, exercises: [unit.exercises[1]] });
+    vi.spyOn(api, "submitAnswer").mockResolvedValue(answer(true));
+    renderUnit();
+    fireEvent.click(await screen.findByRole("button", { name: "Los geht's" }));
+    fireEvent.click(await screen.findByRole("button", { name: /спаси́бо/ }));
+    fireEvent.click(screen.getByRole("button", { name: "Prüfen" }));
+    await screen.findByText("Richtig!");
+    expect(chime).toHaveBeenCalledTimes(1);
+  });
+
+  it("bleibt nach einer falschen Antwort still", async () => {
+    const chime = vi.fn();
+    vi.spyOn(chimeHook, "useChime").mockReturnValue(chime);
+    vi.spyOn(api, "getUnit").mockResolvedValue({ ...unit, exercises: [unit.exercises[1]] });
+    vi.spyOn(api, "submitAnswer").mockResolvedValue(answer(false));
+    renderUnit();
+    fireEvent.click(await screen.findByRole("button", { name: "Los geht's" }));
+    fireEvent.click(await screen.findByRole("button", { name: /спаси́бо/ }));
+    fireEvent.click(screen.getByRole("button", { name: "Prüfen" }));
+    await screen.findByText("Nicht ganz.");
+    expect(chime).not.toHaveBeenCalled();
   });
 });

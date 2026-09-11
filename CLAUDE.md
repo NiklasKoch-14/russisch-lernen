@@ -117,6 +117,9 @@ in `audio/cache.py` zwischenspeichert (Verdrängung nach längster Nichtbenutzun
 Stimme und Tempo gehen in den Zwischenspeicher-Schlüssel ein — `PIPER_VOICE` und
 `PIPER_LENGTH_SCALE` müssen deshalb in `backend` und `tts` übereinstimmen, siehe `docker-compose.yml`.
 
+Der Richtig-Klang (`audio/chime.ts`, über `useChime()`) erzeugt der Browser per Web Audio und
+hängt nicht an Piper; der Ton-Schalter in der Kopfzeile schaltet Vorlesen und Klang gemeinsam.
+
 Fällt der Piper-Container aus, spricht die Browserstimme; fehlt auch die, zeigen Hör-Aufgaben ihre
 Textfassung. Keine Einheit wird dadurch unlösbar — dieser dreistufige Rückfall darf nicht brechen.
 
