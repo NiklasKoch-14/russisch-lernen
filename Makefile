@@ -19,10 +19,9 @@ deploy: ## Alle Container bauen und im Hintergrund starten
 	@echo "  Frontend: $(FRONTEND_URL)"
 	@echo "  Backend:  $(BACKEND_URL)/api/health"
 	@echo ""
-	@echo "  Beim ersten Start zieht der Dienst ollama-init das Sprachmodell"
-	@echo "  (~1,3 GB) und beendet sich dann wieder. Solange erklärt der Kurs"
-	@echo "  falsche Antworten mit der Regel der Einheit statt in eigenen Worten."
-	@echo "  Fortschritt sehen: make logs"
+	@echo "  Der Kurs ist sofort benutzbar. Beim ersten Start zieht der Dienst"
+	@echo "  ollama-init nebenher das Sprachmodell (~1,3 GB) für das freie"
+	@echo "  Gespräch und beendet sich dann wieder. Fortschritt sehen: make logs"
 
 remove: ## Container und Netzwerk stoppen und entfernen (Lernfortschritt bleibt erhalten)
 	$(COMPOSE) down
