@@ -5,7 +5,7 @@ import pytest
 from app.content.loader import load_course
 from app.course import review
 from app.course.review_index import build_index
-from app.repositories import lexeme_srs_repo, progress_repo
+from app.repositories import lexeme_srs_repo, progress_repo, review_repo
 from app.repositories.lexeme_srs_repo import SrsState
 from tests.content_factory import MINIMAL_LEXICON, write_course
 
@@ -159,3 +159,81 @@ def test_bewertung_sieht_dieselben_formen_wie_die_runde(gearbeitet, course, inde
         gearbeitet, course, index, today=TODAY, submission={"pairs": []}
     )
     assert ergebnis["total_count"] == len(zuordnung["left"])
+
+
+def _faellig_mit_abstand(conn, lexeme_id, form_key, interval_days):
+    lexeme_srs_repo.upsert_state(
+        conn,
+        SrsState(
+            lexeme_id=lexeme_id,
+            form_key=form_key,
+            interval_days=interval_days,
+            ease_factor=2.5,
+            repetitions=2,
+            due_date="2026-09-01",
+        ),
+    )
+
+
+def test_erst_zwei_gefestigte_formen_dann_die_wackligsten(gearbeitet, course):
+    # Wer mit drei Fehlern anfaengt, uebt schlecht weiter: zum Aufwaermen zwei
+    # Formen, die schon lange sitzen, danach die zuletzt gelernten.
+    _faellig_mit_abstand(gearbeitet, "delat", "prs.1sg", 1.0)
+    _faellig_mit_abstand(gearbeitet, "delat", "prs.2sg", 10.0)
+    _faellig_mit_abstand(gearbeitet, "delat", "prs.3sg", 30.0)
+    _faellig_mit_abstand(gearbeitet, "delat", "inf", 2.0)
+    _faellig_mit_abstand(gearbeitet, "ja", "nom", 6.0)
+    refs = review._due_refs(gearbeitet, course, today=TODAY, size=5)
+    assert refs == [
+        ("delat", "prs.3sg"),
+        ("delat", "prs.2sg"),
+        ("delat", "prs.1sg"),
+        ("delat", "inf"),
+        ("ja", "nom"),
+    ]
+
+
+def test_ohne_gefestigte_formen_gibt_es_kein_aufwaermen(gearbeitet, course):
+    _faellig_mit_abstand(gearbeitet, "delat", "prs.2sg", 3.0)
+    _faellig_mit_abstand(gearbeitet, "delat", "prs.1sg", 1.0)
+    refs = review._due_refs(gearbeitet, course, today=TODAY, size=5)
+    assert refs == [("delat", "prs.1sg"), ("delat", "prs.2sg")]
+
+
+def test_die_wackligsten_kommen_auch_aus_einem_grossen_stapel(conn, tmp_path):
+    # Frueher las die Runde nur die zuerst faelligen Formen; eine eben erst
+    # gelernte Form haette hinter einem langen Stapel gewartet.
+    lexicon = copy.deepcopy(MINIMAL_LEXICON)
+    for number in range(12):
+        lexicon["lexemes"].append(
+            {
+                "id": f"bu_{number}",
+                "lemma": "Н н",
+                "pos": "letter",
+                "gloss_de": f"Buchstabe {number}",
+                "forms": {"base": {"text": "Н н", "translit": "n"}},
+            }
+        )
+    course = load_course(write_course(tmp_path / "gross", lexicon=lexicon))
+    for number in range(12):
+        lexeme_srs_repo.upsert_state(
+            conn,
+            SrsState(
+                lexeme_id=f"bu_{number}",
+                form_key="base",
+                interval_days=40.0,
+                ease_factor=2.5,
+                repetitions=4,
+                due_date="2026-08-01",
+            ),
+        )
+    _faellig_mit_abstand(conn, "delat", "prs.1sg", 1.0)
+    refs = review._due_refs(conn, course, today=TODAY, size=3)
+    assert refs[2] == ("delat", "prs.1sg")
+
+
+def test_die_bewertete_zuordnung_wird_vermerkt(gearbeitet, course, index):
+    _due(gearbeitet, "bu_r", "base")
+    _due(gearbeitet, "bu_n", "base")
+    review.grade_review_round(gearbeitet, course, index, today=TODAY, submission={"pairs": []})
+    assert review_repo.count_on(gearbeitet, TODAY) == 2

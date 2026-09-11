@@ -183,3 +183,30 @@ def test_a_typed_answer_is_accepted_by_the_route(client):
     body = response.json()
     assert body["correct"] is False
     assert body["explanation_de"]
+
+
+def test_a_scene_can_be_started_by_its_id(client):
+    # Die Startseite schlägt eine bestimmte Szene vor — dann soll auch genau
+    # die kommen und nicht die am längsten nicht gespielte des Ortes.
+    first = client.post("/api/game/places/bar/scene", json={"scene_id": "bar-03"}).json()
+    again = client.post("/api/game/places/bar/scene", json={"scene_id": "bar-03"}).json()
+    assert first["scene_id"] == again["scene_id"] == "bar-03"
+
+
+def test_a_scene_of_another_place_is_a_404(client):
+    response = client.post("/api/game/places/bar/scene", json={"scene_id": "kafe-01"})
+    assert response.status_code == 404
+
+
+def test_the_today_route_plans_the_day(client):
+    body = client.get("/api/today").json()
+    assert body["steps"][0] == {
+        "kind": "unit",
+        "status": "next",
+        "minutes": body["steps"][0]["minutes"],
+        "unit_id": 1,
+        "title_de": body["steps"][0]["title_de"],
+        "detail_de": body["steps"][0]["detail_de"],
+        "link": "/kurs/1",
+    }
+    assert body["offer_screening"] is True

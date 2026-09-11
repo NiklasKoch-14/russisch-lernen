@@ -5,20 +5,41 @@ from app.course.presenter import present_exercise
 from app.course.review_index import Location, ReviewIndex
 from app.course.service import schedule_form
 from app.course.shuffle import shuffled_order
-from app.repositories import lexeme_srs_repo, progress_repo
+from app.repositories import lexeme_srs_repo, progress_repo, review_repo
+
+
+WARM_UP = 2
+"""So viele gefestigte Formen eroeffnen eine Runde — ein leichter Einstieg."""
+
+SETTLED_DAYS = 6.0
+"""Ab diesem Abstand gilt eine Form als gefestigt: SM-2 springt nach dem
+zweiten Treffer auf sechs Tage."""
 
 
 def _due_refs(conn: Connection, course: Course, *, today: str, size: int) -> list[TokenRef]:
-    """Due word forms that still exist in the lexicon, in a stable order."""
-    refs: list[TokenRef] = []
-    for state in lexeme_srs_repo.due_states(conn, today=today, limit=size * 3):
-        lexeme = course.lexemes.get(state.lexeme_id)
-        if lexeme is None or state.form_key not in lexeme.forms:
-            continue
-        refs.append((state.lexeme_id, state.form_key))
-        if len(refs) == size:
-            break
-    return refs
+    """Faellige Formen in der Reihenfolge, in der ein Lehrer abfragen wuerde.
+
+    Erst bis zu zwei gefestigte Formen zum Aufwaermen — wer mit drei Fehlern
+    anfaengt, uebt schlecht weiter. Danach die mit dem kuerzesten Abstand: die
+    zuletzt gelernten vergisst man nach einer Pause zuerst, was seit Wochen
+    sitzt, uebersteht sie. Deshalb werden alle faelligen Formen gelesen und
+    nicht nur die zuerst faelligen.
+    """
+    states = [
+        state
+        for state in lexeme_srs_repo.due_states(conn, today=today, limit=None)
+        if state.lexeme_id in course.lexemes
+        and state.form_key in course.lexemes[state.lexeme_id].forms
+    ]
+    settled = sorted(
+        (state for state in states if state.interval_days >= SETTLED_DAYS),
+        key=lambda state: -state.interval_days,
+    )[:WARM_UP]
+    rest = sorted(
+        (state for state in states if state not in settled),
+        key=lambda state: state.interval_days,
+    )
+    return [(state.lexeme_id, state.form_key) for state in settled + rest][:size]
 
 
 def _split_refs(
@@ -142,6 +163,9 @@ def grade_review_round(
         correct = picked is not None and right_order[picked] == index
         correct_count += int(correct)
         schedule_form(conn, ref, correct=correct, today=today)
+        review_repo.record_run(
+            conn, lexeme_id=ref[0], form_key=ref[1], correct=correct, answered_at=today
+        )
         results.append(
             {
                 "ref": f"{ref[0]}:{ref[1]}",

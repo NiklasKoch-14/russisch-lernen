@@ -98,3 +98,17 @@ def test_die_antwort_wird_vermerkt(client):
 def test_ein_unbekanntes_gespraech_ist_ein_404(client):
     api, _ = client
     assert api.post("/api/listening/99/answer", json={"seed": "s", "option_index": 0}).status_code == 404
+
+
+def test_ein_bestimmtes_gespraech_laesst_sich_anfordern(client):
+    # Die Startseite verlinkt ein Gespräch, das zum Gelernten passt.
+    api, conn = client
+    update_profile(conn, placement_unit=50)
+    assert api.get("/api/listening/next?dialog_id=2").json()["dialog_id"] == 2
+    assert api.get("/api/listening/next?dialog_id=1").json()["dialog_id"] == 1
+
+
+def test_ein_gesperrtes_gespraech_wird_durch_das_naechste_ersetzt(client):
+    api, conn = client
+    update_profile(conn, placement_unit=10)
+    assert api.get("/api/listening/next?dialog_id=2").json()["dialog_id"] == 1

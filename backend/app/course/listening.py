@@ -40,11 +40,19 @@ def first_locked_unit(course: Course, reached: int) -> int | None:
     return min(kommend) if kommend else None
 
 
-def pick_dialog(course: Course, conn: Connection, *, now: str) -> tuple[Dialog, str] | None:
-    """Das am längsten nicht gehörte freigeschaltete Gespräch, dazu ein Seed."""
+def pick_dialog(
+    course: Course, conn: Connection, *, now: str, dialog_id: int | None = None
+) -> tuple[Dialog, str] | None:
+    """Das am längsten nicht gehörte freigeschaltete Gespräch, dazu ein Seed.
+
+    Mit `dialog_id` genau dieses, sofern es freigeschaltet ist.
+    """
     candidates = unlocked(course, reached_unit(conn))
     if not candidates:
         return None
+    wished = [dialog for dialog in candidates if dialog.id == dialog_id]
+    if wished:
+        return wished[0], f"{wished[0].id}:{now}"
     played = listening_repo.last_played(conn)
     candidates.sort(key=lambda dialog: (played.get(dialog.id, ""), dialog.id))
     dialog = candidates[0]

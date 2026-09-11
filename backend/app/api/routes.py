@@ -41,6 +41,7 @@ from app.course import flashcards as flashcards_module
 from app.course import listening as listening_module
 from app.course import review as review_module
 from app.course import service as course_service
+from app.course import today as today_module
 from app.course.review_index import ReviewIndex
 from app.dependencies import (
     get_audio_cache,
@@ -369,6 +370,7 @@ def audio(
 
 class SceneStartRequest(BaseModel):
     npc_id: str | None = None
+    scene_id: str | None = None
 
 
 class TurnAnswerRequest(BaseModel):
@@ -406,7 +408,7 @@ def start_scene(
     try:
         return game_service.start_scene(
             village, course, conn,
-            place_id=place_id, npc_id=payload.npc_id,
+            place_id=place_id, npc_id=payload.npc_id, scene_id=payload.scene_id,
             now=dt.datetime.now().isoformat(timespec="seconds"),
         )
     except KeyError as exc:
@@ -465,14 +467,28 @@ def read_art(art_id: str) -> FileResponse:
     return FileResponse(path, media_type=game_art.MEDIA_TYPES[path.suffix])
 
 
+@router.get("/today")
+def read_today(
+    conn: Connection = Depends(get_db),
+    course: Course = Depends(get_course),
+    village: Village = Depends(get_village),
+) -> dict:
+    """Der Tagesplan der Startseite — aus den Zeitstempeln abgeleitet, nicht gespeichert."""
+    return today_module.build_plan(conn, course, village, today=dt.date.today().isoformat())
+
+
 @router.get("/listening/next", response_model=ListeningNextResponse)
 def listening_next(
+    dialog_id: int | None = None,
     course: Course = Depends(get_course),
     conn: Connection = Depends(get_db),
 ) -> ListeningNextResponse:
-    """Das nächste Hörgespräch — oder die Einheit, die das erste öffnet."""
+    """Das nächste Hörgespräch — oder die Einheit, die das erste öffnet.
+
+    `dialog_id` wünscht sich ein bestimmtes; ist es noch gesperrt, kommt das übliche.
+    """
     now = dt.datetime.now(dt.timezone.utc).isoformat()
-    picked = listening_module.pick_dialog(course, conn, now=now)
+    picked = listening_module.pick_dialog(course, conn, now=now, dialog_id=dialog_id)
     if picked is None:
         reached = listening_module.reached_unit(conn)
         return ListeningNextResponse(

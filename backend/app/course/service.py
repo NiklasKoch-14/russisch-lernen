@@ -6,7 +6,7 @@ from sqlite3 import Connection
 from app.content.models import Course, TokenRef, Unit
 from app.course.checker import check_answer
 from app.course.presenter import citation_form, present_exercise
-from app.repositories import lexeme_srs_repo, progress_repo
+from app.repositories import lexeme_srs_repo, progress_repo, review_repo
 from app.repositories.lexeme_srs_repo import SrsState
 from app.srs.sm2 import MAX_INTERVAL_DAYS, sm2_update
 
@@ -146,6 +146,9 @@ def submit_review_exercise(
     day = _today(today)
     for ref in result.trained_forms:
         schedule_form(conn, ref, correct=result.correct, today=day)
+        review_repo.record_run(
+            conn, lexeme_id=ref[0], form_key=ref[1], correct=result.correct, answered_at=day
+        )
 
     return AnswerOutcome(
         correct=result.correct,

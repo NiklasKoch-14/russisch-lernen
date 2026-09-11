@@ -110,9 +110,10 @@ def start_scene(
     place_id: str,
     npc_id: str | None,
     now: str,
+    scene_id: str | None = None,
 ) -> dict:
     scene, seed = scenes.pick_scene(
-        village, conn, place_id=place_id, npc_id=npc_id, now=now
+        village, conn, place_id=place_id, npc_id=npc_id, now=now, scene_id=scene_id
     )
     npc = _npc_of(village, scene)
     return {

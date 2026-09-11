@@ -126,6 +126,14 @@ CREATE TABLE IF NOT EXISTS listening_runs (
     correct   INTEGER NOT NULL,
     played_at TEXT NOT NULL
 );
+
+CREATE TABLE IF NOT EXISTS review_runs (
+    id          INTEGER PRIMARY KEY AUTOINCREMENT,
+    lexeme_id   TEXT NOT NULL,
+    form_key    TEXT NOT NULL,
+    correct     INTEGER NOT NULL,
+    answered_at TEXT NOT NULL
+);
 """
 
 PROFILE_COLUMNS = {

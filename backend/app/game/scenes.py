@@ -65,10 +65,21 @@ def turn_exercise(
 
 
 def pick_scene(
-    village: Village, conn: Connection, *, place_id: str, npc_id: str | None, now: str
+    village: Village,
+    conn: Connection,
+    *,
+    place_id: str,
+    npc_id: str | None,
+    now: str,
+    scene_id: str | None = None,
 ) -> tuple[Scene, str]:
-    """Die am längsten nicht gespielte Szene des Ortes, dazu ein frischer Seed."""
+    """Die am längsten nicht gespielte Szene des Ortes, dazu ein frischer Seed.
+
+    Mit `scene_id` genau diese — die Startseite schlägt eine bestimmte vor.
+    """
     candidates = village.scenes_at(place_id, npc_id)
+    if scene_id is not None:
+        candidates = [scene for scene in candidates if scene.id == scene_id]
     if not candidates:
         raise KeyError(f"Zu {place_id!r} gibt es keine Szene")
     played = game_repo.last_played(conn)

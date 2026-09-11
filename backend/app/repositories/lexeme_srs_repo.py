@@ -49,10 +49,18 @@ def upsert_state(conn: Connection, state: SrsState) -> None:
     conn.commit()
 
 
-def due_states(conn: Connection, *, today: str, limit: int = 20) -> list[SrsState]:
+def due_states(conn: Connection, *, today: str, limit: int | None = 20) -> list[SrsState]:
+    """Faellige Formen, die zuerst faelligen vorn; `limit=None` liefert alle."""
     rows = conn.execute(
         "SELECT * FROM lexeme_srs WHERE due_date <= ?"
         " ORDER BY due_date, lexeme_id, form_key LIMIT ?",
-        (today, limit),
+        (today, -1 if limit is None else limit),
     ).fetchall()
     return [_row(row) for row in rows]
+
+
+def due_count(conn: Connection, *, today: str) -> int:
+    row = conn.execute(
+        "SELECT COUNT(*) AS n FROM lexeme_srs WHERE due_date <= ?", (today,)
+    ).fetchone()
+    return int(row["n"])

@@ -11,7 +11,7 @@ from app.course.presenter import (
     match_pairs_sides,
 )
 from app.course.service import MAX_INTERVAL_DAYS, schedule_form, unit_payload
-from app.repositories import lexeme_srs_repo, progress_repo
+from app.repositories import lexeme_srs_repo, progress_repo, review_repo
 from app.repositories.lexeme_srs_repo import SrsState
 from tests.content_factory import MINIMAL_UNIT, write_course
 
@@ -205,6 +205,20 @@ def test_wiederholung_ruehrt_den_einheiten_fortschritt_nicht_an(conn, tmp_path):
         vorher.status,
     )
     assert progress_repo.attempt_count(conn, 1) == 0, "kein Versuch darf protokolliert werden"
+
+
+def test_wiederholung_vermerkt_jede_geuebte_form(conn, tmp_path):
+    course = load_course(write_course(tmp_path))
+    service.submit_review_exercise(
+        conn,
+        course,
+        unit_id=1,
+        exercise_id="1-2",
+        submission={"option_index": 99},
+        today="2026-01-02",
+    )
+    assert review_repo.count_on(conn, "2026-01-02") == 1
+    assert review_repo.count_on(conn, "2026-01-03") == 0
 
 
 def test_wiederholung_lehnt_eine_fremde_aufgabe_ab(conn, tmp_path):

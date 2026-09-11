@@ -48,7 +48,7 @@ keinen eigenen Tageszustand — wie bei den Dorfszenen, die allein aus `(Szene, 
      "title_de": "Wo ist die Apotheke?", "detail_de": "<scenario_de>", "link": "/kurs/46"},
     {"kind": "listening | scene", "status": "…", "minutes": 3,
      "title_de": "Nach dem Weg gefragt", "detail_de": "<Ort bei Szenen>", "known": false,
-     "link": "/hoeren?gespraech=21 | /dorf/kafe/szene/kafe-01"}
+     "link": "/hoeren?gespraech=21 | /dorf/kafe?szene=kafe-01"}
   ],
   "unit_skipped": "pause | backlog | all_done | null",
   "next_unit_id": 47,
@@ -151,7 +151,10 @@ Route `/` und `/heute`, Reiter „Heute" an erster Stelle. Die Kopfzeile bleibt.
 - Einheit: Der Abschluss bekommt „Zurück zu Heute" als Hauptknopf, „Zum Kurs" daneben.
 - Hören: Nach der Antwort steht „Zurück zu Heute" neben „Nächstes Gespräch". `/hoeren?gespraech=ID`
   spielt genau dieses Gespräch, sofern es freigeschaltet ist; sonst das übliche nächste.
-- Dorfszene: Nach „Geschafft!" steht „Zurück zu Heute" neben „Zurück in den Raum".
+- Dorfszene: Eine Szene braucht einen Seed, und den vergibt erst der Start. Deshalb verlinkt die
+  Startseite den Ort mit `?szene=ID`; der Ort startet genau diese Szene (`scene_id` in
+  `POST /game/places/{ort}/scene`) und springt hinein. Nach „Geschafft!" steht „Zurück zu Heute"
+  neben „Zurück in den Raum".
 
 ## 6. Tests
 
