@@ -235,15 +235,16 @@ def review_answer(
     payload: ReviewAnswerRequest,
     conn: Connection = Depends(get_db),
     course: Course = Depends(get_course),
-    index: ReviewIndex = Depends(get_review_index),
 ) -> dict:
-    return review_module.grade_review_round(
-        conn,
-        course,
-        index,
-        today=dt.date.today().isoformat(),
-        submission={"pairs": payload.pairs},
-    )
+    try:
+        return review_module.grade_review_round(
+            conn,
+            course,
+            today=dt.date.today().isoformat(),
+            submission={"pairs": payload.pairs, "refs": payload.refs, "seed": payload.seed},
+        )
+    except ValueError as exc:
+        raise HTTPException(status_code=422, detail=str(exc)) from exc
 
 
 @router.post("/review/exercise", response_model=AnswerResponse)

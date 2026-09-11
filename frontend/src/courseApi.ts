@@ -44,10 +44,15 @@ export const answerScreening = (answers: number[]) =>
 
 export const getReviewRound = () => request<ReviewRound>("/review/due");
 
-export const submitReviewRound = (pairs: number[][]) =>
+/**
+ * Die Zuordnung abschicken — mit den Formen und dem Seed, die sie gezeigt hat.
+ * Bis sie drankommt, sind die Kursaufgaben davor beantwortet; würde der Server
+ * die Runde neu berechnen, bewertete er andere Formen als die gezeigten.
+ */
+export const submitReviewRound = (pairs: number[][], refs: string[], seed: string) =>
   request<ReviewResult>("/review/answer", {
     method: "POST",
-    body: JSON.stringify({ pairs }),
+    body: JSON.stringify({ pairs, refs, seed }),
   });
 
 /** Eine echte Kursaufgabe in der Wiederholung — ohne Wirkung auf den Einheiten-Fortschritt. */

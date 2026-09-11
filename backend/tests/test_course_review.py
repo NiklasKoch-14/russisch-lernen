@@ -4,6 +4,7 @@ import pytest
 
 from app.content.loader import load_course
 from app.course import review
+from app.course import service as course_service
 from app.course.review_index import build_index
 from app.repositories import lexeme_srs_repo, progress_repo, review_repo
 from app.repositories.lexeme_srs_repo import SrsState
@@ -64,6 +65,15 @@ def _due(conn, lexeme_id, form_key, due_date="2026-09-01"):
 
 def _round(conn, course, index):
     return review.build_review_round(conn, course, index, today=TODAY)
+
+
+def _antwort(zuordnung, pairs):
+    """Was der Browser abschickt: Paare, dazu Formen und Seed der gezeigten Runde."""
+    return {
+        "pairs": pairs,
+        "refs": [links["ref"] for links in zuordnung["left"]],
+        "seed": zuordnung["seed"],
+    }
 
 
 def test_leere_runde_wenn_nichts_faellig_ist(conn, course, index):
@@ -139,7 +149,7 @@ def test_zuordnung_wird_bewertet_und_fortgeschrieben(gearbeitet, course, index):
         pairs.append([links["index"], rechts["index"]])
 
     ergebnis = review.grade_review_round(
-        gearbeitet, course, index, today=TODAY, submission={"pairs": pairs}
+        gearbeitet, course, today=TODAY, submission=_antwort(zuordnung, pairs)
     )
     assert ergebnis["correct_count"] == 2
     assert lexeme_srs_repo.get_state(gearbeitet, lexeme_id="bu_r", form_key="base").due_date > TODAY
@@ -156,7 +166,7 @@ def test_bewertung_sieht_dieselben_formen_wie_die_runde(gearbeitet, course, inde
         item for item in _round(gearbeitet, course, index)["items"] if item["kind"] == "pairs"
     )
     ergebnis = review.grade_review_round(
-        gearbeitet, course, index, today=TODAY, submission={"pairs": []}
+        gearbeitet, course, today=TODAY, submission=_antwort(zuordnung, [])
     )
     assert ergebnis["total_count"] == len(zuordnung["left"])
 
@@ -235,5 +245,99 @@ def test_die_wackligsten_kommen_auch_aus_einem_grossen_stapel(conn, tmp_path):
 def test_die_bewertete_zuordnung_wird_vermerkt(gearbeitet, course, index):
     _due(gearbeitet, "bu_r", "base")
     _due(gearbeitet, "bu_n", "base")
-    review.grade_review_round(gearbeitet, course, index, today=TODAY, submission={"pairs": []})
+    zuordnung = next(
+        item for item in _round(gearbeitet, course, index)["items"] if item["kind"] == "pairs"
+    )
+    review.grade_review_round(
+        gearbeitet, course, today=TODAY, submission=_antwort(zuordnung, [])
+    )
     assert review_repo.count_on(gearbeitet, TODAY) == 2
+
+
+def test_zuordnung_wird_gegen_die_gezeigten_formen_bewertet(conn, tmp_path):
+    # Der Fehler aus dem echten Betrieb: die Zuordnung steht am Ende der Runde.
+    # Bis sie abgeschickt wird, sind die Kursaufgaben davor beantwortet und
+    # ihre Formen nicht mehr faellig — rechnet die Bewertung die Runde neu aus,
+    # rueckt eine andere Form nach, und richtig Zugeordnetes zaehlt als falsch.
+    lexicon = copy.deepcopy(MINIMAL_LEXICON)
+    for number in range(6):
+        lexicon["lexemes"].append(
+            {
+                "id": f"bu_{number}",
+                "lemma": "Н н",
+                "pos": "letter",
+                "gloss_de": f"Buchstabe {number}",
+                "forms": {"base": {"text": f"Н{number}", "translit": "n"}},
+            }
+        )
+    course = load_course(write_course(tmp_path / "echt", lexicon=lexicon))
+    index = build_index(course)
+    progress_repo.bump_progress(conn, unit_id=1, correct=True)
+    _due(conn, "delat", "prs.1sg", due_date="2026-08-01")
+    for number in range(6):
+        _due(conn, f"bu_{number}", "base")
+
+    items = review.build_review_round(conn, course, index, today=TODAY)["items"]
+    kursaufgabe = next(item for item in items if item["kind"] == "exercise")
+    zuordnung = next(item for item in items if item["kind"] == "pairs")
+
+    # Erst die Kursaufgabe beantworten — wie im Browser.
+    course_service.submit_review_exercise(
+        conn,
+        course,
+        unit_id=kursaufgabe["unit_id"],
+        exercise_id=kursaufgabe["exercise_id"],
+        submission={"option_index": 0},
+        today=TODAY,
+    )
+
+    # Dann die Zuordnung richtig loesen, so wie sie auf dem Schirm stand.
+    pairs = []
+    for links in zuordnung["left"]:
+        gloss = course.gloss(tuple(links["ref"].split(":", 1)))
+        rechts = next(r for r in zuordnung["right"] if r["gloss_de"] == gloss)
+        pairs.append([links["index"], rechts["index"]])
+    ergebnis = review.grade_review_round(
+        conn, course, today=TODAY, submission=_antwort(zuordnung, pairs)
+    )
+
+    assert ergebnis["total_count"] == len(zuordnung["left"])
+    assert ergebnis["correct_count"] == len(zuordnung["left"])
+
+
+def test_eine_unbekannte_form_in_der_antwort_wird_abgelehnt(gearbeitet, course):
+    with pytest.raises(ValueError):
+        review.grade_review_round(
+            gearbeitet,
+            course,
+            today=TODAY,
+            submission={"pairs": [], "refs": ["gibtsnicht:base"], "seed": "s"},
+        )
+
+
+def test_gleiche_bedeutung_zaehlt_auf_jeder_ihrer_karten(conn, course, index):
+    # Wiederholt wird je Wortform — also landen де́лаю und де́лает in derselben
+    # Zuordnung, und rechts steht zweimal „machen, tun". Welche der beiden
+    # Karten man nimmt, ist nicht zu unterscheiden und darf nicht zaehlen.
+    _due(conn, "delat", "prs.1sg")
+    _due(conn, "delat", "prs.3sg")
+    _due(conn, "bu_r", "base")
+    zuordnung = next(
+        item for item in _round(conn, course, index)["items"] if item["kind"] == "pairs"
+    )
+    glosses = [course.gloss(tuple(links["ref"].split(":", 1))) for links in zuordnung["left"]]
+    assert glosses.count("machen, tun") == 2
+
+    # Jede Form bekommt eine Karte mit ihrer Bedeutung — die beiden „machen"
+    # aber absichtlich über Kreuz.
+    frei = list(reversed(zuordnung["right"]))
+    pairs = []
+    for links, gloss in zip(zuordnung["left"], glosses):
+        rechts = next(r for r in frei if r["gloss_de"] == gloss)
+        frei.remove(rechts)
+        pairs.append([links["index"], rechts["index"]])
+
+    ergebnis = review.grade_review_round(
+        conn, course, today=TODAY, submission=_antwort(zuordnung, pairs)
+    )
+    assert ergebnis["correct_count"] == 3

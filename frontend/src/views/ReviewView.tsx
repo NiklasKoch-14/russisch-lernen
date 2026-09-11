@@ -112,7 +112,11 @@ export default function ReviewView() {
         }}
         onSubmit={(submission: Submission) => {
           if (!("pairs" in submission)) return;
-          submitReviewRound(submission.pairs)
+          submitReviewRound(
+            submission.pairs,
+            item.left.map((tile) => tile.ref),
+            item.seed,
+          )
             .then((result: ReviewResult) => {
               // Eine Zuordnung klingt nur, wenn sie ganz stimmt — halb richtig
               // ist keine Bestaetigung.

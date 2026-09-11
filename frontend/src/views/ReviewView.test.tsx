@@ -9,6 +9,7 @@ import ReviewView from "./ReviewView";
 
 const zuordnung = {
   kind: "pairs" as const,
+  seed: "review:2026-09-11",
   left: [
     { index: 0, ref: "privet:base", text: "приве́т", translit: "privét" },
     { index: 1, ref: "poka:base", text: "пока́", translit: "poká" },
@@ -100,7 +101,17 @@ describe("ReviewView", () => {
     fireEvent.click(screen.getByRole("button", { name: /пока́/ }));
     fireEvent.click(screen.getByRole("button", { name: "tschüss (locker)" }));
 
-    await waitFor(() => expect(submit).toHaveBeenCalled());
+    // Mit den gezeigten Formen und dem Seed — bewertet wird, was auf dem Schirm stand.
+    await waitFor(() =>
+      expect(submit).toHaveBeenCalledWith(
+        [
+          [0, 1],
+          [1, 0],
+        ],
+        ["privet:base", "poka:base"],
+        "review:2026-09-11",
+      ),
+    );
     expect(await screen.findByText("2 von 2 richtig")).toBeInTheDocument();
   });
 

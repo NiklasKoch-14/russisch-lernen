@@ -143,6 +143,8 @@ export type ScreeningStep =
 
 export interface ReviewPairsItem {
   kind: "pairs";
+  /** Geht mit der Antwort zurück, damit die Bewertung dieselbe Reihenfolge sieht. */
+  seed: string;
   left: (Tile & { ref: string })[];
   right: GlossOption[];
 }

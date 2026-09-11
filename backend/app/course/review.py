@@ -50,12 +50,7 @@ def _split_refs(
     today: str,
     size: int,
 ) -> tuple[list[tuple[TokenRef, Location]], list[TokenRef]]:
-    """Faellige Formen aufteilen: mit Kontext-Aufgabe und ohne.
-
-    Runde und Bewertung muessen dieselbe Aufteilung sehen — sonst benotet die
-    Bewertung andere Formen, als die Runde gestellt hat. Deshalb liegt sie hier
-    an einer Stelle und wird von beiden benutzt.
-    """
+    """Faellige Formen aufteilen: mit Kontext-Aufgabe und ohne."""
     allowed = set(progress_repo.all_progress(conn))
     seed = f"review:{today}"
 
@@ -81,9 +76,13 @@ def _split_refs(
 
 
 def _pairs_item(course: Course, refs: list[TokenRef], *, today: str) -> dict:
-    right_order = shuffled_order(f"review:{today}", len(refs))
+    seed = f"review:{today}"
+    right_order = shuffled_order(seed, len(refs))
     return {
         "kind": "pairs",
+        # Kommt mit der Antwort zurueck, zusammen mit den Formen aus `left`:
+        # bewertet wird, was auf dem Schirm stand, nicht was jetzt faellig ist.
+        "seed": seed,
         "left": [
             {
                 "index": index,
@@ -132,18 +131,39 @@ def build_review_round(
     return {"items": items}
 
 
+def _shown_refs(course: Course, raw: object) -> list[TokenRef]:
+    """Die Formen der Zuordnung, wie der Client sie bekommen hat ("lexem:form")."""
+    if not isinstance(raw, list):
+        raise ValueError("refs fehlt")
+    refs: list[TokenRef] = []
+    for item in raw:
+        lexeme_id, _, form_key = item.partition(":") if isinstance(item, str) else ("", "", "")
+        lexeme = course.lexemes.get(lexeme_id)
+        if lexeme is None or form_key not in lexeme.forms:
+            raise ValueError(f"Unbekannte Form in der Zuordnung: {item!r}")
+        refs.append((lexeme_id, form_key))
+    return refs
+
+
 def grade_review_round(
     conn: Connection,
     course: Course,
-    index: ReviewIndex,
     *,
     today: str,
     submission: dict,
-    size: int = 5,
 ) -> dict:
-    """Die Zuordnung bewerten — aus derselben Aufteilung wie die Runde."""
-    _, refs = _split_refs(conn, course, index, today=today, size=size)
-    right_order = shuffled_order(f"review:{today}", len(refs))
+    """Die Zuordnung bewerten — gegen die Formen, die der Client gezeigt bekam.
+
+    Frueher wurde die Runde hier neu berechnet. Die Zuordnung steht aber am
+    Ende; bis sie abgeschickt wird, sind die Kursaufgaben davor beantwortet und
+    deren Formen nicht mehr faellig. Die Neuberechnung zog dann andere Formen
+    nach, und richtig Zugeordnetes zaehlte als falsch. Deshalb schickt der
+    Client Formen und Seed zurueck. Faelschen koennte er damit nur seine eigene
+    Wiederholungsplanung.
+    """
+    refs = _shown_refs(course, submission.get("refs"))
+    seed = submission.get("seed")
+    right_order = shuffled_order(seed if isinstance(seed, str) else f"review:{today}", len(refs))
     chosen: dict[int, int] = {}
     for pair in submission.get("pairs", []):
         if (
@@ -160,7 +180,13 @@ def grade_review_round(
     results = []
     for index, ref in enumerate(refs):
         picked = chosen.get(index)
-        correct = picked is not None and right_order[picked] == index
+        # Nach Bedeutung, nicht nach Position — wie `_check_match_pairs` in der
+        # Einheit. Wiederholt wird je Wortform, also stehen де́лаю und де́лает
+        # oft in derselben Zuordnung, und rechts zweimal „machen, tun". Welche
+        # der beiden Karten man nimmt, laesst sich nicht unterscheiden.
+        correct = picked is not None and (
+            course.gloss(refs[right_order[picked]]) == course.gloss(ref)
+        )
         correct_count += int(correct)
         schedule_form(conn, ref, correct=correct, today=today)
         review_repo.record_run(

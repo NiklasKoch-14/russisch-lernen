@@ -129,3 +129,13 @@ def test_explain_falls_back_to_the_unit_rule_when_ollama_fails(client):
     ).json()
     assert body["source"] == "rule"
     assert body["explanation_de"] == "Die Endung zeigt, wer handelt."
+
+
+def test_review_answer_rejects_a_form_that_was_never_shown(client):
+    # Die Zuordnung wird gegen die zurückgeschickten Formen bewertet — eine
+    # erfundene Form ist ein Fehler der Anfrage, kein stiller Fehlversuch.
+    response = client.post(
+        "/api/review/answer",
+        json={"pairs": [], "refs": ["gibtsnicht:base"], "seed": "review:2026-09-11"},
+    )
+    assert response.status_code == 422

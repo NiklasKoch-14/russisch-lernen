@@ -91,6 +91,9 @@ class ScreeningAnswerRequest(BaseModel):
 
 class ReviewAnswerRequest(BaseModel):
     pairs: list[list[int]]
+    refs: list[str]
+    """Die Formen der Zuordnung, so wie die Runde sie gezeigt hat."""
+    seed: str
 
 
 class ReviewExerciseRequest(BaseModel):
