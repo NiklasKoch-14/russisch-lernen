@@ -5,9 +5,18 @@ import ExerciseRunner from "../course/ExerciseRunner";
 import NewWords from "../course/NewWords";
 import { getUnit, submitAnswer } from "../courseApi";
 import SpeakerButton from "../audio/SpeakerButton";
-import type { AnswerResult, Submission, UnitDetail } from "../courseTypes";
+import type { AnswerResult, Exercise, Submission, UnitDetail } from "../courseTypes";
 
 type Phase = "rule" | "words" | "exercises" | "done";
+
+/** Aufgaben, bei denen es um Wortformen geht — nur dort hilft die Regel der
+ *  Einheit nach einem Fehler weiter. Bei Zuordnen oder Hören geht es um
+ *  Bedeutung, eine Antwortwahl bringt ihre eigene Begruendung mit. */
+const RULE_EXERCISE_TYPES = new Set<Exercise["type"]>([
+  "build_sentence",
+  "choose_form",
+  "type_sentence",
+]);
 
 export default function UnitView() {
   const { unitId } = useParams();
@@ -144,6 +153,16 @@ export default function UnitView() {
         >
           <p className="font-medium">{result.correct ? "Richtig!" : "Nicht ganz."}</p>
           {extraExplanation ? <p>{extraExplanation}</p> : null}
+          {/* Die Erklaerung sagt, welche Form es war — warum eine andere
+              hingehoert, steht in der Regel der Einheit. Zugeklappt, weil sie
+              lang ist und nicht jeder sie nach jedem Fehler lesen will. */}
+          {!result.correct && RULE_EXERCISE_TYPES.has(exercise.type) ? (
+            <details className="rounded-xl border border-sky-200 bg-white/70 p-3">
+              <summary className="cursor-pointer text-sky-700">Regel nochmal zeigen</summary>
+              <h3 className="mt-2 font-medium">{unit.grammar_focus.title_de}</h3>
+              <p className="mt-1 whitespace-pre-line">{unit.grammar_focus.explanation_de}</p>
+            </details>
+          ) : null}
           {/* Ein Block fuer beide Faelle: nach einem Fehler nennt er die Loesung,
               nach einer richtigen Antwort bietet er sie nur zum Nachhoeren an. */}
           {result.solution_audio.length > 0 ? (

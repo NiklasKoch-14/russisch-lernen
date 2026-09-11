@@ -34,8 +34,9 @@ Ohne `make` geht es genauso mit `docker compose up -d --build` beziehungsweise `
 | tts | — | Piper-Sprachausgabe, nur intern erreichbar |
 
 Beim Hochfahren zieht der einmalige Dienst `ollama-init` das Sprachmodell und beendet sich wieder;
-`make logs` zeigt den Fortschritt. **Der Kurs läuft schon vorher vollständig** — das Modell erklärt
-nur, warum eine Antwort falsch war. Fehlt es, steht dort die Regel der Einheit. Ein anderes Modell
+`make logs` zeigt den Fortschritt. **Der Kurs läuft schon vorher vollständig** — er braucht das Modell
+gar nicht. Warum eine Antwort falsch war, sagt der Kurs regelbasiert aus den Formschlüsseln; das
+Modell bedient nur das freie Gespräch unter `/gespraech`. Ein anderes Modell
 wählt `OLLAMA_MODEL=… docker compose up -d`.
 
 ## Ton

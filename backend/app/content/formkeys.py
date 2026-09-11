@@ -87,6 +87,27 @@ def form_label_de(form_key: str) -> str:
     return form_key
 
 
+_GENDER_FORM_DE = {"männlich": "männliche", "weiblich": "weibliche", "sächlich": "sächliche"}
+_FEMININE_HEADS_DE = {"Einzahl", "Mehrzahl", "Vergangenheit"}
+
+
+def with_article_de(label: str) -> str:
+    """Eine Formbezeichnung mit Artikel, damit sie in einen Satz passt.
+
+    „das ist Grundform" liest sich wie ein Telegramm, „das ist männlich" wie
+    ein Satz ueber Leute — deshalb „die Grundform", „die männliche Form".
+    Was die Funktion nicht kennt, laesst sie stehen.
+    """
+    head = label.split(" ", 1)[0]
+    if head in _CASE_DE.values():
+        return f"der {label}"
+    if label in _GENDER_FORM_DE:
+        return f"die {_GENDER_FORM_DE[label]} Form"
+    if head.endswith("form") or head.endswith("-Form") or head in _FEMININE_HEADS_DE:
+        return f"die {label}"
+    return label
+
+
 def contrast_labels_de(typed_key: str, wanted_key: str) -> tuple[str, str]:
     """Zwei Formbezeichnungen, um das Gemeinsame gekuerzt.
 

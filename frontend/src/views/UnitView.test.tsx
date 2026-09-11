@@ -123,6 +123,50 @@ describe("UnitView", () => {
     expect(screen.getByRole("button", { name: "Weiter" })).toBeInTheDocument();
   });
 
+  it("bietet nach einem Formfehler die Regel zugeklappt zum Nachlesen an", async () => {
+    vi.spyOn(api, "getUnit").mockResolvedValue(unit);
+    vi.spyOn(api, "submitAnswer").mockResolvedValue({
+      correct: false,
+      solution_text: "до свида́ния",
+      solution_translit: "do svidánija",
+      solution_audio: ["до свида́ния"],
+      explanation_de: "Die Wörter stimmen, nur die Reihenfolge nicht.",
+      unit_completed: false,
+      correct_count: 0,
+      total_count: 1,
+    });
+    renderUnit();
+    fireEvent.click(await screen.findByRole("button", { name: "Los geht's" }));
+    fireEvent.click(await screen.findByRole("button", { name: /свида́ния/ }));
+    fireEvent.click(screen.getByRole("button", { name: "Prüfen" }));
+    expect(
+      await screen.findByText("Die Wörter stimmen, nur die Reihenfolge nicht."),
+    ).toBeInTheDocument();
+    const rule = detailsFor("Regel nochmal zeigen");
+    expect(rule).not.toHaveAttribute("open");
+    expect(rule).toHaveTextContent(unit.grammar_focus.explanation_de);
+  });
+
+  it("zeigt nach einer richtigen Antwort keine Regel an", async () => {
+    vi.spyOn(api, "getUnit").mockResolvedValue({ ...unit, exercises: [unit.exercises[1]] });
+    vi.spyOn(api, "submitAnswer").mockResolvedValue({
+      correct: true,
+      solution_text: "спаси́бо",
+      solution_translit: "spasíbo",
+      solution_audio: ["спаси́бо"],
+      explanation_de: "",
+      unit_completed: false,
+      correct_count: 1,
+      total_count: 1,
+    });
+    renderUnit();
+    fireEvent.click(await screen.findByRole("button", { name: "Los geht's" }));
+    fireEvent.click(await screen.findByRole("button", { name: /спаси́бо/ }));
+    fireEvent.click(screen.getByRole("button", { name: "Prüfen" }));
+    await screen.findByRole("button", { name: "Weiter" });
+    expect(screen.queryByText("Regel nochmal zeigen")).not.toBeInTheDocument();
+  });
+
   it("zeigt am Ende den Abschluss-Bildschirm", async () => {
     vi.spyOn(api, "getUnit").mockResolvedValue({ ...unit, exercises: [unit.exercises[1]] });
     vi.spyOn(api, "submitAnswer").mockResolvedValue({

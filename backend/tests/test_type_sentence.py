@@ -108,13 +108,13 @@ class TestDiagnose:
         result = check_answer(course, _exercise(AT_WORK), {"text": "я на рабо́та"})
         assert result.correct is False
         assert result.explanation_de == (
-            "Du hast рабо́та geschrieben — das ist Nominativ, hier steht Präpositiv: рабо́те."
+            "Du hast рабо́та geschrieben — das ist der Nominativ, hier steht der Präpositiv: рабо́те."
         )
 
     def test_falsche_form_nennt_die_zahl_nur_wenn_sie_abweicht(self, course):
         result = check_answer(course, _exercise([("rabota", "nom.sg")]), {"text": "рабо́ты"})
         assert result.explanation_de == (
-            "Du hast рабо́ты geschrieben — das ist Mehrzahl, hier steht Einzahl: рабо́та."
+            "Du hast рабо́ты geschrieben — das ist die Mehrzahl, hier steht die Einzahl: рабо́та."
         )
 
     def test_anderes_bekanntes_wort(self, course):

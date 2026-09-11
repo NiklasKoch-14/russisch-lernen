@@ -42,6 +42,71 @@ def test_build_sentence_rejects_extra_tile(tmp_path):
     assert check_answer(course, exercise, {"tile_indices": [0, 1, 2]}).correct is False
 
 
+def _build(course, exercise, refs):
+    tiles = build_sentence_tiles(course, exercise)
+    return check_answer(course, exercise, {"tile_indices": [tiles.index(ref) for ref in refs]})
+
+
+def test_build_sentence_names_a_wrong_form(tmp_path):
+    course = _course(tmp_path)
+    exercise = course.units[1].exercises[0]
+    result = _build(course, exercise, [("ja", "nom"), ("delat", "prs.3sg")])
+    assert result.explanation_de == (
+        "Du hast де́лает gewählt — das ist die er/sie-Form, hier steht die ich-Form."
+    )
+
+
+def test_build_sentence_names_the_wrong_form_even_in_the_wrong_order(tmp_path):
+    # Die falsche Form ist der Lernpunkt; die Reihenfolge wird erst Thema,
+    # wenn die Woerter stimmen.
+    course = _course(tmp_path)
+    exercise = course.units[1].exercises[0]
+    result = _build(course, exercise, [("delat", "prs.3sg"), ("ja", "nom")])
+    assert "das ist die er/sie-Form, hier steht die ich-Form" in result.explanation_de
+
+
+def test_build_sentence_says_when_only_the_order_is_wrong(tmp_path):
+    course = _course(tmp_path)
+    exercise = course.units[1].exercises[0]
+    result = _build(course, exercise, [("delat", "prs.1sg"), ("ja", "nom")])
+    assert result.explanation_de == "Die Wörter stimmen, nur die Reihenfolge nicht."
+
+
+def test_build_sentence_says_when_something_is_missing(tmp_path):
+    course = _course(tmp_path)
+    exercise = course.units[1].exercises[0]
+    result = _build(course, exercise, [("ja", "nom")])
+    assert result.explanation_de == "Da fehlt noch etwas — gesucht sind 2 Wörter."
+
+
+def test_build_sentence_does_not_blame_a_form_that_was_also_chosen_right(tmp_path):
+    # де́лаю und де́лает zusammen: die richtige Form ist da, zu viel ist nur die andere.
+    course = _course(tmp_path)
+    exercise = course.units[1].exercises[0]
+    result = _build(course, exercise, [("ja", "nom"), ("delat", "prs.1sg"), ("delat", "prs.3sg")])
+    assert result.explanation_de == "Ein Wort zu viel — gesucht sind 2 Wörter."
+
+
+def test_build_sentence_names_a_word_that_does_not_belong(tmp_path):
+    lexicon = copy.deepcopy(MINIMAL_LEXICON)
+    lexicon["lexemes"].append(
+        {
+            "id": "ty",
+            "lemma": "ты",
+            "pos": "pron",
+            "gloss_de": "du",
+            "forms": {"nom": {"text": "ты", "translit": "ty"}},
+        }
+    )
+    unit = copy.deepcopy(MINIMAL_UNIT)
+    unit["new_lexemes"] = unit["new_lexemes"] + ["ty"]
+    unit["exercises"][0]["distractors"] = [["ty", "nom"]]
+    course = load_course(write_course(tmp_path, lexicon=lexicon, units=[unit]))
+    exercise = course.units[1].exercises[0]
+    result = _build(course, exercise, [("ty", "nom"), ("delat", "prs.1sg")])
+    assert result.explanation_de == "ты heißt du und gehört hier nicht hinein."
+
+
 def test_build_sentence_reports_trained_forms(tmp_path):
     course = _course(tmp_path)
     exercise = course.units[1].exercises[0]
@@ -60,15 +125,26 @@ def test_choose_form_accepts_correct_option(tmp_path):
     assert result.trained_forms == [("delat", "prs.1sg")]
 
 
-def test_choose_form_wrong_option_explains_the_right_form(tmp_path):
+def test_choose_form_wrong_option_names_both_forms(tmp_path):
     course = _course(tmp_path)
     exercise = course.units[1].exercises[1]
     options = choose_form_options(course, exercise)
-    wrong = next(index for index, ref in enumerate(options) if ref != exercise.answer)
-    result = check_answer(course, exercise, {"option_index": wrong})
+    result = check_answer(course, exercise, {"option_index": options.index(("delat", "prs.3sg"))})
     assert result.correct is False
     assert result.solution_text == "де́лаю"
-    assert "де́лаю" in result.explanation_de
+    assert result.explanation_de == (
+        "Du hast де́лает gewählt — das ist die er/sie-Form, hier steht die ich-Form."
+    )
+
+
+def test_choose_form_explanation_leaves_the_solution_to_its_own_line(tmp_path):
+    # Das Frontend blendet eine Erklaerung aus, die die Loesung enthaelt — sonst
+    # stuende sie doppelt da. Die Formbezeichnung muss also ohne sie auskommen.
+    course = _course(tmp_path)
+    exercise = course.units[1].exercises[1]
+    options = choose_form_options(course, exercise)
+    result = check_answer(course, exercise, {"option_index": options.index(("delat", "prs.2sg"))})
+    assert result.solution_text not in result.explanation_de
 
 
 def test_match_pairs_accepts_correct_mapping(tmp_path):
@@ -85,6 +161,25 @@ def test_match_pairs_rejects_swapped_mapping(tmp_path):
     left, right = match_pairs_sides(course, exercise)
     pairs = [[index, (right.index(ref) + 1) % len(right)] for index, ref in enumerate(left)]
     assert check_answer(course, exercise, {"pairs": pairs}).correct is False
+
+
+def test_match_pairs_names_the_first_wrong_pair(tmp_path):
+    course = _course(tmp_path)
+    exercise = course.units[1].exercises[2]
+    left, right = match_pairs_sides(course, exercise)
+    pairs = [[index, (right.index(ref) + 1) % len(right)] for index, ref in enumerate(left)]
+    result = check_answer(course, exercise, {"pairs": pairs})
+    first = left[0]
+    assert result.explanation_de == (
+        f"{course.form(first).text} heißt {course.gloss(first)}."
+    )
+
+
+def test_match_pairs_without_a_usable_submission_stays_general(tmp_path):
+    course = _course(tmp_path)
+    exercise = course.units[1].exercises[2]
+    result = check_answer(course, exercise, {"pairs": []})
+    assert result.explanation_de == "Nicht alle Paare stimmen."
 
 
 def test_dialog_reply_accepts_correct_option(tmp_path):

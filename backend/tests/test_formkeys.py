@@ -1,6 +1,11 @@
 import pytest
 
-from app.content.formkeys import allowed_form_keys, contrast_labels_de, form_label_de
+from app.content.formkeys import (
+    allowed_form_keys,
+    contrast_labels_de,
+    form_label_de,
+    with_article_de,
+)
 
 
 def test_erlaubte_schluessel_je_wortart():
@@ -58,3 +63,28 @@ class TestContrastLabelsDe:
 
     def test_verb_gegen_fall_bleibt_verstaendlich(self):
         assert contrast_labels_de("prs.1sg", "inf") == ("ich-Form", "Grundform")
+
+
+class TestWithArticleDe:
+    @pytest.mark.parametrize(
+        "label, spoken",
+        [
+            ("Nominativ", "der Nominativ"),
+            ("Akkusativ weiblich", "der Akkusativ weiblich"),
+            ("ich-Form", "die ich-Form"),
+            ("ihr-Form Zukunft", "die ihr-Form Zukunft"),
+            ("Grundform", "die Grundform"),
+            ("Befehlsform Mehrzahl", "die Befehlsform Mehrzahl"),
+            ("Mehrzahl", "die Mehrzahl"),
+            ("Vergangenheit weiblich", "die Vergangenheit weiblich"),
+            # Ein Geschlecht allein ist ein Adjektiv — ohne Nomen liest sich
+            # „das ist männlich, hier steht weiblich“ wie ein Satz ueber Leute.
+            ("männlich", "die männliche Form"),
+            ("sächlich", "die sächliche Form"),
+        ],
+    )
+    def test_artikel(self, label, spoken):
+        assert with_article_de(label) == spoken
+
+    def test_unbekanntes_bleibt_wie_es_ist(self):
+        assert with_article_de("quatsch.7") == "quatsch.7"

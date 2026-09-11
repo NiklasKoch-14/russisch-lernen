@@ -53,8 +53,10 @@ Lernablauf stehen im README.
 ### Lerninhalte sind Daten, kein Code und kein LLM-Output
 
 Der gesamte Kurs liegt als versioniertes JSON unter `content/ru/` und wird beim Start read-only
-geladen. **Das Sprachmodell erzeugt niemals Lerninhalt** — es erklärt nur auf Deutsch, warum eine
-Antwort falsch war. Grund: das lokale Modell ist bei russischer Morphologie unzuverlässig. SQLite
+geladen. **Das Sprachmodell erzeugt niemals Lerninhalt** und auch keine Fehlererklärung: die baut
+`course/checker.py` aus den Formschlüsseln („das ist die er/sie-Form, hier steht die ich-Form"),
+die Bezeichnungen stehen in `content/formkeys.py`. Grund: das lokale Modell ist bei russischer
+Morphologie unzuverlässig. Im Kurs läuft es gar nicht mit, nur im alten freien Gespräch. SQLite
 speichert ausschließlich Fortschritt.
 
 - `lexicon.json` — jedes Lexem mit Formenparadigma, Betonungszeichen (U+0301), Umschrift, Bedeutung

@@ -41,6 +41,11 @@ App machen kann.
 **Konsequenz:** Lehrinhalte werden vom LLM entkoppelt. Ollama erklärt nur noch auf Deutsch, warum eine
 Antwort falsch war, und führt ab Stufe 3 optionale Freidialoge. Der Kursinhalt selbst ist Daten.
 
+*Stand 2026-09-11:* Auch die Fehlererklärung kommt inzwischen ohne LLM aus. `course/checker.py`
+benennt aus den Formschlüsseln, welche Form gewählt wurde und welche gefragt war („das ist die
+er/sie-Form, hier steht die ich-Form"); die Einheit bietet danach ihre Regel zum Aufklappen an.
+`/api/explain` wird vom Frontend nicht aufgerufen.
+
 ## 3. Architektur
 
 Die drei Container (`frontend`, `backend`, `ollama`) bleiben. Neu ist eine vierte Quelle: ein
@@ -286,6 +291,8 @@ nie im Netzwerk-Tab.
 
 `POST /api/explain` ist der einzige LLM-Aufruf im Lernpfad. Er ist **optional**: schlägt er fehl oder
 läuft in einen Timeout, zeigt die UI die statische Regel der Einheit. Kein Blockieren.
+*(Seit 2026-09-11 ungenutzt — die Erklärung steckt regelbasiert in der Antwort von
+`/api/units/{id}/answer`, siehe Abschnitt 2.)*
 
 ## 8. Frontend
 
