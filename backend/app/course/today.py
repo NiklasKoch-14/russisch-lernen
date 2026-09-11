@@ -21,6 +21,8 @@ from sqlite3 import Connection
 from app.config import settings
 from app.content.models import Course
 from app.course import listening
+from app.course import review as review_module
+from app.course.review_index import ReviewIndex
 from app.game.models import Village
 from app.repositories import (
     activity_repo,
@@ -190,7 +192,9 @@ def _pick_practice(
     return {**_practice_step(chosen, course, village, today), "done": False}
 
 
-def build_plan(conn: Connection, course: Course, village: Village, *, today: str) -> dict:
+def build_plan(
+    conn: Connection, course: Course, village: Village, index: ReviewIndex, *, today: str
+) -> dict:
     profile = get_or_create_profile(conn, settings.default_language)
     progress = progress_repo.all_progress(conn)
     active = activity_repo.active_days(conn)
@@ -204,8 +208,16 @@ def build_plan(conn: Connection, course: Course, village: Village, *, today: str
     due = _due_forms(conn, course, today)
     reviewed = review_repo.count_on(conn, today)
 
+    # Faellig heisst nicht zeigbar: eine einzelne Form ohne Kursaufgabe ergibt
+    # keine Zuordnung und wartet auf Gesellschaft. Ob die Wiederholung gerade
+    # etwas anbieten kann, entscheidet sie selbst — sonst schickte der Plan zu
+    # einem Auffrischen, das „nichts zu wiederholen" sagt.
+    presentable = bool(
+        due and review_module.build_review_round(conn, course, index, today=today)["items"]
+    )
+
     steps: list[dict] = []
-    review = _review_step(due, reviewed)
+    review = _review_step(due if presentable else 0, reviewed)
     if review:
         steps.append(review)
 

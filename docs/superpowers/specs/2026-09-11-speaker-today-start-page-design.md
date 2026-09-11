@@ -75,6 +75,10 @@ Daten und Inhaltstitel.
 ### 3.2 Schritt „Auffrischen"
 
 - `reviewed` = Zeilen in `review_runs` von heute; `due` = fällige Formen jetzt.
+- `due` zählt nur, wenn die Wiederholung daraus gerade eine Runde bauen kann. Eine einzelne Form
+  ohne Kursaufgabe ergibt keine Zuordnung und wartet auf Gesellschaft — sonst schickte der Plan zu
+  einem Auffrischen, das „nichts zu wiederholen" sagt. Die Entscheidung trifft die Wiederholung
+  selbst (`build_review_round`), der Plan fragt sie nur.
 - Kein Schritt, wenn `reviewed == 0` und `due == 0`.
 - Erledigt, wenn `reviewed >= 20` oder `due == 0`.
 - Minuten: `ceil(min(due, 20 - reviewed) * 25 s)`, mindestens 1.

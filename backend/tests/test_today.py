@@ -14,6 +14,7 @@ from app.content.models import (
     Unit,
 )
 from app.course import today as today_module
+from app.course.review_index import build_index
 from app.game.models import Hotspot, Place, Scene, Village
 from app.repositories import game_repo, lexeme_srs_repo, listening_repo, progress_repo, review_repo
 from app.repositories.lexeme_srs_repo import SrsState
@@ -104,7 +105,7 @@ def db(conn):
 
 
 def _plan(db, course, village):
-    return today_module.build_plan(db, course, village, today=TODAY)
+    return today_module.build_plan(db, course, village, build_index(course), today=TODAY)
 
 
 def _step(plan, kind):
@@ -191,6 +192,19 @@ def test_auffrischen_ist_erledigt_wenn_nichts_mehr_faellig_ist(db, course, villa
 def test_nach_zwanzig_formen_ist_fuer_heute_schluss(db, course, village):
     _due(db, 10)
     _reviewed(db, 20)
+    assert _step(_plan(db, course, village), "review")["status"] == "done"
+
+
+def test_eine_einzelne_form_ohne_aufgabe_fuehrt_nicht_ins_leere(db, course, village):
+    # Eine einzelne Form ohne Kursaufgabe ergibt keine Zuordnung — die
+    # Wiederholung zeigt dann nichts. Die Startseite darf nicht dorthin schicken.
+    _due(db, 1)
+    assert _step(_plan(db, course, village), "review") is None
+
+
+def test_ist_nichts_mehr_zu_zeigen_gilt_das_auffrischen_als_erledigt(db, course, village):
+    _due(db, 1)
+    _reviewed(db, 3)
     assert _step(_plan(db, course, village), "review")["status"] == "done"
 
 

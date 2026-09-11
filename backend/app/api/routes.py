@@ -473,9 +473,12 @@ def read_today(
     conn: Connection = Depends(get_db),
     course: Course = Depends(get_course),
     village: Village = Depends(get_village),
+    index: ReviewIndex = Depends(get_review_index),
 ) -> dict:
     """Der Tagesplan der Startseite — aus den Zeitstempeln abgeleitet, nicht gespeichert."""
-    return today_module.build_plan(conn, course, village, today=dt.date.today().isoformat())
+    return today_module.build_plan(
+        conn, course, village, index, today=dt.date.today().isoformat()
+    )
 
 
 @router.get("/listening/next", response_model=ListeningNextResponse)
