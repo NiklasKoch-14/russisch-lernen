@@ -1,4 +1,5 @@
 import { act, fireEvent, render, screen, waitFor } from "@testing-library/react";
+import { MemoryRouter } from "react-router-dom";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 
 import * as speech from "../audio/SpeechContext";
@@ -55,6 +56,14 @@ const abspielen = async () => {
   });
 };
 
+function renderListening(path = "/hoeren") {
+  return render(
+    <MemoryRouter initialEntries={[path]}>
+      <ListeningView />
+    </MemoryRouter>,
+  );
+}
+
 describe("ListeningView", () => {
   beforeEach(() => {
     vi.restoreAllMocks();
@@ -66,14 +75,14 @@ describe("ListeningView", () => {
   });
 
   it("zeigt vor der Antwort keinen russischen Text", async () => {
-    render(<ListeningView />);
+    renderListening();
     expect(await screen.findByText("2 Sprecher · 3 Zeilen")).toBeInTheDocument();
     expect(screen.queryByText("я пью ко́фе")).not.toBeInTheDocument();
     expect(screen.queryByText("Ich trinke Kaffee.")).not.toBeInTheDocument();
   });
 
   it("spielt die Zeilen nacheinander mit der Stimme des Sprechers", async () => {
-    render(<ListeningView />);
+    renderListening();
     await abspielen();
 
     await waitFor(() => expect(say).toHaveBeenCalledTimes(3));
@@ -86,7 +95,7 @@ describe("ListeningView", () => {
   });
 
   it("stellt die Frage erst, wenn das Gespräch einmal durch ist", async () => {
-    render(<ListeningView />);
+    renderListening();
     expect(await screen.findByText(/Die Frage kommt/)).toBeInTheDocument();
 
     await abspielen();
@@ -94,7 +103,7 @@ describe("ListeningView", () => {
   });
 
   it("deckt Titel, Transkript und Übersetzung erst nach der Antwort auf", async () => {
-    render(<ListeningView />);
+    renderListening();
     await abspielen();
     const option = await screen.findByRole("button", { name: "Was die beiden trinken." });
     await act(async () => {
@@ -108,7 +117,7 @@ describe("ListeningView", () => {
   });
 
   it("holt auf Knopfdruck das nächste Gespräch", async () => {
-    render(<ListeningView />);
+    renderListening();
     await abspielen();
     const option = await screen.findByRole("button", { name: "Was die beiden trinken." });
     await act(async () => {
@@ -124,7 +133,7 @@ describe("ListeningView", () => {
 
   it("zeigt ohne Stimme sofort Text und Frage", async () => {
     stimme(false);
-    render(<ListeningView />);
+    renderListening();
 
     expect(await screen.findByText("я пью ко́фе")).toBeInTheDocument();
     expect(screen.getByText("Worum ging es?")).toBeInTheDocument();
@@ -137,8 +146,37 @@ describe("ListeningView", () => {
       dialog_id: null,
       next_unit: 12,
     });
-    render(<ListeningView />);
+    renderListening();
 
     expect(await screen.findByText(/Einheit 12/)).toBeInTheDocument();
+  });
+
+  it("spielt das von der Startseite gewünschte Gespräch", async () => {
+    renderListening("/hoeren?gespraech=2");
+    await screen.findByText("Hör zu — worum geht es?");
+    expect(api.getNextDialog).toHaveBeenCalledWith(2);
+  });
+
+  it("führt nach der Antwort zurück zu Heute", async () => {
+    renderListening();
+    await abspielen();
+    const option = await screen.findByRole("button", { name: "Was die beiden trinken." });
+    await act(async () => {
+      fireEvent.click(option);
+    });
+    expect(await screen.findByRole("link", { name: "Zurück zu Heute" })).toHaveAttribute("href", "/");
+  });
+
+  it("holt danach wieder das übliche nächste Gespräch statt des gewünschten", async () => {
+    renderListening("/hoeren?gespraech=2");
+    await abspielen();
+    const option = await screen.findByRole("button", { name: "Was die beiden trinken." });
+    await act(async () => {
+      fireEvent.click(option);
+    });
+    await act(async () => {
+      fireEvent.click(await screen.findByRole("button", { name: "Nächstes Gespräch" }));
+    });
+    await waitFor(() => expect(api.getNextDialog).toHaveBeenLastCalledWith(undefined));
   });
 });

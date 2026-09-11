@@ -12,6 +12,15 @@ describe("App", () => {
   beforeEach(() => {
     vi.restoreAllMocks();
     vi.spyOn(api, "getCourse").mockResolvedValue({ stages: [] });
+    vi.spyOn(api, "getToday").mockResolvedValue({
+      greeting: "normal",
+      steps: [],
+      unit_skipped: null,
+      next_unit_id: 1,
+      finished: false,
+      week_days: 0,
+      offer_screening: false,
+    });
     vi.spyOn(api, "getProfile").mockResolvedValue({
       language: "russian",
       cefr_level: "UNPLACED",
@@ -49,5 +58,26 @@ describe("App", () => {
       </MemoryRouter>,
     );
     expect(screen.getByText("ProfileView")).toBeInTheDocument();
+  });
+
+  it("beginnt mit der Startseite Heute", async () => {
+    render(
+      <MemoryRouter initialEntries={["/"]}>
+        <App />
+      </MemoryRouter>,
+    );
+    const tabs = screen.getAllByRole("link").map((link) => link.textContent);
+    expect(tabs[0]).toBe("Heute");
+    expect(screen.getByRole("link", { name: "Heute" })).toHaveAttribute("aria-current", "page");
+    expect(await screen.findByRole("heading", { name: "Heute" })).toBeInTheDocument();
+  });
+
+  it("markiert Heute nicht, wenn man im Kurs ist", () => {
+    render(
+      <MemoryRouter initialEntries={["/kurs"]}>
+        <App />
+      </MemoryRouter>,
+    );
+    expect(screen.getByRole("link", { name: "Heute" })).not.toHaveAttribute("aria-current");
   });
 });

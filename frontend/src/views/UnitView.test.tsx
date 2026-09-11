@@ -186,6 +186,27 @@ describe("UnitView", () => {
     fireEvent.click(await screen.findByRole("button", { name: "Weiter" }));
     expect(await screen.findByText("Einheit geschafft!")).toBeInTheDocument();
   });
+
+  it("führt nach dem Abschluss zurück zu Heute, der Kurs bleibt daneben", async () => {
+    vi.spyOn(api, "getUnit").mockResolvedValue({ ...unit, exercises: [unit.exercises[1]] });
+    vi.spyOn(api, "submitAnswer").mockResolvedValue({
+      correct: true,
+      solution_text: "спаси́бо",
+      solution_translit: "spasíbo",
+      solution_audio: ["спаси́бо"],
+      explanation_de: "",
+      unit_completed: true,
+      correct_count: 1,
+      total_count: 1,
+    });
+    renderUnit();
+    fireEvent.click(await screen.findByRole("button", { name: "Los geht's" }));
+    fireEvent.click(await screen.findByRole("button", { name: /спаси́бо/ }));
+    fireEvent.click(screen.getByRole("button", { name: "Prüfen" }));
+    fireEvent.click(await screen.findByRole("button", { name: "Weiter" }));
+    expect(await screen.findByRole("link", { name: "Zurück zu Heute" })).toHaveAttribute("href", "/");
+    expect(screen.getByRole("link", { name: "Zum Kurs" })).toHaveAttribute("href", "/kurs");
+  });
 });
 
 describe("UnitView mit Ton", () => {

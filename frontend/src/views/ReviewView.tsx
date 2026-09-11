@@ -1,4 +1,5 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 import SpeakerButton from "../audio/SpeakerButton";
 import ExerciseRunner from "../course/ExerciseRunner";
@@ -24,17 +25,29 @@ export default function ReviewView() {
   const [lines, setLines] = useState<Zeile[]>([]);
   const [error, setError] = useState(false);
 
-  useEffect(() => {
+  const laden = useCallback(() => {
+    setRound(null);
+    setPosition(0);
+    setLines([]);
     getReviewRound()
       .then(setRound)
       .catch(() => setError(true));
   }, []);
 
+  useEffect(laden, [laden]);
+
   if (error) return <p>Die Wiederholung konnte nicht geladen werden.</p>;
   if (!round) return <p>Wiederholung wird geladen …</p>;
 
   if (round.items.length === 0) {
-    return <p>Gerade gibt es nichts zu wiederholen. Mach im Kurs weiter!</p>;
+    return (
+      <div className="space-y-4">
+        <p>Gerade gibt es nichts zu wiederholen. Mach im Kurs weiter!</p>
+        <Link to="/" className="inline-block rounded-xl bg-sky-600 px-5 py-2 font-medium text-white">
+          Zurück zu Heute
+        </Link>
+      </div>
+    );
   }
 
   const item: ReviewItem | undefined = round.items[position];
@@ -59,6 +72,16 @@ export default function ReviewView() {
             </li>
           ))}
         </ul>
+        {/* Die Startseite zaehlt mit, wie viel heute aufgefrischt wurde, und
+            setzt den Haken; wer mag, macht gleich die naechste Runde. */}
+        <div className="flex flex-wrap items-center gap-4 pt-2">
+          <Link to="/" className="inline-block rounded-xl bg-sky-600 px-5 py-2 font-medium text-white">
+            Zurück zu Heute
+          </Link>
+          <button type="button" onClick={laden} className="rounded-xl border-2 border-slate-300 bg-white px-4 py-2 transition hover:border-sky-400">
+            Weiter auffrischen
+          </button>
+        </div>
       </div>
     );
   }

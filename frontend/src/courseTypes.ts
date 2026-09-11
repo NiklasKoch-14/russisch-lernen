@@ -242,3 +242,31 @@ export interface FlashcardResult {
   translit: string;
   gloss_de: string;
 }
+
+/** Ein Schritt im Tagesplan der Startseite. */
+export type TodayStepStatus = "done" | "next" | "later";
+
+interface TodayStepBase {
+  status: TodayStepStatus;
+  /** Geschätzte Dauer; bei erledigten Schritten ohne Bedeutung. */
+  minutes: number;
+  title_de: string;
+  link: string;
+}
+
+export type TodayStep =
+  | (TodayStepBase & { kind: "review" })
+  | (TodayStepBase & { kind: "unit"; unit_id: number; detail_de: string })
+  | (TodayStepBase & { kind: "listening" | "scene"; detail_de: string | null; known: boolean });
+
+export interface TodayPlan {
+  greeting: "normal" | "welcome_back";
+  steps: TodayStep[];
+  /** Warum keine neue Einheit im Plan steht — null, wenn eine drinsteht. */
+  unit_skipped: "pause" | "backlog" | "all_done" | null;
+  /** Die nächste offene Einheit, für „Noch eine Einheit". */
+  next_unit_id: number | null;
+  finished: boolean;
+  week_days: number;
+  offer_screening: boolean;
+}

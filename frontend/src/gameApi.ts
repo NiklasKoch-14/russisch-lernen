@@ -27,10 +27,11 @@ export const getVillage = () => request<VillageOverview>("/game/village");
 
 export const getPlace = (placeId: string) => request<PlaceDetail>(`/game/places/${placeId}`);
 
-export const startScene = (placeId: string, npcId?: string) =>
+/** `sceneId` startet genau diese Szene — so öffnet die Startseite ihren Vorschlag. */
+export const startScene = (placeId: string, npcId?: string, sceneId?: string) =>
   request<SceneStart>(`/game/places/${placeId}/scene`, {
     method: "POST",
-    body: JSON.stringify({ npc_id: npcId ?? null }),
+    body: JSON.stringify({ npc_id: npcId ?? null, scene_id: sceneId ?? null }),
   });
 
 export const getTurn = (sceneId: string, seed: string, index: number, typed = false) => {

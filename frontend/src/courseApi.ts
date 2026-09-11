@@ -7,6 +7,7 @@ import type {
   ReviewRound,
   ScreeningStep,
   Submission,
+  TodayPlan,
   UnitDetail,
 } from "./courseTypes";
 
@@ -22,6 +23,8 @@ async function request<T>(path: string, init?: RequestInit): Promise<T> {
 }
 
 export const getCourse = () => request<CourseOverview>("/course");
+
+export const getToday = () => request<TodayPlan>("/today");
 
 export const getUnit = (unitId: number) => request<UnitDetail>(`/units/${unitId}`);
 

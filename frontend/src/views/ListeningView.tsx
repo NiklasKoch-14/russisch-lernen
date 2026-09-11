@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useState } from "react";
+import { Link, useSearchParams } from "react-router-dom";
 
 import { useSpeech } from "../audio/SpeechContext";
 import type { ListeningDialog, ListeningResult } from "../courseTypes";
@@ -22,17 +23,25 @@ export default function ListeningView() {
   const [gehoert, setGehoert] = useState(false);
   const [error, setError] = useState(false);
 
-  const laden = useCallback(() => {
+  // Die Startseite schlaegt ein bestimmtes Gespraech vor. Das gilt nur fuer das
+  // erste; „Nächstes Gespräch" nimmt danach wieder das uebliche.
+  const [params] = useSearchParams();
+  const wished = Number(params.get("gespraech")) || undefined;
+
+  const laden = useCallback((dialogId?: number) => {
     setDialog(null);
     setChosen(null);
     setResult(null);
     setGehoert(false);
-    getNextDialog()
+    getNextDialog(dialogId)
       .then(setDialog)
       .catch(() => setError(true));
   }, []);
 
-  useEffect(laden, [laden]);
+  // Nur beim ersten Aufbau: ein anderer Wunsch kommt ohnehin nur ueber einen
+  // neuen Seitenaufruf, und `wished` in den Abhaengigkeiten wuerde nach
+  // „Nächstes Gespräch" nichts aendern — der Parameter bleibt ja stehen.
+  useEffect(() => laden(wished), [laden]);
 
   if (error) return <p>Die Gespräche konnten nicht geladen werden.</p>;
   if (!dialog) return <p>Gespräch wird geladen …</p>;
@@ -102,13 +111,14 @@ export default function ListeningView() {
       ) : null}
 
       {result ? (
-        <button
-          type="button"
-          onClick={laden}
-          className="rounded-xl border-2 border-slate-300 bg-white px-4 py-2 transition hover:border-sky-400"
-        >
-          Nächstes Gespräch
-        </button>
+        <div className="flex flex-wrap items-center gap-4">
+          <Link to="/" className="inline-block rounded-xl bg-sky-600 px-5 py-2 font-medium text-white">
+            Zurück zu Heute
+          </Link>
+          <button type="button" onClick={() => laden()} className="rounded-xl border-2 border-slate-300 bg-white px-4 py-2 transition hover:border-sky-400">
+            Nächstes Gespräch
+          </button>
+        </div>
       ) : null}
     </div>
   );

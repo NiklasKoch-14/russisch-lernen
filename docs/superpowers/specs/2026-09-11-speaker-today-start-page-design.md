@@ -119,7 +119,8 @@ Daten und Inhaltstitel.
 
 ## 4. Die Seite
 
-Route `/` und `/heute`, Reiter „Heute" an erster Stelle. Die Kopfzeile bleibt.
+Route `/`, Reiter „Heute" an erster Stelle. Die Kopfzeile bleibt. Die Einheitenliste bleibt unter
+`/kurs`.
 
 - **Überschrift**: „Heute" bzw. „Schön, dass du wieder da bist." Darunter „Etwa N Minuten." (Summe
   der offenen Schritte), bei `finished` stattdessen „Fertig für heute."

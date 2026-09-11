@@ -12,10 +12,14 @@ import PlaceView from "./views/PlaceView";
 import ReviewView from "./views/ReviewView";
 import SceneView from "./views/SceneView";
 import ScreeningView from "./views/ScreeningView";
+import TodayView from "./views/TodayView";
 import UnitView from "./views/UnitView";
 import VillageView from "./views/VillageView";
 
+// "Heute" ist die Startseite und steht deshalb vorn. `end`, weil "/" sonst
+// zu jeder Adresse passt und der Reiter immer markiert waere.
 const TABS = [
+  { to: "/", label: "Heute", end: true },
   { to: "/kurs", label: "Kurs" },
   { to: "/dorf", label: "Dorf" },
   { to: "/hoeren", label: "Hören" },
@@ -61,16 +65,19 @@ export default function App() {
             <div
               className={
                 wide
-                  ? "flex items-center gap-6 px-4 py-3"
-                  : "mx-auto flex max-w-3xl items-center gap-6 px-4 py-3"
+                  ? "flex flex-wrap items-center gap-x-6 gap-y-2 px-4 py-3"
+                  : "mx-auto flex max-w-3xl flex-wrap items-center gap-x-6 gap-y-2 px-4 py-3"
               }
             >
               <span className="text-lg font-semibold">Russisch lernen</span>
-              <nav className="flex gap-4">
+              {/* Sieben Reiter passen auf dem Handy nicht in eine Zeile — ohne
+                  Umbruch liefe die ganze Seite seitlich aus dem Bild. */}
+              <nav className="flex flex-wrap gap-x-4 gap-y-1">
                 {TABS.map((tab) => (
                   <NavLink
                     key={tab.to}
                     to={tab.to}
+                    end={tab.end}
                     className={({ isActive }) =>
                       isActive ? "font-medium text-sky-700" : "text-slate-600 hover:text-slate-900"
                     }
@@ -92,7 +99,7 @@ export default function App() {
             }
           >
             <Routes>
-              <Route path="/" element={<CourseView />} />
+              <Route path="/" element={<TodayView />} />
               <Route path="/kurs" element={<CourseView />} />
               <Route path="/kurs/:unitId" element={<UnitView />} />
               <Route path="/einstufung" element={<ScreeningView />} />

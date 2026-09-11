@@ -85,12 +85,19 @@ export default function UnitView() {
     return (
       <div className="space-y-4">
         <h2 className="text-2xl font-semibold">Einheit geschafft!</h2>
-        <Link
-          to="/kurs"
-          className="inline-block rounded-xl bg-sky-600 px-5 py-2 font-medium text-white"
-        >
-          Zurück zum Kurs
-        </Link>
+        {/* Zurück zur Startseite: dort sitzt jetzt der Haken, und sie sagt,
+            was als Nächstes kommt — oder dass es für heute reicht. */}
+        <div className="flex flex-wrap items-center gap-5">
+          <Link
+            to="/"
+            className="inline-block rounded-xl bg-sky-600 px-5 py-2 font-medium text-white"
+          >
+            Zurück zu Heute
+          </Link>
+          <Link to="/kurs" className="text-sky-700 underline underline-offset-2">
+            Zum Kurs
+          </Link>
+        </div>
       </div>
     );
   }

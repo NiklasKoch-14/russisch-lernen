@@ -12,7 +12,11 @@ async function request<T>(path: string, init?: RequestInit): Promise<T> {
   return response.json() as Promise<T>;
 }
 
-export const getNextDialog = () => request<ListeningDialog>("/listening/next");
+/** Das nächste Gespräch — oder genau dieses, wenn die Startseite es vorschlägt. */
+export const getNextDialog = (dialogId?: number) =>
+  request<ListeningDialog>(
+    dialogId === undefined ? "/listening/next" : `/listening/next?dialog_id=${dialogId}`,
+  );
 
 export const answerDialog = (dialogId: number, seed: string, optionIndex: number) =>
   request<ListeningResult>(`/listening/${dialogId}/answer`, {

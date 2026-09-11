@@ -198,4 +198,12 @@ describe("PlaceView — einheitlicher Zuschnitt", () => {
     expect(within(actions).getByRole("button", { name: /Einkaufen/ })).toBeVisible();
     expect(back.className).not.toMatch(/underline/);
   });
+
+  it("startet die von der Startseite vorgeschlagene Szene von selbst", async () => {
+    vi.spyOn(api, "getPlace").mockResolvedValue(bar);
+    const start = vi.spyOn(api, "startScene").mockResolvedValue(started);
+    renderPlace("/dorf/bar?szene=bar-03");
+    expect(await screen.findByText(`Szene läuft (seed=${started.seed})`)).toBeInTheDocument();
+    expect(start).toHaveBeenCalledWith("bar", undefined, "bar-03");
+  });
 });

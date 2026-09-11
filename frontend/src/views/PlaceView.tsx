@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams, useSearchParams } from "react-router-dom";
 
 import PlaceHeader from "../game/PlaceHeader";
 import PlaceStage from "../game/PlaceStage";
@@ -25,6 +25,24 @@ export default function PlaceView() {
       .then(setPlace)
       .catch(() => setError(true));
   }, [placeId]);
+
+  // `?szene=` kommt von der Startseite: sie schlaegt eine bestimmte Szene vor.
+  // Einen Seed vergibt erst der Start, also wird hier gestartet und ohne
+  // Zwischenschritt hineingesprungen — `replace`, damit „Zurück" nicht wieder
+  // hier landet und die Szene ein zweites Mal startet.
+  const [params] = useSearchParams();
+  const wishedScene = params.get("szene");
+  useEffect(() => {
+    if (!placeId || !wishedScene) return;
+    startScene(placeId, undefined, wishedScene)
+      .then((scene) =>
+        navigate(
+          `/dorf/${placeId}/szene/${scene.scene_id}?seed=${encodeURIComponent(scene.seed)}`,
+          { replace: true },
+        ),
+      )
+      .catch(() => setError(true));
+  }, [placeId, wishedScene, navigate]);
 
   // "npcs" braucht die Wahl der Person, "shopping" nicht — deshalb startet
   // hier auch die Einkaufsszene ohne npcId.

@@ -368,4 +368,20 @@ describe("SceneView — tippen statt klicken", () => {
     await screen.findByTestId("turn-feedback");
     expect(screen.queryByRole("button", { name: "lieber Kacheln" })).not.toBeInTheDocument();
   });
+
+  it("bietet nach dem Ende der Szene den Weg zurück zu Heute an", async () => {
+    vi.spyOn(api, "getTurn").mockResolvedValue(turn(0));
+    vi.spyOn(api, "answerTurn").mockResolvedValue({
+      ...right,
+      scene_completed: true,
+      outro_de: "Pjotr nickt.",
+    });
+    renderScene();
+    fireEvent.click(await screen.findByRole("button", { name: /хорошо́/ }));
+    fireEvent.click(screen.getByRole("button", { name: "Prüfen" }));
+    fireEvent.click(await screen.findByRole("button", { name: "Weiter" }));
+    expect(await screen.findByText("Geschafft!")).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: "Zurück zu Heute" })).toHaveAttribute("href", "/");
+    expect(screen.getByRole("button", { name: "Zurück in den Raum" })).toBeInTheDocument();
+  });
 });

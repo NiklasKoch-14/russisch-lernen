@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from "react";
-import { useNavigate, useParams, useSearchParams } from "react-router-dom";
+import { Link, useNavigate, useParams, useSearchParams } from "react-router-dom";
 
 import BuildSentenceExercise from "../course/BuildSentenceExercise";
 import TypeSentenceExercise from "../course/TypeSentenceExercise";
@@ -112,13 +112,14 @@ export default function SceneView() {
         <>
           <h2 className="text-2xl font-semibold">Geschafft!</h2>
           <p>{done.outro_de}</p>
-          <button
-            type="button"
-            onClick={leave}
-            className="rounded-xl bg-sky-600 px-5 py-2 font-medium text-white"
-          >
-            Zurück in den Raum
-          </button>
+          <div className="flex flex-wrap items-center gap-4">
+            <Link to="/" className="inline-block rounded-xl bg-sky-600 px-5 py-2 font-medium text-white">
+              Zurück zu Heute
+            </Link>
+            <button type="button" onClick={leave} className="rounded-xl border-2 border-slate-300 bg-white px-4 py-2 transition hover:border-sky-400">
+              Zurück in den Raum
+            </button>
+          </div>
         </>
       ) : (
         <>

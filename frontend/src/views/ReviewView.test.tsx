@@ -1,4 +1,5 @@
 import { fireEvent, render, screen, waitFor } from "@testing-library/react";
+import { MemoryRouter } from "react-router-dom";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 
 import * as speech from "../audio/SpeechContext";
@@ -41,6 +42,14 @@ const stumm = () =>
     activeVoice: null,
   });
 
+function renderReview() {
+  return render(
+    <MemoryRouter>
+      <ReviewView />
+    </MemoryRouter>,
+  );
+}
+
 describe("ReviewView", () => {
   beforeEach(() => {
     vi.restoreAllMocks();
@@ -49,7 +58,7 @@ describe("ReviewView", () => {
 
   it("meldet, wenn nichts fällig ist", async () => {
     vi.spyOn(api, "getReviewRound").mockResolvedValue({ items: [] });
-    render(<ReviewView />);
+    renderReview();
     expect(await screen.findByText(/nichts zu wiederholen/i)).toBeInTheDocument();
   });
 
@@ -66,7 +75,7 @@ describe("ReviewView", () => {
       total_count: 0,
     });
 
-    render(<ReviewView />);
+    renderReview();
     fireEvent.click(await screen.findByRole("button", { name: /говорю́/ }));
 
     await waitFor(() => expect(submit).toHaveBeenCalledWith(8, "8-4", { option_index: 0 }));
@@ -84,7 +93,7 @@ describe("ReviewView", () => {
       ],
     });
 
-    render(<ReviewView />);
+    renderReview();
     fireEvent.click(await screen.findByRole("button", { name: /приве́т/ }));
     fireEvent.click(screen.getByRole("button", { name: "hallo (locker)" }));
     fireEvent.click(screen.getByRole("button", { name: /пока́/ }));
@@ -107,11 +116,37 @@ describe("ReviewView", () => {
       total_count: 0,
     });
 
-    render(<ReviewView />);
+    renderReview();
     expect(await screen.findByText("Wiederholung 1 von 2")).toBeInTheDocument();
     fireEvent.click(await screen.findByRole("button", { name: /говорю́/ }));
 
     // Danach die Zuordnung, nicht schon das Ergebnis.
     expect(await screen.findByRole("button", { name: /приве́т/ })).toBeInTheDocument();
+  });
+
+  it("führt ohne Fälliges zurück zu Heute", async () => {
+    vi.spyOn(api, "getReviewRound").mockResolvedValue({ items: [] });
+    renderReview();
+    expect(await screen.findByRole("link", { name: "Zurück zu Heute" })).toHaveAttribute("href", "/");
+  });
+
+  it("bietet am Rundenende den Rückweg und eine weitere Runde an", async () => {
+    const round = vi.spyOn(api, "getReviewRound").mockResolvedValue({ items: [kursaufgabe] });
+    vi.spyOn(api, "submitReviewExercise").mockResolvedValue({
+      correct: true,
+      solution_text: "говорю́",
+      solution_translit: "govorjú",
+      solution_audio: [],
+      explanation_de: "",
+      unit_completed: false,
+      correct_count: 0,
+      total_count: 0,
+    });
+    renderReview();
+    fireEvent.click(await screen.findByRole("button", { name: /говорю́/ }));
+
+    expect(await screen.findByRole("link", { name: "Zurück zu Heute" })).toHaveAttribute("href", "/");
+    fireEvent.click(screen.getByRole("button", { name: "Weiter auffrischen" }));
+    await waitFor(() => expect(round).toHaveBeenCalledTimes(2));
   });
 });
