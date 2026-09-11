@@ -62,13 +62,10 @@ export default function App() {
                 : "border-b border-slate-200 bg-white"
             }
           >
-            <div
-              className={
-                wide
-                  ? "flex flex-wrap items-center gap-x-6 gap-y-2 px-4 py-3"
-                  : "mx-auto flex max-w-3xl flex-wrap items-center gap-x-6 gap-y-2 px-4 py-3"
-              }
-            >
+            {/* Der Inhalt steht überall gleich mittig, auch im Dorf: dort wird
+                nur der Hintergrund breit, damit die Navigation beim Wechsel
+                nicht an den Rand springt. */}
+            <div className="mx-auto flex max-w-3xl flex-wrap items-center gap-x-6 gap-y-2 px-4 py-3">
               <span className="text-lg font-semibold">Russisch lernen</span>
               {/* Sieben Reiter passen auf dem Handy nicht in eine Zeile — ohne
                   Umbruch liefe die ganze Seite seitlich aus dem Bild. */}

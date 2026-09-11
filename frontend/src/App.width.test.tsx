@@ -48,4 +48,12 @@ describe("Kopfzeile im Dorf", () => {
     expect(screen.getByRole("link", { name: "Dorf" })).toBeVisible();
     expect(screen.getByRole("switch")).toBeVisible();
   });
+
+  it("steht mittig wie auf allen anderen Seiten", () => {
+    // Nur das Bild darunter nimmt die volle Breite — der Inhalt der
+    // Kopfzeile springt beim Wechsel ins Dorf nicht an den Rand.
+    renderAt("/dorf");
+    const inhalt = screen.getByRole("banner").firstElementChild;
+    expect(inhalt).toHaveClass("mx-auto", "max-w-3xl");
+  });
 });
