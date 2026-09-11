@@ -63,6 +63,12 @@ Hör-Aufgaben ihre Textfassung. Keine Einheit wird dadurch unlösbar.
 
 ## Lernablauf
 
+Die App beginnt mit **Heute** (`/`): einem Plan für den Tag in der Reihenfolge einer guten Stunde —
+auffrischen (höchstens 20 Formen), eine neue Einheit, dann ein Hörgespräch oder eine Dorfszene zum
+Gelernten. Ein Knopf führt zum nächsten Schritt, jeder Schritt führt zurück, und am Ende steht
+„Fertig für heute." Nach mehr als einer Woche Pause oder bei hohem Wiederholungsrückstand schlägt
+der Plan keine neue Einheit vor; gesperrt wird nichts, alle Reiter bleiben offen.
+
 1. **Einstufung** (`/einstufung`) — sechs Klick-Sonden mit steigender Schwierigkeit, Abbruch nach zwei
    Fehlern in Folge. Ergebnis ist die empfohlene Starteinheit.
 2. **Kurs** (`/kurs`) — Einheiten in fünf Stufen. Jede Einheit beginnt mit einer kurzen deutschen Regel
@@ -77,8 +83,8 @@ Hör-Aufgaben ihre Textfassung. Keine Einheit wird dadurch unlösbar.
 
    Geprüft wird streng, aber der Fehler wird benannt. Betonungszeichen, Groß- und Kleinschreibung,
    `ё`/`е` und Satzzeichen sind egal; alles andere zählt. Weil das Lexikon jede Form kennt, kann die
-   Meldung sagen, *was* stattdessen dastand — „Du hast рабо́та geschrieben — das ist Nominativ, hier
-   steht Präpositiv: рабо́те." Ein bloßer Vertipper zählt nicht gegen die Wiederholungsplanung.
+   Meldung sagen, *was* stattdessen dastand — „Du hast рабо́та geschrieben — das ist der Nominativ, hier
+   steht der Präpositiv: рабо́те." Ein bloßer Vertipper zählt nicht gegen die Wiederholungsplanung.
 
 Der Freitext-Chat mit dem Tutor bleibt erhalten, schaltet sich aber erst ab Stufe 3 frei — davor fehlt
 schlicht der Wortschatz.

@@ -122,6 +122,12 @@ Textfassung. Keine Einheit wird dadurch unlösbar — dieser dreistufige Rückfa
 
 ### Frontend
 
+Die Startseite `views/TodayView.tsx` zeigt den Tagesplan aus `course/today.py` (`GET /api/today`):
+auffrischen → neue Einheit → anwenden. Der Plan wird bei jedem Aufruf aus Zeitstempeln abgeleitet
+(`review_runs`, `exercise_attempts`, `listening_runs`, …), nie gespeichert. Die Dosierungsregeln und
+ihre Begründung stehen in `docs/superpowers/specs/2026-09-11-speaker-today-start-page-design.md`;
+gesperrt wird nie etwas.
+
 `courseTypes.ts` spiegelt die Backend-Payloads; Änderungen am Payload beginnen dort. `courseApi.ts`
 kapselt die Aufrufe. Eine Einheit läuft in `views/UnitView.tsx` durch die Phasen Regel → neue Wörter
 → Aufgaben → Abschluss; `course/ExerciseRunner.tsx` verteilt auf die fünf Aufgabenkomponenten.
