@@ -16,7 +16,9 @@ SETTLED_DAYS = 6.0
 zweiten Treffer auf sechs Tage."""
 
 
-def _due_refs(conn: Connection, course: Course, *, today: str, size: int) -> list[TokenRef]:
+def _due_refs(
+    conn: Connection, course: Course, *, today: str, size: int | None
+) -> list[TokenRef]:
     """Faellige Formen in der Reihenfolge, in der ein Lehrer abfragen wuerde.
 
     Erst bis zu zwei gefestigte Formen zum Aufwaermen — wer mit drei Fehlern
@@ -39,7 +41,8 @@ def _due_refs(conn: Connection, course: Course, *, today: str, size: int) -> lis
         (state for state in states if state not in settled),
         key=lambda state: state.interval_days,
     )
-    return [(state.lexeme_id, state.form_key) for state in settled + rest][:size]
+    ordered = [(state.lexeme_id, state.form_key) for state in settled + rest]
+    return ordered if size is None else ordered[:size]
 
 
 def _split_refs(
@@ -50,24 +53,46 @@ def _split_refs(
     today: str,
     size: int,
 ) -> tuple[list[tuple[TokenRef, Location]], list[TokenRef]]:
-    """Faellige Formen aufteilen: mit Kontext-Aufgabe und ohne."""
+    """Faellige Formen aufteilen: mit Kontext-Aufgabe und ohne.
+
+    In der Zuordnung steht jede Bedeutung nur einmal. Wiederholt wird je
+    Wortform, und ohne diese Regel stuende rechts dreimal „groß" — die Aufgabe
+    pruefte dann nur das Wort, nicht die Form. Eine weitere Form mit derselben
+    Bedeutung wartet auf eine spaetere Runde; an ihre Stelle rueckt die
+    naechste faellige Form.
+    """
     allowed = set(progress_repo.all_progress(conn))
     seed = f"review:{today}"
 
     with_context: list[tuple[TokenRef, Location]] = []
     leftovers: list[TokenRef] = []
-    for ref in _due_refs(conn, course, today=today, size=size):
+    deferred: list[TokenRef] = []
+    for ref in _due_refs(conn, course, today=today, size=None):
+        if len(with_context) + len(leftovers) == size:
+            break
         location = index.pick(ref, allowed_units=allowed, seed=seed)
-        if location is None:
-            leftovers.append(ref)
-        else:
+        if location is not None:
             with_context.append((ref, location))
+        elif any(course.gloss(ref) == course.gloss(other) for other in leftovers):
+            deferred.append(ref)
+        else:
+            leftovers.append(ref)
 
     # Eine Zuordnung mit einem Paar ist keine Aufgabe: dann kommt eine weitere
-    # faellige Form dazu, auch wenn sie eine Kontext-Aufgabe haette.
-    if len(leftovers) == 1 and with_context:
-        borrowed, _ = with_context.pop()
-        leftovers.append(borrowed)
+    # faellige Form dazu, auch wenn sie eine Kontext-Aufgabe haette — aber eine
+    # mit anderer Bedeutung.
+    if len(leftovers) == 1:
+        for position in range(len(with_context) - 1, -1, -1):
+            borrowed, _ = with_context[position]
+            if course.gloss(borrowed) != course.gloss(leftovers[0]):
+                del with_context[position]
+                leftovers.append(borrowed)
+                break
+
+    # Lieber doppelt als gar nicht: stehen nur noch Formen eines Wortes an,
+    # bliebe die Runde sonst leer, obwohl etwas faellig ist.
+    if len(leftovers) == 1 and deferred:
+        leftovers.append(deferred[0])
 
     if len(leftovers) < 2:
         leftovers = []

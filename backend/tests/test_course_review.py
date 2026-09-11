@@ -316,12 +316,11 @@ def test_eine_unbekannte_form_in_der_antwort_wird_abgelehnt(gearbeitet, course):
 
 
 def test_gleiche_bedeutung_zaehlt_auf_jeder_ihrer_karten(conn, course, index):
-    # Wiederholt wird je Wortform — also landen де́лаю und де́лает in derselben
-    # Zuordnung, und rechts steht zweimal „machen, tun". Welche der beiden
-    # Karten man nimmt, ist nicht zu unterscheiden und darf nicht zaehlen.
+    # Stehen nur Formen eines Wortes an, landen де́лаю und де́лает doch in
+    # derselben Zuordnung, und rechts steht zweimal „machen, tun". Welche der
+    # beiden Karten man nimmt, ist nicht zu unterscheiden und darf nicht zaehlen.
     _due(conn, "delat", "prs.1sg")
     _due(conn, "delat", "prs.3sg")
-    _due(conn, "bu_r", "base")
     zuordnung = next(
         item for item in _round(conn, course, index)["items"] if item["kind"] == "pairs"
     )
@@ -340,4 +339,51 @@ def test_gleiche_bedeutung_zaehlt_auf_jeder_ihrer_karten(conn, course, index):
     ergebnis = review.grade_review_round(
         conn, course, today=TODAY, submission=_antwort(zuordnung, pairs)
     )
-    assert ergebnis["correct_count"] == 3
+    assert ergebnis["correct_count"] == 2
+
+
+def _zuordnung(conn, course, index):
+    return next(
+        (item for item in _round(conn, course, index)["items"] if item["kind"] == "pairs"), None
+    )
+
+
+def _bedeutungen(course, zuordnung):
+    return [course.gloss(tuple(links["ref"].split(":", 1))) for links in zuordnung["left"]]
+
+
+def test_jede_bedeutung_steht_in_einer_zuordnung_nur_einmal(conn, course, index):
+    # Dreimal „groß" rechts prüft nicht, ob man die Form kennt, nur das Wort.
+    _due(conn, "delat", "prs.1sg")
+    _due(conn, "delat", "prs.3sg")
+    _due(conn, "bu_r", "base")
+    _due(conn, "bu_n", "base")
+    zuordnung = _zuordnung(conn, course, index)
+    bedeutungen = _bedeutungen(course, zuordnung)
+    assert len(bedeutungen) == len(set(bedeutungen)) == 3
+    assert "machen, tun" in bedeutungen
+
+
+def test_die_zurueckgestellte_form_kommt_in_der_naechsten_runde(conn, course, index):
+    _due(conn, "delat", "prs.1sg")
+    _due(conn, "delat", "prs.3sg")
+    _due(conn, "bu_r", "base")
+    erste = _zuordnung(conn, course, index)
+    review.grade_review_round(conn, course, today=TODAY, submission=_antwort(erste, []))
+    # Die bewerteten Formen sind jetzt fuer morgen geplant; die zurueckgestellte
+    # Form von делать ist noch faellig und bekommt ihre eigene Runde.
+    verbleibend = [
+        (state.lexeme_id, state.form_key)
+        for state in lexeme_srs_repo.due_states(conn, today=TODAY, limit=None)
+    ]
+    assert len(verbleibend) == 1 and verbleibend[0][0] == "delat"
+
+
+def test_lieber_doppelt_als_gar_nicht(conn, course, index):
+    # Stehen nur noch Formen eines einzigen Wortes an, bliebe sonst die Runde
+    # leer — und die Startseite schickte zu einem Auffrischen, das nichts zeigt.
+    _due(conn, "delat", "prs.1sg")
+    _due(conn, "delat", "prs.3sg")
+    zuordnung = _zuordnung(conn, course, index)
+    assert zuordnung is not None
+    assert _bedeutungen(course, zuordnung) == ["machen, tun", "machen, tun"]
