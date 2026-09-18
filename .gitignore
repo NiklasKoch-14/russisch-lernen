@@ -4,3 +4,13 @@
 
 # Datenbanken aus lokalen Probeläufen
 backend/.look/
+
+# Lernfortschritt. Er entsteht erst beim Starten und bleibt auf dem Rechner:
+# im Docker-Betrieb im Volume, sonst unter backend/data/. Die Regel greift
+# überall, damit ein umgesetztes DB_PATH nichts Persönliches versionierbar
+# macht.
+*.db
+*.db-wal
+*.db-shm
+*.sqlite
+*.sqlite3

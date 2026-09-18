@@ -39,6 +39,42 @@ gar nicht. Warum eine Antwort falsch war, sagt der Kurs regelbasiert aus den For
 Modell bedient nur das freie Gespräch unter `/gespraech`. Ein anderes Modell
 wählt `OLLAMA_MODEL=… docker compose up -d`.
 
+## Fortschritt bleibt lokal
+
+Im Repo stehen nur Code und Kursinhalte — **kein Lernfortschritt**. Wer klont, fängt bei null an:
+Profil, gelöste Aufgaben, Wiederholungsplan und Hörläufe entstehen erst beim Starten und landen in
+einer SQLite-Datei auf dem eigenen Rechner. Sie wird nirgendwohin geschickt, es gibt kein Konto und
+keinen Server außer dem eigenen. Auch der Browser hält nichts fest; fragt man von einem anderen
+Gerät denselben Stack, ist es derselbe Stand.
+
+| Betrieb | Wo die Datei liegt |
+|---|---|
+| `make deploy` | im Docker-Volume `speaker_backend_data`, im Container `/data/speaker.db` |
+| ohne Docker | `backend/data/speaker.db` (von git ignoriert, wie jede `*.db`) |
+
+Sichern und zurückspielen. Das Backend wird dafür angehalten, nicht entfernt — `make remove`
+löschte den Container, und ohne Container greift `docker compose cp` ins Leere:
+
+```bash
+docker compose stop backend
+docker compose cp backend:/data/speaker.db ./fortschritt-sicherung.db   # sichern
+docker compose cp ./fortschritt-sicherung.db backend:/data/speaker.db   # zurückspielen
+docker compose start backend
+```
+
+Von vorn anfangen: `make purge` löscht die Volumes (und damit auch das Sprachmodell), oder gezielt
+nur den Fortschritt mit `docker volume rm speaker_backend_data` bei gestopptem Stack.
+
+Zwei getrennte Stände auf einem Rechner — zwei Lernende, oder ein Spielstand zum Ausprobieren —
+trennt der Projektname, denn er bestimmt den Volume-Namen:
+
+```bash
+COMPOSE_PROJECT_NAME=speaker-anna make deploy
+```
+
+Die Ports 3000 und 8000 kann aber nur ein Stand gleichzeitig belegen; der zweite läuft erst, wenn
+der erste gestoppt ist.
+
 ## Ton
 
 Gesprochen wird über einen eigenen Piper-Container. Er hat keinen Port nach außen — das Frontend holt
